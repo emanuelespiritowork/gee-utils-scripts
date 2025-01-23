@@ -1,3 +1,4 @@
 var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
+var attention_point = require('users/emanuelespiritowork/SharedRepo:assets/attention_point');
 
-exports.single_feature = AOI.AOI.filterBounds(attention_point).first();
+exports.single_feature = AOI.AOI.filterBounds(attention_point.attention_point).first();
