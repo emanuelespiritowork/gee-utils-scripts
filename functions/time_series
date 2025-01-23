@@ -1,0 +1,97 @@
+exports.plot_time_series = function(image_collection,region,scale){
+
+evi2_time_series = ui.Chart.image.series({
+  imageCollection: image_collection,
+  region: region,
+  reducer: ee.Reducer.median(),
+  scale: scale,
+  xProperty: 'system:time_start'  
+});
+
+print("evi2_time_series",evi2_time_series);
+
+};
+
+
+var ndfi2_time_series = ui.Chart.image.series({
+  imageCollection: ndfi2_coll,
+  region: attention_point,
+  reducer: ee.Reducer.median(),
+  scale: scale_to_use,
+  xProperty: 'system:time_start'  
+});
+
+print("ndfi2_time_series",ndfi2_time_series);
+
+
+/////////////////////////////////////
+//          4 Display time series for the field around that point
+/////////////////////////////////////
+
+//          4.1 Display time series for the field around attention_point
+
+var single_feature = AOI.filterBounds(attention_point).first();
+
+//print("single_feature",single_feature);
+//print("single_feature",single_feature.get('id_geom'));
+
+//var single_feature_drawn = single_feature.draw()
+
+//Map.addLayer(single_feature,{},'single_feature',false);
+
+var ndfi2_time_series_single_feature = ui.Chart.image.series({
+  imageCollection: ndfi2_coll,
+  region: single_feature.geometry(),
+  reducer: ee.Reducer.median()
+}).setChartType("ScatterChart");
+
+//print("ndfi2_time_series_single_feature",ndfi2_time_series_single_feature);
+
+//          4.2 Export csv for that time series
+var createTS_ndfi2 = function(img){
+  var date = img.get('system:time_start');
+  var value = img.reduceRegion({
+    geometry: single_feature.geometry(),
+    reducer: ee.Reducer.median(),
+    scale: scale_to_use,
+    bestEffort: true}).get('ndfi2');
+  var feature = ee.Feature(null, {'system:time_start': date, 
+                             'date': ee.Date(date).format('Y/M/d'), 
+                             'ndfi2': value,
+                             'id_geom': ee.String(single_feature.getString('id_geom'))
+  });
+  return feature;
+};
+
+var createTS_evi2 = function(img){
+  var date = img.get('system:time_start');
+  var value = img.reduceRegion({
+    geometry: single_feature.geometry(),
+    reducer: ee.Reducer.median(),
+    scale: scale_to_use,
+    bestEffort: true}).get('evi2');
+  var feature = ee.Feature(null, {'system:time_start': date, 
+                             'date': ee.Date(date).format('Y/M/d'), 
+                             'evi2': value,
+                             'id_geom': ee.String(single_feature.getString('id_geom'))
+  });
+  return feature;
+};
+
+var TS_ndfi2 = ndfi2_coll.map(createTS_ndfi2);
+var TS_evi2 = evi2_coll.map(createTS_evi2);
+
+var graph_ndfi2 = ui.Chart.feature.byFeature(TS_ndfi2, 'system:time_start', 'ndfi2');
+
+/*
+print(graph_ndfi2.setChartType("ScatterChart")
+           .setOptions({vAxis: {title: 'LST [deg. C]'},
+                        hAxis: {title: 'Date'}}));
+*/                      
+
+Export.table.toDrive({collection: TS_ndfi2, description: "ndfi2_single_feature",
+selectors: 'id_geom, date, ndfi2',
+folder: 'Exports'});  
+Export.table.toDrive({collection: TS_evi2, description: "evi2_single_feature",
+selectors: 'id_geom, date, evi2',
+folder: 'Exports'});  
