@@ -18,7 +18,12 @@ var import3 = require('users/emanuelespiritowork/SharedRepo:functions/pixel_perc
 
 var pix_perc_image = import3.pixel_percentage_img(masked_image);
 
+var import4 = require('users/emanuelespiritowork/SharedRepo:functions/s2_scale_img');
+
+var scaled_image = import4.s2_scale_img(pix_perc_image);
+
 Map.addLayer(clipped_image,{},'clipped_image');
 Map.addLayer(masked_image,{},'masked_image');
 Map.addLayer(pix_perc_image,{},'pix_perc_image');
+Map.addLayer(scaled_image,{},'scaled_image');
 Map.centerObject(field.AOI);
