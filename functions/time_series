@@ -12,18 +12,18 @@ print("time_series",time_series);
 
 };
 
-exports.csv_time_series = function(img){
+exports.csv_time_series = function(img, region){
   var date = img.get('system:time_start');
   var layer_name = img.bandNames().get(0);
   var value = img.reduceRegion({
-    geometry: single_feature.geometry(),
+    geometry: region.geometry(),
     reducer: ee.Reducer.median(),
     scale: scale_to_use,
     bestEffort: true}).get(layer_name);
   var feature = ee.Feature(null, {'system:time_start': date, 
                              'date': ee.Date(date).format('Y/M/d'), 
-                             layer_name: value,
-                             'id_geom': ee.String(single_feature.getString('id_geom'))
+                             layer_name: value,//potrebbe non funzionare
+                             'id_geom': ee.String(region.getString('id'))
   });
   return feature;
   
