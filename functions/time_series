@@ -10,7 +10,7 @@ time_series = ui.Chart.image.series({
   xProperty: 'system:time_start'  
 });
 
-print("time_series",time_series);
+return time_series;
 
 };
 
@@ -40,5 +40,6 @@ exports.export_time_series = function(time_series,layer_name,id_name,folder,desc
   Export.table.toDrive({collection: time_series, description: description,
   selectors: columns,
   folder: folder});
+  return 0;
 };
 
