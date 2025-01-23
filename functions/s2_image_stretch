@@ -2,6 +2,10 @@ var scale_of_image = specific_image.select('B4').projection()
 .nominalScale();
 var geometry_of_image = specific_image.geometry();
 
+exports.s2_image_stretch = function(){
+  
+}
+
 var computedB4_std = specific_image.select('B4').reduceRegion({
   reducer: ee.Reducer.stdDev(),
   geometry: geometry_of_image,
