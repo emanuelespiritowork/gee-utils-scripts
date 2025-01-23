@@ -1,7 +1,7 @@
 var field = require('users/emanuelespiritowork/SharedRepo:assets/AOI')
 
 var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-.filterBounds(field.AOI.geometry());
+.filterBounds(field.AOI);
 
 var image = image_coll.first();
 
@@ -10,4 +10,4 @@ var plot = require('users/emanuelespiritowork/SharedRepo:functions/clip_img');
 var clipped_image = plot.clip_img(image);
 
 Map.addLayer(clipped_image,{},'clipped_image');
-Map.centerObject(field.AOI.geometry());
+Map.centerObject(field.AOI);
