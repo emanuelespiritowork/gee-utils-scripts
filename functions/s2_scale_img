@@ -1,4 +1,5 @@
 //use only over surface reflectance bands
+//for example, use after s2_mask_img
 
 exports.s2_scale_img = function(image){
   var s2_bands_names = image.bandNames();
