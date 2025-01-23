@@ -9,5 +9,10 @@ var plot = require('users/emanuelespiritowork/SharedRepo:functions/clip_img');
 
 var clipped_image = plot.clip_img(image);
 
+var mask = require('users/emanuelespiritowork/SharedRepo:functions/s2_mask_img');
+
+var masked_image = mask.s2_mask_img(clipped_image);
+
 Map.addLayer(clipped_image,{},'clipped_image');
+Map.addLayer(masked_image,{},'masked_image');
 Map.centerObject(field.AOI);
