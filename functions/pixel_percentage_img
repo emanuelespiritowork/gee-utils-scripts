@@ -2,7 +2,7 @@
 //requires asset: AOI
 //requires var: scale_to_use
 
-exports.pixel_percentage = function(image){
+exports.pixel_percentage_img = function(image){
   var clip_image_following_feature = function(region){
     var clipped_image = image.clip(region); 
     
