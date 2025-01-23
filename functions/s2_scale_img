@@ -1,5 +1,7 @@
+//use only over surface reflectance bands
+
 exports.s2_scale = function(image){
-  
+  var s2_bands_names = image.bandNames();
   //scaling function
   var scale_band = function(band){
     return image.select(band).divide(10000);
@@ -8,8 +10,7 @@ exports.s2_scale = function(image){
   var collection_of_image = ee.ImageCollection
   .fromImages(scaled_image);
   var imageMulti = collection_of_image.toBands()
-  .rename(['B1','B2','B3','B4',
-  'B5','B6','B7','B8','B9','B11','B12']);
+  .rename(s2_bands_names);
   var time_start_value = image.get('system:time_start');
   imageMulti = imageMulti.set({'system:time_start':time_start_value});
   return imageMulti;
