@@ -1,0 +1,5 @@
+var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
+
+var image = image_coll.first();
+
+print(image.bandNames().get(0));
