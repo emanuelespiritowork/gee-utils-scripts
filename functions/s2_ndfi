@@ -1,4 +1,4 @@
-exports.s2_ndfi = function(image){
+exports.s2_ndfi_img = function(image){
   var ndfi2 = image.normalizedDifference(['B4','B12']).rename('ndfi2');
   
   var time_start_value = image.get('system:time_start');
