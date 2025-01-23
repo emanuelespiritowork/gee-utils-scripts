@@ -2,6 +2,8 @@
 //requires asset: AOI
 //requires var: scale_to_use
 
+var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
+
 exports.pixel_percentage_img = function(image){
   var clip_image_following_feature = function(region){
     var clipped_image = image.clip(region); 
