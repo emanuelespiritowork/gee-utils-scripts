@@ -1,0 +1,1 @@
+exports.threshold_percentage = ee.Number(0.5);
