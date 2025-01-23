@@ -1,5 +1,5 @@
 var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
 
 exports.clip_img = function(image){
-  return image.clip(AOI);
+  return image.clip(AOI.AOI);
 };
