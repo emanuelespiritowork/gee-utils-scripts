@@ -12,7 +12,6 @@ return time_series;
 
 };
 
-//requires asset: single_feature
 var single_feature = require('users/emanuelespiritowork/SharedRepo:assets/single_feature');
 
 exports.create_time_series = function(img){
