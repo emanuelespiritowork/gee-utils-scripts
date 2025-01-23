@@ -1,3 +1,5 @@
+
+
 exports.plot_time_series = function(image_collection,region,scale){
 
 time_series = ui.Chart.image.series({
@@ -12,52 +14,31 @@ print("time_series",time_series);
 
 };
 
-exports.csv_time_series = function(img, region){
+//requires asset: single_feature
+
+exports.create_time_series = function(img){
   var date = img.get('system:time_start');
   var layer_name = img.bandNames().get(0);
   var value = img.reduceRegion({
-    geometry: region.geometry(),
+    geometry: single_feature.geometry(),
     reducer: ee.Reducer.median(),
     scale: scale_to_use,
     bestEffort: true}).get(layer_name);
   var feature = ee.Feature(null, {'system:time_start': date, 
                              'date': ee.Date(date).format('Y/M/d'), 
                              layer_name: value,//potrebbe non funzionare
-                             'id': ee.String(region.getString('id'))
+                             id_name: ee.String(single_feature.getString(id_name))
   });
   return feature;
   
 };
 
-var createTS_evi2 = function(img){
-  var date = img.get('system:time_start');
-  var value = img.reduceRegion({
-    geometry: single_feature.geometry(),
-    reducer: ee.Reducer.median(),
-    scale: scale_to_use,
-    bestEffort: true}).get('evi2');
-  var feature = ee.Feature(null, {'system:time_start': date, 
-                             'date': ee.Date(date).format('Y/M/d'), 
-                             'evi2': value,
-                             'id_geom': ee.String(single_feature.getString('id_geom'))
-  });
-  return feature;
+
+exports.export_time_series = function(time_series,layer_name,id_name,folder,description){
+  var graph_ndfi2 = ui.Chart.feature.byFeature(time_series, 'system:time_start', layer_name);
+  var columns = id_name.cat(", date, ").cat(layer_name);
+  Export.table.toDrive({collection: time_series, description: description,
+  selectors: columns,
+  folder: folder});
 };
 
-var TS_ndfi2 = ndfi2_coll.map(createTS_ndfi2);
-var TS_evi2 = evi2_coll.map(createTS_evi2);
-
-var graph_ndfi2 = ui.Chart.feature.byFeature(TS_ndfi2, 'system:time_start', 'ndfi2');
-
-/*
-print(graph_ndfi2.setChartType("ScatterChart")
-           .setOptions({vAxis: {title: 'LST [deg. C]'},
-                        hAxis: {title: 'Date'}}));
-*/                      
-
-Export.table.toDrive({collection: TS_ndfi2, description: "ndfi2_single_feature",
-selectors: 'id_geom, date, ndfi2',
-folder: 'Exports'});  
-Export.table.toDrive({collection: TS_evi2, description: "evi2_single_feature",
-selectors: 'id_geom, date, evi2',
-folder: 'Exports'});  
