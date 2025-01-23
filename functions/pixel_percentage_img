@@ -1,5 +1,7 @@
 //requires var: threshold_percentage, 
 //requires asset: AOI
+//requires var: scale_to_use
+//requires var: band_name
 
 exports.pixel_percentage = function(image){
   var clip_image_following_feature = function(region){
@@ -10,14 +12,14 @@ exports.pixel_percentage = function(image){
       geometry: region.geometry(),
       scale: scale_to_use,
       bestEffort: true
-    }).getNumber(ee.String('B4'));
+    }).getNumber(ee.String(band_name));
     
     var all_pixels = clipped_image.unmask(ee.Number(0)).reduceRegion({
       reducer: ee.Reducer.count(),
       geometry: region.geometry(),
       scale: scale_to_use,
       bestEffort: true
-    }).getNumber(ee.String('B4'));
+    }).getNumber(ee.String(band_name));
     
     var possible_mask = ee.Algorithms.If({
       condition: not_masked_pixels.divide(all_pixels)
