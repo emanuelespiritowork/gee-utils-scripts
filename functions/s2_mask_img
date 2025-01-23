@@ -1,4 +1,4 @@
-var mask_sentinel = function(image){
+exports.mask_sentinel = function(image){
   //cloud-masking 
   
   var opaque = image.select('MSK_CLASSI_OPAQUE').unmask(0);
