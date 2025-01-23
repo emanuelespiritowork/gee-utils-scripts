@@ -1,0 +1,3 @@
+exports.s2_scale = function(image_collection){
+  
+}
