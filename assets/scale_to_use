@@ -1,0 +1,52 @@
+//requires var: threshold_percentage, 
+//requires asset: AOI
+//requires var: scale_to_use
+
+var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
+var threshold_percentage = require('users/emanuelespiritowork/SharedRepo:assets/threshold_percentage');
+var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
+
+exports.pixel_percentage_img = function(image){
+  var clip_image_following_feature = function(region){
+    var clipped_image = image.clip(region); 
+    
+    var not_masked_pixels = clipped_image.reduceRegion({
+      reducer: ee.Reducer.count(),
+      geometry: region.geometry(),
+      scale: scale_to_use,
+      bestEffort: true
+    }).getNumber(ee.String(image.bandNames().get(0)));
+    
+    var all_pixels = clipped_image.unmask(ee.Number(0)).reduceRegion({
+      reducer: ee.Reducer.count(),
+      geometry: region.geometry(),
+      scale: scale_to_use,
+      bestEffort: true
+    }).getNumber(ee.String(image.bandNames().get(0)));
+    
+    var possible_mask = ee.Algorithms.If({
+      condition: not_masked_pixels.divide(all_pixels)
+      .gte(ee.Number(threshold_percentage.threshold_percentage).float()),
+      trueCase: ee.Image(ee.Number(1)),
+      falseCase: ee.Image(ee.Number(0))
+    });
+    
+    var updateMask_image = clipped_image.updateMask(possible_mask)
+    .clip(region);
+    
+    return updateMask_image;
+  };
+
+  var imageCollection_of_clipped_image = AOI.AOI
+  .map(clip_image_following_feature);
+
+  var imageMosaic = ee.ImageCollection(imageCollection_of_clipped_image)
+  .mosaic();
+  
+  var time_start_value = image.get('system:time_start');
+    
+  imageMosaic = imageMosaic
+  .set({'system:time_start':time_start_value});
+  
+  return imageMosaic;
+};
