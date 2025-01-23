@@ -1,3 +1,6 @@
+//requires var: threshold_percentage, 
+//requires asset: AOI
+
 exports.pixel_percentage = function(image){
   var clip_image_following_feature = function(region){
     var clipped_image = image.clip(region); 
