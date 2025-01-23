@@ -1,5 +1,7 @@
 //requires asset: AOI
 
+var AOI = require()
+
 exports.clip_img = function(image){
   return image.clip(AOI);
 };
