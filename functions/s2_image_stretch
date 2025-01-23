@@ -1,0 +1,78 @@
+var scale_of_image = specific_image.select('B4').projection()
+.nominalScale();
+var geometry_of_image = specific_image.geometry();
+
+var computedB4_std = specific_image.select('B4').reduceRegion({
+  reducer: ee.Reducer.stdDev(),
+  geometry: geometry_of_image,
+  scale: scale_of_image,
+  bestEffort: true
+}).getNumber('B4');
+var computedB4_mean = specific_image.select('B4').reduceRegion({
+  reducer: ee.Reducer.mean(),
+  geometry: geometry_of_image,
+  scale: scale_of_image,
+  bestEffort: true
+}).getNumber('B4');
+
+var computedB4_min = ee.Number.expression({
+  expression: 'A-2*B',
+  vars: {A: computedB4_mean, B: computedB4_std}
+}).getInfo();
+var computedB4_max = ee.Number.expression({
+  expression: 'A+2*B',
+  vars: {A: computedB4_mean, B: computedB4_std}
+}).getInfo();
+
+var computedB3_std = specific_image.select('B3').reduceRegion({
+  reducer: ee.Reducer.stdDev(),
+  geometry: geometry_of_image,
+  scale: scale_of_image,
+  bestEffort: true
+}).getNumber('B3');
+var computedB3_mean = specific_image.select('B3').reduceRegion({
+  reducer: ee.Reducer.mean(),
+  geometry: geometry_of_image,
+  scale: scale_of_image,
+  bestEffort: true
+}).getNumber('B3');
+
+var computedB3_min = ee.Number.expression({
+  expression: 'A-2*B',
+  vars: {A: computedB3_mean, B: computedB3_std}
+}).getInfo();
+var computedB3_max = ee.Number.expression({
+  expression: 'A+2*B',
+  vars: {A: computedB3_mean, B: computedB3_std}
+}).getInfo();
+
+var computedB2_std = specific_image.select('B2').reduceRegion({
+  reducer: ee.Reducer.stdDev(),
+  geometry: geometry_of_image,
+  scale: scale_of_image,
+  bestEffort: true
+}).getNumber('B2');
+var computedB2_mean = specific_image.select('B2').reduceRegion({
+  reducer: ee.Reducer.mean(),
+  geometry: geometry_of_image,
+  scale: scale_of_image,
+  bestEffort: true
+}).getNumber('B2');
+
+var computedB2_min = ee.Number.expression({
+  expression: 'A-2*B',
+  vars: {A: computedB2_mean, B: computedB2_std}
+}).getInfo();
+var computedB2_max = ee.Number.expression({
+  expression: 'A+2*B',
+  vars: {A: computedB2_mean, B: computedB2_std}
+}).getInfo();
+
+var vis_specific_image = {
+  bands: ['B4','B3','B2'],
+  min: [computedB4_min,computedB3_min,computedB2_min],
+  max: [computedB4_max,computedB3_max,computedB2_max]
+};
+
+Map.addLayer(specific_image,vis_specific_image, 'specific_image',
+false);
