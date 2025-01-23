@@ -1,6 +1,6 @@
 //use only over surface reflectance bands
 
-exports.s2_scale = function(image){
+exports.s2_scale_img = function(image){
   var s2_bands_names = image.bandNames();
   //scaling function
   var scale_band = function(band){
