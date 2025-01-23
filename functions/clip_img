@@ -1,4 +1,4 @@
-//needs variables/AOI
+//requires: AOI
 
 exports.clip_img = function(image){
   return image.clip(AOI);
