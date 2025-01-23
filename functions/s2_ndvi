@@ -1,0 +1,6 @@
+exports.s2_ndvi = function(image){
+  var ndvi = image.normalizedDifference(['B8','B4']).rename('ndvi');
+  var time_start_value = image.get('system:time_start');
+  ndvi = ndvi.set({'system:time_start':time_start_value});
+  return ndvi;
+};
