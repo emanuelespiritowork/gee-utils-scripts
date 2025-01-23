@@ -14,6 +14,11 @@ var mask = require('users/emanuelespiritowork/SharedRepo:functions/s2_mask_img')
 
 var masked_image = mask.s2_mask_img(clipped_image);
 
+var import3 = require('users/emanuelespiritowork/SharedRepo:functions/pixel_percentage_img');
+
+var pix_perc_image = import3.pixel_percentage_img(masked_image);
+
 Map.addLayer(clipped_image,{},'clipped_image');
 Map.addLayer(masked_image,{},'masked_image');
+Map.addLayer(pix_perc_image,{},'pix_perc_image');
 Map.centerObject(field.AOI);
