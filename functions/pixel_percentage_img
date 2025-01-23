@@ -3,6 +3,7 @@
 //requires var: scale_to_use
 
 var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
+var pixel_percentage_variables = require('users/emanuelespiritowork/SharedRepo:assets/pixel_percentage_variables');
 
 exports.pixel_percentage_img = function(image){
   var clip_image_following_feature = function(region){
