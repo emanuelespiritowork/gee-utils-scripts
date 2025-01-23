@@ -1,11 +1,8 @@
-var scale_of_image = specific_image.select('B4').projection()
+
+exports.s2_rgb_image_stretch = function(specific_image){
+  var geometry_of_image = specific_image.geometry();
+ var scale_of_image = specific_image.select('B4').projection()
 .nominalScale();
-var geometry_of_image = specific_image.geometry();
-
-exports.s2_image_stretch = function(){
-  
-}
-
 var computedB4_std = specific_image.select('B4').reduceRegion({
   reducer: ee.Reducer.stdDev(),
   geometry: geometry_of_image,
@@ -80,3 +77,7 @@ var vis_specific_image = {
 
 Map.addLayer(specific_image,vis_specific_image, 'specific_image',
 false);
+
+return 0;
+}
+
