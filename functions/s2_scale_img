@@ -7,7 +7,7 @@ exports.s2_scale_img = function(image){
   var scale_band = function(band){
     return image.select(band).divide(ee.Number(10000));
   };
-  var scaled_image = choosen_bands.map(scale_band);
+  var scaled_image = s2_bands_names.map(scale_band);
   var collection_of_image = ee.ImageCollection
   .fromImages(scaled_image);
   var imageMulti = collection_of_image.toBands()
