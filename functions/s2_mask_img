@@ -31,6 +31,6 @@ exports.mask_sentinel = function(image){
       
   //creating the xor (1 will be not cloud pixel, 0 will be cloud pixel)
   var mask = opposite_mask.eq(0);
-      
-  return image.updateMask(mask);
+  
+  return image.updateMask(mask).select("B.*");
 };
