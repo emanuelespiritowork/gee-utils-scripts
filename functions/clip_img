@@ -1,3 +1,5 @@
+//needs variables/AOI
+
 exports.clip_img = function(image){
   return image.clip(AOI);
 };
