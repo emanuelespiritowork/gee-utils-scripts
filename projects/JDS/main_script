@@ -1,5 +1,11 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI");
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 
 var image = image_coll.first();
 
-var plot = require('users/emanuelespiritowork/SharedRepo/functions:clip_img');
+var plot = require('users/emanuelespiritowork/SharedRepo:functions/clip_img');
+
+var clipped_image = plot.clip_img(image);
+
