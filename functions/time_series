@@ -23,7 +23,7 @@ exports.csv_time_series = function(img, region){
   var feature = ee.Feature(null, {'system:time_start': date, 
                              'date': ee.Date(date).format('Y/M/d'), 
                              layer_name: value,//potrebbe non funzionare
-                             'id_geom': ee.String(region.getString('id'))
+                             'id': ee.String(region.getString('id'))
   });
   return feature;
   
