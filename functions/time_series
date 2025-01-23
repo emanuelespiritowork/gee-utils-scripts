@@ -1,5 +1,3 @@
-
-
 exports.plot_time_series = function(image_collection,region,scale){
 
 time_series = ui.Chart.image.series({
