@@ -13,14 +13,14 @@ exports.pixel_percentage_img = function(image){
     var not_masked_pixels = clipped_image.reduceRegion({
       reducer: ee.Reducer.count(),
       geometry: region.geometry(),
-      scale: scale_to_use,
+      scale: scale_to_use.scale_to_use,
       bestEffort: true
     }).getNumber(ee.String(image.bandNames().get(0)));
     
     var all_pixels = clipped_image.unmask(ee.Number(0)).reduceRegion({
       reducer: ee.Reducer.count(),
       geometry: region.geometry(),
-      scale: scale_to_use,
+      scale: scale_to_use.scale_to_use,
       bestEffort: true
     }).getNumber(ee.String(image.bandNames().get(0)));
     
