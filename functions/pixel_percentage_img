@@ -35,7 +35,7 @@ exports.pixel_percentage_img = function(image){
     return updateMask_image;
   };
 
-  var imageCollection_of_clipped_image = AOI
+  var imageCollection_of_clipped_image = AOI.AOI
   .map(clip_image_following_feature);
 
   var imageMosaic = ee.ImageCollection(imageCollection_of_clipped_image)
