@@ -2,4 +2,4 @@ var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 
 var image = image_coll.first();
 
-print(image.bandNames().get(0));
+var plot = require('users/emanuelespirito/work/SharedRepo/functions:clip_img');
