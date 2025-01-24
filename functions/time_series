@@ -38,7 +38,7 @@ exports.export_time_series = function(time_series,layer_name,id_name,folder,desc
   var columns = ee.String(ee.String(id_name).cat(", date, ").cat(ee.String(layer_name)));
   print(columns);
   Export.table.toDrive({collection: time_series, description: description,
-  selectors: columns,
+  //selectors: columns,
   folder: folder});
   return 0;
 };
