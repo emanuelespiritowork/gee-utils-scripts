@@ -1,7 +1,7 @@
 var field = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
 
 var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-.filterDate('2024-05-16','2024-05-18')
+.filterDate('2024-12-15','2025-01-24')
 .filterBounds(field.AOI);
 
 var image = image_coll.first();
