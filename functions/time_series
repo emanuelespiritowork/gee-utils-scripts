@@ -33,13 +33,14 @@ exports.create_time_series = function(img){
   
 };
 
+var export_folder = require('users/emanuelespiritowork/SharedRepo:assets/export_folder');
 
-exports.export_time_series = function(time_series,layer_name,id_name,folder,description){
-  var columns = ee.String(ee.String(id_name).cat(", date, ").cat(ee.String(layer_name)));
+exports.export_time_series = function(time_series){
+  var columns = ee.List(ee.String("id"), ee.String("date"), ee.String("layer"));
   print(columns);
-  Export.table.toDrive({collection: time_series, description: description,
-  //selectors: columns,
-  folder: folder});
+  Export.table.toDrive({collection: time_series, description: "export_time_series",
+  selectors: columns,
+  folder: export_folder.export_folder});
   return 0;
 };
 
