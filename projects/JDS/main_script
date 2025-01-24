@@ -8,8 +8,10 @@ var image = image_coll.first();
 Map.addLayer(image,{},'image');
 Map.centerObject(field.AOI);
 
-var import1 = require('users/emanuelespiritowork/SharedRepo:functions/time_series');
+var time_series = require('users/emanuelespiritowork/SharedRepo:functions/time_series');
 
-var image_time_series = image_coll.map(import1.create_time_series);
+var image_time_series = image_coll.map(time_series.create_time_series);
 
 print(image_time_series);
+
+
