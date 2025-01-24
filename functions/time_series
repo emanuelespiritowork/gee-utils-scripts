@@ -35,7 +35,7 @@ exports.create_time_series = function(img){
 
 
 exports.export_time_series = function(time_series,layer_name,id_name,folder,description){
-  var graph_ndfi2 = ui.Chart.feature.byFeature(time_series, 'system:time_start', layer_name);
+  var graph = ui.Chart.feature.byFeature(time_series, 'system:time_start', layer_name);
   var columns = id_name.cat(", date, ").cat(layer_name);
   Export.table.toDrive({collection: time_series, description: description,
   selectors: columns,
