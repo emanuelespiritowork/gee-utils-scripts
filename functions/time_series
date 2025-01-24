@@ -27,8 +27,8 @@ exports.create_time_series = function(img){
   var id_string = id_name.id_name;
   var feature = ee.Feature(null, {'system:time_start': date, 
                              'date': ee.Date(date).format('Y/M/d'), 
-                             layer_name: value,//potrebbe non funzionare
-                             id_string: ee.String(single_feature.single_feature.getString(id_string))
+                             layer: value,//potrebbe non funzionare
+                             id: ee.String(single_feature.single_feature.getString(id_string))
   });
   return feature;
   
