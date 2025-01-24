@@ -14,4 +14,5 @@ var image_time_series = image_coll.map(time_series.create_time_series);
 
 print(image_time_series);
 
+var null_var = time_series.export_time_series(image_time_series,'layer',"id","Exports","Null description")
 
