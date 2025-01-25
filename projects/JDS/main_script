@@ -18,7 +18,7 @@ var time_series_create_img = require('users/emanuelespiritowork/SharedRepo:funct
 
 var image_time_series = image_coll.map(time_series_create_img.time_series_create_img);
 
-var time_series_create_AOI_img = function(img){
+var time_series_AOI_create_img = function(img){
   var date = img.get('system:time_start');
   var layer_name = img.bandNames().get(0);
   
