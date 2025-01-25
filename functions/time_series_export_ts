@@ -4,6 +4,7 @@ exports.time_series_export_ts = function(time_series){
   var selectors_name = ee.String(time_series.propertyNames()
   .remove("system:time_start")
   .join(","));
+  print(selectors_name);
   Export.table.toDrive({collection: time_series, description: "export_time_series",
   selectors: selectors_name,
   folder: export_folder.export_folder});
