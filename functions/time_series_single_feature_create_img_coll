@@ -1,5 +1,5 @@
-var time_series_single_feature_create_img = require('users/emanuelespiritowork/SharedRepo:functions/time_series_single_feature_create_img');
+var space_series_single_feature_img = require('users/emanuelespiritowork/SharedRepo:functions/space_series_single_feature_img');
 
 exports.time_series_single_feature_create_img_coll = function(img_coll){
-  return img_coll.map(time_series_single_feature_create_img.time_series_single_feature_create_img);
+  return img_coll.map(space_series_single_feature_img.space_series_single_feature_img);
 };
