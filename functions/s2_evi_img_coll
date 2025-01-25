@@ -1,0 +1,5 @@
+var s2_evi_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_img');
+
+exports.s2_evi_img_coll = function(img_coll){
+  return img_coll.map(s2_evi_img.s2_evi_img);
+};
