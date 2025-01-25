@@ -17,12 +17,12 @@ Map.centerObject(field.AOI);
 
 //////// AOI
 
-var time_series_AOI_create_img = require('users/emanuelespiritowork/SharedRepo:functions/time_series_AOI_create_img');
+var time_series_AOI_create_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_AOI_create_img_coll');
 
-var image_time_series_AOI = image_coll.map(time_series_AOI_create_img.time_series_AOI_create_img).flatten();
+var time_series = time_series_AOI_create_img_coll.time_series_AOI_create_img_coll(image_coll);
 
-print(image_time_series_AOI);
+print(time_series);
 
 var time_series_single_feature_export_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_single_feature_export_ts');
 
-var null_var_1 = time_series_single_feature_export_ts.time_series_single_feature_export_ts(image_time_series_AOI);
+var null_var_1 = time_series_single_feature_export_ts.time_series_single_feature_export_ts(time_series);
