@@ -1,0 +1,12 @@
+exports.time_series_plot_ts = function(time_series){
+  var plot = ui.Chart.feature.byFeature({
+    features: time_series, 
+    xProperty: 'system:time_start', 
+    yProperties: 'layer'
+  });
+  
+  print(plot.setChartType("ScatterChart"));
+  
+  return 0;
+
+};
