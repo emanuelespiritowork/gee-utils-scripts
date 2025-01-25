@@ -23,6 +23,6 @@ var time_series = time_series_AOI_create_img_coll.time_series_AOI_create_img_col
 
 print(time_series);
 
-var time_series_single_feature_export_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_single_feature_export_ts');
+var time_series_export_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_export_ts');
 
-var null_var_1 = time_series_single_feature_export_ts.time_series_single_feature_export_ts(time_series);
+var null_var_1 = time_series_export_ts.time_series_export_ts(time_series);
