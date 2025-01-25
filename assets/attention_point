@@ -1,1 +1,1 @@
-exports.attention_point = /* color: #d63000 */ee.Geometry.Point([11.974559721540183, 44.8640062138869]);
+exports.single_feature_point = /* color: #d63000 */ee.Geometry.Point([11.974559721540183, 44.8640062138869]);
