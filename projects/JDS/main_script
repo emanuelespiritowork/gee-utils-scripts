@@ -43,7 +43,7 @@ print(time_series_2);
 */
 var time_series_get_plot_for_AOI_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot_for_AOI_ts');
 
-var plot = time_series_get_plot_for_AOI_ts.time_series_get_plot_for_AOI_ts(time_series_2);
+var plot = time_series_get_plot_for_AOI_ts.time_series_get_plot_for_AOI_ts(time_series);
 
 print(plot);
 
