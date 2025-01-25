@@ -1,10 +1,9 @@
 var export_folder = require('users/emanuelespiritowork/SharedRepo:assets/export_folder');
 
 exports.time_series_export_ts = function(time_series){
-  var layer_name = time_series.propertyNames();//da questa lista rimuovo 'id','date','system_time:start' e quello che rimane è il nome del layer
-  var selectors_name = time_series.propertyNames();//da questa lista rimuovo 'system_time:start' e quello che rimane è l'elenco dei selettori
+  var selectors_name = time_series.propertyNames().remove("system:time_start");
   Export.table.toDrive({collection: time_series, description: "export_time_series",
-  selectors: "id,date,layer",
+  selectors: selectors_name,
   folder: export_folder.export_folder});
   return 0;
 };
