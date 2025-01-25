@@ -4,6 +4,8 @@ var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate('2024-12-15','2025-01-24')
 .filterBounds(field.AOI);
 
+print(field.AOI);
+
 var clip_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/clip_img_coll');
 
 var clipped_img_coll = clip_img_coll.clip_img_coll(image_coll);
@@ -12,17 +14,17 @@ Map.addLayer(clipped_img_coll,{},"clipped_img_coll");
 
 var s2_evi_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_img');
 
-//image_coll = image_coll.map(s2_evi_img.s2_evi_img);
+image_coll = image_coll.map(s2_evi_img.s2_evi_img);
 
-image_coll = image_coll.select(['B1','B2']);
+//image_coll = image_coll.select(['B1','B2']);
 
 print(image_coll);
 
 var image = image_coll.first();
 Map.addLayer(image,{},'image');
-Map.centerObject(field.AOI);
+//Map.centerObject(field.AOI);
 
-/*
+
 //////// AOI
 
 var time_series_create_for_AOI_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create_for_AOI_img_coll');
@@ -34,18 +36,19 @@ print(time_series);
 //var time_series_export_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_export_ts');
 
 //var null_var_1 = time_series_export_ts.time_series_export_ts(time_series);
-*/
+
 
 //////// single_feature
+/*
 var time_series_create_for_single_feature_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create_for_single_feature_img_coll');
 
 var time_series_2 = time_series_create_for_single_feature_img_coll.time_series_create_for_single_feature_img_coll(image_coll);
 
 print(time_series_2);
-/*
-var time_series_get_plot_for_AOI_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot_for_AOI_ts');
 
-var plot = time_series_get_plot_for_AOI_ts.time_series_get_plot_for_AOI_ts(time_series);
+var time_series_get_plot_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot_ts');
+
+var plot = time_series_get_plot_ts.time_series_get_plot_ts(time_series);
 
 print(plot);
 */
