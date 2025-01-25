@@ -23,7 +23,5 @@ exports.time_series_AOI_create_img = function(img){
   
   var all_field_features = AOI.AOI.map(create_single_field_value);
   
-  //print(all_field_features);
-  
   return all_field_features;
 };
