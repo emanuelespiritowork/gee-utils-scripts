@@ -1,0 +1,20 @@
+var single_feature = require('users/emanuelespiritowork/SharedRepo:assets/single_feature');
+var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
+var id_name = require('users/emanuelespiritowork/SharedRepo:assets/id_name');
+
+exports.create_time_series = function(img){
+  var date = img.get('system:time_start');
+  var layer_name = img.bandNames().get(0);
+  var value = img.reduceRegion({
+    geometry: single_feature.single_feature.geometry(),
+    reducer: ee.Reducer.median(),
+    scale: scale_to_use.scale_to_use,
+    bestEffort: true}).get(layer_name);
+  var feature = ee.Feature(null, {'system:time_start': date, 
+                             'date': ee.Date(date).format('Y/M/d'), 
+                             'layer': value,
+                             'id': ee.String(single_feature.single_feature.getString(id_name.id_name))
+  });
+  return feature;
+  
+};
