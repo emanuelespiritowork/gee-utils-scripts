@@ -1,52 +1,9 @@
 //////////////////////////////////////////////
-//      (PLOT TIME SERIES)
-//////////////////////////////////////////////
-
-exports.another_plot_time_series = function(image_collection,region,scale){
-
-time_series = ui.Chart.image.series({
-  imageCollection: image_collection,
-  region: region,
-  reducer: ee.Reducer.median(),
-  scale: scale,
-  xProperty: 'system:time_start'  
-});
-
-return time_series;
-
-};
-
-//////////////////////////////////////////////
-//      CREATE TIME SERIES
-//////////////////////////////////////////////
-
-var single_feature = require('users/emanuelespiritowork/SharedRepo:assets/single_feature');
-var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
-var id_name = require('users/emanuelespiritowork/SharedRepo:assets/id_name');
-
-exports.create_time_series = function(img){
-  var date = img.get('system:time_start');
-  var layer_name = img.bandNames().get(0);
-  var value = img.reduceRegion({
-    geometry: single_feature.single_feature.geometry(),
-    reducer: ee.Reducer.median(),
-    scale: scale_to_use.scale_to_use,
-    bestEffort: true}).get(layer_name);
-  var feature = ee.Feature(null, {'system:time_start': date, 
-                             'date': ee.Date(date).format('Y/M/d'), 
-                             'layer': value,
-                             'id': ee.String(single_feature.single_feature.getString(id_name.id_name))
-  });
-  return feature;
-  
-};
-
-//////////////////////////////////////////////
 //      PLOT TIME SERIES OF IMAGE COLLECTION
 //////////////////////////////////////////////
 
-var single_feature = require('users/emanuelespiritowork/SharedRepo:assets/single_feature');
-var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
+//var single_feature = require('users/emanuelespiritowork/SharedRepo:assets/single_feature');
+//var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
 
 exports.plot_time_series_img_coll = function(image_collection){
 
@@ -79,6 +36,49 @@ exports.get_plot_time_series_img_coll = function(image_collection){
   
   return time_series_plot;
 };
+
+//////////////////////////////////////////////
+//      CREATE TIME SERIES
+//////////////////////////////////////////////
+
+var single_feature = require('users/emanuelespiritowork/SharedRepo:assets/single_feature');
+var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
+var id_name = require('users/emanuelespiritowork/SharedRepo:assets/id_name');
+
+exports.create_time_series = function(img){
+  var date = img.get('system:time_start');
+  var layer_name = img.bandNames().get(0);
+  var value = img.reduceRegion({
+    geometry: single_feature.single_feature.geometry(),
+    reducer: ee.Reducer.median(),
+    scale: scale_to_use.scale_to_use,
+    bestEffort: true}).get(layer_name);
+  var feature = ee.Feature(null, {'system:time_start': date, 
+                             'date': ee.Date(date).format('Y/M/d'), 
+                             'layer': value,
+                             'id': ee.String(single_feature.single_feature.getString(id_name.id_name))
+  });
+  return feature;
+  
+};
+
+//////////////////////////////////////////////
+//      PLOT TIME SERIES
+//////////////////////////////////////////////
+
+exports.plot_time_series = function(time_series){
+  var plot = ui.Chart.feature.byFeature({
+    features: time_series, 
+    xProperty: 'system:time_start', 
+    yProperties: 'layer'
+  });
+  
+  print(plot.setChartType("ScatterChart"));
+  
+  return 0;
+
+};
+
 
 //////////////////////////////////////////////
 //      EXPORT FOLDER
