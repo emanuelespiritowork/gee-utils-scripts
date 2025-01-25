@@ -20,9 +20,11 @@ exports.time_series_get_plot_ts = function(time_series){
   
   print(yProperties);
   
-  var plot = ui.Chart.feature.byProperty({
+  var plot = ui.Chart.feature.groups({
     features: time_series, 
-    xProperties: xProperty.getInfo()
+    xProperty: xProperty.getInfo(),
+    yProperty: yProperties.getInfo(),
+    seriesProperty: 'id',
   }).setChartType("ScatterChart");
   
   return plot;
