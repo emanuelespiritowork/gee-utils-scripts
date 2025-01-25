@@ -20,6 +20,46 @@ var image = image_coll.first();
 Map.addLayer(image,{},'image');
 Map.centerObject(field.AOI);
 
+var space_series_AOI_img = function(img){
+  var date = img.get('system:time_start');
+  var layer_names = img.bandNames();
+  
+  print(layer_names);
+  
+  var create_single_field_value = function(single_feature){
+    var values = img.reduceRegion({
+      geometry: single_feature.geometry(),
+      reducer: ee.Reducer.median(),
+      scale: scale_to_use.scale_to_use,
+      bestEffort: true}).get(layer_names);
+      
+    print(values);
+      
+    var feature_of_single_field = ee.Feature(null, ee.Dictionary.fromLists({
+      keys: ['system:time_start','date',layer_names,'id'],
+      values: [date,ee.Date(date).format('Y/M/d'), values, ee.String(single_feature.getString(id_name.id_name))]
+    }));
+    
+    return feature_of_single_field;
+  };
+  
+  //var all_field_features = AOI.AOI.map(create_single_field_value);
+  
+  var all_field_features = create_single_field_value(single_feature.single_feature);
+  
+  return all_field_features;
+};
+
+
+
+
+
+
+
+
+
+/*
+
 
 //////// AOI
 
@@ -34,13 +74,12 @@ print(time_series);
 //var null_var_1 = time_series_export_ts.time_series_export_ts(time_series);
 
 //////// single_feature
-/*
 var time_series_create_for_single_feature_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create_for_single_feature_img_coll');
 
 var time_series_2 = time_series_create_for_single_feature_img_coll.time_series_create_for_single_feature_img_coll(image_coll);
 
 print(time_series_2);
-*/
+
 var time_series_get_plot_for_AOI_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot_for_AOI_ts');
 
 var plot = time_series_get_plot_for_AOI_ts.time_series_get_plot_for_AOI_ts(time_series);
@@ -50,3 +89,4 @@ print(plot);
 //var time_series_export_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_export_ts');
 
 //var null_var_2 = time_series_export_ts.time_series_export_ts(time_series);
+*/
