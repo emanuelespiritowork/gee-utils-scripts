@@ -24,7 +24,7 @@ exports.plot_time_series_img_coll = function(image_collection){
 //      GET PLOT TIME SERIES OF IMAGE COLLECTION
 //////////////////////////////////////////////
 
-exports.get_plot_time_series_img_coll = function(image_collection){
+exports.time_series_get_plot_img_coll = function(image_collection){
 
   var time_series_plot = ui.Chart.image.series({
     imageCollection: image_collection,
