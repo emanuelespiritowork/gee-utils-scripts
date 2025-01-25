@@ -19,13 +19,18 @@ exports.time_series_get_plot_ts = function(time_series){
   
   print(yProperties);
   
-  var plot = ui.Chart.feature.groups({
+  var make_plot = function(yProperty){
+    var plot = ui.Chart.feature.groups({
     features: time_series, 
     xProperty: xProperty.getInfo(),
-    yProperty: yProperties.getInfo(),
+    yProperty: yProperty.getInfo(),
     seriesProperty: 'id',
   }).setChartType("LineChart");
   
   return plot;
-
+  };
+  
+  var list_of_plot = yProperties.map(make_plot)
+  
+  return list_of_plot;
 };
