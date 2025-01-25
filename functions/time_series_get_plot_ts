@@ -12,11 +12,18 @@ exports.time_series_get_plot_ts = function(time_series,which_property){
     })
     });
 
-  var yProperties = propertyNames.remove('date')
-  .remove('system:time_start')
-  .remove('id')
-  .remove('system:index')
-  .getString(which_property);
+  var yProperties;
+  if(which_property === undefined || which_property === null)
+  {
+    yProperties = propertyNames.remove('date')
+    .remove('system:time_start')
+    .remove('id')
+    .remove('system:index')
+    .getString(0);
+  
+  }else{
+    yProperties = ee.List(which_property);
+  }
   
   print(yProperties);
   
