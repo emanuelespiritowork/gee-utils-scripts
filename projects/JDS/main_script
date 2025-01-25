@@ -23,6 +23,6 @@ var image_time_series_AOI = image_coll.map(time_series_AOI_create_img.time_serie
 
 print(image_time_series_AOI);
 
-//var time_series_AOI_export_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_AOI_export_ts');
+var time_series_single_feature_export_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_single_feature_export_ts');
 
-//var null_var_1 = time_series_AOI_export_ts.time_series_AOI_export_ts(image_time_series_AOI);
+var null_var_1 = time_series_single_feature_export_ts.time_series_single_feature_export_ts(image_time_series_AOI);
