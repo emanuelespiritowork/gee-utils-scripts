@@ -15,6 +15,8 @@ exports.time_series_single_feature_create_img = function(img){
     keys: ['system:time_start','date',layer_name,'id'],
     values: [date,ee.Date(date).format('Y/M/d'), value, ee.String(single_feature.single_feature.getString(id_name.id_name))]
   }));
+  
+  print(feature_of_single_field);
 
   return feature_of_single_field;
   
