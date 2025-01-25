@@ -1,4 +1,9 @@
 exports.time_series_get_plot_ts = function(time_series){
+  var propertyNames = time_series.first().propertyNames();
+  
+  
+  var xProperty = propertyNames
+  
   var plot = ui.Chart.feature.byFeature({
     features: time_series, 
     xProperty: 'system:time_start', 
