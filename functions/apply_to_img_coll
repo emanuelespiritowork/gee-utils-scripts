@@ -4,6 +4,6 @@ exports.apply_to_img_coll = function(name_of_img_function,img_coll){
   repo_name = repo_name.join("");
   print(repo_name);
   var repo_function = require(repo_name);
-  
-  return img_coll.map(repo_function.repo_function);
+  print(repo_function);
+  return img_coll.map(repo_function.name_of_img_function);
 };
