@@ -37,6 +37,12 @@ var time_series_get_plot_ts = require('users/emanuelespiritowork/SharedRepo:func
 var plot = time_series_get_plot_ts.time_series_get_plot_ts(time_series);
 
 print(plot);
+
+var new_new = require('users/emanuelespiritowork/SharedRepo:functions/new');
+
+var plot_new = new_new.time_series_get_plot_ts(time_series);
+
+print(plot_new);
 /*
 //////// single_feature
 
