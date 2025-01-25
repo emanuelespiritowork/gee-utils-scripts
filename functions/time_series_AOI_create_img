@@ -2,7 +2,11 @@ var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
 var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
 var id_name = require('users/emanuelespiritowork/SharedRepo:assets/id_name');
 
-exports.time_series_AOI_create_img = function(img){
+exports.time_series_AOI_create_img_coll = function(img_coll){
+  return img_coll.map(space_series_img).flatten();
+};
+
+exports.space_series_img = function(img){
   var date = img.get('system:time_start');
   var layer_name = img.bandNames().get(0);
   
