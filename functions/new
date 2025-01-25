@@ -1,0 +1,31 @@
+exports.time_series_get_plot_ts = function(time_series){
+  var propertyNames = time_series.first().propertyNames();
+  
+  print(propertyNames);
+  var xProperty = ee.Algorithms.If({
+      condition: propertyNames.contains('system:time_start'),
+      trueCase: 'system:time_start',
+      falseCase: ee.Algorithms.If({
+      condition: propertyNames.contains('date'),
+      trueCase: 'date',
+      falseCase: null
+    })
+    });
+
+  var yProperties = propertyNames.remove('date')
+  .remove('system:time_start')
+  .remove('id')
+  .remove('system:index')
+  .getString(0);
+  
+  print(yProperties);
+  
+  var plot = ui.Chart.feature.byProperty({
+    features: time_series, 
+    xProperty: xProperty.getInfo(), 
+    yProperties: yProperties.getInfo()
+  }).setChartType("ScatterChart");
+  
+  return plot;
+
+};
