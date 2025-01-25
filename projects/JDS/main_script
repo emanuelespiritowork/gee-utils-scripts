@@ -14,27 +14,15 @@ var image = image_coll.first();
 Map.addLayer(image,{},'image');
 Map.centerObject(field.AOI);
 
-/*
+
 //////// AOI
 
 var time_series_AOI_create_img = require('users/emanuelespiritowork/SharedRepo:functions/time_series_AOI_create_img');
 
-var image_time_series_AOI = image_coll.map(time_series_AOI_create_img.time_series_AOI_create_img);
+var image_time_series_AOI = image_coll.map(time_series_AOI_create_img.time_series_AOI_create_img).flatten();
 
 print(image_time_series_AOI);
 
-var time_series_AOI_export_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_AOI_export_ts');
+//var time_series_AOI_export_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_AOI_export_ts');
 
-var null_var_1 = time_series_AOI_export_ts.time_series_AOI_export_ts(image_time_series_AOI);
-*/
-//////// single_feature
-
-var time_series_single_feature_create_img = require('users/emanuelespiritowork/SharedRepo:functions/time_series_single_feature_create_img');
-
-var image_time_series_single_feature = image_coll.map(time_series_single_feature_create_img.time_series_single_feature_create_img);
-
-print(image_time_series_single_feature);
-
-var time_series_AOI_export_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_AOI_export_ts');
-
-var null_var_1 = time_series_AOI_export_ts.time_series_AOI_export_ts(image_time_series_single_feature);
+//var null_var_1 = time_series_AOI_export_ts.time_series_AOI_export_ts(image_time_series_AOI);
