@@ -15,8 +15,7 @@ exports.time_series_get_plot_ts = function(time_series){
   var yProperties = propertyNames.remove('date')
   .remove('system:time_start')
   .remove('id')
-  .remove('system:index')
-  .getString(0);
+  .remove('system:index');
   
   print(yProperties);
   
