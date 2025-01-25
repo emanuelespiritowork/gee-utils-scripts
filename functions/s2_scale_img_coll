@@ -1,0 +1,5 @@
+var s2_scale_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_scale_img');
+
+exports.s2_scale_img_coll = function(img_coll){
+  return img_coll.map(s2_scale_img.s2_scale_img);
+};
