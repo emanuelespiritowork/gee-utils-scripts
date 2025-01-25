@@ -16,7 +16,7 @@ Map.centerObject(field.AOI);
 
 var time_series_create_img = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create_img');
 
-var image_time_series = time_series_create_img.time_series_create_img(image);
+var image_time_series = image_coll.map(time_series_create_img.time_series_create_img);
 
 print(image_time_series);
 
