@@ -6,16 +6,16 @@ exports.space_series_AOI_img = function(img){
   var date = img.get('system:time_start');
   var layer_name = img.bandNames().get(0);
   
-  var create_single_field_value = function(single_feature){
+  var create_single_field_value = function(inner_feature){
     var value = img.reduceRegion({
-      geometry: single_feature.geometry(),
+      geometry: inner_feature.geometry(),
       reducer: ee.Reducer.median(),
       scale: scale_to_use.scale_to_use,
       bestEffort: true}).get(layer_name);
       
     var feature_of_single_field = ee.Feature(null, ee.Dictionary.fromLists({
       keys: ['system:time_start','date',layer_name,'id'],
-      values: [date,ee.Date(date).format('Y/M/d'), value, ee.String(single_feature.getString(id_name.id_name))]
+      values: [date,ee.Date(date).format('Y/M/d'), value, ee.String(inner_feature.getString(id_name.id_name))]
     }));
     
     return feature_of_single_field;
