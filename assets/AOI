@@ -1,1 +1,1 @@
-exports.AOI = ee.FeatureCollection(ee.Feature(ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI").first()));
+exports.AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI");
