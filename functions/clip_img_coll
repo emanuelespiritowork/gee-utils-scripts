@@ -1,5 +1,5 @@
-var clip_img = require('users/emanuelespiritowork/SharedRepo:functions/clip_img');
+var apply_to_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/apply_to_img_coll');
 
 exports.clip_img_coll = function(img_coll){
-  return img_coll.map(clip_img.clip_img);
+  return apply_to_img_coll('clip_img',img_coll);
 };
