@@ -4,6 +4,10 @@ var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate('2024-12-15','2025-01-24')
 .filterBounds(field.AOI);
 
+var s2_evi_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_img');
+
+image_coll = image_coll.map(s2_evi_img.s2_evi_img);
+
 var image = image_coll.first();
 Map.addLayer(image,{},'image');
 Map.centerObject(field.AOI);
@@ -16,5 +20,5 @@ print(image_time_series);
 
 var null_var = time_series.plot_time_series(image_time_series);
 
-
+var null_var_2 = time_series.plot_time_series_img_coll(image_coll);
 
