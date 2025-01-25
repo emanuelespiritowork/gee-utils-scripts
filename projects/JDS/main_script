@@ -18,26 +18,3 @@ var time_series_create_img = require('users/emanuelespiritowork/SharedRepo:funct
 
 var image_time_series = image_coll.map(time_series_create_img.time_series_create_img);
 
-var time_series_AOI_create_img = function(img){
-  var date = img.get('system:time_start');
-  var layer_name = img.bandNames().get(0);
-  
-  var create_single_field_value = function(single_feature){
-    var value = img.reduceRegion({
-      geometry: single_feature.single_feature.geometry(),
-      reducer: ee.Reducer.median(),
-      scale: scale_to_use.scale_to_use,
-      bestEffort: true}).get(layer_name);
-      
-    var feature_of_single_field = ee.Feature(null, ee.Dictionary.fromLists({
-      keys: ['system:time_start','date',layer_name,'id'],
-      values: [date,ee.Date(date).format('Y/M/d'), value, ee.String(single_feature.single_feature.getString(id_name.id_name))]
-    }));
-    
-    return feature_of_single_field;
-  };
-  
-  var all_field_features = field.AOI.map(create_single_field_value);
-  
-  return all_field_features;
-};
