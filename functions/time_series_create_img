@@ -11,12 +11,11 @@ exports.time_series_create_img = function(img){
     scale: scale_to_use.scale_to_use,
     bestEffort: true}).get(layer_name);
   
-  var dictionary_of_properties = ee.Dictionary({'system:time_start': date, 
-                             'date': ee.Date(date).format('Y/M/d'), 
-                             'layer': value,
-                             'id': ee.String(single_feature.single_feature.getString(id_name.id_name))
+  var dictionary_of_properties = ee.Dictionary.fromLists({
+    keys: ['system:time_start','date','layer','id'],
+    values: [date,ee.Date(date).format('Y/M/d'), value, ee.String(single_feature.single_feature.getString(id_name.id_name))]
   });
-  
+
   print(dictionary_of_properties);
   
   dictionary_of_properties = dictionary_of_properties.rename('layer',layer_name);
