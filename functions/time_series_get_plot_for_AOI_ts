@@ -1,4 +1,4 @@
-exports.time_series_get_plot_for_AOI_ts = function(time_series){
+exports.time_series_get_plot_ts = function(time_series){
   var propertyNames = time_series.first().propertyNames();
   
   print(propertyNames);
