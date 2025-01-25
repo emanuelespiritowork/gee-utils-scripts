@@ -33,6 +33,7 @@ var time_series_export_ts = require('users/emanuelespiritowork/SharedRepo:functi
 
 //var null_var_1 = time_series_export_ts.time_series_export_ts(time_series);
 
+*/
 //////// single_feature
 
 var time_series_create_for_single_feature_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create_for_single_feature_img_coll');
@@ -41,7 +42,10 @@ var time_series_2 = time_series_create_for_single_feature_img_coll.time_series_c
 
 print(time_series_2);
 
+var time_series_get_plot_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot_ts');
+
+var plot = time_series_get_plot_ts.time_series_get_plot_ts(time_series_2);
+
 //var time_series_export_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_export_ts');
 
-var null_var_2 = time_series_export_ts.time_series_export_ts(time_series_2);
-*/
+//var null_var_2 = time_series_export_ts.time_series_export_ts(time_series_2);
