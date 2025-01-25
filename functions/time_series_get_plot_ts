@@ -3,10 +3,8 @@ exports.time_series_plot_ts = function(time_series){
     features: time_series, 
     xProperty: 'system:time_start', 
     yProperties: 'layer'
-  });
+  }).setChartType("ScatterChart");
   
-  print(plot.setChartType("ScatterChart"));
-  
-  return 0;
+  return plot;
 
 };
