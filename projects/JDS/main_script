@@ -27,9 +27,9 @@ Map.addLayer(image,{},'image');
 
 //////// AOI
 
-var time_series_create_for_AOI_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create_for_AOI_img_coll');
+var time_series_create_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create_img_coll');
 
-var time_series = time_series_create_for_AOI_img_coll.time_series_create_for_AOI_img_coll(image_coll);
+var time_series = time_series_create_img_coll.time_series_create_img_coll(image_coll);
 
 print(time_series);
 
