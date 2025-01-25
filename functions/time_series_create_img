@@ -2,7 +2,7 @@ var single_feature = require('users/emanuelespiritowork/SharedRepo:assets/single
 var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
 var id_name = require('users/emanuelespiritowork/SharedRepo:assets/id_name');
 
-exports.time_series_create = function(img){
+exports.time_series_create_img = function(img){
   var date = img.get('system:time_start');
   var layer_name = img.bandNames().get(0);
   var value = img.reduceRegion({
