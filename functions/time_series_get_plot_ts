@@ -1,4 +1,4 @@
-exports.time_series_get_plot_ts = function(time_series){
+exports.time_series_get_plot_ts = function(time_series,which_property){
   var propertyNames = time_series.first().propertyNames();
   
   print(propertyNames);
@@ -15,12 +15,12 @@ exports.time_series_get_plot_ts = function(time_series){
   var yProperties = propertyNames.remove('date')
   .remove('system:time_start')
   .remove('id')
-  .remove('system:index');
+  .remove('system:index')
+  .getString(which_property);
   
   print(yProperties);
   
-  var make_plot = function(yProperty){
-    var plot = ui.Chart.feature.groups({
+  var plot = ui.Chart.feature.groups({
     features: time_series, 
     xProperty: xProperty.getInfo(),
     yProperty: yProperty.getInfo(),
@@ -28,9 +28,4 @@ exports.time_series_get_plot_ts = function(time_series){
   }).setChartType("LineChart");
   
   return plot;
-  };
-  
-  var list_of_plot = yProperties.map(make_plot)
-  
-  return list_of_plot;
 };
