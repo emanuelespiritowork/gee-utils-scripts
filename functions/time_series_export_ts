@@ -2,7 +2,7 @@ var export_folder = require('users/emanuelespiritowork/SharedRepo:assets/export_
 
 exports.time_series_export_ts = function(time_series){
   var selectors_name = ee.String(time_series.first().propertyNames()
-  .remove("system:time_start")
+  .remove("system:index")
   .join(", "));
   print(selectors_name);
   Export.table.toDrive({collection: time_series, description: "export_time_series",
