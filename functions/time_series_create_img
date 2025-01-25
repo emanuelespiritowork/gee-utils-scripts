@@ -18,7 +18,7 @@ exports.time_series_create_img = function(img){
 
   print(dictionary_of_properties);
   
-  dictionary_of_properties = dictionary_of_properties.rename('layer',layer_name);
+  dictionary_of_properties = dictionary_of_properties.rename(['layer'],[ee.String(layer_name)]);
     
   var feature = ee.Feature(null, dictionary_of_properties);
 
