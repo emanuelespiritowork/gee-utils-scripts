@@ -2,7 +2,7 @@ var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to
 var id_name = require('users/emanuelespiritowork/SharedRepo:assets/id_name');
 var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
 
-exports.space_series_AOI_img = function(img){
+exports.space_series_img = function(img){
   var date = img.get('system:time_start');
   var layer_names = img.bandNames();
   
