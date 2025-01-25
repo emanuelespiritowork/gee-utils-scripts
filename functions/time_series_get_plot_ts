@@ -11,7 +11,7 @@ exports.time_series_get_plot_ts = function(time_series){
     })
     });
 
-  yProperties = propertyNames.remove('date')
+  var yProperties = propertyNames.remove('date')
   .remove('system:time_start')
   .remove('id');
   
