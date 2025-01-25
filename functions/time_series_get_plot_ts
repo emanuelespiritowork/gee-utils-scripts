@@ -22,7 +22,7 @@ exports.time_series_get_plot_ts = function(time_series){
   
   var plot = ui.Chart.feature.byFeature({
     features: time_series, 
-    xProperty: xProperty, 
+    xProperty: xProperty.getInfo(), 
     yProperties: yProperties.getInfo()
   }).setChartType("ScatterChart");
   
