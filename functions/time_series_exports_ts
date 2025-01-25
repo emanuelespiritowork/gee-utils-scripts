@@ -1,6 +1,6 @@
 var export_folder = require('users/emanuelespiritowork/SharedRepo:assets/export_folder');
 
-exports.export_time_series = function(time_series){
+exports.share_time_series = function(time_series){
   Export.table.toDrive({collection: time_series, description: "export_time_series",
   selectors: "id,date,layer",
   folder: export_folder.export_folder});
