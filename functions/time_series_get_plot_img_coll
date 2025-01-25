@@ -5,7 +5,7 @@ exports.time_series_get_plot_img_coll = function(image_collection){
 
   var time_series_plot = ui.Chart.image.series({
     imageCollection: image_collection,
-    region: single_feature.single_feature,
+    region: single_feature.single_feature.geometry(),
     reducer: ee.Reducer.median(),
     scale: scale_to_use.scale_to_use,
     xProperty: 'system:time_start'  
