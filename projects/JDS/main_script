@@ -12,7 +12,9 @@ Map.addLayer(clipped_img_coll,{},"clipped_img_coll");
 
 var s2_evi_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_img');
 
-image_coll = image_coll.map(s2_evi_img.s2_evi_img);
+//image_coll = image_coll.map(s2_evi_img.s2_evi_img);
+
+image_coll = image_coll.select(['B1','B2']);
 
 print(image_coll);
 
@@ -20,24 +22,38 @@ var image = image_coll.first();
 Map.addLayer(image,{},'image');
 Map.centerObject(field.AOI);
 
+var single_feature = require('users/emanuelespiritowork/SharedRepo:assets/single_feature');
+var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
+var id_name = require('users/emanuelespiritowork/SharedRepo:assets/id_name');
+
 var space_series_AOI_img = function(img){
   var date = img.get('system:time_start');
   var layer_names = img.bandNames();
   
-  print(layer_names);
+  //print(layer_names);
   
-  var create_single_field_value = function(single_feature){
-    var values = img.reduceRegion({
-      geometry: single_feature.geometry(),
+  var create_single_field_value = function(feature_of_cycle){
+    var values = ee.List(img.reduceRegion({
+      geometry: feature_of_cycle.geometry(),
       reducer: ee.Reducer.median(),
       scale: scale_to_use.scale_to_use,
-      bestEffort: true}).get(layer_names);
+      bestEffort: true}).values());
       
-    print(values);
+    //print("values",values);
+    
+    var keys_list = ['system:time_start','date','id'];
+    keys_list = ee.List(keys_list).cat(layer_names);
+    
+    //print("keys_list",keys_list);
+    
+    var values_list = [date,ee.Date(date).format('Y/M/d'), ee.String(feature_of_cycle.getString(id_name.id_name))];
+    values_list = ee.List(values_list).cat(values);
+    
+    //print("values_list",values_list);
       
     var feature_of_single_field = ee.Feature(null, ee.Dictionary.fromLists({
-      keys: ['system:time_start','date',layer_names,'id'],
-      values: [date,ee.Date(date).format('Y/M/d'), values, ee.String(single_feature.getString(id_name.id_name))]
+      keys: keys_list,
+      values: values_list
     }));
     
     return feature_of_single_field;
@@ -50,7 +66,9 @@ var space_series_AOI_img = function(img){
   return all_field_features;
 };
 
+var new_feature = image_coll.map(space_series_AOI_img);
 
+print(new_feature);
 
 
 
