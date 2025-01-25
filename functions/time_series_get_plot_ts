@@ -22,7 +22,7 @@ exports.time_series_get_plot_ts = function(time_series,which_property){
     .getString(0);
   
   }else{
-    yProperties = ee.List(which_property);
+    yProperties = ee.String(which_property);
   }
   
   print(yProperties);
