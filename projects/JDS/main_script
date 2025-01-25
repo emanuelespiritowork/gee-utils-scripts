@@ -20,7 +20,7 @@ var image = image_coll.first();
 Map.addLayer(image,{},'image');
 Map.centerObject(field.AOI);
 
-
+/*
 //////// AOI
 
 var time_series_create_for_AOI_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create_for_AOI_img_coll');
@@ -43,7 +43,7 @@ var new_new = require('users/emanuelespiritowork/SharedRepo:functions/new');
 var plot_new = new_new.time_series_get_plot_ts(time_series);
 
 print(plot_new);
-/*
+*/
 //////// single_feature
 
 var time_series_create_for_single_feature_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create_for_single_feature_img_coll');
