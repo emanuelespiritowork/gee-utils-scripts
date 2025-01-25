@@ -1,6 +1,6 @@
 var export_folder = require('users/emanuelespiritowork/SharedRepo:assets/export_folder');
 
-exports.time_series_export_ts = function(time_series){
+exports.time_series_single_feature_export_ts = function(time_series){
   var selectors_name = ee.String(time_series.first().propertyNames()
   .remove("system:index")
   .remove("system:time_start")
