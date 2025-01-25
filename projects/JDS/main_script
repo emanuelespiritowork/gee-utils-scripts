@@ -46,6 +46,8 @@ var time_series_get_plot_ts = require('users/emanuelespiritowork/SharedRepo:func
 
 var plot = time_series_get_plot_ts.time_series_get_plot_ts(time_series_2);
 
+print(plot);
+
 //var time_series_export_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_export_ts');
 
 //var null_var_2 = time_series_export_ts.time_series_export_ts(time_series_2);
