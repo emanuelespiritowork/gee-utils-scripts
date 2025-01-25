@@ -25,7 +25,7 @@ exports.time_series_get_plot_ts = function(time_series){
     xProperty: xProperty.getInfo(),
     yProperty: yProperties.getInfo(),
     seriesProperty: 'id',
-  }).setChartType("ScatterChart");
+  }).setChartType("LineChart");
   
   return plot;
 
