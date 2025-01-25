@@ -1,6 +1,6 @@
 var space_series_AOI_img = require('users/emanuelespiritowork/SharedRepo:functions/space_series_AOI_img');
 
-exports.time_series_create_AOI_img_coll = function(img_coll){
+exports.time_series_create_for_AOI_img_coll = function(img_coll){
   return img_coll.map(space_series_AOI_img.space_series_AOI_img).flatten();
 };
 
