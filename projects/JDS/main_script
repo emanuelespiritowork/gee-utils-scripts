@@ -8,31 +8,14 @@ var s2_evi_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_
 
 image_coll = image_coll.map(s2_evi_img.s2_evi_img);
 
+print(image_coll);
+
 var image = image_coll.first();
 Map.addLayer(image,{},'image');
 Map.centerObject(field.AOI);
 
 var time_series_create_img = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create_img');
 
-var image_time_series = image_coll.map(time_series_create_img.time_series_create_img);
+var image_time_series = time_series_create_img.time_series_create_img(image);
 
 print(image_time_series);
-
-var time_series_export_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_export_ts');
-
-var null_var_1 = time_series_export_ts.time_series_export_ts(image_time_series);
-
-var time_series_get_plot_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot_img_coll');
-
-var plot = time_series_get_plot_img_coll.time_series_get_plot_img_coll(image_coll);
-
-print(plot);
-
-var time_series_plot_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_plot_img_coll');
-
-var null_var_2 = time_series_plot_img_coll.time_series_plot_img_coll(image_coll);
-
-var time_series_plot_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_plot_ts');
-
-var null_var_3 = time_series_plot_ts.time_series_plot_ts(image_time_series);
-
