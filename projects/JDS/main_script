@@ -45,13 +45,13 @@ var time_series_create_for_single_feature_img_coll = require('users/emanuelespir
 var time_series_2 = time_series_create_for_single_feature_img_coll.time_series_create_for_single_feature_img_coll(image_coll);
 
 print(time_series_2);
-
+*/
 var time_series_get_plot_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot_ts');
 
 var plot = time_series_get_plot_ts.time_series_get_plot_ts(time_series);
 
 print(plot);
-*/
+
 //var time_series_export_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_export_ts');
 
 //var null_var_2 = time_series_export_ts.time_series_export_ts(time_series);
