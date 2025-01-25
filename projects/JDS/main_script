@@ -19,3 +19,4 @@ var time_series_create_img = require('users/emanuelespiritowork/SharedRepo:funct
 var image_time_series = time_series_create_img.time_series_create_img(image);
 
 print(image_time_series);
+
