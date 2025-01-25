@@ -60,14 +60,14 @@ var space_series_AOI_img = function(img){
     return feature_of_single_field;
   };
   
-  //var all_field_features = AOI.AOI.map(create_single_field_value);
+  var all_field_features = AOI.AOI.map(create_single_field_value);
   
-  var all_field_features = create_single_field_value(single_feature.single_feature);
+  //var all_field_features = create_single_field_value(single_feature.single_feature);
   
   return all_field_features;
 };
 
-var new_feature = image_coll.map(space_series_AOI_img);
+var new_feature = image_coll.map(space_series_AOI_img).flatten();
 
 print(new_feature);
 
