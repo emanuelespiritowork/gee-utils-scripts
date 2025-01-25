@@ -22,8 +22,6 @@ var time_series_AOI_create_img = function(img){
   var date = img.get('system:time_start');
   var layer_name = img.bandNames().get(0);
   
-  //per ogni campo nell'AOI creo un valore
-  
   var create_single_field_value = function(single_feature){
     var value = img.reduceRegion({
       geometry: single_feature.single_feature.geometry(),
