@@ -6,6 +6,10 @@ exports.three_bands_image_stretch = function(img,bands){
   var num_sel_bands = ee.List(bands).size();
   print(num_sel_bands);
   
+  print(bands === ee.List([undefined,undefined,undefined]));
+  print(bands === ee.List([null,null,null]));
+  print(num_sel_bands.neq(3));
+  
   if(img.bandNames().size().gte(3)){
     if(bands === ee.List([undefined,undefined,undefined]) || bands === ee.List([null,null,null]) || num_sel_bands.neq(3)){
       print("here");
