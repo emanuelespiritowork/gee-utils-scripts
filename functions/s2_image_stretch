@@ -8,10 +8,10 @@ exports.three_bands_image_stretch = function(img,bands){
   
   print(bands === ee.List([undefined,undefined,undefined]));
   print(bands === ee.List([null,null,null]));
-  print(num_sel_bands.neq(3));
+  print(ee.List([num_sel_bands]).contains(3));
   
   if(img.bandNames().size().gte(3)){
-    if(bands === ee.List([undefined,undefined,undefined]) || bands === ee.List([null,null,null]) || num_sel_bands.neq(3)){
+    if(bands === ee.List([undefined,undefined,undefined]) || bands === ee.List([null,null,null]) || !ee.List([num_sel_bands]).contains(3)){
       print("here");
       var band_names = img.bandNames();
       img = img.select(band_names.slice(0,3));
