@@ -28,7 +28,7 @@ var clipped_img = clipped_img_coll.first();
 
 var s2_image_stretch = require('users/emanuelespiritowork/SharedRepo:functions/s2_image_stretch');
 
-var null_var = s2_image_stretch.three_bands_image_stretch(clipped_img);
+var null_var = s2_image_stretch.three_bands_image_stretch(clipped_img,['B4','B3','B2']);
 
 /*
 //////// AOI
