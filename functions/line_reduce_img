@@ -1,0 +1,36 @@
+
+var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
+var transect = require('users/emanuelespiritowork/SharedRepo:assets/transect');
+
+/***
+ * from https://code.earthengine.google.com/b09759b8ac60366ee2ae4eccdd19e615
+ * Reduces image values along the given line string geometry using given reducer.
+ * 
+ * Samples image values using image native scale, or opt_scale
+ */
+function reduceImageProfile(img) {
+  var length = transect.transect.length();
+  var distances = ee.List.sequence(0, length, scale_to_use.scale_to_use);
+  var lines = transect.transect.cutLines(distances, ee.Number(scale_to_use.scale_to_use).divide(5)).geometries();
+  lines = lines.zip(distances).map(function(l) { 
+    l = ee.List(l);
+    
+    var geom = ee.Geometry(l.get(0));
+    var distance = ee.Number(l.get(1));
+    
+    geom = ee.Geometry.LineString(geom.coordinates());
+    
+    return ee.Feature(geom, {distance: distance});
+  });
+  
+  lines = ee.FeatureCollection(lines);
+
+  // reduce image for every segment
+  var values = img.reduceRegions( {
+    collection: ee.FeatureCollection(lines), 
+    reducer: ee.Reducer.mean(), 
+    scale: scale_to_use.scale_to_use
+  });
+  
+  return values;
+}
