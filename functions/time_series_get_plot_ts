@@ -36,8 +36,10 @@ exports.time_series_get_plot_ts = function(time_series,which_property){
   .setOptions({
     trendlines: {
       0: {
-        color: 'CC0000'
-      }
+        color: 'CC0000',
+      },
+      visibleInLegend: 'true',
+      type: 'linear'
     },
     linewidth: 1,
     pointsize: 3
