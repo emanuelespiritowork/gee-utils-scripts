@@ -6,6 +6,7 @@ exports.three_bands_image_stretch = function(img,bands){
   var num_sel_bands = ee.List(bands).size();
   print(num_sel_bands);
   
+  print(bands === undefined);
   print(bands === ee.List([null,null,null]));
   print(!ee.List([num_sel_bands]).contains(3));
   
