@@ -27,6 +27,9 @@ exports.time_series_get_plot_ts = function(time_series,which_property){
   
   print(yProperties);
   
+  var p_title = 'Time series of';
+  p_title = p_title.cat(yProperties);
+  
   var plot = ui.Chart.feature.groups({
     features: time_series, 
     xProperty: xProperty.getInfo(),
@@ -34,6 +37,7 @@ exports.time_series_get_plot_ts = function(time_series,which_property){
     seriesProperty: 'id',
   }).setChartType("LineChart")
   .setOptions({
+    title: p_title,
     trendlines: {
       0: {
         color: 'CC0000',
