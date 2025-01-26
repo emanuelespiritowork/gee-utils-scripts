@@ -6,12 +6,12 @@ exports.three_bands_image_stretch = function(img,bands){
   //supposing bands is a list of strings
   img = img.select(bands);
   
-  var computed_img_std = ee.Array(img.reduceRegion({
+  var computed_img_std = img.reduceRegion({
     reducer: ee.Reducer.stdDev(),
     scale: scale_to_use.scale_to_use,
     geometry: geometry_of_image,
     bestEffort: true
-  }));
+  }).getArray(0);
   
   print("computed_img_std",computed_img_std);
   
