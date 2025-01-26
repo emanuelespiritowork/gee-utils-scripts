@@ -6,18 +6,17 @@ exports.three_bands_image_stretch = function(img,bands){
   if(bands === undefined){
     print("here");
     band_names = img.bandNames();
-    img = img.select(band_names.slice(0,3));
+    bands = band_names.slice(0,3);
   }else{
     var num_sel_bands = ee.List(bands).size();
     if(bands === ee.List([null,null,null]) || !ee.List([num_sel_bands]).contains(3)){
       band_names = img.bandNames();
-      img = img.select(band_names.slice(0,3));
+      bands = band_names.slice(0,3);
     }else{
-      img = img.select(bands);
     }
   }
   
-  
+  img = img.select(bands);
   print(img);
   
   var computed_img_std = img.reduceRegion({
