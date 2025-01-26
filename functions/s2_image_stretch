@@ -4,7 +4,7 @@ exports.three_bands_image_stretch = function(img,bands){
   var geometry_of_image = img.geometry();
   
   if(img.bandNames().size() >= 3){
-    if(bands === undefined || bands === null || bands.size() !== 3){
+    if(bands === undefined || bands === null || bands.size() != 3){
       var band_names = img.bandNames();
       img = img.select(band_names.slice(1,3));
     }else{
