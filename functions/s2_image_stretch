@@ -31,9 +31,9 @@ exports.three_bands_image_stretch = function(img,bands){
   print("computed_img_max",computed_img_max);
 
 var vis_specific_image = {
-  bands: bands,
-  min: computed_img_min,
-  max: computed_img_max
+  bands: bands.toList(),
+  min: computed_img_min.toList().getInfo(),
+  max: computed_img_max.toList().getInfo()
 };
 
 Map.addLayer(img, vis_specific_image, 'img', true);
