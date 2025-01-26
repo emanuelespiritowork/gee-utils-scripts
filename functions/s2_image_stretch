@@ -31,13 +31,12 @@ exports.three_bands_image_stretch = function(img,bands){
   }).getInfo();
 
 var vis_specific_image = {
-  bands: ['B4','B3','B2'],
-  min: [computedB4_min,computedB3_min,computedB2_min],
-  max: [computedB4_max,computedB3_max,computedB2_max]
+  bands: bands,
+  min: computed_img_min,
+  max: computed_img_max
 };
 
-Map.addLayer(specific_image,vis_specific_image, 'specific_image',
-false);
+Map.addLayer(img, vis_specific_image, 'img', true);
 
 return 0;
 }
