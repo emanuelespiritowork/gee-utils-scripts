@@ -1,5 +1,9 @@
 var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
+var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
 
 exports.clip_img = function(image){
-  return image.clip(AOI.AOI);
+  return image.clipToBoundsAndScale({
+    geometry: AOI.AOI.geometry(),
+    scale: scale_to_use.scale_to_use
+  });
 };
