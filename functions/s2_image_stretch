@@ -5,6 +5,7 @@ exports.three_bands_image_stretch = function(img,bands){
   
   if(img.bandNames().size() >= 3){
     if(bands === undefined || bands === null || bands.size() != 3){
+      print("here");
       var band_names = img.bandNames();
       img = img.select(band_names.slice(1,3));
     }else{
