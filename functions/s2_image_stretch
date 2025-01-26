@@ -25,6 +25,11 @@ exports.three_bands_image_stretch = function(img,bands){
   var array_of_2 = ee.Array(ee.List([2,2,2]));
   print(array_of_2);
   
+  var array_std = ee.Array(computed_img_std);
+  print(array_std);
+  
+  var array_mean = ee.Array(computed_img_mean);
+  
   var computed_img_min = ee.Number.expression({
     expression: 'A-2*B',
     vars: {A: computed_img_mean, B: computed_img_std}
