@@ -1,7 +1,7 @@
 var elevImg = ee.Image('JAXA/ALOS/AW3D30/V2_2').select('AVE_DSM');
 
-var line_reduce_img = require('users/emanuelespiritowork/SharedRepo:functions/line_reduce_img');
+var transect_slice_img = require('users/emanuelespiritowork/SharedRepo:functions/transect_slice_img');
 
-var profile = line_reduce_img.line_reduce_img(elevImg);
+var profile = transect_slice_img.transect_slice_img(elevImg);
 
 print(ui.Chart.feature.byFeature(profile, 'distance', ['mean']));
