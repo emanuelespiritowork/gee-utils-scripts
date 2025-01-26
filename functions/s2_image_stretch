@@ -31,7 +31,7 @@ exports.three_bands_image_stretch = function(img,bands){
   print("computed_img_max",computed_img_max);
 
 var vis_specific_image = {
-  bands: bands.toList().getInfo(),
+  bands: ee.List(bands).getInfo(),
   min: computed_img_min.toList().getInfo(),
   max: computed_img_max.toList().getInfo()
 };
