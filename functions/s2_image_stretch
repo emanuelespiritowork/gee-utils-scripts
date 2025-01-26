@@ -11,7 +11,7 @@ exports.three_bands_image_stretch = function(img,bands){
     scale: scale_to_use.scale_to_use,
     geometry: geometry_of_image,
     bestEffort: true
-  }).keys();
+  }).toArray();
   
   print("computed_img_std",computed_img_std);
   
