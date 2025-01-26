@@ -37,7 +37,7 @@ exports.time_series_get_plot_ts = function(time_series,which_property){
     seriesProperty: 'id',
   }).setChartType("LineChart")
   .setOptions({
-    title: p_title,
+    title: p_title.getInfo(),
     trendlines: {
       0: {
         color: 'CC0000',
