@@ -28,7 +28,7 @@ exports.time_series_get_plot_ts = function(time_series,which_property){
   print(yProperties);
   
   var p_title = 'Time series of';
-  p_title = p_title.cat(yProperties);
+  p_title = ee.String(p_title).cat(ee.String(yProperties));
   
   var plot = ui.Chart.feature.groups({
     features: time_series, 
