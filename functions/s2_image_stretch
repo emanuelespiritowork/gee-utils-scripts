@@ -50,6 +50,7 @@ var vis_specific_image = {
 };
 
 Map.addLayer(img, vis_specific_image, 'img', true);
+Map.centerObject(geometry_of_image);
 
 return 0;
 }
