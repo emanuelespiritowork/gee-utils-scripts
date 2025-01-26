@@ -3,11 +3,11 @@ exports.time_series_get_plot_ts = function(time_series,which_property){
   
   print(propertyNames);
   var xProperty = ee.Algorithms.If({
-      condition: propertyNames.contains('date'),
-      trueCase: 'date',
-      falseCase: ee.Algorithms.If({
       condition: propertyNames.contains('system:time_start'),
       trueCase: 'system:time_start',
+      falseCase: ee.Algorithms.If({
+      condition: propertyNames.contains('date'),
+      trueCase: 'date',
       falseCase: null
     })
     });
