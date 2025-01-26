@@ -3,6 +3,8 @@ var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to
 exports.three_bands_image_stretch = function(img,bands){
   var geometry_of_image = img.geometry();
   
+  print(img.bandNames().size());
+  
   if(img.bandNames().size() >= 3){
     if(bands === undefined || bands === null || bands.size() != 3){
       print("here");
