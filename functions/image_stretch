@@ -1,6 +1,6 @@
 var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
 
-exports.three_bands_image_stretch = function(img,bands){
+exports.image_stretch = function(img,bands){
   var geometry_of_image = img.geometry();
   var band_names;
   if(bands === undefined){
