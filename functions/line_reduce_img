@@ -17,7 +17,7 @@ exports.line_reduce_img = function(img) {
     end: length,
     step: step
   });
-  print(distances);
+  
   var lines = transect.transect.cutLines(distances).geometries();
   lines = lines.zip(distances).map(function(l) { 
     l = ee.List(l);
