@@ -10,8 +10,13 @@ var transect = require('users/emanuelespiritowork/SharedRepo:assets/transect');
  */
 exports.line_reduce_img = function(img) {
   var length = transect.transect.length();
-  var distances = ee.List.sequence(0, length, scale_to_use.scale_to_use);
-  var lines = transect.transect.cutLines(distances, ee.Number(scale_to_use.scale_to_use).divide(5)).geometries();
+  var distances = ee.List.sequence({
+    start: ee.Number(0), 
+    end: length,
+    step: scale_to_use.scale_to_use
+  });
+  print(distances);
+  var lines = transect.transect.cutLines(distances).geometries();
   lines = lines.zip(distances).map(function(l) { 
     l = ee.List(l);
     
