@@ -13,6 +13,8 @@ exports.three_bands_image_stretch = function(img,bands){
     bestEffort: true
   });
   
+  print("computed_img_std",computed_img_std);
+  
   var computed_img_mean = img.reduceRegion({
     reducer: ee.Reducer.mean(),
     scale: scale_to_use.scale_to_use,
