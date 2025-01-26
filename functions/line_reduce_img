@@ -8,7 +8,7 @@ var transect = require('users/emanuelespiritowork/SharedRepo:assets/transect');
  * 
  * Samples image values using image native scale, or opt_scale
  */
-function reduceImageProfile(img) {
+exports.line_reduce_img = function(img) {
   var length = transect.transect.length();
   var distances = ee.List.sequence(0, length, scale_to_use.scale_to_use);
   var lines = transect.transect.cutLines(distances, ee.Number(scale_to_use.scale_to_use).divide(5)).geometries();
