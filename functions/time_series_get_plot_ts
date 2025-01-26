@@ -32,7 +32,16 @@ exports.time_series_get_plot_ts = function(time_series,which_property){
     xProperty: xProperty.getInfo(),
     yProperty: yProperties.getInfo(),
     seriesProperty: 'id',
-  }).setChartType("LineChart");
+  }).setChartType("LineChart")
+  .setOptions({
+    trendlines: {
+      0: {
+        color: 'CC0000'
+      }
+    },
+    linewidth: 1,
+    pointsize: 3
+  });
   
   return plot;
 };
