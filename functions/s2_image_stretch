@@ -3,8 +3,11 @@ var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to
 exports.three_bands_image_stretch = function(img,bands){
   var geometry_of_image = img.geometry();
   
+  var num_sel_bands = bands.size();
+  print(num_sel_bands);
+  
   if(img.bandNames().size().gte(3)){
-    if(bands === undefined || bands === null || bands.size() != 3){
+    if(bands === undefined || bands === null || num_sel_bands.neq(3)){
       print("here");
       var band_names = img.bandNames();
       img = img.select(band_names.slice(1,3));
