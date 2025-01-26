@@ -1,73 +1,34 @@
+var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
 
-exports.s2_rgb_image_stretch = function(specific_image){
-  var geometry_of_image = specific_image.geometry();
- var scale_of_image = specific_image.select('B4').projection()
-.nominalScale();
-var computedB4_std = specific_image.select('B4').reduceRegion({
-  reducer: ee.Reducer.stdDev(),
-  geometry: geometry_of_image,
-  scale: scale_of_image,
-  bestEffort: true
-}).getNumber('B4');
-var computedB4_mean = specific_image.select('B4').reduceRegion({
-  reducer: ee.Reducer.mean(),
-  geometry: geometry_of_image,
-  scale: scale_of_image,
-  bestEffort: true
-}).getNumber('B4');
-
-var computedB4_min = ee.Number.expression({
-  expression: 'A-2*B',
-  vars: {A: computedB4_mean, B: computedB4_std}
-}).getInfo();
-var computedB4_max = ee.Number.expression({
-  expression: 'A+2*B',
-  vars: {A: computedB4_mean, B: computedB4_std}
-}).getInfo();
-
-var computedB3_std = specific_image.select('B3').reduceRegion({
-  reducer: ee.Reducer.stdDev(),
-  geometry: geometry_of_image,
-  scale: scale_of_image,
-  bestEffort: true
-}).getNumber('B3');
-var computedB3_mean = specific_image.select('B3').reduceRegion({
-  reducer: ee.Reducer.mean(),
-  geometry: geometry_of_image,
-  scale: scale_of_image,
-  bestEffort: true
-}).getNumber('B3');
-
-var computedB3_min = ee.Number.expression({
-  expression: 'A-2*B',
-  vars: {A: computedB3_mean, B: computedB3_std}
-}).getInfo();
-var computedB3_max = ee.Number.expression({
-  expression: 'A+2*B',
-  vars: {A: computedB3_mean, B: computedB3_std}
-}).getInfo();
-
-var computedB2_std = specific_image.select('B2').reduceRegion({
-  reducer: ee.Reducer.stdDev(),
-  geometry: geometry_of_image,
-  scale: scale_of_image,
-  bestEffort: true
-}).getNumber('B2');
-var computedB2_mean = specific_image.select('B2').reduceRegion({
-  reducer: ee.Reducer.mean(),
-  geometry: geometry_of_image,
-  scale: scale_of_image,
-  bestEffort: true
-}).getNumber('B2');
-
-var computedB2_min = ee.Number.expression({
-  expression: 'A-2*B',
-  vars: {A: computedB2_mean, B: computedB2_std}
-}).getInfo();
-var computedB2_max = ee.Number.expression({
-  expression: 'A+2*B',
-  vars: {A: computedB2_mean, B: computedB2_std}
-}).getInfo();
+exports.three_bands_image_stretch = function(img,bands){
+  var geometry_of_image = img.geometry();
+  
+  //supposing bands is a list of strings
+  img = img.select(bands);
+  
+  var computed_img_std = img.reduceRegion({
+    reducer: ee.Reducer.stdDev(),
+    scale: scale_to_use.scale_to_use,
+    geometry: geometry_of_image,
+    bestEffort: true
+  });
+  
+  var computed_img_mean = img.reduceRegion({
+    reducer: ee.Reducer.mean(),
+    scale: scale_to_use.scale_to_use,
+    geometry: geometry_of_image,
+    bestEffort: true
+  });
+  
+  var computed_img_min = ee.Number.expression({
+    expression: 'A-2*B',
+    vars: {A: computed_img_mean, B: computed_img_std}
+  }).getInfo();
+  
+  var computed_img_max = ee.Number.expression({
+    expression: 'A+2*B',
+    vars: {A: computed_img_mean, B: computed_img_std}
+  }).getInfo();
 
 var vis_specific_image = {
   bands: ['B4','B3','B2'],
