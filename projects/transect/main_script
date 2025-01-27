@@ -1,7 +1,14 @@
-var elevImg = ee.Image('JAXA/ALOS/AW3D30/V2_2').select('AVE_DSM');
 
-var transect_slice_img = require('users/emanuelespiritowork/SharedRepo:functions/transect_slice_img');
+var bands = ['B4','B3','B2'];
 
-var profile = transect_slice_img.transect_slice_img(elevImg);
+var elevImg = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+.mosaic()
+.select(bands);
 
-print(ui.Chart.feature.byFeature(profile, 'distance', ['mean']));
+var transect_create_slice_img = require('users/emanuelespiritowork/SharedRepo:functions/transect_create_slice_img');
+
+var profile = transect_create_slice_img.transect_create_slice_img(elevImg);
+
+print(profile)
+
+print(ui.Chart.feature.byFeature(profile, 'distance', bands));
