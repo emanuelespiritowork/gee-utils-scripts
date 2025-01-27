@@ -9,7 +9,7 @@ var transect = require('users/emanuelespiritowork/SharedRepo:assets/transect');
  */
 exports.transect_create_slice_img = function(img) {
   var length = transect.transect.length();
-  var bands_names = ee.List([img.bandNames()]);
+  var bands_names = img.bandNames();
   var step = img.select(bands_names).projection().nominalScale().multiply(10);
   var distances = ee.List.sequence({
     start: ee.Number(0), 
