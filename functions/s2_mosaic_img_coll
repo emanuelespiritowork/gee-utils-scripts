@@ -1,4 +1,4 @@
-exports.s2_mosaic_img_coll = function(img_coll){
+exports.mosaic_img_coll = function(img_coll){
   
   var bands_names = img_coll.first().bandNames();
   
