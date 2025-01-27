@@ -1,0 +1,14 @@
+exports.s2_mosaic_img_coll = function(img_coll){
+  
+  var bands_names = img_coll.first().bandNames();
+  
+  var change_band_order = function(img){
+    var bands_types = img.bandTypes();
+    var band_ordered_img = img.cast(bands_types,bands_names);
+    return band_ordered_img;
+  };
+  
+  var img_coll_reordered = img_coll.map(change_band_order);
+  
+  return img_coll_reordered;
+};
