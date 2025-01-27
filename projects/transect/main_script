@@ -27,6 +27,10 @@ var profile = transect_create_slice_img.transect_create_slice_img(elevImg);
 
 var transect_get_plot_ts = require('users/emanuelespiritowork/SharedRepo:functions/transect_get_plot_ts');
 
-var null_var = transect_get_plot_ts.transect_get_plot_ts(profile);
+var plot = transect_get_plot_ts.transect_get_plot_ts(profile);
+
+print(profile);
+
+print(plot);
 
 
