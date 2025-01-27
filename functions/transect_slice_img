@@ -7,7 +7,7 @@ var transect = require('users/emanuelespiritowork/SharedRepo:assets/transect');
  * 
  * Samples image values using image native scale, or opt_scale
  */
-exports.transect_slice_img = function(img) {
+exports.transect_create_slice_img = function(img) {
   var length = transect.transect.length();
   var bands_names = ee.List([img.bandNames().getString(0)]);
   var step = img.select(bands_names).projection().nominalScale().multiply(10);
