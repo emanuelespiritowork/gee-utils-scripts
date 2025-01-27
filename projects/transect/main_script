@@ -1,11 +1,14 @@
 var bands = ['B4','B3','B2'];
 
+
+var transect_create_slice_img = require('users/emanuelespiritowork/SharedRepo:functions/transect_create_slice_img');
+var transect = require('users/emanuelespiritowork/SharedRepo:assets/transect');
+
 var elevImg = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+.filterBounds(transect.transect)
 .mosaic()
 .select(bands);
-/*
-var transect_create_slice_img = require('users/emanuelespiritowork/SharedRepo:functions/transect_create_slice_img');
+
 var profile = transect_create_slice_img.transect_create_slice_img(elevImg);
 print(profile)
 print(ui.Chart.feature.byFeature(profile, 'distance', bands));
-*/
