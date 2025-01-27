@@ -38,5 +38,7 @@ exports.transect_create_slice_img = function(img) {
     scale: step
   });
   
+  print(values);
+  
   return values;
 }
