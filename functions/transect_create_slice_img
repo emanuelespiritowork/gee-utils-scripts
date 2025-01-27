@@ -2,7 +2,7 @@ var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to
 var transect = require('users/emanuelespiritowork/SharedRepo:assets/transect');
 
 /***
- * from https://code.earthengine.google.com/b09759b8ac60366ee2ae4eccdd19e615
+ * scatch from https://code.earthengine.google.com/b09759b8ac60366ee2ae4eccdd19e615
  * Reduces image values along the given line string geometry using given reducer.
  * 
  * Samples image values using image native scale, or opt_scale
@@ -36,12 +36,18 @@ exports.transect_create_slice_img = function(img) {
     collection: ee.FeatureCollection(lines), 
     reducer: ee.Reducer.mean(), 
     scale: step
-  }).select({
-    propertySelectors: ['distance','mean'],
-    newProperties: ['distance',img.bandNames().join(",")]
   });
   
-  print(values);
+  var property_names = values.propertyNames().remove('distance');
   
-  return values;
+  print(property_names);
+  
+  var values_renamed = values.select({
+    propertySelectors: property_names,
+    newProperties: img.bandNames()
+  });
+  
+  print(values_renamed);
+  
+  return values_renamed;
 }
