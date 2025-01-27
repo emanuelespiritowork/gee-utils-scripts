@@ -1,9 +1,15 @@
 exports.transect_get_plot_ts = function(transect_slice){
+  var yProperties = transect_slice.first().propertyNames()
+  .remove('distance')
+  .remove('system:index');
+  
+  print("propertyNames",propertyNames);
+  var xProperty = 'distance';
   
   var plot = ui.Chart.feature.byFeature({
     features: transect_slice, 
-    xProperty: 'distance', 
-    yProperties: bands
+    xProperty: xProperty, 
+    yProperties: yProperties
   });
   
   return plot;
