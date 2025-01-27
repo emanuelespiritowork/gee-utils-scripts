@@ -1,9 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #0b4a8b */ee.Geometry.LineString(
-        [[12.171811206606845, 41.846782979179956],
-         [14.017514331606845, 42.40087705163563],
-         [12.254208667544345, 41.73210352664786]]);
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 exports.transect = /* color: #0b4a8b */ee.Geometry.LineString(
         [[12.171811206606845, 41.846782979179956],
          [14.017514331606845, 42.40087705163563],
