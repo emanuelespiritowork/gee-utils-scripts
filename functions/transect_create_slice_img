@@ -36,6 +36,9 @@ exports.transect_create_slice_img = function(img) {
     collection: ee.FeatureCollection(lines), 
     reducer: ee.Reducer.mean(), 
     scale: step
+  }).select({
+    propertySelectors: ['distance','mean'],
+    newProperties: ['distance',img.bandNames().join(",")]
   });
   
   print(values);
