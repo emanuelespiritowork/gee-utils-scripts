@@ -1,0 +1,5 @@
+var mosaic_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/mosaic_img_coll'); 
+
+exports.transect_create_slice_mosaic_img_coll = function(img_coll){
+  return 
+};
