@@ -38,7 +38,7 @@ exports.transect_create_slice_img = function(img) {
     scale: step
   });
   
-  var property_names = values.propertyNames().remove('distance');
+  var property_names = values.propertyNames()//.remove('distance');
   
   print(property_names);
   
