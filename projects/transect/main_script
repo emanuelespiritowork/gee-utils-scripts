@@ -1,20 +1,19 @@
-var bands = ['B5','B4','B3','B2'];
+var bands = ['B.*'];
 
 
 var transect_create_slice_img = require('users/emanuelespiritowork/SharedRepo:functions/transect_create_slice_img');
 var transect = require('users/emanuelespiritowork/SharedRepo:assets/transect');
 
-var s2_mask_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_mask_img_coll');
+//var s2_mask_img_coll = require('users/emanuelespiritowork/SharedRepo:function/s2_mask_img_coll');
 
-var elevImg = s2_mask_img_coll.s2_mask_img_coll(ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-.filterDate('2025-01-01','2025-01-26')
-.filterBounds(transect.transect))
-.mosaic()
-.select(bands);
+var s2_mosaic_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_mosaic_img_coll'); 
 
-var image_stretch_img = require('users/emanuelespiritowork/SharedRepo:functions/image_stretch_img');
-Map.addLayer(elevImg,{},"elevImg");
-//var null_var_1 = image_stretch_img.image_stretch_img(elevImg);
+var elevImg_coll = s2_mosaic_img_coll.s2_mosaic_img_coll(ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+.filterBounds(transect.transect));
+//print(s2_mosaic_img_coll);
+
+var elevImg = elevImg_coll.select(bands);
+print(elevImg);
 
 /*
 var elevImg_band_names = elevImg.first().bandNames();
@@ -25,12 +24,9 @@ var elevImg_band_names = elevImg.first().bandNames();
 print(elevImg);
 */
 var profile = transect_create_slice_img.transect_create_slice_img(elevImg);
-print(profile)
-//print(ui.Chart.feature.byFeature(profile, 'distance', bands));
 
 var transect_get_plot_ts = require('users/emanuelespiritowork/SharedRepo:functions/transect_get_plot_ts');
 
-var plot = transect_get_plot_ts.transect_get_plot_ts(profile);
+var null_var = transect_get_plot_ts.transect_get_plot_ts(profile);
 
-print(plot);
 
