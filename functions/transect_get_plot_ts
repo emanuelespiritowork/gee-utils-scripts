@@ -5,6 +5,7 @@ exports.transect_get_plot_ts = function(transect_slice){
   
   print("yProperties",yProperties);
   var xProperty = 'distance';
+  print("transect_slice",transect_slice);
   
   var plot = ui.Chart.feature.byFeature({
     features: transect_slice, 
