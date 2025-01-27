@@ -40,13 +40,14 @@ exports.transect_create_slice_img = function(img) {
   
   var property_names = values.first().propertyNames()
   .remove('distance')
-  .remove('system:index');
+  .remove('system:index')
+  .cat(['distance']);
   
   print(property_names);
   
   var values_renamed = values.select({
     propertySelectors: property_names,
-    newProperties: img.bandNames()
+    newProperties: img.bandNames().cat(['distance'])
   });
   
   print(values_renamed);
