@@ -11,7 +11,7 @@ exports.transect_create_slice_img = function(img) {
   var length = transect.transect.length();
   var bands_names = img.bandNames();
   print(bands_names);
-  var step = img.select(bands_names[0]).projection().nominalScale().multiply(10);
+  var step = img.select(bands_names.getString(0)).projection().nominalScale().multiply(10);
   var distances = ee.List.sequence({
     start: ee.Number(0), 
     end: length,
