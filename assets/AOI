@@ -6,3 +6,5 @@ exports.AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI")
 var single_feature_point = require('users/emanuelespiritowork/SharedRepo:assets/single_feature_point');
 exports.AOI = ee.FeatureCollection(ee.Feature(ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI").filterBounds(single_feature_point.single_feature_point).first()));
 */
+
+//this is a try
