@@ -6,7 +6,7 @@
 *******************************************************/
 
 /******************************************************
- * PURPOSE OF THIS SCRIPT
+ * WHAT THIS ASSET DOES
  * This script has an asset that tells the number of sigma to be
  * used to make an image stretch using the functions/image_stretch_img 
  * function
