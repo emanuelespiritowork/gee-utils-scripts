@@ -1,1 +1,1 @@
-exports.active_project = "users/emanuelespiritowork/SharedRepo:projects/JDS/";
+exports.active_project = ee.String("users/emanuelespiritowork/SharedRepo:projects/JDS/");
