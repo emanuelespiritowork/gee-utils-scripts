@@ -12,8 +12,7 @@
 
 exports.AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI");
 
-/*
-//alternatives for a single_feature
+/* ALTERNATIVE OF THE ABOVE SCRIPT WHEN USING assets/single_feature_point
 
 var single_feature_point = require('users/emanuelespiritowork/SharedRepo:assets/single_feature_point');
 exports.AOI = ee.FeatureCollection(ee.Feature(ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI").filterBounds(single_feature_point.single_feature_point).first()));
