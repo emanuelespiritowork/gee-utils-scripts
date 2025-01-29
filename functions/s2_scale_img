@@ -11,7 +11,7 @@
  * Output: ee.Image
  * Description: this script is a function that scale the surface 
  * reflectance of each band B* of an Sentinel-2 L2A image from a 
- * integer value 0-10000 to a double value with 5 decimal digits.  
+ * integer value 0-10000 to a double value with 4 decimal digits.  
 *******************************************************/
 
 exports.s2_scale_img = function(image){
