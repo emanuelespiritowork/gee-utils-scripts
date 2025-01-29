@@ -21,9 +21,14 @@ exports.landsat_scale_img = function(image){
   //scaling function
   var scale_band = function(band){
     return image.select(ee.String(band)).multiply(ee.Number(0.0000275))
-    .add(-0.2);
+    .add(ee.Number(-0.2));
+  };
+  var scale_temperature = function(band){
+    return image.select(ee.String(band)).multiply(ee.Number(0.00341802))
+    .add(ee.Number(149));
   };
   var scaled_image = landsat_bands_names.map(scale_band);
+  var temp_scaled_image = 
   var collection_of_image = ee.ImageCollection
   .fromImages(scaled_image);
   var imageMulti = collection_of_image.toBands()
