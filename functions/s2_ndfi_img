@@ -9,7 +9,8 @@
  * PURPOSE OF THIS SCRIPT
  * Input: ee.Image
  * Output: ee.Image
- * Description: 
+ * Description: this script takes an Sentinel-2 L2A image and 
+ * creates the NDFI index band in a new image
 *******************************************************/
 
 exports.s2_ndfi_img = function(image){
