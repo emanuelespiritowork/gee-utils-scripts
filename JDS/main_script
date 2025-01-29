@@ -1,4 +1,4 @@
-var AOI = require('users/emanuelespiritowork/SharedRepo:projects/JDS/assets/AOI');
+var AOI = require('users/emanuelespiritowork/SharedRepo:JDS/assets/AOI');
 
 var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate('2024-12-15','2025-01-24')
@@ -9,8 +9,8 @@ print(AOI.AOI);
 var clip_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/clip_img_coll');
 
 var clipped_img_coll = clip_img_coll.clip_img_coll(image_coll);
-/*
-var s2_scale_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_scale_img');
+
+/*var s2_scale_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_scale_img');
 
 var image_not_scaled = clipped_img_coll.first();
 var image_scaled = s2_scale_img.s2_scale_img(image_not_scaled);
