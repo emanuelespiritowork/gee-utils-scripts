@@ -20,7 +20,7 @@ var transect = require('users/emanuelespiritowork/SharedRepo:assets/transect');
  * Output: ee.FeatureCollection
  * Description: this script is a function that generates a transect
  * slice over an image averaging along the transect using the scale of
- * the image
+ * the image. Some parts are taken from:
  * https://code.earthengine.google.com/b09759b8ac60366ee2ae4eccdd19e615
 *******************************************************/
 
