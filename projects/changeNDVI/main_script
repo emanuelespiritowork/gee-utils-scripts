@@ -6,11 +6,22 @@ var image_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
 
 var image = image_coll.first();
 
-var landsat_scale_img = require("users/emanuelespiritowork/SharedRepo:functions/landsat_scale_img");
 
-var scaled_image = landsat_scale_img.landsat_scale_img(image);
 
-var image_stretch_img = require("users/emanuelespiritowork/SharedRepo:functions/image_stretch_img");
+var landsat_mask_img = require("users/emanuelespiritowork/SharedRepo:functions/landsat_mask_img");
 
-var null_var = image_stretch_img.image_stretch_img(scaled_image);
-Map.addLayer(scaled_image.select(["QA_PIXEL"]));
+var masked_image = landsat_mask_img.landsat_mask_img(image);
+
+/*
+var cloud = 1 << 2;
+print(1 << 2);
+
+var cloud_mask = ee.Image(image.select("QA_PIXEL").bitwiseAnd(cloud).neq(0));
+var example = ee.Image(3);
+var try_example = ee.Image(example.bitwiseAnd(ee.Image(cloud)));
+
+Map.addLayer(try_example);
+Map.addLayer(cloud_mask,{min:0,max:1,palette:["black","white"]},"cloud_mask")
+*/
+Map.addLayer(masked_image,{},"masked_image");
+Map.addLayer(image,{},"image");
