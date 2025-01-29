@@ -10,5 +10,7 @@ var landsat_scale_img = require("users/emanuelespiritowork/SharedRepo:functions/
 
 var scaled_image = landsat_scale_img.landsat_scale_img(image);
 
-Map.addLayer(image,{},"image");
-Map.addLayer(scaled_image,{},"scaled_image");
+var image_stretch_img = require("users/emanuelespiritowork/SharedRepo:functions/image_stretch_img");
+
+var null_var = image_stretch_img.image_stretch_img(scaled_image);
+Map.addLayer(scaled_image.select(["QA_PIXEL"]));
