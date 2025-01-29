@@ -1,3 +1,17 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.Image
+ * Output: ee.Image
+ * Description: this script is a function to mask a Landsat 8/9 L2
+ * image using other layers. This will mask clouds, shadows, snow
+*******************************************************/
 
 exports.landsat_mask_img = function(image){
   var qa_pixel_layer = image.select("QA_PIXEL");
