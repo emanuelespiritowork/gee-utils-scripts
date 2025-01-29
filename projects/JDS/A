@@ -1,0 +1,35 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * REQUIRES THE FOLLOWING ASSETS:
+ * AOI
+ * scale_to_use
+*******************************************************/
+
+var active_project = require("users/emanuelespiritowork/SharedRepo:active_project");
+var AOI_path = active_project.active_project.cat(ee.String("assets/AOI"));
+var AOI = require(AOI_path.getInfo());
+var scale_to_use_path = active_project.active_project.cat(ee.String("assets/A"));
+var scale_to_use = require(scale_to_use_path.getInfo());
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.Image
+ * Output: ee.Image
+ * Description: clipping an ee.Image to the assets/AOI geometry 
+ * working at the scale assets/scale_to_use 
+*******************************************************/
+
+exports.clip_img = function(image){
+  print("scale_to_use",scale_to_use.scale_to_use);
+  //print("AOI",AOI.AOI);
+  return image.clipToBoundsAndScale({
+    geometry: AOI.AOI.geometry(),
+    scale: scale_to_use.scale_to_use
+  }).clip(AOI.AOI);
+};
