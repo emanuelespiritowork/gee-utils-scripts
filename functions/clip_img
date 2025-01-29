@@ -13,10 +13,10 @@
 
 var active_project = require("users/emanuelespiritowork/SharedRepo:active_project");
 var get_active_project = ee.String(active_project.active_project.getInfo());
-//var scale_to_use_path = get_active_project.cat(ee.String("assets/scale_to_use"));
-//var scale_to_use = require(scale_to_use_path.getInfo());
-var AOI_path = get_active_project.cat(ee.String("assets/AOI"));
-var AOI = require(AOI_path.getInfo());
+var scale_to_use_path = ee.String(ee.String(get_active_project).cat(ee.String("assets/scale_to_use")));
+var scale_to_use = require(ee.String(scale_to_use_path).getInfo());
+var AOI_path = ee.String(get_active_project).cat(ee.String("assets/AOI"));
+var AOI = require(ee.String(AOI_path).getInfo());
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
