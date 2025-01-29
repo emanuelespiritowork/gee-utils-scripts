@@ -8,6 +8,7 @@
 /******************************************************
  * Requires the following assets to be available:
  * scale_to_use
+ * stretch
 *******************************************************/
 
 var stretch = require('users/emanuelespiritowork/SharedRepo:assets/stretch');
@@ -16,9 +17,9 @@ var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to
 /******************************************************
  * PURPOSE OF THIS SCRIPT
  * This script has a function that want to create an image stretch 
- * of N*sigma of a ee.Image and print it on your map composing the bands 
- * you select. If you do not select any band, the function
- * will choose the first three bands. 
+ * of array_of_stretch*sigma of a ee.Image and print it on 
+ * your map composing the bands you select. If you do not select 
+ * any band, the function will choose the first three bands. 
 *******************************************************/
 
 exports.image_stretch_img = function(img,bands){
