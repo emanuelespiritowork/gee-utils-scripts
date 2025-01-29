@@ -17,17 +17,23 @@
 *******************************************************/
 
 exports.s2_scale_img = function(image){
-  var s2_bands_names = image.select("B.*").bandNames();
-  //scaling function
-  var scale_band = function(band){
+  var s2_B_bands_names = image.select("B.*").bandNames();
+  
+  //scaling B bands
+  var scale_B_band = function(band){
     return image.select(ee.String(band)).divide(ee.Number(10000));
   };
-  var scaled_image = s2_bands_names.map(scale_band);
+  var scaled_B_image = s2_B_bands_names.map(scale_B_band);
+  
   var collection_of_image = ee.ImageCollection
-  .fromImages(scaled_image);
+  .fromImages(scaled_B_image);
   var imageMulti = collection_of_image.toBands()
-  .rename(s2_bands_names);
+  .rename(s2_B_bands_names);
+  
+  var s2_not_B_bands = image.select('[^B].*');
+  var fullImage = imageMulti.addBands(s2_not_B_bands);
+  
   var time_start_value = image.get('system:time_start');
-  imageMulti = imageMulti.set({'system:time_start':time_start_value});
-  return imageMulti;
+  fullImage = fullImage.set({'system:time_start':time_start_value});
+  return fullImage;
 };
