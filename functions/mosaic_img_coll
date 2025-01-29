@@ -1,3 +1,18 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.ImageCollection
+ * Output: ee.Image 
+ * Description: this script is a function that makes a mosaic of an
+ * ee.ImageCollection ordering correctly all the bands.
+*******************************************************/
+
 exports.mosaic_img_coll = function(img_coll){
   
   var bands_names = img_coll.first().bandNames();
