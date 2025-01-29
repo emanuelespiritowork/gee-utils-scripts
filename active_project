@@ -1,1 +1,0 @@
-exports.active_project = ee.String("users/emanuelespiritowork/SharedRepo:prova/");
