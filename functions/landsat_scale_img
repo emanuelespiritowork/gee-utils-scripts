@@ -23,11 +23,11 @@ exports.landsat_scale_img = function(image){
     return image.select(ee.String(band)).multiply(ee.Number(0.0000275))
     .add(-0.2);
   };
-  var scaled_image = s2_bands_names.map(scale_band);
+  var scaled_image = landsat_bands_names.map(scale_band);
   var collection_of_image = ee.ImageCollection
   .fromImages(scaled_image);
   var imageMulti = collection_of_image.toBands()
-  .rename(s2_bands_names);
+  .rename(landsat_bands_names);
   var time_start_value = image.get('system:time_start');
   imageMulti = imageMulti.set({'system:time_start':time_start_value});
   return imageMulti;
