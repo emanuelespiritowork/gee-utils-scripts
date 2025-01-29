@@ -5,6 +5,11 @@
  * https://github.com/emanuelespiritowork/gee-utils-scripts
 *******************************************************/
 
+/******************************************************
+ * REQUIRES THE FOLLOWING FUNCTIONS:
+ * clip_img
+*******************************************************/
+
 var clip_img = require('users/emanuelespiritowork/SharedRepo:functions/clip_img');
 
 /******************************************************
