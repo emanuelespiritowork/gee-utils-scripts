@@ -5,4 +5,9 @@ exports.landsat_mask_img = function(image){
   var dilated_clouds = 1 << 1;
   var cirrus = 1 << 2;
   var cloud = 1 << 3;
+  var cloud_shadow = 1 << 4;
+  var snow = 1 << 5;
+  
+  
+  
 };
