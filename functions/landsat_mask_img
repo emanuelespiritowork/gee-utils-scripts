@@ -49,7 +49,6 @@ exports.landsat_mask_img = function(image){
       .or(cloud_shadow_mask)
       .or(snow_mask)
       .or(cloud_confidence_high_mask)
-      .or(image.select("SR_B2").gt(8000)); //my_cloud_filter
       
   //creating the xor (1 will be not cloud pixel, 0 will be cloud pixel)
   var mask = opposite_mask.eq(0);
