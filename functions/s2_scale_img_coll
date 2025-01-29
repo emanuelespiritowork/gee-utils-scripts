@@ -1,3 +1,15 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * REQUIRES THE FOLLOWING FUNCTIONS:
+ * s2_scale_img
+*******************************************************/
+
 var s2_scale_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_scale_img');
 
 exports.s2_scale_img_coll = function(img_coll){
