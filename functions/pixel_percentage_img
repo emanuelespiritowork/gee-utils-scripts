@@ -18,10 +18,12 @@ var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.ImageCollection
+ * Input: ee.Image
  * Output: ee.Image 
- * Description: this script is a function that makes a mosaic of an
- * ee.ImageCollection ordering correctly all the bands.
+ * Description: this script is a function that, taken an already masked 
+ * image (with any mask applied), considers as valid only the cropfields 
+ * that are not masked for more than assets/threshold_percentage*100%. All
+ * the other cropfields are completely masked.
 *******************************************************/
 
 exports.pixel_percentage_img = function(image){
