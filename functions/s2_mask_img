@@ -26,8 +26,8 @@ exports.s2_mask_img = function(image){
   var cloudBitMask = 1 << 10;
   var cirrusBitMask = 1 << 11;
   var qa = image.select('QA60');
-  var qa_cloud = qa.bitwiseAnd(cloudBitMask).eq(1);
-  var qa_cirrus = qa.bitwiseAnd(cirrusBitMask).eq(1);
+  var qa_cloud = qa.bitwiseAnd(cloudBitMask).neq(0);
+  var qa_cirrus = qa.bitwiseAnd(cirrusBitMask).neq(0);
   
   //or mask (1 will be cloud pixel, 0 will be not cloud pixel)
   var opposite_mask = qa_cloud
