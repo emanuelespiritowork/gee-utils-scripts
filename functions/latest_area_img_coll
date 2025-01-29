@@ -23,6 +23,12 @@ var mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/mo
 *******************************************************/
 
 exports.latest_area_img_coll = function(img_coll){
+  var local_img_coll = img_coll.filterBounds(AOI);
+  var latest_date = ee.Date(local_img_coll.sort({
+    property: "system:time_start", 
+    ascending: false
+  }).first().get("system:time_start"));
+  print(latest_date);
   var clip = clip_img_coll.clip_img_coll(img_coll);
   var mosaic = mosaic_img_coll.mosaic_img_coll(clip);
   return mosaic;
