@@ -6,8 +6,8 @@
 *******************************************************/
 
 /******************************************************
- * Purpose of this script: 
- * select the asset AOI (Area of Interest) to be used in all other 
+ * WHAT THIS ASSET DOES
+ * Select the asset AOI (Area of Interest) to be used in all other 
  * functions so insert a FeatureCollection that you want to study
 *******************************************************/
 
