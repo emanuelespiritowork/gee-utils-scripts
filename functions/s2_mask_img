@@ -7,7 +7,10 @@
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * 
+ * Input: ee.Image
+ * Output: ee.Image
+ * Description: this script is a function to mask a Sentinel-2 L2A
+ * image using other layer. This will mask clouds, shadows, snow
 *******************************************************/
 
 exports.s2_mask_img = function(image){
