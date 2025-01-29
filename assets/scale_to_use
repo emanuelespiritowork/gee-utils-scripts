@@ -1,1 +1,12 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * Purpose of this script: 
+ * here you choose the scale (m) you are working at in all functions.
+*******************************************************/
+
 exports.scale_to_use = ee.Number(30);
