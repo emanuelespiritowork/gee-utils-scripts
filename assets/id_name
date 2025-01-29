@@ -6,7 +6,7 @@
 *******************************************************/
 
 /******************************************************
- * Purpose of this script: 
+ * WHAT THIS ASSET DOES 
  * select the name of the ID column in the AOI asset. As in every
  * database, each record (each feature such as a cropfield geometry)
  * has an unique record. Here you insert the name of that property
