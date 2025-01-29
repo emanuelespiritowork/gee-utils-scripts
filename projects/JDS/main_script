@@ -4,12 +4,11 @@ var geometry =
     /* shown: false */
     ee.Geometry.Point([11.94056922186089, 44.87391977499666]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-//var AOI = require('users/emanuelespiritowork/SharedRepo:JDS/assets/AOI');
+var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
 
 var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate('2024-12-15','2025-01-24')
-.filterBounds(geometry);
-//.filterBounds(AOI.AOI);
+.filterBounds(AOI.AOI);
 
 //print(AOI.AOI);
 
