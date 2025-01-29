@@ -14,8 +14,8 @@
 var active_project = require("users/emanuelespiritowork/SharedRepo:active_project");
 var AOI_path = active_project.active_project.cat(ee.String("assets/AOI"));
 var AOI = require(AOI_path.getInfo());
-var scale_to_use = require("users/emanuelespiritowork/SharedRepo:projects/JDS/assets/scale_to_use");//active_project.active_project.cat(ee.String("assets/scale_to_use"));
-
+var scale_to_use_path = active_project.active_project.cat(ee.String("assets/scale_to_use"));
+var scale_to_use = require(scale_to_use_path.getInfo());
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
@@ -27,7 +27,7 @@ var scale_to_use = require("users/emanuelespiritowork/SharedRepo:projects/JDS/as
 
 exports.clip_img = function(image){
   print("scale_to_use",scale_to_use.scale_to_use);
-  print("AOI",AOI.AOI);
+  //print("AOI",AOI.AOI);
   return image.clipToBoundsAndScale({
     geometry: AOI.AOI.geometry(),
     scale: scale_to_use.scale_to_use
