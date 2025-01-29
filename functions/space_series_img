@@ -1,6 +1,31 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * REQUIRES THE FOLLOWING ASSETS:
+ * scale_to_use
+ * id_name
+ * AOI
+*******************************************************/
+
 var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
 var id_name = require('users/emanuelespiritowork/SharedRepo:assets/id_name');
 var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.Image
+ * Output: ee.FeatureCollection
+ * Description: this script is a function that takes an image
+ * and using an assets/AOI it creates a FeatureCollection corrisponding
+ * to a table where the columns are assets/id_name of the cropfield, 
+ * date of the image, system:time_start that is the date but expressed
+ * in millisecond
+*******************************************************/
 
 exports.space_series_img = function(img){
   var date = img.get('system:time_start');
