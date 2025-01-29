@@ -13,7 +13,6 @@
 
 var clip_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/clip_img_coll");
 var mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_img_coll");
-var AOI = require("users/emanuelespiritowork/SharedRepo:assets/AOI");
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
@@ -24,8 +23,7 @@ var AOI = require("users/emanuelespiritowork/SharedRepo:assets/AOI");
 *******************************************************/
 
 exports.latest_area_img_coll = function(img_coll){
-  var local_img_coll = img_coll.filterBounds(AOI.AOI);
-  var latest_date = ee.Date(local_img_coll.sort({
+  var latest_date = ee.Date(img_coll.sort({
     property: "system:time_start", 
     ascending: false
   }).first().get("system:time_start"));
