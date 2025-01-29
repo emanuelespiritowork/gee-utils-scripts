@@ -1,2 +1,8 @@
 
-exports.landsat_mask_img = function(image)
+exports.landsat_mask_img = function(image){
+  var qa_pixel_layer = image.select("QA_PIXEL");
+  
+  var dilated_clouds = 1 << 1;
+  var cirrus = 1 << 2;
+  var cloud = 1 << 3;
+};
