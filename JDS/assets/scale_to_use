@@ -11,3 +11,4 @@
 *******************************************************/
 
 exports.scale_to_use = ee.Number(30);
+exports.other_number = 30;
