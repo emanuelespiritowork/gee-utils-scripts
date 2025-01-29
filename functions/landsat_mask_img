@@ -27,9 +27,6 @@ exports.landsat_mask_img = function(image){
   var cloud_confidence_high_mask = qa_pixel_layer
   .bitwiseAnd(cloud_confidence_high).eq(1);
   
-  
-  
-  
   //Apply masks
   
   var opposite_mask = dilated_clouds_mask
