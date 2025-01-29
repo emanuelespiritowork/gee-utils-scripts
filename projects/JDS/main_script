@@ -11,6 +11,7 @@ var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterBounds(AOI.AOI);
 
 //print(AOI.AOI);
+print(3 << 10);
 
 var clip_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/clip_img_coll');
 
