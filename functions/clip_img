@@ -10,12 +10,8 @@
  * AOI
  * scale_to_use
 *******************************************************/
-var myRepo = ee.String("users/emanuelespiritowork/SharedRepo:");
-var AOI_path = ee.List([myRepo,ee.String('assets/AOI')]).join("");
-var AOI = require(AOI_path);
-var scale_to_use_path = ee.List([myRepo,ee.String('assets/scale_to_use')])
-.join("");
-var scale_to_use = require(scale_to_use_path);
+var AOI = require("users/emanuelespiritowork/SharedRepo:assets/AOI");
+var scale_to_use = require("users/emanuelespiritowork/SharedRepo:assets/scale_to_use");
 
 /******************************************************
  * Purpose of this script: 
