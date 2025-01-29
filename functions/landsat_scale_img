@@ -9,9 +9,8 @@
  * PURPOSE OF THIS SCRIPT
  * Input: ee.Image
  * Output: ee.Image
- * Description: this script is a function that scale the surface 
- * reflectance of each band B* of an Landsat-8 and Landsat-9 L2 image 
- * from a value 0-10000 to a double value with 4 decimal digits.
+ * Description: this script is a function that scale the bands
+ * of a Landsat-8 and Landsat-9 L2 image 
  * For reference: 
  * https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC09_C02_T1_L2#description
 *******************************************************/
