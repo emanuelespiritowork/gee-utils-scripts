@@ -12,6 +12,13 @@
 
 var s2_scale_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_scale_img');
 
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.ImageCollection
+ * Output: ee.ImageCollection
+ * Description: as functions/s2_scale_img but for an image collection
+*******************************************************/
+
 exports.s2_scale_img_coll = function(img_coll){
   return img_coll.map(s2_scale_img.s2_scale_img);
 };
