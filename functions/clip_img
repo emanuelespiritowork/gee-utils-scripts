@@ -15,9 +15,11 @@ var AOI = require("users/emanuelespiritowork/SharedRepo:assets/AOI");
 var scale_to_use = require("users/emanuelespiritowork/SharedRepo:assets/scale_to_use");
 
 /******************************************************
- * Purpose of this script: 
- * clipping an ee.Image to the AOI geometry working at the 
- * scale scale_to_use 
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.Image
+ * Output: ee.Image
+ * Description: clipping an ee.Image to the assets/AOI geometry 
+ * working at the scale assets/scale_to_use 
 *******************************************************/
 
 exports.clip_img = function(image){
