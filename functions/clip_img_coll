@@ -11,6 +11,7 @@
 *******************************************************/
 
 var clip_img = require('users/emanuelespiritowork/SharedRepo:functions/clip_img');
+var AOI = require("users/emanuelespiritowork/SharedRepo:assets/AOI");
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
@@ -20,5 +21,6 @@ var clip_img = require('users/emanuelespiritowork/SharedRepo:functions/clip_img'
 *******************************************************/
 
 exports.clip_img_coll = function(img_coll){
-  return img_coll.map(clip_img.clip_img);
+  var filtered = img_coll.filterBounds(AOI.AOI)
+  return filtered.map(clip_img.clip_img);
 };
