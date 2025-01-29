@@ -1,3 +1,10 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = /* color: #d63000 */ee.Geometry.Polygon(
+        [[[4.637788552565327, 46.15830451173635],
+          [3.1216752713153273, 44.096823113250785],
+          [7.582124490065327, 44.096823113250785],
+          [10.965913552565327, 45.86836909445712]]]);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /******************************************************
  * Author: Emanuele Spirito
  * Copyright: 2025
@@ -11,7 +18,15 @@
  * functions so insert a FeatureCollection that you want to study
 *******************************************************/
 
-exports.AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI");
+//exports.AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI");
+
+
+exports.AOI = ee.FeatureCollection(ee.Geometry.Polygon(
+        [[[4.637788552565327, 46.15830451173635],
+          [3.1216752713153273, 44.096823113250785],
+          [7.582124490065327, 44.096823113250785],
+          [10.965913552565327, 45.86836909445712]]]));
+
 
 /* ALTERNATIVE OF THE ABOVE SCRIPT WHEN USING assets/single_feature_point
 single_feature_point = ee.Geometry.Point([11.974559721540183, 44.8640062138869]);
