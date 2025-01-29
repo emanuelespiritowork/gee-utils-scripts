@@ -46,7 +46,7 @@ exports.image_stretch_img = function(img,bands){
     bestEffort: true
   }).toArray();
   
-  print("computed_img_std",computed_img_std);
+  //print("computed_img_std",computed_img_std);
   
   var computed_img_mean = img.reduceRegion({
     reducer: ee.Reducer.mean(),
@@ -58,10 +58,10 @@ exports.image_stretch_img = function(img,bands){
   var array_of_2 = ee.Array(ee.List([2,2,2]));
   
   var computed_img_min = computed_img_mean.subtract(array_of_2.multiply(computed_img_std));
-  print("computed_img_min",computed_img_min);
+  //print("computed_img_min",computed_img_min);
   
   var computed_img_max = computed_img_mean.add(array_of_2.multiply(computed_img_std));
-  print("computed_img_max",computed_img_max);
+  //print("computed_img_max",computed_img_max);
 
 var vis_specific_image = {
   bands: ee.List(bands).getInfo(),
