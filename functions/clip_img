@@ -10,6 +10,7 @@
  * AOI
  * scale_to_use
 *******************************************************/
+
 var AOI = require("users/emanuelespiritowork/SharedRepo:assets/AOI");
 var scale_to_use = require("users/emanuelespiritowork/SharedRepo:assets/scale_to_use");
 
