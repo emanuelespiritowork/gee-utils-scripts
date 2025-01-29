@@ -31,6 +31,6 @@ exports.clip_img = function(image){
   //print("AOI",AOI.AOI);
   return image.clipToBoundsAndScale({
     geometry: AOI.AOI.geometry(),
-    scale: scale_to_use.other_number
+    scale: 30
   }).clip(AOI.AOI);
 };
