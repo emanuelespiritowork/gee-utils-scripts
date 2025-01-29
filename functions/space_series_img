@@ -25,7 +25,8 @@ var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
  * to a table where the columns are assets/id_name of the cropfield, 
  * date of the image, system:time_start that is the date but expressed
  * in millisecond. Each row is a different cropfield in that image. 
- * Every computation is scaled at assets/scale_to_use
+ * Every computation is scaled at assets/scale_to_use. The average
+ * is done by median()
 *******************************************************/
 
 exports.space_series_img = function(img){
