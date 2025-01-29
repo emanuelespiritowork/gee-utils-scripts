@@ -16,7 +16,7 @@ var get_active_project = ee.String(active_project.active_project.getInfo());
 //var scale_to_use_path = get_active_project.cat(ee.String("assets/scale_to_use"));
 //var scale_to_use = require(scale_to_use_path.getInfo());
 var AOI_path = get_active_project.cat(ee.String("assets/AOI"));
-var AOI = require(AOI_path);
+var AOI = require(AOI_pat.getInfo());
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
