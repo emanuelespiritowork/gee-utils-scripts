@@ -10,6 +10,7 @@
  * scale_to_use
 *******************************************************/
 
+var stretch = require('users/emanuelespiritowork/SharedRepo:assets/stretch');
 var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
 
 /******************************************************
@@ -55,12 +56,13 @@ exports.image_stretch_img = function(img,bands){
     bestEffort: true
   }).toArray();
   
-  var array_of_2 = ee.Array(ee.List([2,2,2]));
+  var array_of_stretch = ee.Array(ee.List([stretch.stretch,
+  stretch.stretch,stretch.stretch]));
   
-  var computed_img_min = computed_img_mean.subtract(array_of_2.multiply(computed_img_std));
+  var computed_img_min = computed_img_mean.subtract(array_of_stretch.multiply(computed_img_std));
   //print("computed_img_min",computed_img_min);
   
-  var computed_img_max = computed_img_mean.add(array_of_2.multiply(computed_img_std));
+  var computed_img_max = computed_img_mean.add(array_of_stretch.multiply(computed_img_std));
   //print("computed_img_max",computed_img_max);
 
 var vis_specific_image = {
