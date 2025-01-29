@@ -19,6 +19,7 @@ var scale_to_use_path = ee.List([get_active_project,ee.String("assets/scale_to_u
 .join();
 print("scale_to_use_path",scale_to_use_path);
 var scale_to_use = require(ee.String(scale_to_use_path).getInfo());
+print("scale_to_use",scale_to_use);
 var AOI_path = ee.String(get_active_project).cat(ee.String("assets/AOI"));
 var AOI = require(ee.String(AOI_path).getInfo());
 
