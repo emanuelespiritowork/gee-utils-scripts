@@ -6,8 +6,8 @@
 
 /******************************************************
  * Purpose of this script: 
- * select the asset AOI (Area of Interest) to be used in some functions
- * so insert a FeatureCollection that you want to study
+ * select the asset AOI (Area of Interest) to be used in all other 
+ * functions so insert a FeatureCollection that you want to study
 *******************************************************/
 
 exports.AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI");
