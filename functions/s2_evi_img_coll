@@ -1,4 +1,24 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * REQUIRES THE FOLLOWING FUNCTIONS
+ * s2_evi_img
+*******************************************************/
+
 var s2_evi_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_img');
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.Image
+ * Output: ee.Image
+ * Description: this script takes an image and creates the EVI index
+ * band in a new image
+*******************************************************/
 
 exports.s2_evi_img_coll = function(img_coll){
   return img_coll.map(s2_evi_img.s2_evi_img);
