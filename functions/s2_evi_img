@@ -10,7 +10,7 @@
  * Input: ee.Image
  * Output: ee.Image
  * Description: this script takes an image and creates the EVI index
- * in a new image
+ * band in a new image
 *******************************************************/
 
 exports.s2_evi_img = function(image){
