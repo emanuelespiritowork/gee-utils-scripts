@@ -1,1 +1,18 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * Purpose of this script: 
+ * select the name of the ID column in the AOI asset. As in every
+ * database, each record (each feature such as a cropfield geometry)
+ * has an unique record. Here you insert the name of that property
+ * belonging to the assets/AOI FeatureCollection. For example, think 
+ * of a FeatureCollection as a table and one of its Feature as a row.
+ * Here you insert the name of the column that uniquely identifies that 
+ * row among all rows in the table. 
+*******************************************************/
+
 exports.id_name = "id_geom";
