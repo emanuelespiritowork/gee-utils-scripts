@@ -6,7 +6,7 @@
 *******************************************************/
 
 /******************************************************
- * Purpose of this script: 
+ * WHAT THIS ASSET DOES
  * when you use the function/pixel_percentage_img
  * This parameter rules that all the fields that are at least
  * threshold_percentage*100% not masked are considered valid. All the others
