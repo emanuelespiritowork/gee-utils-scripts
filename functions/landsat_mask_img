@@ -19,4 +19,10 @@ exports.landsat_mask_img = function(image){
   var snow_mask = qa_pixel_layer
   .bitwiseAnd(snow).eq(1);
   
+  var cloud_confidence_high = 11 << 10;
+  
+  
+  //Apply masks
+  
+  return masked_image;
 };
