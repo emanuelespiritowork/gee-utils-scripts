@@ -1,6 +1,28 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * REQUIRES THE FOLLOWING ASSETS:
+ * AOI
+ * threshold_percentage
+ * scale_to_use
+*******************************************************/
+
 var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
 var threshold_percentage = require('users/emanuelespiritowork/SharedRepo:assets/threshold_percentage');
 var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.ImageCollection
+ * Output: ee.Image 
+ * Description: this script is a function that makes a mosaic of an
+ * ee.ImageCollection ordering correctly all the bands.
+*******************************************************/
 
 exports.pixel_percentage_img = function(image){
   var clip_image_following_feature = function(region){
