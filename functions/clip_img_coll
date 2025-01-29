@@ -11,7 +11,7 @@ var clip_img = require('users/emanuelespiritowork/SharedRepo:functions/clip_img'
  * Purpose of this script:
  * Input: ee.ImageCollection
  * Output: ee.ImageCollection
- * Description: clipping an ee.ImageCollection instead of an ee.Image
+ * Description: clipping an ee.ImageCollection to the assets/AOI geometry 
 *******************************************************/
 
 exports.clip_img_coll = function(img_coll){
