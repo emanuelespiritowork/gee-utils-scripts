@@ -8,6 +8,7 @@ exports.landsat_mask_img = function(image){
   var cloud_shadow = 1 << 4;
   var snow = 1 << 5;
   
-  
+  var dilated_clouds_mask = qa_pixel_layer
+  .bitwiseAnd(dilated_clouds);
   
 };
