@@ -8,7 +8,8 @@
 /******************************************************
  * PURPOSE OF THIS SCRIPT
  * This script has an asset that tells the number of sigma to be
- * used to make an image stretch using the image_stretch_img function
+ * used to make an image stretch using the functions/image_stretch_img 
+ * function
 *******************************************************/
 
 exports.stretch = ee.Number(2);
