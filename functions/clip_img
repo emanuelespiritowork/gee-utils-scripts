@@ -26,6 +26,7 @@ var scale_to_use = require(scale_to_use_path.getInfo());
 *******************************************************/
 
 exports.clip_img = function(image){
+  print("scale_to_use",scale_to_use);
   return image.clipToBoundsAndScale({
     geometry: AOI.AOI.geometry(),
     scale: scale_to_use.scale_to_use
