@@ -1,1 +1,17 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * Purpose of this script: 
+ * when you use the function/pixel_percentage_img
+ * This parameter rules that all the fields that are at least
+ * threshold_percentage*100% not masked are considered valid. All the others
+ * are masked. For example, if this parameter is 0.7 it means that only 
+ * the cropfields that have at least 70% of their pixels not masked, are
+ * considered valid fields. All the other cropfields are completely masked. 
+*******************************************************/
+
 exports.threshold_percentage = ee.Number(0.5);
