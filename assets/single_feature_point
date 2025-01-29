@@ -6,8 +6,8 @@
 *******************************************************/
 
 /******************************************************
- * Purpose of this script: 
- * in the AOI script you can choose to select just one feature of the 
+ * WHAT THIS ASSET DOES
+ * In the AOI script you can choose to select just one feature of the 
  * whole AOI. For instance, your AOI is a collection of 188 cropfields and
  * you want to work with just one of them. To select it, here you
  * insert the Geometry of one point of your cropfield of interest. Then
