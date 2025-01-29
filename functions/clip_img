@@ -10,7 +10,7 @@
  * AOI
  * scale_to_use
 *******************************************************/
-var myRepo = "users/emanuelespiritowork/SharedRepo:";
+var myRepo = ee.String("users/emanuelespiritowork/SharedRepo:");
 var AOI = require(myRepo.cat(ee.String('assets/AOI')));
 var scale_to_use = require(myRepo.cat(ee.String('assets/scale_to_use')));
 
