@@ -11,8 +11,14 @@
  * mosaic_img_coll
 *******************************************************/
 
+/******************************************************
+ * REQUIRES THE FOLLOWING ASSETS:
+ * AOI
+*******************************************************/
+
 var clip_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/clip_img_coll");
 var mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_img_coll");
+var AOI = require("users/emanuelespiritowork/SharedRepo:assets/AOI");
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
@@ -23,7 +29,8 @@ var mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/mo
 *******************************************************/
 
 exports.latest_area_img_coll = function(img_coll){
-  var latest_date = ee.Date(img_coll.sort({
+  var filtered_img_coll = img_coll.filterBounds(AOI.AOI);
+  var latest_date = ee.Date(filtered_img_coll.sort({
     property: "system:time_start", 
     ascending: false
   }).first().get("system:time_start"));
@@ -32,7 +39,7 @@ exports.latest_area_img_coll = function(img_coll){
     delta: -1,
     unit: "month"
   });
-  var latest_img_coll = img_coll.filterDate(start_date,latest_date);
+  var latest_img_coll = filtered_img_coll.filterDate(start_date,latest_date);
   var clip = clip_img_coll.clip_img_coll(latest_img_coll);
   var mosaic = mosaic_img_coll.mosaic_img_coll(clip);
   return mosaic;
