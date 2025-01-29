@@ -14,10 +14,9 @@ var s2_evi_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.Image
- * Output: ee.Image
- * Description: this script takes an image and creates the EVI index
- * band in a new image
+ * Input: ee.ImageCollection
+ * Output: ee.ImageCollection
+ * Description: as s2_evi_img but for an image collection
 *******************************************************/
 
 exports.s2_evi_img_coll = function(img_coll){
