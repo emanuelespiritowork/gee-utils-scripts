@@ -1,3 +1,18 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.Image
+ * Output: ee.Image
+ * Description: this script takes an image and creates the EVI index
+ * in a new image
+*******************************************************/
+
 exports.s2_evi_img = function(image){
   var eviExpression = image.expression({
     expression: '2.5 * ((NIR - RED) / (NIR + 6 * RED - 7.5 * BLUE + 1))',
