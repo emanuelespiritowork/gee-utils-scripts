@@ -6,7 +6,7 @@
 *******************************************************/
 
 /******************************************************
- * Purpose of this script: 
+ * WHAT THIS ASSET DOES
  * create an asset that is a line (or MultiLine) that will be used 
  * for example to create a transect slice over an image (mosaic).
 *******************************************************/
