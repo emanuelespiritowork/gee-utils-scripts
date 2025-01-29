@@ -27,10 +27,10 @@ var AOI = require(AOI_path);
 *******************************************************/
 
 exports.clip_img = function(image){
-  print("scale_to_use",scale_to_use.scale_to_use);
+  //print("scale_to_use",scale_to_use.scale_to_use);
   //print("AOI",AOI.AOI);
   return image.clipToBoundsAndScale({
     geometry: AOI.AOI.geometry(),
-    scale: scale_to_use.scale_to_use
+    scale: scale_to_use.other_number
   }).clip(AOI.AOI);
 };
