@@ -2,26 +2,9 @@
 var geometry = /* color: #d63000 */ee.Geometry.Point([11.946930042651095, 44.86901414738179]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var image_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
-.filterBounds(geometry);
 
-var image = image_coll.first();
+var latest_area_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/latest_area_img_coll");
 
+var image = latest_area_img_coll.latest_area_img_coll(image_coll);
 
-
-var landsat_mask_img = require("users/emanuelespiritowork/SharedRepo:functions/landsat_mask_img");
-
-var masked_image = landsat_mask_img.landsat_mask_img(image);
-
-/*
-var cloud = 1 << 2;
-print(1 << 2);
-
-var cloud_mask = ee.Image(image.select("QA_PIXEL").bitwiseAnd(cloud).neq(0));
-var example = ee.Image(3);
-var try_example = ee.Image(example.bitwiseAnd(ee.Image(cloud)));
-
-Map.addLayer(try_example);
-Map.addLayer(cloud_mask,{min:0,max:1,palette:["black","white"]},"cloud_mask")
-*/
-Map.addLayer(masked_image,{},"masked_image");
-Map.addLayer(image,{},"image");
+Map.addLayer(image);
