@@ -12,11 +12,12 @@
 *******************************************************/
 
 
-var active_project = require(ee.String("users/emanuelespiritowork/SharedRepo:active_project"));
-var get_active_project = ee.String(active_project.active_project);
+var active_project = require("users/emanuelespiritowork/SharedRepo:active_project");
+var get_active_project = ee.String(active_project.active_project).getInfo();
 
-var scale_to_use_path = ee.List([get_active_project,ee.String("assets/scale_to_use")])
+var scale_to_use_path = ee.List([ee.String(get_active_project),ee.String("assets/scale_to_use")])
 .join("");
+print("scale_to_use_path",scale_to_use_path);
 var scale_to_use = require(ee.String(scale_to_use_path).getInfo());
 var AOI_path = ee.String(get_active_project).cat(ee.String("assets/AOI"));
 var AOI = require(ee.String(AOI_path).getInfo());
