@@ -39,7 +39,7 @@ exports.landsat_scale_img = function(image){
   var scale_ST_ATRAN_bands = function(band){
     return image.select(ee.String(band)).multiply(ee.Number(0.0001));
   };
-  var scaled_ST_ATRAN_image = image.select(landsat_ST_ATRAN_bands_names)
+  var scaled_ST_ATRAN_image = landsat_ST_ATRAN_bands_names
   .map(scale_ST_ATRAN_bands);
   
   var collection_of_ST_ATRAN_image = ee.ImageCollection
@@ -53,7 +53,7 @@ exports.landsat_scale_img = function(image){
   var scale_ST_DRAD_bands = function(band){
     return image.select(ee.String(band)).multiply(ee.Number(0.001));
   };
-  var scaled_ST_DRAD_image = image.select(landsat_ST_DRAD_bands_names)
+  var scaled_ST_DRAD_image = landsat_ST_DRAD_bands_names
   .map(scale_ST_DRAD_bands);
   
   var collection_of_ST_DRAD_image = ee.ImageCollection
@@ -67,7 +67,7 @@ exports.landsat_scale_img = function(image){
   var scale_ST_CDIST_bands = function(band){
     return image.select(ee.String(band)).multiply(ee.Number(0.001));
   };
-  var scaled_ST_CDIST_image = image.select(landsat_ST_CDIST_bands_names)
+  var scaled_ST_CDIST_image = landsat_ST_CDIST_bands_names
   .map(scale_ST_CDIST_bands);
   
   var collection_of_ST_CDIST_image = ee.ImageCollection
