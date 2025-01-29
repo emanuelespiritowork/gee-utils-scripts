@@ -1,0 +1,24 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * REQUIRES THE FOLLOWING FUNCTIONS:
+ * landsat_mask_img
+*******************************************************/
+
+var landsat_mask_img = require('users/emanuelespiritowork/SharedRepo:functions/landsat_mask_img');
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.ImageCollection
+ * Output: ee.ImageCollection
+ * Description: as functions/landsat_mask_img but for an image collection
+*******************************************************/
+
+exports.landsat_mask_img_coll = function(img_coll){
+  return img_coll.map(landsat_mask_img.landsat_mask_img);
+};
