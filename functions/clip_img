@@ -1,5 +1,22 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * Requires the following assets to be available:
+ * AOI
+ * scale_to_use
+*******************************************************/
+
 var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
 var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
+
+/******************************************************
+ * Purpose of this script: 
+ * clipping an image to the AOI geometry working at the scale scale_to_use 
+*******************************************************/
 
 exports.clip_img = function(image){
   return image.clipToBoundsAndScale({
