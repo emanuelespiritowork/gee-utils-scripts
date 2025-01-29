@@ -1,4 +1,23 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * REQUIRES THE FOLLOWING FUNCTIONS:
+ * s2_mask_img
+*******************************************************/
+
 var s2_mask_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_mask_img');
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.ImageCollection
+ * Output: ee.ImageCollection
+ * Description: as functions/s2_mask_img but for an image collection
+*******************************************************/
 
 exports.s2_mask_img_coll = function(img_coll){
   return img_coll.map(s2_mask_img.s2_mask_img);
