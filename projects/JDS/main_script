@@ -16,13 +16,13 @@ var clip_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/clip
 
 var clipped_img_coll = clip_img_coll.clip_img_coll(image_coll);
 
-/*var s2_scale_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_scale_img');
+var s2_scale_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_scale_img');
 
 var image_not_scaled = clipped_img_coll.first();
 var image_scaled = s2_scale_img.s2_scale_img(image_not_scaled);
-*/
+
 Map.addLayer(clipped_img_coll,{},"clipped_img_coll");
-/*Map.addLayer(image_scaled,{},"image_scaled");
+Map.addLayer(image_scaled,{},"image_scaled");
 Map.addLayer(image_not_scaled,{},"image_not_scaled");
 
 var s2_evi_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_img');
