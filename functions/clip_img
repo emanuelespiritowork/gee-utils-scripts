@@ -11,8 +11,10 @@
  * scale_to_use
 *******************************************************/
 var myRepo = ee.String("users/emanuelespiritowork/SharedRepo:");
-var AOI = require(myRepo.cat(ee.String('assets/AOI')));
-var scale_to_use = require(myRepo.cat(ee.String('assets/scale_to_use')));
+var AOI_path = ee.String(myRepo.cat(ee.String('assets/AOI')));
+var AOI = require(AOI_path);
+var scale_to_use_path = ee.String(myRepo.cat(ee.String('assets/scale_to_use')))
+var scale_to_use = require(scale_to_use_path);
 
 /******************************************************
  * Purpose of this script: 
