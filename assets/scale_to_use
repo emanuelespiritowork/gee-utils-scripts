@@ -6,8 +6,8 @@
 *******************************************************/
 
 /******************************************************
- * Purpose of this script: 
- * here you choose the scale (m) you are working at in all functions.
+ * WHAT THIS ASSET DOES 
+ * Here you choose the scale (m) you are working at in all functions.
 *******************************************************/
 
 exports.scale_to_use = ee.Number(30);
