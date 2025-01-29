@@ -11,7 +11,7 @@ var clip_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/clip
 var clipped_img_coll = clip_img_coll.clip_img_coll(image_coll);
 
 Map.addLayer(clipped_img_coll,{},"clipped_img_coll");
-/*
+
 var s2_evi_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_img');
 
 image_coll = image_coll.map(s2_evi_img.s2_evi_img);
