@@ -9,8 +9,8 @@
  * PURPOSE OF THIS SCRIPT
  * Input: ee.Image
  * Output: ee.Image
- * Description: this script takes an image and creates the EVI index
- * band in a new image
+ * Description: this script takes an Sentinel-2 L2A image and 
+ * creates the EVI index band in a new image
 *******************************************************/
 
 exports.s2_evi_img = function(image){
