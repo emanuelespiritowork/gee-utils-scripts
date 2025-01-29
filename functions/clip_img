@@ -10,11 +10,11 @@
  * AOI
  * scale_to_use
 *******************************************************/
-
-var myProject = ee.String("users/emanuelespiritowork/SharedRepo:projects/JDS/");
-var AOI_path = myProject.cat(ee.String("assets/AOI"));
+var myRepo = ee.String("users/emanuelespiritowork/SharedRepo:");
+//var myProject = ee.String("users/emanuelespiritowork/SharedRepo:projects/JDS/");
+var AOI_path = myRepo.cat(ee.String("assets/AOI"));
 var AOI = require(AOI_path.getInfo());
-var scale_to_use_path = myProject.cat(ee.String("assets/scale_to_use"));
+var scale_to_use_path = myRepo.cat(ee.String("assets/scale_to_use"));
 var scale_to_use = require(scale_to_use_path.getInfo());
 
 /******************************************************
