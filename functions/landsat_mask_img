@@ -9,6 +9,14 @@ exports.landsat_mask_img = function(image){
   var snow = 1 << 5;
   
   var dilated_clouds_mask = qa_pixel_layer
-  .bitwiseAnd(dilated_clouds);
+  .bitwiseAnd(dilated_clouds).eq(1);
+  var cirrus_mask = qa_pixel_layer
+  .bitwiseAnd(cirrus).eq(1);
+  var cloud_mask = qa_pixel_layer
+  .bitwiseAnd(cloud).eq(1);
+  var cloud_shadow_mask = qa_pixel_layer
+  .bitwiseAnd(cloud_shadow).eq(1);
+  var snow_mask = qa_pixel_layer
+  .bitwiseAnd(snow).eq(1);
   
 };
