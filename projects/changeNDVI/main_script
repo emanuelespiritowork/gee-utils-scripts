@@ -1,0 +1,14 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = /* color: #d63000 */ee.Geometry.Point([11.946930042651095, 44.86901414738179]);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+var image_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
+.filterBounds(geometry);
+
+var image = image_coll.first();
+
+var landsat_scale_img = require("users/emanuelespiritowork/SharedRepo:functions/landsat_scale_img");
+
+var scaled_image = landsat_scale_img.landsat_scale_img(image);
+
+Map.addLayer(image,{},"image");
+Map.addLayer(scaled_image,{},"scaled_image");
