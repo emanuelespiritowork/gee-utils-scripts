@@ -9,6 +9,7 @@ var clip_img = require('users/emanuelespiritowork/SharedRepo:functions/clip_img'
 
 /******************************************************
  * Purpose of this script:
+ * clipping an ee.ImageCollection instead of an ee.Image
 *******************************************************/
 
 exports.clip_img_coll = function(img_coll){
