@@ -21,7 +21,7 @@ var space_series_img = require('users/emanuelespiritowork/SharedRepo:functions/s
  * assets/AOI. The table generated contains the columns assets/id_name
  * that tells the id of the cropfield, the date of the image, the
  * system:time_start that is the date of the image but using milliseconds.
- * The rows are all the img_coll value for each field in each date. 
+ * The rows are all the img_coll values averaged in each field in each date. 
 *******************************************************/
 
 exports.time_series_create_img_coll = function(img_coll){
