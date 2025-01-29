@@ -14,7 +14,7 @@
 
 var active_project = require("users/emanuelespiritowork/SharedRepo:active_project");
 var get_active_project = ee.String(active_project.active_project);
-
+print("scale_to_use_path",scale_to_use_path);
 var scale_to_use_path = ee.List([get_active_project,ee.String("assets/scale_to_use")])
 .join();
 print("scale_to_use_path",scale_to_use_path);
