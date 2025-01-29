@@ -25,7 +25,7 @@ exports.landsat_scale_img = function(image){
     .add(ee.Number(-0.2));
   };
   var scaled_SR_image = image.select(landsat_SR_bands_names)
-  .map(scale_band);
+  .map(scale_SR_band);
   
   var collection_of_SR_image = ee.ImageCollection
   .fromImages(scaled_SR_image);
