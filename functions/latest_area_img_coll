@@ -1,0 +1,29 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * REQUIRES THE FOLLOWING FUNCTIONS:
+ * clip_img_coll
+ * mosaic_img_coll
+*******************************************************/
+
+var clip_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/clip_img_coll");
+var mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_img_coll");
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.ImageCollection
+ * Output: ee.Image 
+ * Description: this script is a function that makes a mosaic of an
+ * ee.ImageCollection and clip it into assets/AOI.
+*******************************************************/
+
+exports.latest_area_img_coll = function(img_coll){
+  var clipped_img_coll = clip_img_coll.clip_img_coll(img_coll);
+  var mosaic = mosaic_img_coll.mosaic_img_coll(clipped_img_coll);
+  return mosaic;
+};
