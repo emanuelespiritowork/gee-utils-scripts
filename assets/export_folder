@@ -6,8 +6,8 @@
 *******************************************************/
 
 /******************************************************
- * Purpose of this script: 
- * select an asset that is the name of your Google Drive folder 
+ * WHAT THIS ASSET DOES
+ * Select an asset that is the name of your Google Drive folder 
  * where to export your work using my functions.
  * You just need the name of your folder, not the path inside Google Drive.
 *******************************************************/
