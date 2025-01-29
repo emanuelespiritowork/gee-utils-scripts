@@ -24,7 +24,8 @@ var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
  * and using an assets/AOI it creates a FeatureCollection corrisponding
  * to a table where the columns are assets/id_name of the cropfield, 
  * date of the image, system:time_start that is the date but expressed
- * in millisecond
+ * in millisecond. Each row is a different cropfield in that image. 
+ * Every computation is scaled at assets/scale_to_use
 *******************************************************/
 
 exports.space_series_img = function(img){
@@ -52,6 +53,7 @@ exports.space_series_img = function(img){
     
     //print("values_list",values_list);
       
+    //do we want to insert in the feature collection the geometry?
     var feature_of_single_field = ee.Feature(null, ee.Dictionary.fromLists({
       keys: keys_list,
       values: values_list
