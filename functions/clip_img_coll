@@ -27,11 +27,5 @@ exports.clip_img_coll = function(img_coll){
     proj: projection,
     scale: area.sqrt().divide(ee.Number(10))
   }));
-  Map.addLayer(AOI.AOI.geometry().coveringGrid({
-    proj: projection,
-    scale: area.sqrt().divide(ee.Number(10))
-  }),{},"geometry");
-  Map.centerObject(AOI.AOI);
-  Map.addLayer(filtered_coll,{},"filtered_coll");
   return filtered_coll.map(clip_img.clip_img);
 };
