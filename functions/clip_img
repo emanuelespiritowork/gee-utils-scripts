@@ -32,8 +32,7 @@ exports.clip_img = function(image){
   var geometry = AOI.AOI.geometry();
 
   var footprint = ee.Geometry.LinearRing({
-    coords: geometry.coordinates().get(0),
-    proj: geometry.projection()
+    coords: geometry.coordinates().get(0)
   });
   
   return clipped_image.set({
