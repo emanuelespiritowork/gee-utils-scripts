@@ -32,7 +32,7 @@ exports.mosaic_img_coll = function(img_coll){
   
   var img_coll_reordered = img_coll.map(change_band_order);
   
-  var img_filtered = img_coll_reordered.filter(ee.Filter.contains(AOI.AOI));
+  var img_filtered = img_coll_reordered.filter(ee.Filter.contains(AOI.AOI.geometry()));
   
   var img_mosaic = img_filtered.mosaic();
   
