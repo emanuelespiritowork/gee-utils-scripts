@@ -47,6 +47,7 @@ exports.plot_stretch_img = function(img,bands){
     })
   });
   
+  print(bands);
   
   var first_band = ee.List(bands).getString(0);
   var second_band = ee.List(bands).getString(1);
