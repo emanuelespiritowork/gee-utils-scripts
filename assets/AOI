@@ -1,9 +1,14 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.Polygon(
-        [[[8.462666891581918, 46.415882453396534],
-          [7.233974185993137, 44.94510734451353],
-          [8.986011597066343, 44.523545882209085],
-          [9.992012611810187, 45.576943806802106]]]);
+var geometry = /* color: #d63000 */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[8.462666891581918, 46.415882453396534],
+                  [7.233974185993137, 44.94510734451353],
+                  [8.986011597066343, 44.523545882209085],
+                  [9.992012611810187, 45.576943806802106]]]),
+            {
+              "system:index": "0"
+            })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /******************************************************
  * Author: Emanuele Spirito
