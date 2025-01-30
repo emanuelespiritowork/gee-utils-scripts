@@ -24,7 +24,7 @@ var mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/mo
 
 exports.latest_area_img_coll = function(img_coll){
   var clip = clip_img_coll.clip_img_coll(img_coll);
-  print("clip.first().geometry()",clip.first().geometry());
+  print("clip.first().geometry()",clip.first().geometry().coordinates());
   var sorted_img_coll = clip.sort({
     property: "system:time_start", 
     ascending: false
