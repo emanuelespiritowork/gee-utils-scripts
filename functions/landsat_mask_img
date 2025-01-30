@@ -38,18 +38,13 @@ exports.landsat_mask_img = function(image){
   var snow_confidence_high = ee.Image(3 << 12);
   var snow_confidence_medium = ee.Image(2 << 12);
   
-  var cloud_confidence_high_bit = qa_pixel_layer
-  .bitwiseAnd(cloud_confidence_high);
-   var cloud_confidence_medium_bit = qa_pixel_layer
-  .bitwiseAnd(cloud_confidence_medium);
+  var select_cloud_bit = qa_pixel_layer.bitwiseAnd(cloud_confidence_high);
   
-  var cloud_confidence_high_mask = cloud_confidence_high_bit
-  .eq(cloud_confidence_high)
-  .and(cloud_confidence_high_bit.eq(cloud_confidence_high_bit));
+  var cloud_confidence_high_mask = select_cloud_bit
+  .eq(cloud_confidence_high);
   
-  var cloud_confidence_medium_mask = cloud_confidence_medium_bit
-  .eq(cloud_confidence_medium)
-  .and(cloud_confidence_medium_bit.eq(cloud_confidence_medium_bit));
+  var cloud_confidence_medium_mask = select_cloud_bit
+  .eq(cloud_confidence_medium);
   
   var snow_confidence_high_mask = qa_pixel_layer
   .bitwiseAnd(snow_confidence_high)
