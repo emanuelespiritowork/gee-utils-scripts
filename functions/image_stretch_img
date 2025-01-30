@@ -26,7 +26,7 @@ var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to
 *******************************************************/
 
 exports.image_stretch_img = function(img,bands){
-  var geometry_of_image = img.geometry();
+  //var geometry_of_image = img.geometry();
   var band_names;
   if(bands === undefined){
     //print("here");
@@ -46,7 +46,6 @@ exports.image_stretch_img = function(img,bands){
   var computed_img_std = img.reduceRegion({
     reducer: ee.Reducer.stdDev(),
     scale: scale_to_use.scale_to_use,
-    geometry: geometry_of_image,
     bestEffort: true
   }).toArray();
   
@@ -55,7 +54,6 @@ exports.image_stretch_img = function(img,bands){
   var computed_img_mean = img.reduceRegion({
     reducer: ee.Reducer.mean(),
     scale: scale_to_use.scale_to_use,
-    geometry: geometry_of_image,
     bestEffort: true
   }).toArray();
   
@@ -75,7 +73,7 @@ var vis_specific_image = {
 };
 
 Map.addLayer(img, vis_specific_image, 'stretched_image', true);
-Map.centerObject(geometry_of_image);
+Map.centerObject(img);
 
 return 0;
 }
