@@ -57,7 +57,7 @@ exports.landsat_mask_img = function(image){
       .or(cloud_confidence_high_mask)
       .or(cloud_confidence_medium_mask)
       .or(snow_confidence_high_mask)
-      .or(snow_confidence_medium_mask)
+      .or(snow_confidence_medium_mask);
       //.or(image.select("SR_B2").multiply(0.0000275).add(-0.2).gt(5000));//my mask
       
   //creating the xor (1 will be not cloud pixel, 0 will be cloud pixel)
