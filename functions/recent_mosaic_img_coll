@@ -42,15 +42,15 @@ exports.latest_area_img_coll = function(img_coll){
     property: "system:time_start",
     ascending: true
   }).first().date();
-  
   var footprint = ee.Geometry.LinearRing({
     coords: clip.first().geometry().coordinates(),
-    proj: clip.first().projection()
+    proj: clip.first().projection(),
+    geodesic: clip.first().geodesic()
   });
   var mosaic = mosaic_img_coll.mosaic_img_coll(latest_img_coll).set({
     "system:time_start": true_start_date,
     "system:time_end": true_latest_date,
-    //"system:footprint": 
+    "system:footprint": footprint
   });
   return mosaic;
 };
