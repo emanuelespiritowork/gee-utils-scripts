@@ -25,8 +25,14 @@ var geometry = /* color: #d63000 */ee.FeatureCollection(
 
 //exports.AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI");
 
+var footprint = ee.Geometry.LinearRing({
+  coords: geometry.first().geometry().coordinates().get(0),
+  proj: ee.Projection("EPSG:4326")
+})
 
-exports.AOI = ee.FeatureCollection(geometry);
+exports.AOI = geometry.set({
+  "system:footprint": footprint
+});
 
 
 /* ALTERNATIVE OF THE ABOVE SCRIPT WHEN USING assets/single_feature_point
