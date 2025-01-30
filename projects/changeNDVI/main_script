@@ -13,8 +13,8 @@ var image = recent_mosaic_img_coll.recent_mosaic_img_coll(image_coll);
 
 //var masked_image = landsat_mask_img.landsat_mask_img(image);
 
-Map.addLayer(masked_image,{},"masked_image");
-print("masked_image",masked_image);
+//Map.addLayer(masked_image,{},"masked_image");
+//print("masked_image",masked_image);
 
 var image_stretch_img = require("users/emanuelespiritowork/SharedRepo:functions/image_stretch_img");
 
