@@ -45,19 +45,14 @@ exports.plot_stretch_img = function(img,bands){
       trueCase: ee.Algorithms.If({
         condition: img.bandNames().size().eq(3),
         trueCase: img.bandNames(),
-        falseCase: ee.List([img.bandNames().getString(0)])
+        falseCase: img.bandNames().slice(1,4).reverse()
       }),
       falseCase: bands
     });
   }
   
-  
   print(bands);
   
-  
-var vis_specific_image;
-
-if(ee.List(bands).size().eq(3)){
   var first_band = ee.List(bands).getString(0);
   var second_band = ee.List(bands).getString(1);
   var third_band = ee.List(bands).getString(2);
@@ -118,47 +113,17 @@ if(ee.List(bands).size().eq(3)){
   
   var computed_img_max = computed_img_mean.add(array_of_stretch.multiply(computed_img_std));
   //print("computed_img_max",computed_img_max);
-  vis_specific_image = {
-    bands: ee.List(bands).getInfo(),
-    min: computed_img_min.toList().getInfo(),
-    max: computed_img_max.toList().getInfo()
-  };
-}else{
-  var computed_img_std_one = img.select(bands).reduceRegion({
-    reducer: ee.Reducer.stdDev(),
-    scale: scale_to_use.scale_to_use,
-    geometry: geometry_of_image,
-    bestEffort: true
-  }).getNumber(bands);
-  
-  var computed_img_mean_one = img.select(bands).reduceRegion({
-    reducer: ee.Reducer.mean(),
-    scale: scale_to_use.scale_to_use,
-    geometry: geometry_of_image,
-    bestEffort: true
-  }).getNumber(bands);
-  
-  var array_of_stretch_one = stretch.stretch;
-  
-  var computed_img_min_one = computed_img_mean_one
-  .subtract(array_of_stretch_one.multiply(computed_img_std_one));
-  //print("computed_img_min",computed_img_min);
-  
-  var computed_img_max_one = computed_img_mean_one
-  .add(array_of_stretch_one.multiply(computed_img_std_one));
-  //print("computed_img_max",computed_img_max);
-  
-  vis_specific_image = {
-    bands: bands.getNumber(0).getInfo(),
-    min: computed_img_min_one.getInfo(),
-    max: computed_img_max_one.getInfo()
-  };
-}
+
+var vis_specific_image = {
+  bands: ee.List(bands).getInfo(),
+  min: computed_img_min.toList().getInfo(),
+  max: computed_img_max.toList().getInfo()
+};
 
 Map.addLayer(img, vis_specific_image, 'stretched_image', true);
 Map.centerObject(img);
 
 
 return 0;
-};
+}
 
