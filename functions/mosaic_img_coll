@@ -39,11 +39,6 @@ exports.mosaic_img_coll = function(img_coll){
     scale: area.sqrt().divide(ee.Number(10))
   }));
   
-  Map.addLayer(AOI.AOI.geometry().coveringGrid({
-    proj: projection,
-    scale: area.sqrt().divide(ee.Number(10))
-  }));
-  
   var img_mosaic = img_coll_reordered.mosaic();
   
   return img_mosaic;
