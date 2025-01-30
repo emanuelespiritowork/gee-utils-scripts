@@ -23,8 +23,6 @@ exports.mosaic_img_coll = function(img_coll){
     return band_ordered_img;
   };
   
-  print(img_coll.geometry());
-  
   var img_coll_reordered = img_coll.map(change_band_order);
   
   var footprint = img_coll.union().first().geometry();
