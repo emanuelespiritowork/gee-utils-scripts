@@ -6,13 +6,6 @@
 *******************************************************/
 
 /******************************************************
- * REQUIRES THE FOLLOWING ASSETS:
- * AOI
-*******************************************************/
-
-var AOI = require("users/emanuelespiritowork/SharedRepo:assets/AOI");
-
-/******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection
  * Output: ee.Image 
@@ -23,8 +16,6 @@ var AOI = require("users/emanuelespiritowork/SharedRepo:assets/AOI");
 exports.mosaic_img_coll = function(img_coll){
   
   var bands_names = img_coll.first().bandNames();
-  var projection = img_coll.first().projection();
-  var area = AOI.AOI.geometry().area();
   
   var change_band_order = function(img){
     var bands_types = img.bandTypes();
