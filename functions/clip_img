@@ -27,5 +27,11 @@ exports.clip_img = function(image){
     geometry: AOI.AOI.geometry(),
     scale: scale_to_use.scale_to_use
   }).clip(AOI.AOI);
-  return clipped_image.clip(AOI.AOI);
+  
+  var geometry = AOI.AOI.geometry();
+
+  var footprint = ee.Algorithms.GeometryConstructors.LinearRing({
+    coordinates: geometry.coordinates().get(0)});
+  
+  return clipped_image.set({"system:footprint": footprint});
 };
