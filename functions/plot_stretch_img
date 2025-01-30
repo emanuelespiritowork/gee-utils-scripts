@@ -38,6 +38,7 @@ exports.plot_stretch_img = function(img,bands){
       bands = img.bandNames();
     }else{
       bands = img.bandNames().slice(1,4);
+      print("bands",bands);
     }
   }else{
     var num_sel_bands = ee.List(bands).size();
@@ -53,7 +54,6 @@ exports.plot_stretch_img = function(img,bands){
     }
   }
   
-  print(bands);
   
   var first_band = ee.List(bands).getString(0);
   var second_band = ee.List(bands).getString(1);
