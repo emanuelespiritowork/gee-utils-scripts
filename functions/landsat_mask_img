@@ -39,7 +39,13 @@ exports.landsat_mask_img = function(image){
   var snow_confidence_medium = 2 << 12;
   
   var cloud_confidence_high_mask = qa_pixel_layer
-  .bitwiseAnd(cloud_confidence_high).eq(1);
+  .bitwiseAnd(cloud_confidence_high).neq(0);
+  var cloud_confidence_medium_mask = qa_pixel_layer
+  .bitwiseAnd(cloud_confidence_medium).neq(0);
+  var snow_confidence_high_mask = qa_pixel_layer
+  .bitwiseAnd(snow_confidence_high).neq(0);
+  var snow_confidence_medium_mask = qa_pixel_layer
+  .bitwiseAnd(snow_confidence_medium).neq(0);
   
   //Apply masks
   
@@ -49,7 +55,10 @@ exports.landsat_mask_img = function(image){
       .or(cloud_shadow_mask)
       .or(snow_mask)
       .or(cloud_confidence_high_mask)
-      .or(image.select("SR_B2").multiply(0.0000275).add(-0.2).gt(5000));//my mask
+      .or(cloud_confidence_medium_mask)
+      .or(snow_confidence_high_mask)
+      .or(snow_confidence_medium_mask)
+      //.or(image.select("SR_B2").multiply(0.0000275).add(-0.2).gt(5000));//my mask
       
   //creating the xor (1 will be not cloud pixel, 0 will be cloud pixel)
   var mask = opposite_mask.eq(0);
