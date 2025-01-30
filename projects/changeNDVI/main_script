@@ -14,8 +14,8 @@ var clip_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/clip
 
 var clipped_image_coll = clip_img_coll.clip_img_coll(image_coll);
 
-print("clipped_image.first()",clipped_image.first());
-Map.addLayer(clipped_image.first());
+print("clipped_image_coll.first()",clipped_image_coll.first());
+Map.addLayer(clipped_image_coll.first());
 
 /*var latest_area_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/recent_mosaic_img_coll");
 
