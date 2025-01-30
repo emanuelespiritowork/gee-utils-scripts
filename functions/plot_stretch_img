@@ -31,7 +31,7 @@ exports.plot_stretch_img = function(img,bands){
   if(bands === undefined){
     //print("here");
     band_names = img.bandNames();
-    bands = band_names.slice(0,3);
+    bands = band_names.slice(1,4);
   }else{
     var num_sel_bands = ee.List(bands).size();
     if(!ee.List([num_sel_bands]).contains(3)){
