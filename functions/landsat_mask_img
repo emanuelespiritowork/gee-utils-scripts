@@ -46,17 +46,13 @@ exports.landsat_mask_img = function(image){
   var cloud_confidence_medium_mask = select_cloud_bit
   .eq(cloud_confidence_medium);
   
-  var snow_confidence_high_mask = qa_pixel_layer
-  .bitwiseAnd(snow_confidence_high)
-  .eq(snow_confidence_high.bitwiseAnd(qa_pixel_layer))
-  .and(qa_pixel_layer.bitwiseAnd(snow_confidence_high)
-  .eq(qa_pixel_layer.bitwiseAnd(snow_confidence_high)));
+  var select_snow_bit = qa_pixel_layer.bitwiseAnd(snow_confidence_high);
   
-  var snow_confidence_medium_mask = qa_pixel_layer
-  .bitwiseAnd(snow_confidence_medium)
-  .eq(snow_confidence_medium.bitwiseAnd(qa_pixel_layer))
-  .and(qa_pixel_layer.bitwiseAnd(snow_confidence_medium)
-  .eq(qa_pixel_layer.bitwiseAnd(snow_confidence_medium)));
+  var snow_confidence_high_mask = select_snow_bit
+  .eq(snow_confidence_high);
+  
+  var snow_confidence_medium_mask = select_snow_bit
+  .eq(snow_confidence_medium);
   
   //Apply masks
   
@@ -72,8 +68,8 @@ exports.landsat_mask_img = function(image){
       .or(snow_mask)
       .or(cloud_confidence_high_mask)
       .or(cloud_confidence_medium_mask)
-      //.or(snow_confidence_high_mask)
-      //.or(snow_confidence_medium_mask);
+      .or(snow_confidence_high_mask)
+      .or(snow_confidence_medium_mask);
       //.or(image.select("SR_B2").multiply(0.0000275).add(-0.2).gt(5000));//my mask
       
   //creating the xor (1 will be not cloud pixel, 0 will be cloud pixel)
