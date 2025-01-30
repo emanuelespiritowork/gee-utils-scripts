@@ -29,7 +29,7 @@ exports.mosaic_img_coll = function(img_coll){
     property: "system:time_start",
     ascending: false
   }).first().date();
-  var true_start_date = latest_img_coll.sort({
+  var true_start_date = img_coll_reordered.sort({
     property: "system:time_start",
     ascending: true
   }).first().date();
