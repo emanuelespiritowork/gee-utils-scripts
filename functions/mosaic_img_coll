@@ -23,11 +23,6 @@ exports.mosaic_img_coll = function(img_coll){
     return band_ordered_img;
   };
   
-  /*var filtered_coll = img_coll.filterBounds(AOI.AOI.geometry().coveringGrid({
-    proj: projection,
-    scale: area.sqrt().divide(ee.Number(10))
-  }));*/
-  
   var img_coll_reordered = img_coll.map(change_band_order);
   
   var img_mosaic = img_coll_reordered.mosaic();
