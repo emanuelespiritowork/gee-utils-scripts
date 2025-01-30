@@ -46,5 +46,6 @@ exports.recent_mosaic_img_coll = function(img_coll){
     "system:time_start": true_start_date,
     "system:time_end": true_latest_date
   });
+  
   return mosaic;
 };
