@@ -116,7 +116,7 @@ exports.plot_stretch_img = function(img,bands){
   //print("computed_img_max",computed_img_max);
 var vis_specific_image;
 
-if(bands.size().eq(3)){
+if(ee.List(bands).size().eq(3)){
   vis_specific_image = {
     bands: ee.List(bands).getInfo(),
     min: computed_img_min.toList().getInfo(),
