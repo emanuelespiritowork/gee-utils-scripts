@@ -23,6 +23,8 @@ var AOI = require("users/emanuelespiritowork/SharedRepo:assets/AOI");
 exports.mosaic_img_coll = function(img_coll){
   
   var bands_names = img_coll.first().bandNames();
+  var projection = img_coll.first().projection();
+  var area = AOI.AOI.area();
   
   var change_band_order = function(img){
     var bands_types = img.bandTypes();
@@ -31,6 +33,11 @@ exports.mosaic_img_coll = function(img_coll){
   };
   
   var img_coll_reordered = img_coll.map(change_band_order);
+  
+  var filtered_coll = img_coll_reordered.filterBounds(AOI.AOI.geometry().coveringGrid({
+    proj: projection,
+    scale: area.sqrt().divide(ee.Number(10))
+  }));
   
   var img_mosaic = img_coll_reordered.mosaic();
   
