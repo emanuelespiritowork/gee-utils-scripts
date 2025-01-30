@@ -33,7 +33,7 @@ exports.latest_area_img_coll = function(img_coll){
     unit: "month"
   });
   var latest_img_coll = img_coll.filterDate(start_date,latest_date);
-  var mosaic = mosaic_img_coll.mosaic_img_coll(latest_img_coll);
-  var clip = clip_img.clip_img(mosaic);
-  return clip;
+  var clip = clip_img_coll.clip_img_coll(latest_img_coll);
+  var mosaic = mosaic_img_coll.mosaic_img_coll(clip);
+  return mosaic;
 };
