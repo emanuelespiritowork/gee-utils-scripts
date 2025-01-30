@@ -41,7 +41,7 @@ exports.s2_mask_img = function(image){
       .or(SCL_classification.eq(9))     //cloud_high
       .or(SCL_classification.eq(8))     //cloud_medium
       .or(SCL_classification.eq(10))    //cirrus
-      .or(SCL_classification.eq(11))    //snow
+      .or(SCL_classification.eq(11));    //snow
       //.or(image.select("B2").gt(5000)); //my_cloud_filter
       
   //creating the xor (1 will be not cloud pixel, 0 will be cloud pixel)
