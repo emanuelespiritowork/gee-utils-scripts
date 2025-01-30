@@ -23,18 +23,9 @@ var scale_to_use = require("users/emanuelespiritowork/SharedRepo:assets/scale_to
 *******************************************************/
 
 exports.clip_img = function(image){
-  
   var clipped_image = image.clipToBoundsAndScale({
     geometry: AOI.AOI.geometry(),
     scale: scale_to_use.scale_to_use
-  })//.clip(AOI.AOI);
-  //print("clipped_image.geometry()",clipped_image.geometry());
-  //print("AOI.AOI.geometry()",AOI.AOI.geometry());
-  //print("clipped_image.clip(AOI.AOI).geometry()",clipped_image.clip(AOI.AOI).geometry());
-  var geometry = AOI.AOI.geometry();
-
-  var footprint = ee.Algorithms.GeometryConstructors.LinearRing({
-    coordinates: geometry.coordinates().get(0)});
-  
-  return clipped_image.clip(AOI.AOI).set({"system:footprint": footprint});
+  }).clip(AOI.AOI);
+  return clipped_image.clip(AOI.AOI);
 };
