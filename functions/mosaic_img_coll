@@ -6,6 +6,13 @@
 *******************************************************/
 
 /******************************************************
+ * REQUIRES THE FOLLOWING ASSETS:
+ * AOI
+*******************************************************/
+
+var AOI = require("users/emanuelespiritowork/SharedRepo:assets/AOI");
+
+/******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection
  * Output: ee.Image 
@@ -24,6 +31,8 @@ exports.mosaic_img_coll = function(img_coll){
   };
   
   var img_coll_reordered = img_coll.map(change_band_order);
+  
+  var img_filtered = img_coll_reordered.filter(ee.Filter.contains(AOI.AOI));
   
   var img_mosaic = img_coll_reordered.mosaic();
   
