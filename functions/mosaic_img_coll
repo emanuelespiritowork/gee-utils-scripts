@@ -25,10 +25,25 @@ exports.mosaic_img_coll = function(img_coll){
   
   var img_coll_reordered = img_coll.map(change_band_order);
   
+  var true_latest_date = img_coll_reordered.sort({
+    property: "system:time_start",
+    ascending: false
+  }).first().date();
+  var true_start_date = latest_img_coll.sort({
+    property: "system:time_start",
+    ascending: true
+  }).first().date();
+  
+  var mosaic = mosaic_img_coll.mosaic_img_coll(latest_img_coll).set({
+    
+  });
+  
   var footprint = img_coll.union().first().geometry();
   
   var img_mosaic = img_coll_reordered.mosaic().set({
-    "system:footprint": footprint
+    "system:footprint": footprint,
+    "system:time_start": true_start_date.millis(),
+    "system:time_end": true_latest_date.millis()
   });
   
   return img_mosaic;
