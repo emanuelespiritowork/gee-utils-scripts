@@ -7,11 +7,11 @@
 
 /******************************************************
  * REQUIRES THE FOLLOWING FUNCTIONS:
- * clip_img_coll
+ * clip_img
  * mosaic_img_coll
 *******************************************************/
 
-var clip_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/clip_img_coll");
+var clip_img = require("users/emanuelespiritowork/SharedRepo:functions/clip_img");
 var mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_img_coll");
 
 /******************************************************
@@ -34,6 +34,6 @@ exports.latest_area_img_coll = function(img_coll){
   });
   var latest_img_coll = img_coll.filterDate(start_date,latest_date);
   var mosaic = mosaic_img_coll.mosaic_img_coll(latest_img_coll);
-  var clip = clip_img_coll.clip_img_coll(mosaic);
+  var clip = clip_img.clip_img(mosaic);
   return clip;
 };
