@@ -49,6 +49,11 @@ exports.landsat_mask_img = function(image){
   
   //Apply masks
   
+  Map.addLayer(snow_confidence_medium_mask,{},"snow_confidence_medium_mask");
+  Map.addLayer(snow_confidence_high_mask,{},"snow_confidence_high_mask");
+  Map.addLayer(cloud_confidence_medium_mask,{},"cloud_confidence_medium_mask");
+  Map.addLayer(cloud_confidence_high_mask,{},"cloud_confidence_high_mask");
+  
   var opposite_mask = dilated_clouds_mask
       .or(cirrus_mask)
       .or(cloud_mask)
