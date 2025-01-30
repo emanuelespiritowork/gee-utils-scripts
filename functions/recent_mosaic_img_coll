@@ -24,7 +24,7 @@ var mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/mo
 
 exports.latest_area_img_coll = function(img_coll){
   var clip = clip_img_coll.clip_img_coll(img_coll);
-  print("clip.first().geometry()",clip.first().geometry().coordinates());
+  print("clip.first().geometry()",clip.first());
   var sorted_img_coll = clip.sort({
     property: "system:time_start", 
     ascending: false
@@ -43,9 +43,10 @@ exports.latest_area_img_coll = function(img_coll){
     ascending: true
   }).first().date();
   
-  /*var footprint = ee.Geometry.LinearRing({
-  //  coords: 
-  });*/
+  var footprint = ee.Geometry.LinearRing({
+    coords: clip.first().geometry().coordinates(),
+    proj: clip.first().projection()
+  });
   var mosaic = mosaic_img_coll.mosaic_img_coll(latest_img_coll).set({
     "system:time_start": true_start_date,
     "system:time_end": true_latest_date,
