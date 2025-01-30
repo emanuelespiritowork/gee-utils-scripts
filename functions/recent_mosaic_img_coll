@@ -44,7 +44,7 @@ exports.latest_area_img_coll = function(img_coll){
   }).first().date();
   var geometry = clip.first().geometry();
   var footprint = ee.Geometry.LinearRing({
-    coords: geometry.coordinates(),
+    coords: geometry.coordinates().get(0),
     proj: clip.first().projection(),
     geodesic: geometry.geodesic()
   });
