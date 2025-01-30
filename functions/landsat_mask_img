@@ -33,19 +33,19 @@ exports.landsat_mask_img = function(image){
   var snow_mask = qa_pixel_layer
   .bitwiseAnd(snow).neq(0);
   
-  var cloud_confidence_high = 1 << 10 + 1 << 11;
-  var cloud_confidence_medium = 1 << 11;
-  var snow_confidence_high = 1 << 12 + 1 << 13;
-  var snow_confidence_medium = 1 << 13;
+  var cloud_confidence_high = 3 << 10;
+  var cloud_confidence_medium = 2 << 10;
+  var snow_confidence_high = 3 << 12;
+  var snow_confidence_medium = 2 << 12;
   
   var cloud_confidence_high_mask = qa_pixel_layer
-  .bitwiseAnd(cloud_confidence_high).neq(0);
+  .bitwiseAnd(cloud_confidence_high).eq(cloud_confidence_high);
   var cloud_confidence_medium_mask = qa_pixel_layer
-  .bitwiseAnd(cloud_confidence_medium).neq(0);
+  .bitwiseAnd(cloud_confidence_medium).eq(cloud_confidence_medium);
   var snow_confidence_high_mask = qa_pixel_layer
-  .bitwiseAnd(snow_confidence_high).neq(0);
+  .bitwiseAnd(snow_confidence_high).eq(snow_confidence_high);
   var snow_confidence_medium_mask = qa_pixel_layer
-  .bitwiseAnd(snow_confidence_medium).neq(0);
+  .bitwiseAnd(snow_confidence_medium).eq(snow_confidence_medium);
   
   //Apply masks
   
