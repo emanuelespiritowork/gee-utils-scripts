@@ -45,7 +45,7 @@ exports.latest_area_img_coll = function(img_coll){
   var footprint = ee.Geometry.LinearRing({
     coords: clip.first().geometry().coordinates(),
     proj: clip.first().projection(),
-    geodesic: clip.first().geodesic()
+    geodesic: clip.first().geometry().geodesic()
   });
   var mosaic = mosaic_img_coll.mosaic_img_coll(latest_img_coll).set({
     "system:time_start": true_start_date,
