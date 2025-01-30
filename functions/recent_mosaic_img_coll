@@ -35,6 +35,7 @@ exports.latest_area_img_coll = function(img_coll){
     unit: "month"
   });
   var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date);
+  print(latest_img_coll);
   var mosaic = mosaic_img_coll.mosaic_img_coll(latest_img_coll);
   return mosaic;
 };
