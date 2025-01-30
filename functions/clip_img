@@ -26,5 +26,5 @@ exports.clip_img = function(image){
   return image.clipToBoundsAndScale({
     geometry: AOI.AOI.geometry(),
     scale: scale_to_use.scale_to_use
-  }).clip(AOI.AOI);
+  })//.clip(AOI.AOI);
 };
