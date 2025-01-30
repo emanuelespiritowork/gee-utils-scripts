@@ -52,42 +52,42 @@ exports.image_stretch_img = function(img,bands){
     scale: scale_to_use.scale_to_use,
     geometry: geometry_of_image,
     bestEffort: true
-  });
+  }).getInfo();
   
   var computed_img_std_2 = img.select(second_band).reduceRegion({
     reducer: ee.Reducer.stdDev(),
     scale: scale_to_use.scale_to_use,
     geometry: geometry_of_image,
     bestEffort: true
-  });
+  }).getInfo();
   
   var computed_img_std_3 = img.select(third_band).reduceRegion({
     reducer: ee.Reducer.stdDev(),
     scale: scale_to_use.scale_to_use,
     geometry: geometry_of_image,
     bestEffort: true
-  });
+  }).getInfo();
   
   var computed_img_mean_1 = img.select(first_band).reduceRegion({
     reducer: ee.Reducer.mean(),
     scale: scale_to_use.scale_to_use,
     geometry: geometry_of_image,
     bestEffort: true
-  });
+  }).getInfo();
   
   var computed_img_mean_2 = img.select(second_band).reduceRegion({
     reducer: ee.Reducer.mean(),
     scale: scale_to_use.scale_to_use,
     geometry: geometry_of_image,
     bestEffort: true
-  });
+  }).getInfo();
   
   var computed_img_mean_3 = img.select(third_band).reduceRegion({
     reducer: ee.Reducer.mean(),
     scale: scale_to_use.scale_to_use,
     geometry: geometry_of_image,
     bestEffort: true
-  });
+  }).getInfo();
   
   var computed_img_mean = ee.Array(ee.List([computed_img_mean_1,
   computed_img_mean_2,computed_img_mean_3]));
