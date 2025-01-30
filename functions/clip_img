@@ -27,15 +27,14 @@ exports.clip_img = function(image){
   var clipped_image = image.clipToBoundsAndScale({
     geometry: AOI.AOI.geometry(),
     scale: scale_to_use.scale_to_use
-  }).clip(AOI.AOI);
-  
+  })//.clip(AOI.AOI);
+  print("clipped_image.geometry()",clipped_image.geometry());
+  print("AOI.AOI.geometry()",AOI.AOI.geometry());
   var geometry = AOI.AOI.geometry();
 
   var footprint = ee.Geometry.LinearRing({
     coords: geometry.coordinates().get(0)
   });
   
-  return clipped_image.set({
-    "system:footprint": footprint
-  });
+  return clipped_image.clip(AOI.AOI)//.set({"system:footprint": footprint});
 };
