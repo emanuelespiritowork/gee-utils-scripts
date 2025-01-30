@@ -31,8 +31,8 @@ exports.plot_stretch_img = function(img,bands){
   var num_bands;
   if(bands === undefined){
     //print("here");
-    band_names = img.bandNames();
-    num_bands = band_names.size();
+    num_bands = img.bandNames().size();
+    print(num_bands);
     if(num_bands.eq(3))
     {
       bands = band_names;
