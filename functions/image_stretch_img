@@ -74,7 +74,7 @@ var vis_specific_image = {
   max: computed_img_max.toList().getInfo()
 };
 
-Map.addLayer(img, vis_specific_image, 'img', true);
+Map.addLayer(img, vis_specific_image, 'stretched_image', true);
 Map.centerObject(geometry_of_image);
 
 return 0;
