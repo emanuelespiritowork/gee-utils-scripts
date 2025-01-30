@@ -11,6 +11,7 @@
 *******************************************************/
 
 var clip_img = require('users/emanuelespiritowork/SharedRepo:functions/clip_img');
+var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
