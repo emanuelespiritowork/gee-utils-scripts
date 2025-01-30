@@ -32,7 +32,7 @@ exports.latest_area_img_coll = function(img_coll){
     delta: -1,
     unit: "month"
   });
-  var latest_img_coll = img.coll.filterDate(start_date,latest_date);
+  var latest_img_coll = img_coll.filterDate(start_date,latest_date);
   var mosaic = mosaic_img_coll.mosaic_img_coll(latest_img_coll);
   var clip = clip_img_coll.clip_img_coll(mosaic);
   return clip;
