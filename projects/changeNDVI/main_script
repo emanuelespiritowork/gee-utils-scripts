@@ -1,9 +1,16 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry.Point([11.946930042651095, 44.86901414738179]);
+var geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
+        [[[-1.0677316924417113, 48.06365387908443],
+          [0.8219167450582887, 46.90550862483201],
+          [2.5357839325582887, 47.769127214618194],
+          [0.7779714325582887, 49.08131457761352]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var image_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
 
-var latest_area_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/latest_area_img_coll");
+var latest_area_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/recent_mosaic_img_coll");
 
 var image = latest_area_img_coll.latest_area_img_coll(image_coll);
 
@@ -17,5 +24,19 @@ var null_var_1 = image_stretch_img.image_stretch_img(image);
 
 var null_var_2 = image_stretch_img.image_stretch_img(masked_image);
 */
-Map.addLayer(image.geometry(), {color: "black"},"geometry");
+
+//var grid = geometry.coveringGrid(image.projection(),10000);
+
+//Map.addLayer(grid);
+//Map.addLayer(image.geometry(), {color: "black"},"geometry");
 Map.addLayer(image, {bands: ["SR_B4","SR_B3","SR_B2"]},"image");
+print(image);
+
+/*
+var filter_last_month_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/filter_last_month_img_coll");
+
+var clip_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/clip_img_coll")
+
+var clipped_image_collection = clip_img_coll.clip_img_coll(image_coll);
+
+Map.addLayer(clipped_image_collection);*/
