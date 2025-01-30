@@ -1,84 +1,21 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.Geometry({
-      "type": "GeometryCollection",
-      "geometries": [
-        {
-          "type": "Polygon",
-          "coordinates": [
-            [
-              [
-                -1.0677316924417113,
-                48.06365387908443
-              ],
-              [
-                0.8219167450582887,
-                46.90550862483201
-              ],
-              [
-                2.5357839325582887,
-                47.769127214618194
-              ],
-              [
-                0.7779714325582887,
-                49.08131457761352
-              ]
-            ]
-          ],
-          "evenOdd": true
-        },
-        {
-          "type": "Point",
-          "coordinates": [
-            8.593727842608162,
-            45.39819188372643
-          ]
-        }
-      ],
-      "coordinates": []
-    });
+var geometry = /* color: #d63000 */ee.Geometry.Point([8.593727842608162, 45.39819188372643]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var image_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
-
-/*var clip_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/clip_img_coll");
-
-var clipped_image_coll = clip_img_coll.clip_img_coll(image_coll);
-
-print("clipped_image_coll.first()",clipped_image_coll.first());
-Map.addLayer(clipped_image_coll.first());
-Map.addLayer(clipped_image_coll.geometry());*/
 
 var recent_mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/recent_mosaic_img_coll");
 
 var image = recent_mosaic_img_coll.recent_mosaic_img_coll(image_coll);
-Map.addLayer(image,{},"image");
-Map.addLayer(image.geometry(),{},"image.geometry()");
 
-var clip_img = require("users/emanuelespiritowork/SharedRepo:functions/clip_img");
+//var landsat_mask_img = require("users/emanuelespiritowork/SharedRepo:functions/landsat_mask_img");
 
-var clipped_image = clip_img.clip_img(image_coll.filterBounds(geometry).first());
-Map.addLayer(clipped_image,{},"clipped_image");
-Map.addLayer(clipped_image.geometry(),{},"clipped_image.geometry()");
+//Map.addLayer(image,{},"image");
 
+//var masked_image = landsat_mask_img.landsat_mask_img(image);
 
-/*var landsat_mask_img = require("users/emanuelespiritowork/SharedRepo:functions/landsat_mask_img");
-
-var masked_image = landsat_mask_img.landsat_mask_img(image);
+Map.addLayer(masked_image,{},"masked_image");
+print("masked_image",masked_image);
 
 var image_stretch_img = require("users/emanuelespiritowork/SharedRepo:functions/image_stretch_img");
 
-var null_var_1 = image_stretch_img.image_stretch_img(image);
-
-var null_var_2 = image_stretch_img.image_stretch_img(masked_image);
-*/
-
-//var grid = geometry.coveringGrid(image.projection(),10000);
-
-
-/*
-var filter_last_month_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/filter_last_month_img_coll");
-
-var clip_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/clip_img_coll")
-
-var clipped_image_collection = clip_img_coll.clip_img_coll(image_coll);
-
-Map.addLayer(clipped_image_collection);*/
+var null_var = image_stretch_img.image_stretch_img(image,["SR_B4","SR_B3","SR_B2"]);
