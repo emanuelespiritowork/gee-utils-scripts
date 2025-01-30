@@ -22,8 +22,9 @@ var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
 
 exports.clip_img_coll = function(img_coll){
   var projection = img_coll.first().projection();
-  var area = AOI.AOI.geometry().area();
-  var filtered_coll = img_coll.filterBounds(AOI.AOI.geometry().coveringGrid({
+  var geometry = AOI.AOI.geometry();
+  var area = geometry.area();
+  var filtered_coll = img_coll.filterBounds(geometry.coveringGrid({
     proj: projection,
     scale: area.sqrt().divide(ee.Number(10))
   }));
