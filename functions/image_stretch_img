@@ -42,6 +42,12 @@ exports.image_stretch_img = function(img,bands){
   }
   
   img = img.select(bands);
+  print(bands);
+  var first_band = bands.getString(1);
+  var second_band = bands.getString(2);
+  var third_band = bands.getString(3);
+  
+  var computed_img_std_1 = img.select(bands.slice())
   
   var computed_img_std = img.reduceRegion({
     reducer: ee.Reducer.stdDev(),
