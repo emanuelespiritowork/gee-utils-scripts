@@ -29,29 +29,23 @@ exports.plot_stretch_img = function(img,bands){
   var geometry_of_image = img.geometry();
   var band_names;
   var num_bands;
-  if(bands === undefined){
-    //print("here");
-    num_bands = img.bandNames().size();
-    print("num_bands",num_bands);
-    bands = ee.Algorithms.If({
-      condition: num_bands.eq(3),
+  bands = ee.Algorithms.If({
+    condition: bands === undefined,
+    trueCase: ee.Algorithms.If({
+      condition: img.bandNames().size().eq(3),
       trueCase: img.bandNames(),
       falseCase: img.bandNames().slice(1,4).reverse()
-    }); 
-    print("bands",bands);
-  }else{
-    var num_sel_bands = ee.List(bands).size();
-    if(num_sel_bands.neq(3)){
-      band_names = img.bandNames();
-      num_bands = band_names.size();
-      if(num_bands.eq(3)){
-        bands = band_names;
-      }else{
-        bands = band_names.slice(1,4);
-      }
-    }else{
-    }
-  }
+    }),
+    falseCase: ee.Algorithms.If({
+      condition: ee.List(bands).size().neq(3),
+      trueCase: ee.Algorithms.If({
+        condition: img.bandNames().size().eq(3),
+        trueCase: img.bandNames(),
+        falseCase: img.bandNames().slice(1,4).reverse()
+      }),
+      falseCase: bands
+    })
+  });
   
   
   var first_band = ee.List(bands).getString(0);
