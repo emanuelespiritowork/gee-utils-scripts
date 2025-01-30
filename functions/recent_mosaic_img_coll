@@ -34,20 +34,10 @@ exports.recent_mosaic_img_coll = function(img_coll){
     unit: "month"
   });
   var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date);
-  var true_latest_date = latest_img_coll.first().date();
-  var true_start_date = latest_img_coll.sort({
-    property: "system:time_start",
-    ascending: true
-  }).first().date();
   
   var footprint = clip.first().geometry();
   
-  var mosaic = mosaic_img_coll.mosaic_img_coll(latest_img_coll).set({
-    "date_start": true_start_date,
-    "date_end": true_latest_date,
-    "system:time_start": true_start_date.millis(),
-    "system:time_end": true_latest_date.millis()
-  });
+  var mosaic = mosaic_img_coll.mosaic_img_coll(latest_img_coll);
   
   return mosaic;
 };
