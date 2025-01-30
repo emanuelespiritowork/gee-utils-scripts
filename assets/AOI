@@ -29,6 +29,7 @@ var footprint = ee.Geometry.LinearRing({
   coords: geometry.first().geometry().coordinates().get(0),
   proj: ee.Projection("EPSG:4326")
 })
+print("footprint.projection()",footprint.projection());
 
 exports.AOI = geometry.set({
   "system:footprint": footprint
