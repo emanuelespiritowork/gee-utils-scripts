@@ -138,13 +138,13 @@ if(ee.List(bands).size().eq(3)){
     bestEffort: true
   }).getNumber(bands);
   
-  array_of_stretch_one = stretch.stretch;
+  var array_of_stretch_one = stretch.stretch;
   
-  computed_img_min_one = computed_img_mean_one
+  var computed_img_min_one = computed_img_mean_one
   .subtract(array_of_stretch_one.multiply(computed_img_std_one));
   //print("computed_img_min",computed_img_min);
   
-  computed_img_max_one = computed_img_mean_one
+  var computed_img_max_one = computed_img_mean_one
   .add(array_of_stretch_one.multiply(computed_img_std_one));
   //print("computed_img_max",computed_img_max);
   
