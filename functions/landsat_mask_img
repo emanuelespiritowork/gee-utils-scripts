@@ -54,7 +54,7 @@ exports.landsat_mask_img = function(image){
       .or(cloud_mask)
       .or(cloud_shadow_mask)
       .or(snow_mask)
-      //.or(cloud_confidence_high_mask)
+      .or(cloud_confidence_high_mask)
       //.or(cloud_confidence_medium_mask)
       //.or(snow_confidence_high_mask)
       //.or(snow_confidence_medium_mask);
