@@ -31,7 +31,7 @@ var footprint = ee.Geometry.LinearRing({
 })
 print("footprint.projection()",footprint.projection());
 
-exports.AOI = geometry.first().set({
+exports.AOI = ee.Feature(geometry.first()).set({
   "system:footprint": footprint
 });
 
