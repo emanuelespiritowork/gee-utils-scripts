@@ -58,7 +58,7 @@ exports.landsat_mask_img = function(image){
   //Apply masks
   
  var opposite_mask = dilated_clouds_mask
-      .or(cirrus_mask)
+      //.or(cirrus_mask)
       .or(cloud_mask)
       .or(cloud_shadow_mask)
       .or(snow_mask)
