@@ -45,7 +45,7 @@ exports.plot_stretch_img = function(img,bands){
       trueCase: ee.Algorithms.If({
         condition: img.bandNames().size().eq(3),
         trueCase: img.bandNames(),
-        falseCase: img.bandNames().slice(1,4).reverse()
+        falseCase: ee.List([img.bandNames().getString(0)])
       }),
       falseCase: bands
     });
