@@ -26,7 +26,7 @@ var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to
 *******************************************************/
 
 exports.image_stretch_img = function(img,bands){
-  //var geometry_of_image = img.geometry();
+  var geometry_of_image = img.geometry();
   var band_names;
   if(bands === undefined){
     //print("here");
@@ -43,25 +43,57 @@ exports.image_stretch_img = function(img,bands){
   
   img = img.select(bands);
   print(bands);
-  var first_band = bands.getString(1);
-  var second_band = bands.getString(2);
-  var third_band = bands.getString(3);
+  var first_band = bands.get(0);
+  var second_band = bands.get(1);
+  var third_band = bands.get(2);
   
-  var computed_img_std_1 = img.select(bands.slice())
-  
-  var computed_img_std = img.reduceRegion({
+  var computed_img_std_1 = img.select(first_band).reduceRegion({
     reducer: ee.Reducer.stdDev(),
     scale: scale_to_use.scale_to_use,
+    geometry: geometry_of_image,
     bestEffort: true
-  }).toArray();
+  });
   
-  //print("computed_img_std",computed_img_std);
+  var computed_img_std_2 = img.select(second_band).reduceRegion({
+    reducer: ee.Reducer.stdDev(),
+    scale: scale_to_use.scale_to_use,
+    geometry: geometry_of_image,
+    bestEffort: true
+  });
   
-  var computed_img_mean = img.reduceRegion({
+  var computed_img_std_3 = img.select(third_band).reduceRegion({
+    reducer: ee.Reducer.stdDev(),
+    scale: scale_to_use.scale_to_use,
+    geometry: geometry_of_image,
+    bestEffort: true
+  });
+  
+  var computed_img_mean_1 = img.select(first_band).reduceRegion({
     reducer: ee.Reducer.mean(),
     scale: scale_to_use.scale_to_use,
+    geometry: geometry_of_image,
     bestEffort: true
-  }).toArray();
+  });
+  
+  var computed_img_mean_2 = img.select(second_band).reduceRegion({
+    reducer: ee.Reducer.mean(),
+    scale: scale_to_use.scale_to_use,
+    geometry: geometry_of_image,
+    bestEffort: true
+  });
+  
+  var computed_img_mean_3 = img.select(third_band).reduceRegion({
+    reducer: ee.Reducer.mean(),
+    scale: scale_to_use.scale_to_use,
+    geometry: geometry_of_image,
+    bestEffort: true
+  });
+  
+  var computed_img_mean = ee.Array(ee.List([computed_img_mean_1,
+  computed_img_mean_2,computed_img_mean_3]));
+  
+  var computed_img_std = ee.Array(ee.List([computed_img_std_1,
+  computed_img_std_2,computed_img_std_3]));
   
   var array_of_stretch = ee.Array(ee.List([stretch.stretch,
   stretch.stretch,stretch.stretch]));
