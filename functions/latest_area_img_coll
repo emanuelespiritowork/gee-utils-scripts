@@ -23,18 +23,20 @@ var mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/mo
 *******************************************************/
 
 exports.latest_area_img_coll = function(img_coll){
-  var sorted_img_coll = img_coll.sort({
+  var clip = clip_img_coll.clip_img_coll(img_coll);
+  
+  var sorted_img_coll = clip.sort({
     property: "system:time_start", 
     ascending: false
   });
   var latest_date = ee.Date(sorted_img_coll.first().get("system:time_start"));
-  print(latest_date);
+  print("latest_date",latest_date);
   var start_date = latest_date.advance({
     delta: -1,
     unit: "month"
   });
+  print("start_date",start_date);
   var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date);
-  var clip = clip_img_coll.clip_img_coll(latest_img_coll);
-  var mosaic = mosaic_img_coll.mosaic_img_coll(clip);
+  var mosaic = mosaic_img_coll.mosaic_img_coll(latest_img_coll);
   return mosaic;
 };
