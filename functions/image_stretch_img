@@ -25,7 +25,7 @@ var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to
  * works at assets/scale_to_use scale
 *******************************************************/
 
-exports.image_stretch_img = function(img,bands){
+exports.plot_stretch_img = function(img,bands){
   var geometry_of_image = img.geometry();
   var band_names;
   if(bands === undefined){
