@@ -31,9 +31,13 @@ exports.plot_stretch_img = function(img,bands){
   var num_bands;
   if(bands === undefined){
     bands = ee.Algorithms.If({
-      condition: img.bandNames().size().eq(3),
-      trueCase: img.bandNames(),
-      falseCase: img.bandNames().slice(1,4).reverse()
+      condition: img.bandNames().size().gte(3),
+      trueCase: ee.Algorithms.If({
+        condition: img.bandNames().size().eq(3),
+        trueCase: img.bandNames(),
+        falseCase: img.bandNames().slice(1,4).reverse()
+      }),
+      falseCase: img.bandNames().getString(0)
     });
   }else{
     bands = ee.Algorithms.If({
