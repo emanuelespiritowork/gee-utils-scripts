@@ -125,5 +125,5 @@ Map.centerObject(img);
 
 
 return 0;
-}
+};
 
