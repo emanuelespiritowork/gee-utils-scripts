@@ -34,6 +34,7 @@ exports.latest_area_img_coll = function(img_coll){
     delta: -1,
     unit: "month"
   });
+  print("start_date",start_date);
   var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date);
   print(latest_img_coll);
   var true_latest_date = latest_img_coll.first().date();
