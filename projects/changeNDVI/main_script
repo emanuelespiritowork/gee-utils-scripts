@@ -50,11 +50,9 @@ Map.addLayer(clipped_image_coll.geometry());*/
 var recent_mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/recent_mosaic_img_coll");
 
 var image = recent_mosaic_img_coll.recent_mosaic_img_coll(image_coll);
-print("image.geometry()",image.geometry());
-print("image_coll.first().geometry()",image_coll.first().geometry());
 Map.addLayer(image,{},"image");
 Map.addLayer(image.geometry(),{},"image.geometry()");
-print("image",image);
+
 var clip_img = require("users/emanuelespiritowork/SharedRepo:functions/clip_img");
 
 var clipped_image = clip_img.clip_img(image_coll.filterBounds(geometry).first());
