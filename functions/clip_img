@@ -29,9 +29,11 @@ exports.clip_img = function(image){
   }).clip(AOI.AOI);
   
   var geometry = AOI.AOI.geometry();
+  var previous_geometry = image.geometry();
+  var intersection = geometry.intersection(previous_geometry);
 
   var footprint = ee.Algorithms.GeometryConstructors.LinearRing({
-    coordinates: geometry.coordinates().get(0)});
+    coordinates: intersection.coordinates().get(0)});
   
   return clipped_image.set({"system:footprint": footprint});
 };
