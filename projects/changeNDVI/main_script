@@ -10,10 +10,17 @@ var geometry =
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var image_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
 
-var latest_area_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/recent_mosaic_img_coll");
+var clip_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/clip_img_coll");
+
+var clipped_image_coll = clip_img_coll.clip_img_coll(image_coll);
+
+print("clipped_image.first()",clipped_image.first());
+Map.addLayer(clipped_image.first());
+
+/*var latest_area_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/recent_mosaic_img_coll");
 
 var image = latest_area_img_coll.latest_area_img_coll(image_coll);
-
+*/
 /*var landsat_mask_img = require("users/emanuelespiritowork/SharedRepo:functions/landsat_mask_img");
 
 var masked_image = landsat_mask_img.landsat_mask_img(image);
@@ -27,10 +34,6 @@ var null_var_2 = image_stretch_img.image_stretch_img(masked_image);
 
 //var grid = geometry.coveringGrid(image.projection(),10000);
 
-//Map.addLayer(grid);
-//Map.addLayer(image.geometry(), {color: "black"},"geometry");
-Map.addLayer(image, {bands: ["SR_B4","SR_B3","SR_B2"]},"image");
-print(image);
 
 /*
 var filter_last_month_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/filter_last_month_img_coll");
