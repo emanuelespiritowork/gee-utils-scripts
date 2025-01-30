@@ -23,8 +23,21 @@ var scale_to_use = require("users/emanuelespiritowork/SharedRepo:assets/scale_to
 *******************************************************/
 
 exports.clip_img = function(image){
-  return image.clipToBoundsAndScale({
+  
+  var clipped_image = image.clipToBoundsAndScale({
     geometry: AOI.AOI.geometry(),
     scale: scale_to_use.scale_to_use
   }).clip(AOI.AOI);
+  
+  var geometry = clipped_image.geometry();
+
+  var footprint = ee.Geometry.LinearRing({
+    coordinates: geometry.coordinates().get(0),
+    proj: clipped_image.projection(),
+    geodesic: geometry.geodesic()
+  });
+  
+  return clipped_image.set({
+    "system:footprint": footprint
+  });
 };
