@@ -37,7 +37,7 @@ exports.plot_stretch_img = function(img,bands){
         trueCase: img.bandNames(),
         falseCase: img.bandNames().slice(1,4).reverse()
       }),
-      falseCase: img.bandNames().getString(0)
+      falseCase: ee.List([img.bandNames().getString(0)])
     });
   }else{
     bands = ee.Algorithms.If({
@@ -50,6 +50,7 @@ exports.plot_stretch_img = function(img,bands){
       falseCase: bands
     });
   }
+  
   
   print(bands);
   
@@ -113,15 +114,25 @@ exports.plot_stretch_img = function(img,bands){
   
   var computed_img_max = computed_img_mean.add(array_of_stretch.multiply(computed_img_std));
   //print("computed_img_max",computed_img_max);
+var vis_specific_image;
 
-var vis_specific_image = {
-  bands: ee.List(bands).getInfo(),
-  min: computed_img_min.toList().getInfo(),
-  max: computed_img_max.toList().getInfo()
-};
+if(bands.size().eq(3)){
+  vis_specific_image = {
+    bands: ee.List(bands).getInfo(),
+    min: computed_img_min.toList().getInfo(),
+    max: computed_img_max.toList().getInfo()
+  };
+}else{
+  vis_specific_image = {
+    bands: bands,
+    min: computed_img_min.toList().getNumber(0).getInfo(),
+    max: computed_img_max.toList().getNumber(0).getInfo()
+  };
+}
 
 Map.addLayer(img, vis_specific_image, 'stretched_image', true);
 Map.centerObject(img);
+
 
 return 0;
 }
