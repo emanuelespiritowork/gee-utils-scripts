@@ -43,8 +43,10 @@ exports.recent_mosaic_img_coll = function(img_coll){
   var footprint = clip.first().geometry();
   
   var mosaic = mosaic_img_coll.mosaic_img_coll(latest_img_coll).set({
-    "system:time_start": true_start_date,
-    "system:time_end": true_latest_date
+    "date_start": true_start_date,
+    "date_end": true_latest_date,
+    "system:time_start": true_start_date.millis(),
+    "system:time_end": true_latest_date.millis()
   });
   
   return mosaic;
