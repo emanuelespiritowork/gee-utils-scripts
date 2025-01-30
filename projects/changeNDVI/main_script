@@ -7,4 +7,12 @@ var latest_area_img_coll = require("users/emanuelespiritowork/SharedRepo:functio
 
 var image = latest_area_img_coll.latest_area_img_coll(image_coll);
 
-Map.addLayer(image);
+var landsat_mask_img = require("users/emanuelespiritowork/SharedRepo:functions/landsat_mask_img");
+
+var masked_image = landsat_mask_img.landsat_mask_img(image);
+
+var image_stretch_img = require("users/emanuelespiritowork/SharedRepo:functions/image_stretch_img");
+
+var null_var_1 = image_stretch_img.image_stretch_img(image);
+
+var null_var_2 = image_stretch_img.image_stretch_img(masked_image);
