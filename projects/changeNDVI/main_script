@@ -7,15 +7,3 @@ var recent_mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:funct
 
 var image = recent_mosaic_img_coll.recent_mosaic_img_coll(image_coll);
 
-//var landsat_mask_img = require("users/emanuelespiritowork/SharedRepo:functions/landsat_mask_img");
-
-//Map.addLayer(image,{},"image");
-
-//var masked_image = landsat_mask_img.landsat_mask_img(image);
-
-//Map.addLayer(masked_image,{},"masked_image");
-//print("masked_image",masked_image);
-
-var image_stretch_img = require("users/emanuelespiritowork/SharedRepo:functions/image_stretch_img");
-
-var null_var = image_stretch_img.image_stretch_img(image,["SR_B4","SR_B3","SR_B2"]);
