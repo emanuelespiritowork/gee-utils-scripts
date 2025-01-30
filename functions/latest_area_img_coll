@@ -11,7 +11,7 @@
  * mosaic_img_coll
 *******************************************************/
 
-var clip_img = require("users/emanuelespiritowork/SharedRepo:functions/clip_img");
+var clip_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/clip_img_coll");
 var mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_img_coll");
 
 /******************************************************
