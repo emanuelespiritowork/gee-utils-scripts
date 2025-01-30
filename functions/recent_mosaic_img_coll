@@ -24,7 +24,6 @@ var mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/mo
 
 exports.recent_mosaic_img_coll = function(img_coll){
   var clip = clip_img_coll.clip_img_coll(img_coll);
-  //print("clip.first().geometry()",clip.first());
   var sorted_img_coll = clip.sort({
     property: "system:time_start", 
     ascending: false
@@ -34,9 +33,7 @@ exports.recent_mosaic_img_coll = function(img_coll){
     delta: -1,
     unit: "month"
   });
-  //print("start_date",start_date);
   var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date);
-  print(latest_img_coll);
   var true_latest_date = latest_img_coll.first().date();
   var true_start_date = latest_img_coll.sort({
     property: "system:time_start",
@@ -44,7 +41,6 @@ exports.recent_mosaic_img_coll = function(img_coll){
   }).first().date();
   
   var footprint = clip.first().geometry();
-  //print("footprint",footprint);
   
   var mosaic = mosaic_img_coll.mosaic_img_coll(latest_img_coll);
   return mosaic;
