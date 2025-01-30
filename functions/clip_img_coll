@@ -11,6 +11,12 @@
 *******************************************************/
 
 var clip_img = require('users/emanuelespiritowork/SharedRepo:functions/clip_img');
+
+/******************************************************
+ * REQUIRES THE FOLLOWING ASSETS:
+ * AOI
+*******************************************************/
+
 var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
 
 /******************************************************
