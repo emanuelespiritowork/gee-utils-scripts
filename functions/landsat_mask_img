@@ -33,10 +33,10 @@ exports.landsat_mask_img = function(image){
   var snow_mask = qa_pixel_layer
   .bitwiseAnd(snow).neq(0);
   
-  var cloud_confidence_high = 3 << 10;
-  var cloud_confidence_medium = 2 << 10;
-  var snow_confidence_high = 3 << 12;
-  var snow_confidence_medium = 2 << 12;
+  var cloud_confidence_high = ee.Image(3 << 10);
+  var cloud_confidence_medium = ee.Image(2 << 10);
+  var snow_confidence_high = ee.Image(3 << 12);
+  var snow_confidence_medium = ee.Image(2 << 12);
   
   var cloud_confidence_high_mask = qa_pixel_layer
   .bitwiseAnd(cloud_confidence_high)
