@@ -33,8 +33,7 @@ exports.clip_img = function(image){
 
   var footprint = ee.Geometry.LinearRing({
     coords: geometry.coordinates().get(0),
-    proj: clipped_image.projection(),
-    geodesic: clipped_image.geometry().geodesic()
+    proj: clipped_image.projection()
   });
   
   return clipped_image.set({
