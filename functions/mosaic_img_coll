@@ -27,7 +27,7 @@ exports.mosaic_img_coll = function(img_coll){
   
   var img_coll_reordered = img_coll.map(change_band_order);
   
-  var footprint = img_coll.union();
+  var footprint = img_coll.union().first().geometry();
   
   Map.addLayer(img_coll.union(),{},"img_coll.union()");
   
