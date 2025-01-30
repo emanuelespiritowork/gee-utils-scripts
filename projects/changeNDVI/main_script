@@ -7,3 +7,4 @@ var recent_mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:funct
 
 var image = recent_mosaic_img_coll.recent_mosaic_img_coll(image_coll);
 
+print(3 << 10);
