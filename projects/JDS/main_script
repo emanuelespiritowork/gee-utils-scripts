@@ -36,8 +36,6 @@ var transect = require("users/emanuelespiritowork/SharedRepo:assets/transect");
 *******************************************************/
 
 var clip_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/clip_img_coll');
-var s2_scale_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_scale_img');
-var s2_evi_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_img');
 var plot_stretch_img = require('users/emanuelespiritowork/SharedRepo:functions/plot_stretch_img');
 
 /******************************************************
@@ -99,3 +97,8 @@ Map.addLayer(clipped_image.first());
 Map.addLayer(masked_image.first());
 Map.addLayer(pixel_percentage_image.first());
 
+var time_series_create_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create_img_coll');
+
+var time_series = time_series_create_img_coll.time_series_create_img_coll(pixel_percentage_image,AOI,"id_geom",30);
+
+print(time_series);
