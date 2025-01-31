@@ -6,15 +6,6 @@
 *******************************************************/
 
 /******************************************************
- * REQUIRES THE FOLLOWING ASSETS:
- * scale_to_use
- * transect
-*******************************************************/
-
-var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
-var transect = require('users/emanuelespiritowork/SharedRepo:assets/transect');
-
-/******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.Image
  * Output: ee.FeatureCollection
@@ -24,13 +15,19 @@ var transect = require('users/emanuelespiritowork/SharedRepo:assets/transect');
  * https://code.earthengine.google.com/b09759b8ac60366ee2ae4eccdd19e615
 *******************************************************/
 
-exports.transect_create_slice_img = function(img) {
-  var length = transect.transect.length();
+exports.transect_create_slice_img = function(img, transect, scale_to_use) {
+  
+  img = ee.Image(img);
+  transect = ee.Geometry.LineString(transect);
+  scale_to_use = ee.Number(scale_to_use);
+  
+  var length = transect.length();
   var bands_names = img.bandNames();
   //print(bands_names);
   var single_band_name = ee.List([bands_names.getString(0)]);
   //print(single_band_name);
-  var step = img.select(single_band_name).projection().nominalScale();
+  var step = scale_to_use;
+  //var step = img.select(single_band_name).projection().nominalScale();
   //print(step);
   var distances = ee.List.sequence({
     start: ee.Number(0), 
@@ -38,7 +35,7 @@ exports.transect_create_slice_img = function(img) {
     step: step
   });
   
-  var lines = transect.transect.cutLines(distances).geometries();
+  var lines = transect.cutLines(distances).geometries();
   lines = lines.zip(distances).map(function(l) { 
     l = ee.List(l);
     
