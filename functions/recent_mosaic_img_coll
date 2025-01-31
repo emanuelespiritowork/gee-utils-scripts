@@ -22,8 +22,8 @@ var mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/mo
  * ee.ImageCollection and clip it into assets/AOI.
 *******************************************************/
 
-exports.recent_mosaic_img_coll = function(img_coll){
-  var clip = clip_img_coll.clip_img_coll(img_coll);
+exports.recent_mosaic_img_coll = function(img_coll, AOI, scale_to_use){
+  var clip = clip_img_coll.clip_img_coll(img_coll, AOI, scale_to_use);
   var sorted_img_coll = clip.sort({
     property: "system:time_start", 
     ascending: false
