@@ -14,9 +14,6 @@
 
 exports.clip_img_coll = function(img_coll, AOI){
   
-  img_coll = ee.ImageCollection(img_coll);
-  AOI = ee.FeatureCollection(AOI);
-  
   var projection = img_coll.first().projection();
   var geometry = AOI.geometry();
   var area = geometry.area();
