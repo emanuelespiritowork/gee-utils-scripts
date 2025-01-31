@@ -6,15 +6,6 @@
 *******************************************************/
 
 /******************************************************
- * REQUIRES THE FOLLOWING ASSETS:
- * scale_to_use
- * stretch
-*******************************************************/
-
-var stretch = require('users/emanuelespiritowork/SharedRepo:assets/stretch');
-var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to_use');
-
-/******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.Image, ee.List([ee.String,ee.String,ee.String])
  * Output: (no output) it prints an image layer 
@@ -25,7 +16,10 @@ var scale_to_use = require('users/emanuelespiritowork/SharedRepo:assets/scale_to
  * works at assets/scale_to_use scale
 *******************************************************/
 
-exports.plot_stretch_img = function(img,bands){
+exports.plot_stretch_img = function(img,bands,stretch,scale_to_use){
+  
+  stretch = ee.Number(stretch);
+  scale_to_use = ee.Number(scale_to_use);
   var geometry_of_image = img.geometry();
   var band_names;
   var num_bands;
@@ -59,42 +53,42 @@ exports.plot_stretch_img = function(img,bands){
   
   var computed_img_std_1 = img.select(first_band).reduceRegion({
     reducer: ee.Reducer.stdDev(),
-    scale: scale_to_use.scale_to_use,
+    scale: scale_to_use,
     geometry: geometry_of_image,
     bestEffort: true
   }).getNumber(first_band);
   
   var computed_img_std_2 = img.select(second_band).reduceRegion({
     reducer: ee.Reducer.stdDev(),
-    scale: scale_to_use.scale_to_use,
+    scale: scale_to_use,
     geometry: geometry_of_image,
     bestEffort: true
   }).getNumber(second_band);
   
   var computed_img_std_3 = img.select(third_band).reduceRegion({
     reducer: ee.Reducer.stdDev(),
-    scale: scale_to_use.scale_to_use,
+    scale: scale_to_use,
     geometry: geometry_of_image,
     bestEffort: true
   }).getNumber(third_band);
   
   var computed_img_mean_1 = img.select(first_band).reduceRegion({
     reducer: ee.Reducer.mean(),
-    scale: scale_to_use.scale_to_use,
+    scale: scale_to_use,
     geometry: geometry_of_image,
     bestEffort: true
   }).getNumber(first_band);
   
   var computed_img_mean_2 = img.select(second_band).reduceRegion({
     reducer: ee.Reducer.mean(),
-    scale: scale_to_use.scale_to_use,
+    scale: scale_to_use,
     geometry: geometry_of_image,
     bestEffort: true
   }).getNumber(second_band);
   
   var computed_img_mean_3 = img.select(third_band).reduceRegion({
     reducer: ee.Reducer.mean(),
-    scale: scale_to_use.scale_to_use,
+    scale: scale_to_use,
     geometry: geometry_of_image,
     bestEffort: true
   }).getNumber(third_band);
@@ -105,8 +99,7 @@ exports.plot_stretch_img = function(img,bands){
   var computed_img_std = ee.Array(ee.List([computed_img_std_1,
   computed_img_std_2,computed_img_std_3]));
   
-  var array_of_stretch = ee.Array(ee.List([stretch.stretch,
-  stretch.stretch,stretch.stretch]));
+  var array_of_stretch = ee.Array(ee.List([stretch,stretch,stretch]));
   
   var computed_img_min = computed_img_mean.subtract(array_of_stretch.multiply(computed_img_std));
   //print("computed_img_min",computed_img_min);
