@@ -34,15 +34,21 @@ var transect = require("users/emanuelespiritowork/SharedRepo:assets/transect");
 var clip_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/clip_img_coll');
 var s2_scale_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_scale_img');
 var s2_evi_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_img');
-var image_stretch_img = require('users/emanuelespiritowork/SharedRepo:functions/image_stretch_img');
+var plot_stretch_img = require('users/emanuelespiritowork/SharedRepo:functions/plot_stretch_img');
 
 /******************************************************
  * SCRIPT
 *******************************************************/
-print(AOI.AOI);
+
 AOI.AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI");
-print(AOI.AOI);
+export_folder.export_folder = ee.String("Exports");
+id_name.id_name = ee.String("id_geom");
+scale_to_use.scale_to_use = ee.Number(30);
+stretch.stretch = ee.Number(2);
+threshold_percentage.threshold_percentage = ee.Number(0.5);
+transect.transect = null;
 
 var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate('2024-12-15','2025-01-24')
 .filterBounds(AOI.AOI);
+
