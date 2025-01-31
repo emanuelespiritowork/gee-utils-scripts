@@ -3,6 +3,10 @@ var geometry = /* color: #d63000 */ee.Geometry.Point([-70.50273437500002, 35.001
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var bands = ['B.*'];
 
+transect.transect = /* color: #0b4a8b */ee.Geometry.LineString(
+        [[12.171811206606845, 41.846782979179956],
+         [14.017514331606845, 42.40087705163563],
+         [12.254208667544345, 41.73210352664786]]);
 
 var transect_create_slice_img = require('users/emanuelespiritowork/SharedRepo:functions/transect_create_slice_img');
 var transect = require('users/emanuelespiritowork/SharedRepo:assets/transect');
