@@ -14,6 +14,8 @@
 
 exports.s2_evi_img_coll = function(img_coll){
   
+  img_coll = ee.ImageCollection(img_coll);
+  
   var s2_evi_img = function(image){
     var eviExpression = image.expression({
       expression: '2.5 * ((NIR - RED) / (NIR + 6 * RED - 7.5 * BLUE + 1))',
