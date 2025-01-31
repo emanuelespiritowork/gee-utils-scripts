@@ -1,46 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.Geometry({
-      "type": "GeometryCollection",
-      "geometries": [
-        {
-          "type": "Point",
-          "coordinates": [
-            11.94056922186089,
-            44.87391977499666
-          ]
-        },
-        {
-          "type": "Polygon",
-          "coordinates": [
-            [
-              [
-                8.563117526715942,
-                45.803711191446205
-              ],
-              [
-                8.070686436596954,
-                45.15843531553663
-              ],
-              [
-                11.99528280208828,
-                44.583289617474804
-              ],
-              [
-                12.641423555743144,
-                44.9100397859371
-              ]
-            ]
-          ],
-          "geodesic": true,
-          "evenOdd": true
-        }
-      ],
-      "coordinates": []
-    });
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /******************************************************
  * Author: Emanuele Spirito
  * Copyright: 2025
@@ -89,6 +46,28 @@ var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate('2024-12-15','2025-01-24')
 .filterBounds(AOI.AOI);
 
-var clipped_image = clip_img_coll.clip_img_coll(image_coll,geometry,scale_to_use.scale_to_use);
+var first_image = image_coll.first();
 
-Map.addLayer(clipped_image.first());
+var AOI = AOI.AOI;
+var scale_to_use = scale_to_use.scale_to_use;
+var geometry = AOI.geometry();
+
+var clip_img = function(image){
+    var clipped_image = image.clipToBoundsAndScale({
+      geometry: geometry,
+      scale: scale_to_use
+    }).clip(AOI);
+    var previous_geometry = image.geometry();
+    var intersection = geometry.intersection(previous_geometry);
+    print("intersection",intersection);
+    var footprint = ee.Algorithms.GeometryConstructors.MultiGeometry({
+      geometries: intersection.geometries()
+    });
+    return clipped_image.set({"system:footprint": footprint});
+  };
+  
+var clipped_image = clip_img(first_image);
+
+//var clipped_image = clip_img_coll.clip_img_coll(image_coll,AOI.AOI,scale_to_use.scale_to_use);
+
+Map.addLayer(clipped_image);
