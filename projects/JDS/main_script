@@ -20,18 +20,6 @@ var square =
 *******************************************************/
 
 /******************************************************
- * LOAD ASSETS PATH
-*******************************************************/
-
-var AOI = require("users/emanuelespiritowork/SharedRepo:assets/AOI");
-var export_folder = require("users/emanuelespiritowork/SharedRepo:assets/export_folder");
-var id_name = require("users/emanuelespiritowork/SharedRepo:assets/id_name");
-var scale_to_use = require("users/emanuelespiritowork/SharedRepo:assets/scale_to_use");
-var stretch = require("users/emanuelespiritowork/SharedRepo:assets/stretch");
-var threshold_percentage = require("users/emanuelespiritowork/SharedRepo:assets/threshold_percentage");
-var transect = require("users/emanuelespiritowork/SharedRepo:assets/transect");
-
-/******************************************************
  * LOAD FUNCTIONS PATH
 *******************************************************/
 
