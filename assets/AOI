@@ -27,7 +27,7 @@ var geometry = /* color: #d63000 */ee.FeatureCollection(
 
 //print("footprint.projection()",footprint.projection());
 
-exports.AOI = ee.FeatureCollection(geometry);
+exports.AOI = null;
 
 
 /* ALTERNATIVE OF THE ABOVE SCRIPT WHEN USING assets/single_feature_point
