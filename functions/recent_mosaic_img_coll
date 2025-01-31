@@ -7,7 +7,7 @@
 
 /******************************************************
  * REQUIRES THE FOLLOWING FUNCTIONS:
- * clip_img
+ * clip_img_coll
  * mosaic_img_coll
 *******************************************************/
 
