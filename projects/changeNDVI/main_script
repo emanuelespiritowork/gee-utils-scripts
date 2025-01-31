@@ -10,7 +10,11 @@ var image_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
 
 var landsat_scale_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/landsat_scale_img_coll");
 
-var scaled_image = landsat_scale_img_coll.landsat_scale_img_coll(image_coll.first());
+var scaled = landsat_scale_img_coll.landsat_scale_img_coll(image_coll);
+
+var landsat_mask_img_coll =  require("users/emanuelespiritowork/SharedRepo:functions/landsat_mask_img_coll");
+
+
 
 Map.addLayer(image_coll.first())
 Map.addLayer(scaled_image.first());
