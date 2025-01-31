@@ -28,6 +28,7 @@ var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
 
 exports.clip_img_coll = function(img_coll){
   var projection = img_coll.first().projection();
+  print(AOI.AOI);
   var geometry = AOI.AOI.geometry();
   var area = geometry.area();
   var filtered_coll = img_coll.filterBounds(geometry.coveringGrid({
