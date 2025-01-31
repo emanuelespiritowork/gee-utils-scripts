@@ -6,19 +6,16 @@
 *******************************************************/
 
 /******************************************************
- * WHAT THIS ASSET DOES
- * Select the asset AOI (Area of Interest) to be used in all other 
- * functions so insert a FeatureCollection that you want to study
+ * PURPOSE OF THIS SCRIPT
+ * Collection of all the assets needed for the project ...
 *******************************************************/
 
 //exports.AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI");
-
-//print("footprint.projection()",footprint.projection());
-
-exports.AOI = ee.FeatureCollection(geometry);
-
 
 /* ALTERNATIVE OF THE ABOVE SCRIPT WHEN USING assets/single_feature_point
 single_feature_point = ee.Geometry.Point([11.974559721540183, 44.8640062138869]);
 exports.AOI = ee.FeatureCollection(ee.Feature(ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI").filterBounds(single_feature_point.single_feature_point).first()));
 */
+
+exports.AOI = ee.FeatureCollection(geometry);
+
