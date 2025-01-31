@@ -80,4 +80,7 @@ var clip_img = function(image){
 
 var clipped_image = clip_img_coll.clip_img_coll(first_image,AOI,scale_to_use.scale_to_use).first();
 
+var s2_mask_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_mask_img_coll');
+
+
 Map.addLayer(clipped_image);
