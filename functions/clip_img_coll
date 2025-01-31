@@ -6,34 +6,38 @@
 *******************************************************/
 
 /******************************************************
- * REQUIRES THE FOLLOWING FUNCTIONS:
- * clip_img
-*******************************************************/
-
-var clip_img = require('users/emanuelespiritowork/SharedRepo:functions/clip_img');
-
-/******************************************************
- * REQUIRES THE FOLLOWING ASSETS:
- * AOI
-*******************************************************/
-
-var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
-
-/******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection
  * Output: ee.ImageCollection
  * Description: as functions/clip_img but for an ImageCollection
 *******************************************************/
 
-exports.clip_img_coll = function(img_coll){
+exports.clip_img_coll = function(img_coll, AOI){
+  
+  img_coll = ee.ImageCollection(img_coll);
+  AOI = ee.FeatureCollection(AOI);
+  
   var projection = img_coll.first().projection();
-  print(AOI.AOI);
-  var geometry = AOI.AOI.geometry();
+  var geometry = AOI.geometry();
   var area = geometry.area();
   var filtered_coll = img_coll.filterBounds(geometry.coveringGrid({
     proj: projection,
     scale: area.sqrt().divide(ee.Number(10))
   }));
+  
+  var clip_img = function(image){
+    var clipped_image = image.clipToBoundsAndScale({
+      geometry: AOI.geometry(),
+      scale: scale_to_use.scale_to_use
+    }).clip(AOI);
+    var geometry = AOI.geometry();
+    var previous_geometry = image.geometry();
+    var intersection = geometry.intersection(previous_geometry);
+    var footprint = ee.Algorithms.GeometryConstructors.LinearRing({
+      coordinates: intersection.coordinates().get(0)
+    });
+    return clipped_image.set({"system:footprint": footprint});
+  };
+  
   return filtered_coll.map(clip_img.clip_img);
 };
