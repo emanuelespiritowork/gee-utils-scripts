@@ -35,5 +35,5 @@ exports.clip_img_coll = function(img_coll, AOI){
     return clipped_image.set({"system:footprint": footprint});
   };
   
-  return filtered_coll.map(clip_img.clip_img);
+  return filtered_coll.map(clip_img);
 };
