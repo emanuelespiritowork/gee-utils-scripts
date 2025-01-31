@@ -15,4 +15,4 @@
  * considered valid fields. All the other cropfields are completely masked. 
 *******************************************************/
 
-exports.threshold_percentage = ee.Number(0.5);
+exports.threshold_percentage;
