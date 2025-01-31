@@ -6,13 +6,6 @@
 *******************************************************/
 
 /******************************************************
- * REQUIRES THE FOLLOWING ASSETS:
- * export_folder
-*******************************************************/
-
-var export_folder = require('users/emanuelespiritowork/SharedRepo:assets/export_folder');
-
-/******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.FeatureCollection
  * Output: (nothing) 
@@ -21,7 +14,11 @@ var export_folder = require('users/emanuelespiritowork/SharedRepo:assets/export_
  * should be created using functions/time_series_create_img_coll
 *******************************************************/
 
-exports.time_series_export_ts = function(time_series){
+exports.time_series_export_ts = function(time_series, export_folder){
+  
+  time_series = ee.FeatureCollection(time_series);
+  //export
+  
   var selectors_name = ee.String(time_series.first().propertyNames()
   .remove("system:index")
   .remove("system:time_start")
