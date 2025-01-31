@@ -6,13 +6,6 @@
 *******************************************************/
 
 /******************************************************
- * REQUIRES THE FOLLOWING FUNCTIONS:
- * landsat_scale_img
-*******************************************************/
-
-var landsat_scale_img = require("users/emanuelespiritowork/SharedRepo:functions/landsat_scale_img");
-
-/******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection
  * Output: ee.ImageCollection
