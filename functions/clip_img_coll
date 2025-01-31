@@ -27,10 +27,9 @@ exports.clip_img_coll = function(img_coll, AOI){
   
   var clip_img = function(image){
     var clipped_image = image.clipToBoundsAndScale({
-      geometry: AOI.geometry(),
+      geometry: geometry,
       scale: scale_to_use.scale_to_use
     }).clip(AOI);
-    var geometry = AOI.geometry();
     var previous_geometry = image.geometry();
     var intersection = geometry.intersection(previous_geometry);
     var footprint = ee.Algorithms.GeometryConstructors.LinearRing({
