@@ -1,3 +1,6 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var geometry = /* color: #d63000 */ee.Geometry.Point([-70.50273437500002, 35.00183311222649]);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 var bands = ['B.*'];
 
 
@@ -5,7 +8,7 @@ var transect_create_slice_img = require('users/emanuelespiritowork/SharedRepo:fu
 var transect = require('users/emanuelespiritowork/SharedRepo:assets/transect');
 
 //var s2_mask_img_coll = require('users/emanuelespiritowork/SharedRepo:function/s2_mask_img_coll');
-
+/*
 var s2_mosaic_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_mosaic_img_coll'); 
 
 var elevImg_coll = s2_mosaic_img_coll.s2_mosaic_img_coll(ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
@@ -15,14 +18,13 @@ var elevImg_coll = s2_mosaic_img_coll.s2_mosaic_img_coll(ee.ImageCollection("COP
 var elevImg = elevImg_coll.select(bands);
 print(elevImg);
 
-/*
 var elevImg_band_names = elevImg.first().bandNames();
 
 .mosaic()
 .select(bands);
 
 print(elevImg);
-*/
+
 var profile = transect_create_slice_img.transect_create_slice_img(elevImg);
 
 var transect_get_plot_ts = require('users/emanuelespiritowork/SharedRepo:functions/transect_get_plot_ts');
@@ -32,5 +34,5 @@ var plot = transect_get_plot_ts.transect_get_plot_ts(profile);
 print(profile);
 
 print(plot);
-
+*/
 
