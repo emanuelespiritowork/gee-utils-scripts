@@ -52,3 +52,6 @@ var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate('2024-12-15','2025-01-24')
 .filterBounds(AOI.AOI);
 
+var clipped_image = clip_img_coll.clip_img_coll(image_coll);
+
+Map.addLayer(clipped_image.first());
