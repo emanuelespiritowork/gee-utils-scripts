@@ -16,4 +16,4 @@
  * row among all rows in the table. 
 *******************************************************/
 
-exports.id_name = "id_geom";
+exports.id_name;
