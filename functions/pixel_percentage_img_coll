@@ -18,6 +18,9 @@
 exports.pixel_percentage_img_coll = function(img_coll,AOI,threshold_percentage,scale_to_use){
   
   img_coll = ee.ImageCollection(img_coll);
+  AOI = ee.FeatureCollection(AOI);
+  threshold_percentage = ee.Number(threshold_percentage);
+  scale_to_use = ee.Number(scale_to_use); 
   
   var pixel_percentage_img = function(image){
     var clip_image_following_feature = function(region){
