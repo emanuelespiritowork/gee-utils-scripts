@@ -15,7 +15,7 @@
  * the other cropfields are completely masked.
 *******************************************************/
 
-exports.pixel_percentage_img_coll = function(img_coll,threshold_percentage,scale_to_use){
+exports.pixel_percentage_img_coll = function(img_coll,AOI,threshold_percentage,scale_to_use){
   
   img_coll = ee.ImageCollection(img_coll);
   
@@ -50,7 +50,7 @@ exports.pixel_percentage_img_coll = function(img_coll,threshold_percentage,scale
       return updateMask_image;
     };
     
-    var imageCollection_of_clipped_image = AOI.AOI
+    var imageCollection_of_clipped_image = AOI
     .map(clip_image_following_feature);
     
     var imageMosaic = ee.ImageCollection(imageCollection_of_clipped_image)
