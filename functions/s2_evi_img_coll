@@ -6,13 +6,6 @@
 *******************************************************/
 
 /******************************************************
- * REQUIRES THE FOLLOWING FUNCTIONS
- * s2_evi_img
-*******************************************************/
-
-var s2_evi_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_img');
-
-/******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection
  * Output: ee.ImageCollection
@@ -20,5 +13,21 @@ var s2_evi_img = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_
 *******************************************************/
 
 exports.s2_evi_img_coll = function(img_coll){
-  return img_coll.map(s2_evi_img.s2_evi_img);
+  
+  var s2_evi_img = function(image){
+    var eviExpression = image.expression({
+      expression: '2.5 * ((NIR - RED) / (NIR + 6 * RED - 7.5 * BLUE + 1))',
+      map: { // Map between variables in the expression and images.
+      'NIR': image.select('B8'),
+      'RED': image.select('B4'),
+      'BLUE': image.select('B2')
+      }
+    }).rename('evi2');
+    
+    var time_start_value = image.get('system:time_start');
+    eviExpression = eviExpression.set({'system:time_start':time_start_value});
+    return eviExpression;
+  };
+  
+  return img_coll.map(s2_evi_img);
 };
