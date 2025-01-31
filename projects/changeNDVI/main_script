@@ -3,7 +3,7 @@ var geometry = /* color: #d63000 */ee.Geometry.Point([6.583229795733163, 45.3904
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var image_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
 .filterBounds(geometry);
-
+/*
 //var recent_mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/recent_mosaic_img_coll");
 
 //var image = recent_mosaic_img_coll.recent_mosaic_img_coll(image_coll);
@@ -19,11 +19,9 @@ var landsat_mask_img_coll =  require("users/emanuelespiritowork/SharedRepo:funct
 Map.addLayer(image_coll.first())
 Map.addLayer(scaled_image.first());
 Map.centerObject(scaled_image.first());
+*/
 
-/*
 var plot_stretch_img = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch_img");
 
-var null_var = plot_stretch_img.plot_stretch_img(image,["SR_B5","SR_B4","SR_B3"]);
+var null_var = plot_stretch_img.plot_stretch_img(image_coll.first(),["SR_B5","SR_B4","SR_B3"],2,30);
 
-//Map.addLayer(masked_image,{},"masked_image");
-*/
