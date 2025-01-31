@@ -97,8 +97,17 @@ Map.addLayer(clipped_image.first());
 Map.addLayer(masked_image.first());
 Map.addLayer(pixel_percentage_image.first());
 
+var s2_evi_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_img_coll');
+
+var evi = s2_evi_img_coll.s2_evi_img_coll(clipped_image);
+
 var time_series_create_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create_img_coll');
 
-var time_series = time_series_create_img_coll.time_series_create_img_coll(pixel_percentage_image,AOI,"id_geom",30);
+var time_series = time_series_create_img_coll.time_series_create_img_coll(evi,AOI,"id_geom",30);
+
+var time_series_get_plot_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot_ts');
+
+var plot = time_series_get_plot_ts.time_series_get_plot_ts(time_series,"evi2");
 
 print(time_series);
+print(plot);
