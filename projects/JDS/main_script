@@ -78,6 +78,6 @@ var clip_img = function(image){
   
 //var clipped_image = clip_img(first_image);
 
-var clipped_image = clip_img_coll.clip_img_coll(image_coll,AOI,scale_to_use.scale_to_use).first();
+var clipped_image = clip_img_coll.clip_img_coll(first_image,AOI,scale_to_use.scale_to_use).first();
 
 Map.addLayer(clipped_image);
