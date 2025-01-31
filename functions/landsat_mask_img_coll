@@ -84,5 +84,5 @@ exports.landsat_mask_img_coll = function(img_coll){
   return image.updateMask(mask);
 };
   
-  return img_coll.map(landsat_mask_img.landsat_mask_img);
+  return img_coll.map(landsat_mask_img);
 };
