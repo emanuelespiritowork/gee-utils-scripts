@@ -12,7 +12,7 @@
  * Description: as functions/clip_img but for an ImageCollection
 *******************************************************/
 
-exports.clip_img_coll = function(img_coll, AOI){
+exports.clip_img_coll = function(img_coll, AOI, scale_to_use){
   
   var projection = img_coll.first().projection();
   var geometry = AOI.geometry();
@@ -25,7 +25,7 @@ exports.clip_img_coll = function(img_coll, AOI){
   var clip_img = function(image){
     var clipped_image = image.clipToBoundsAndScale({
       geometry: geometry,
-      scale: scale_to_use.scale_to_use
+      scale: scale_to_use
     }).clip(AOI);
     var previous_geometry = image.geometry();
     var intersection = geometry.intersection(previous_geometry);
