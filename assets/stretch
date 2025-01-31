@@ -12,5 +12,5 @@
  * function
 *******************************************************/
 
-exports.stretch = ee.Number(2);
+exports.stretch;
 
