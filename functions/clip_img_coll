@@ -16,6 +16,7 @@ exports.clip_img_coll = function(img_coll, AOI, scale_to_use){
   
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
+  print(AOI);
   
   var projection = img_coll.first()
   .select(img_coll.first().bandNames().getString(0)).projection();
@@ -27,14 +28,16 @@ exports.clip_img_coll = function(img_coll, AOI, scale_to_use){
   }));
   
   var clip_img = function(image){
+    
     var clipped_image = image.clipToBoundsAndScale({
       geometry: geometry,
       scale: scale_to_use
     }).clip(AOI);
     var previous_geometry = image.geometry();
     var intersection = geometry.intersection(previous_geometry);
-    var footprint = ee.Algorithms.GeometryConstructors.LinearRing({
-      coordinates: intersection.coordinates().get(0)
+    print("intersection",intersection);
+    var footprint = ee.Algorithms.GeometryConstructors.MultiGeometry({
+      geometries: intersection.geometries()
     });
     return clipped_image.set({"system:footprint": footprint});
   };
