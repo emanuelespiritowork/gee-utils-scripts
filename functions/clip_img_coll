@@ -27,7 +27,6 @@ var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
 *******************************************************/
 
 exports.clip_img_coll = function(img_coll){
-  AOI.AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI");
   var projection = img_coll.first().projection();
   print(AOI.AOI);
   var geometry = AOI.AOI.geometry();
