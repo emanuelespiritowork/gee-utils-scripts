@@ -35,7 +35,6 @@ exports.clip_img_coll = function(img_coll, AOI, scale_to_use){
     }).clip(AOI);
     var previous_geometry = image.geometry();
     var intersection = geometry.intersection(previous_geometry);
-    print("intersection",intersection);
     var footprint = ee.Algorithms.GeometryConstructors.MultiGeometry({
       geometries: intersection.geometries()
     });
