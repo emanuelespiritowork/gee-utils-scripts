@@ -16,7 +16,7 @@ exports.clip_img_coll = function(img_coll, AOI, scale_to_use){
   
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
-  print(AOI);
+  //print(AOI);
   
   var projection = img_coll.first()
   .select(img_coll.first().bandNames().getString(0)).projection();
