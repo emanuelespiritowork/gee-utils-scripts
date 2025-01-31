@@ -1,3 +1,10 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var square = /* color: #d63000 */ee.Geometry.Polygon(
+        [[[11.8332053984878, 44.950951330959384],
+          [11.7782737578628, 44.79523758054879],
+          [12.1243430938003, 44.76306921047978],
+          [12.1573020781753, 44.92470418537108]]]);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /******************************************************
  * Author: Emanuele Spirito
  * Copyright: 2025
@@ -49,8 +56,11 @@ var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 var first_image = image_coll.first();
 
 var AOI = AOI.AOI;
+//var AOI = ee.FeatureCollection(square);
 var scale_to_use = scale_to_use.scale_to_use;
 var geometry = AOI.geometry();
+print(AOI);
+print(geometry);
 
 var clip_img = function(image){
     var clipped_image = image.clipToBoundsAndScale({
@@ -66,8 +76,8 @@ var clip_img = function(image){
     return clipped_image.set({"system:footprint": footprint});
   };
   
-var clipped_image = clip_img(first_image);
+//var clipped_image = clip_img(first_image);
 
-//var clipped_image = clip_img_coll.clip_img_coll(image_coll,AOI.AOI,scale_to_use.scale_to_use);
+var clipped_image = clip_img_coll.clip_img_coll(image_coll,AOI,scale_to_use.scale_to_use).first();
 
 Map.addLayer(clipped_image);
