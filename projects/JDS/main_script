@@ -4,7 +4,20 @@ var geometry =
     /* shown: false */
     ee.Geometry.Point([11.94056922186089, 44.87391977499666]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
 
+/******************************************************
+ * ABOUT THIS PROJECT
+*******************************************************/
+
+/******************************************************
+ * LOAD ASSETS PATH
+*******************************************************/
 
 var AOI = require("users/emanuelespiritowork/SharedRepo:assets/AOI");
 var export_folder = require("users/emanuelespiritowork/SharedRepo:assets/export_folder");
@@ -14,10 +27,10 @@ var stretch = require("users/emanuelespiritowork/SharedRepo:assets/stretch");
 var threshold_percentage = require("users/emanuelespiritowork/SharedRepo:assets/threshold_percentage");
 var transect = require("users/emanuelespiritowork/SharedRepo:assets/transect");
 
+/******************************************************
+ * SCRIPT
+*******************************************************/
 
-
-
-var AOI = require('users/emanuelespiritowork/SharedRepo:assets/AOI');
 
 var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate('2024-12-15','2025-01-24')
