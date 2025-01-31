@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var square = /* color: #d63000 */ee.Geometry.Polygon(
+var square = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[11.8332053984878, 44.950951330959384],
           [11.7782737578628, 44.79523758054879],
           [12.1243430938003, 44.76306921047978],
@@ -51,7 +54,9 @@ transect.transect = null;
 
 var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate('2024-12-15','2025-01-24')
-.filterBounds(AOI.AOI);
+.filterBounds(AOI.AOI)
+.filter(ee.Filter.gt("CLOUDY_PIXEL_PERCENTAGE",30))
+.sort("CLOUDY_PIXEL_PERCENTAGE",true);
 
 var first_image = image_coll.first();
 
@@ -78,9 +83,19 @@ var clip_img = function(image){
   
 //var clipped_image = clip_img(first_image);
 
-var clipped_image = clip_img_coll.clip_img_coll(first_image,AOI,scale_to_use.scale_to_use).first();
+var clipped_image = clip_img_coll.clip_img_coll(image_coll,AOI,scale_to_use.scale_to_use);
 
 var s2_mask_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_mask_img_coll');
 
+var masked_image = s2_mask_img_coll.s2_mask_img_coll(clipped_image);
 
-Map.addLayer(clipped_image);
+var pixel_percentage_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/pixel_percentage_img_coll');
+
+print(masked_image);
+
+var pixel_percentage_image = pixel_percentage_img_coll.pixel_percentage_img_coll(masked_image,AOI,0.5,30);
+
+Map.addLayer(clipped_image.first());
+Map.addLayer(masked_image.first());
+Map.addLayer(pixel_percentage_image.first());
+
