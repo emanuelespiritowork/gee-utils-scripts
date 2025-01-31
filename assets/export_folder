@@ -12,4 +12,4 @@
  * You just need the name of your folder, not the path inside Google Drive.
 *******************************************************/
 
-exports.export_folder = "Exports";
+exports.export_folder;
