@@ -44,7 +44,9 @@ var time_series_get_plot = require("users/emanuelespiritowork/SharedRepo:functio
  * street of Pernate, 28100, Novara, Italy
 *******************************************************/
 
-var AOI = ee.FeatureCollection(ee.List([aoi,geometry]));
+//var AOI = ee.FeatureCollection(ee.List([aoi,geometry]));
+
+var AOI = ee.FeatureCollection(aoi);
 
 var l8_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
 .filterDate("2013-01-01","2025-01-25")
