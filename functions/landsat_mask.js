@@ -7,9 +7,10 @@
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.ImageCollection
- * Output: ee.ImageCollection
- * Description: as functions/landsat_mask_img but for an image collection
+ * Input: ee.ImageCollection or ee.Image
+ * Output: ee.ImageCollection or ee.Image
+ * Description: apply cloud and snow mask to a Landsat 8/9 L2 image collection
+ * or image
 *******************************************************/
 
 exports.landsat_mask = function(img_coll){
