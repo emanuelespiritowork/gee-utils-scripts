@@ -37,6 +37,8 @@ var l8_masked = landsat_mask.landsat_mask(l8_clipped);
 
 var l8_scaled = landsat_scale.landsat_scale(l8_masked);
 
+print(l8_scaled);
+
 Map.addLayer(l8_scaled);
 
 
