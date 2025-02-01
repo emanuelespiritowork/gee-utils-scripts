@@ -36,7 +36,7 @@ exports.time_series_get_plot = function(time_series,which_property){
   
   //var propertyNames = time_series.first().propertyNames();
   
-  /*var counter = 0;
+  var counter = 0;
   while(counter <= time_series.length()){
     feature = time_series.get(counter);
     propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
@@ -44,7 +44,7 @@ exports.time_series_get_plot = function(time_series,which_property){
   
   
   
-  */
+  
   //var propertyNames = time_series.first().propertyNames();
   
   //print("senso",propertyNames);
