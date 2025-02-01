@@ -9,13 +9,13 @@ var aoi = /* color: #d63000 */ee.Feature(
           "area": "vigne",
           "system:index": "0"
         }),
-    not_aoi = /* color: #98ff00 */ee.Feature(
+    not_aoi = /* color: #d63000 */ee.Feature(
         ee.Geometry.Polygon(
-            [[[9.031672194360064, 44.38170523804827],
-              [9.031709560841774, 44.38162238664404],
-              [9.031836694564443, 44.381674408389166]]]),
+            [[[8.569313683898438, 45.7473038418586],
+              [8.569478821854508, 45.747012069033346],
+              [8.569768500428117, 45.74713934585177]]]),
         {
-          "area": "sea",
+          "area": "water",
           "system:index": "0"
         });
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
@@ -43,10 +43,13 @@ var time_series_get_plot = require("users/emanuelespiritowork/SharedRepo:functio
  * street of Pernate, 28100, Novara, Italy
 *******************************************************/
 
-var AOI = ee.FeatureCollection(ee.List([aoi,not_aoi]));
+var AOI = ee.FeatureCollection(ee.List([aoi]));
 
 var l8_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
-.filterDate("2023-01-01","2025-01-25");
+.filterDate("2023-01-01","2025-01-25")
+.filterBounds(aoi);
+
+Map.addLayer(l8_coll);
 
 var scale_to_use = ee.Number(30);
 
