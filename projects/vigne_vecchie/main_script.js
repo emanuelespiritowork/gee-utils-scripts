@@ -46,7 +46,7 @@ var time_series_get_plot = require("users/emanuelespiritowork/SharedRepo:functio
 var AOI = ee.FeatureCollection(ee.List([aoi,not_aoi]));
 
 var l8_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
-.filterDate("2015-01-01","2025-01-25");
+.filterDate("2023-01-01","2025-01-25");
 
 var scale_to_use = ee.Number(30);
 
