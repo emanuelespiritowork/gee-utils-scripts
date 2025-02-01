@@ -25,7 +25,9 @@ exports.time_series_get_plot = function(time_series,which_property){
     return propertyNames.cat(feature.propertyNames()).distinct();
   };
   
-  var list_of_lists = time_series.map(get_property).reverse().get(0);
+  var list_of_lists = time_series.map(get_property);
+  
+  print(list_of_lists);
   
   //se è mascherato non è detto che il primo lo contenga
   //bisogna ordinare prendere tutte le proprietà tra tutte le feature
