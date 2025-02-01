@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = /* color: #d63000 */ee.Geometry.Polygon(
+var AOI = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[8.667363735022805, 45.45548958753395],
           [8.667798252883218, 45.45468054930045],
           [8.668779941382668, 45.45496653623484],
