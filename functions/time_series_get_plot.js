@@ -24,14 +24,22 @@ exports.time_series_get_plot = function(time_series,which_property){
   //della collezione
   
   var propertyNames = time_series.first().propertyNames();
+  var time_series.select("[^date].*")
+  .select("[^].*")
+  var time_series_ordered = time_series.sort()
   
+  /*var counter = 0;
+  while(counter <= time_series.length()){
+    feature = time_series.get(counter);
+    propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
+  }
   var get_property = function(feature){
     propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
     return ee.Number(0);
   };
   
   var null_var = time_series.map(get_property);
-  
+  */
   //var propertyNames = time_series.first().propertyNames();
   
   print(propertyNames);
