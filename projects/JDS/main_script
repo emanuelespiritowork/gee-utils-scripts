@@ -40,7 +40,7 @@ var transect = null;
 
 var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate('2024-12-15','2025-01-24')
-.filterBounds(AOI.AOI)
+.filterBounds(AOI)
 .filter(ee.Filter.gt("CLOUDY_PIXEL_PERCENTAGE",30))
 .sort("CLOUDY_PIXEL_PERCENTAGE",true);
 
@@ -73,20 +73,20 @@ var clipped_image = clip_img_coll.clip_img_coll(image_coll,AOI,scale_to_use);
 var s2_mask_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_mask_img_coll');
 
 var masked_image = s2_mask_img_coll.s2_mask_img_coll(clipped_image);
-/*
+
 var pixel_percentage_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/pixel_percentage_img_coll');
 
 print(masked_image);
 
 var pixel_percentage_image = pixel_percentage_img_coll.pixel_percentage_img_coll(masked_image,AOI,0.5,30);
-*/
+
 Map.addLayer(clipped_image.first());
 Map.addLayer(masked_image.first());
-//Map.addLayer(pixel_percentage_image.first());
+Map.addLayer(pixel_percentage_image.first());
 /*
 var s2_evi_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_img_coll');
 
-var evi = s2_evi_img_coll.s2_evi_img_coll(clipped_image);
+var evi = s2_evi_img_coll.s2_evi_img_coll(pixel_percentage_image);
 
 var time_series_create_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create_img_coll');
 
