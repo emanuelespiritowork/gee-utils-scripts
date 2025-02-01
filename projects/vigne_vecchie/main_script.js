@@ -54,9 +54,10 @@ print(AOI);
 
 var time_series = time_series_create.time_series_create(ndfi, AOI, "area", scale_to_use);
 
-var plot = time_series_get_plot.time_series_get_plot(time_series,"ndfi");
+var plot = time_series_get_plot.time_series_get_plot(time_series,"ndfi2");
 
 print(time_series);
+print(time_series.sort("ndfi2",false).first().get("ndfi2"));
 print(plot);
 
 
