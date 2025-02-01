@@ -33,17 +33,17 @@ var s2_mask = require('users/emanuelespiritowork/SharedRepo:functions/s2_mask.js
 var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI");
 var export_folder = ee.String("Exports");
 var id_name = ee.String("id_geom");
-var scale_to_use = ee.Number(30);
+var scale_to_use = ee.Number(10);
 var stretch = ee.Number(2);
 var threshold_percentage = ee.Number(0.5);
 var transect = null;
 
-print(AOI);
-print(ee.FeatureCollection(AOI));
-print(ee.FeatureCollection(ee.FeatureCollection(AOI)));
+//print(AOI);
+//print(ee.FeatureCollection(AOI));
+//print(ee.FeatureCollection(ee.FeatureCollection(AOI)));
 
 var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-.filterDate('2024-01-01','2025-01-24')
+.filterDate('2023-10-01','2023-12-28')
 .filterBounds(AOI)
 //.filter(ee.Filter.gt("CLOUDY_PIXEL_PERCENTAGE",30))
 //.sort("CLOUDY_PIXEL_PERCENTAGE",true);
@@ -53,8 +53,8 @@ var first_image = image_coll.first();
 AOI = AOI;
 //AOI = ee.FeatureCollection(square);
 var geometry = AOI.geometry();
-print(AOI);
-print(geometry);
+//print(AOI);
+//print(geometry);
 
 var clip_img = function(image){
     var clipped_image = image.clipToBoundsAndScale({
@@ -78,13 +78,13 @@ var masked_image = s2_mask.s2_mask(clipped_image);
 
 var pixel_percentage = require('users/emanuelespiritowork/SharedRepo:functions/pixel_percentage.js');
 
-print(masked_image);
+//print(masked_image);
 
-var pixel_percentage_image = pixel_percentage.pixel_percentage(masked_image,AOI,0.5,30);
+var pixel_percentage_image = pixel_percentage.pixel_percentage(masked_image,AOI,0.1,scale_to_use);
 
-Map.addLayer(clipped_image.first());
-Map.addLayer(masked_image.first());
-Map.addLayer(pixel_percentage_image.first());
+//Map.addLayer(clipped_image.first());
+//Map.addLayer(masked_image.first());
+//Map.addLayer(pixel_percentage_image.first());
 
 var s2_evi = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi.js');
 
@@ -92,11 +92,14 @@ var evi = s2_evi.s2_evi(pixel_percentage_image);
 
 var time_series_create = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create.js');
 
-var time_series = time_series_create.time_series_create(evi,AOI,"id_geom",30);
+var time_series = time_series_create.time_series_create(evi,AOI,"id_geom",scale_to_use);
+
+//print(time_series);
+//print(time_series.propertyNames());
 
 var time_series_get_plot = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot.js');
 
 var plot = time_series_get_plot.time_series_get_plot(time_series,"evi2");
 
-print(time_series);
+//print(time_series);
 print(plot);
