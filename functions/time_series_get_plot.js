@@ -46,6 +46,8 @@ exports.time_series_get_plot = function(time_series,which_property){
   //var propertyNames = time_series.first().propertyNames();
   
   print("senso",propertyNames);
+  
+  /*
   var xProperty = ee.Algorithms.If({
       condition: propertyNames.contains('system:time_start'),
       trueCase: 'system:time_start',
@@ -81,6 +83,7 @@ exports.time_series_get_plot = function(time_series,which_property){
     yProperties = ee.String(which_property);
   }*/
   
+  /*
   print(yProperties);
   
   var p_title = 'Time series of ';
@@ -105,5 +108,7 @@ exports.time_series_get_plot = function(time_series,which_property){
     pointsize: 3
   });
   
-  return plot;
+  return plot;*/
+  
+  return 0;
 };
