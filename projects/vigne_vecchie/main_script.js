@@ -50,7 +50,7 @@ var l8_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
 
 var scale_to_use = ee.Number(30);
 
-var l8_clipped = clip_to.clip_to(l8_coll,aoi,scale_to_use);
+var l8_clipped = clip_to.clip_to(l8_coll,AOI,scale_to_use);
 
 var l8_masked = landsat_mask.landsat_mask(l8_clipped);
 
@@ -58,9 +58,9 @@ var l8_scaled = landsat_scale.landsat_scale(l8_masked);
 
 var ndfi = landsat_ndfi.landsat_ndfi(l8_scaled);
 
-print(aoi);
+print(AOI);
 
-var time_series = time_series_create.time_series_create(ndfi, aoi, "area", scale_to_use);
+var time_series = time_series_create.time_series_create(ndfi, AOI, "area", scale_to_use);
 
 var plot = time_series_get_plot.time_series_get_plot(time_series,"ndfi2");
 
