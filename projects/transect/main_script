@@ -13,11 +13,15 @@ var polygon = /* color: #d63000 */ee.Geometry.Polygon(
 var bands = ['B.*'];
 
 var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
-
+/*
 var recent_mosaic_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/recent_mosaic_img_coll');
 
 var img = recent_mosaic_img_coll.recent_mosaic_img_coll(image_coll,polygon,100);
-
+*/
+print(image_coll.first());
+print(ee.ImageCollection(image_coll.first()));
+print(ee.ImageCollection(ee.ImageCollection(image_coll.first())));
+/*
 Map.addLayer(img);
 
 var transect_create_slice_img = require('users/emanuelespiritowork/SharedRepo:functions/transect_create_slice_img');
@@ -31,7 +35,7 @@ var transect_get_plot_ts = require('users/emanuelespiritowork/SharedRepo:functio
 var plot = transect_get_plot_ts.transect_get_plot_ts(slice);
 
 print(plot);
-
+*/
 //var s2_mask_img_coll = require('users/emanuelespiritowork/SharedRepo:function/s2_mask_img_coll');
 /*
 var s2_mosaic_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_mosaic_img_coll'); 
