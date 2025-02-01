@@ -12,10 +12,11 @@
  * Description: 
 *******************************************************/
 
-exports.clip_img_coll = function(img_coll, AOI, scale_to_use){
+exports.clip = function(img_coll, AOI, scale_to_use){
   
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
+  scale_to_use = ee.Number(scale_to_use);
   //print(AOI);
   
   var projection = img_coll.first()
