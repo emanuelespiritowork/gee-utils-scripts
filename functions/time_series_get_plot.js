@@ -23,7 +23,7 @@ exports.time_series_get_plot = function(time_series,which_property){
   //bisogna ordinare prendere tutte le proprietà tra tutte le feature
   //della collezione
   
-  var propertyNames;
+  var propertyNames = time_series.first().propertyNames();
   
   var get_property = function(feature){
     propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
