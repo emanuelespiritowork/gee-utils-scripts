@@ -19,6 +19,9 @@ exports.time_series_get_plot = function(time_series,which_property){
   time_series = ee.FeatureCollection(time_series);
   which_property = ee.String(which_property);
   
+  //se è mascherato non è detto che il primo lo contenga
+  //bisogna ordinare prendere tutte le proprietà tra tutte le feature
+  //della collezione
   var propertyNames = time_series.first().propertyNames();
   
   print(propertyNames);
