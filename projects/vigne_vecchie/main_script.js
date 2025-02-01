@@ -11,9 +11,9 @@ var aoi = /* color: #d63000 */ee.Feature(
         }),
     not_aoi = /* color: #98ff00 */ee.Feature(
         ee.Geometry.Polygon(
-            [[[9.03786294442245, 44.36933553392629],
-              [9.037004637537684, 44.36737211499929],
-              [9.041982817469325, 44.3685992595414]]]),
+            [[[9.031672194360064, 44.38170523804827],
+              [9.031709560841774, 44.38162238664404],
+              [9.031836694564443, 44.381674408389166]]]),
         {
           "area": "sea",
           "system:index": "0"
@@ -46,7 +46,7 @@ var time_series_get_plot = require("users/emanuelespiritowork/SharedRepo:functio
 var AOI = ee.FeatureCollection(ee.List([aoi,not_aoi]));
 
 var l8_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
-.filterDate("2013-01-01","2025-01-25");
+.filterDate("2015-01-01","2025-01-25");
 
 var scale_to_use = ee.Number(30);
 
