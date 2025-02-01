@@ -55,10 +55,20 @@ exports.time_series_get_plot = function(time_series,which_property){
       falseCase: null
     })
     });
-    
-  var anotherproperty = xProperty;
 
   var yProperties;
+  
+  yProperties = ee.Algorithms.If({
+    condition: which_property === undefined || which_property === null,
+    trueCase: propertyNames.remove('date')
+    .remove('system:time_start')
+    .remove('id')
+    .remove('system:index')
+    .getString(0),
+    falseCase: ee.String(which_property)
+  });
+  
+  /*
   if(which_property === undefined || which_property === null)
   {
     yProperties = propertyNames.remove('date')
@@ -69,7 +79,7 @@ exports.time_series_get_plot = function(time_series,which_property){
   
   }else{
     yProperties = ee.String(which_property);
-  }
+  }*/
   
   print(yProperties);
   
@@ -78,7 +88,7 @@ exports.time_series_get_plot = function(time_series,which_property){
   
   var plot = ui.Chart.feature.groups({
     features: time_series, 
-    xProperty: anotherproperty.getInfo(),
+    xProperty: xProperty.getInfo(),
     yProperty: yProperties.getInfo(),
     seriesProperty: 'id',
   }).setChartType("LineChart")
