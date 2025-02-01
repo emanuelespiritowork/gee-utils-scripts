@@ -13,18 +13,19 @@ var AOI = /* color: #d63000 */ee.Geometry.Polygon(
 *******************************************************/
 
 /******************************************************
- * ABOUT THIS PROJECT
- * I computed the time series of NDFI to see if any flooding happened to the Vigne Vecchie
- * street of Pernate, 28100, Novara, Italy
-*******************************************************/
-
-/******************************************************
  * FUNCTIONS
 *******************************************************/
 
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var landsat_mask = require("users/emanuelespiritowork/SharedRepo:functions/landsat_mask.js");
 var landsat_scale = require("users/emanuelespiritowork/SharedRepo:functions/landsat_scale.js");
+var landsat_ndfi = require("users/emanuelespiritowork/SharedRepo:functions/landsat_ndfi.js");
+
+/******************************************************
+ * ABOUT THIS PROJECT
+ * I computed the time series of NDFI to see if any flooding happened to the Vigne Vecchie
+ * street of Pernate, 28100, Novara, Italy
+*******************************************************/
 
 var l8_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
 .filterDate("2013-01-01","2025-01-25");
@@ -37,9 +38,11 @@ var l8_masked = landsat_mask.landsat_mask(l8_clipped);
 
 var l8_scaled = landsat_scale.landsat_scale(l8_masked);
 
-print(l8_scaled);
+var ndfi = landsat_ndfi.landsat_ndfi(l8_scaled);
 
-Map.addLayer(l8_scaled);
+print(ndfi);
+
+Map.addLayer(ndfi);
 
 
 
