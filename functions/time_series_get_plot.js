@@ -45,7 +45,7 @@ exports.time_series_get_plot = function(time_series,which_property){
   */
   //var propertyNames = time_series.first().propertyNames();
   
-  print(propertyNames);
+  print("senso",propertyNames);
   var xProperty = ee.Algorithms.If({
       condition: propertyNames.contains('system:time_start'),
       trueCase: 'system:time_start',
