@@ -30,16 +30,17 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
   
   //print(layer_names);
   
+  
+  var insert_null = function(element){
+    return ee.Number(element);
+  };
+  
   var create_single_field_value = function(feature_of_cycle){
     var values = ee.List(img.reduceRegion({
       geometry: feature_of_cycle.geometry(),
       reducer: ee.Reducer.median(),
       scale: scale_to_use,
       bestEffort: true}).values());
-    
-    var insert_null = function(element){
-      return ee.Number(element);
-    };
     
     values = values.map(insert_null);
       
