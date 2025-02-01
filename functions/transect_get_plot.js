@@ -9,12 +9,14 @@
  * PURPOSE OF THIS SCRIPT
  * Input: ee.FeatureCollection
  * Output: ui.Chart
- * Description: this script is a function that generates a plot
- * of the input transect slice done by transect_create_slice_img or
- * by transect_create_mosaic_img_coll
+ * Description: generates a plot of the input transect slice done by 
+ * transect_create_slice
 *******************************************************/
 
-exports.transect_get_plot_ts = function(transect_slice){
+exports.transect_get_plot = function(transect_slice){
+  
+  transect_slice = ee.FeatureCollection(transect_slice);
+  
   var yProperties = transect_slice.first().propertyNames()
   .remove('distance')
   .remove('system:index');
