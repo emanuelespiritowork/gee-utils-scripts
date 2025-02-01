@@ -73,17 +73,17 @@ var clipped_image = clip_img_coll.clip_img_coll(image_coll,AOI,scale_to_use);
 var s2_mask_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_mask_img_coll');
 
 var masked_image = s2_mask_img_coll.s2_mask_img_coll(clipped_image);
-
+/*
 var pixel_percentage_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/pixel_percentage_img_coll');
 
 print(masked_image);
 
 var pixel_percentage_image = pixel_percentage_img_coll.pixel_percentage_img_coll(masked_image,AOI,0.5,30);
-
+*/
 Map.addLayer(clipped_image.first());
 Map.addLayer(masked_image.first());
-Map.addLayer(pixel_percentage_image.first());
-
+//Map.addLayer(pixel_percentage_image.first());
+/*
 var s2_evi_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_img_coll');
 
 var evi = s2_evi_img_coll.s2_evi_img_coll(clipped_image);
@@ -98,3 +98,4 @@ var plot = time_series_get_plot_ts.time_series_get_plot_ts(time_series,"evi2");
 
 print(time_series);
 print(plot);
+*/
