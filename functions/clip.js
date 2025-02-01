@@ -9,7 +9,8 @@
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection or ee.Image, ee.FeatureCollection, ee.Number
  * Output: ee.ImageCollection
- * Description: 
+ * Description: clipping an image or image collection to the geometry
+ * of the feature collection at a specific scale
 *******************************************************/
 
 exports.clip = function(img_coll, AOI, scale_to_use){
