@@ -88,7 +88,7 @@ var pixel_percentage_image = pixel_percentage.pixel_percentage(masked_image,AOI,
 
 var s2_evi = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi.js');
 
-var evi = s2_evi.s2_evi(pixel_percentage_image);
+var evi = s2_evi.s2_evi(masked_image);
 
 print(evi.filterDate("2023-10-03","2023-10-06").sort("evi2",true).first().bandNames());
 
@@ -104,16 +104,20 @@ var time_series = time_series_create.time_series_create(evi,AOI,"id_geom",scale_
 
 print(time_series.sort("evi2",true).limit(4999));
 
-/*var time_series_name = time_series.select("[^date].*")
-.select("[^system].*")
-.first()*/
+var time_series_name = ""; 
+var null_var = time_series.select("[^date].*")
+.select("[^system:].*")
+.select("[^id].*")
+.first()
+.propertyNames();
+print(time_series_name);
 
 //print(time_series);
 //print(time_series.propertyNames());
 
-//var time_series_get_plot = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot.js');
+var time_series_get_plot = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot.js');
 
-//var plot = time_series_get_plot.time_series_get_plot(time_series,"evi2");
+var plot = time_series_get_plot.time_series_get_plot(time_series,"evi2");
 
 //print(time_series);
-//print(plot);
+print(plot);
