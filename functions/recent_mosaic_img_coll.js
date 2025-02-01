@@ -7,12 +7,12 @@
 
 /******************************************************
  * REQUIRES THE FOLLOWING FUNCTIONS:
- * clip_img_coll
- * mosaic_img_coll
+ * clip_to
+ * mosaic_to
 *******************************************************/
 
-var clip_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/clip_img_coll");
-var mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_img_coll");
+var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
+var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_to.js");
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
@@ -22,13 +22,13 @@ var mosaic_img_coll = require("users/emanuelespiritowork/SharedRepo:functions/mo
  * ee.ImageCollection and clip it into assets/AOI.
 *******************************************************/
 
-exports.recent_mosaic_img_coll = function(img_coll, AOI, scale_to_use){
+exports.recent_mosaic_to = function(img_coll, AOI, scale_to_use){
   
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
   scale_to_use = ee.Number(scale_to_use);
   
-  var clip = clip_img_coll.clip_img_coll(img_coll, AOI, scale_to_use);
+  var clip = clip_to.clip_to(img_coll, AOI, scale_to_use);
   var sorted_img_coll = clip.sort({
     property: "system:time_start", 
     ascending: false
@@ -42,7 +42,7 @@ exports.recent_mosaic_img_coll = function(img_coll, AOI, scale_to_use){
   
   var footprint = clip.first().geometry();
   
-  var mosaic = mosaic_img_coll.mosaic_img_coll(latest_img_coll);
+  var mosaic = mosaic_to.mosaic_to(latest_img_coll);
   
   return mosaic;
 };
