@@ -22,8 +22,7 @@ exports.time_series_get_plot = function(time_series,which_property){
   var propertyNames = time_series.first().propertyNames();
   
   var get_property = function(feature){
-    propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
-    return 0;
+    return propertyNames.cat(feature.propertyNames()).distinct();
   };
   
   var null_var = time_series.map(get_property);
