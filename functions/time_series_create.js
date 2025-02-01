@@ -46,7 +46,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
       var values_size = values.size();
       
       values = ee.Algorithms.If({
-        condition: ee.List(values).filter(ee.Filter.notNull["item"]).equals([]),
+        condition: ee.List(values).filter(ee.Filter.notNull(['item'])).equals([]),
         trueCase: ee.List.repeat(null,values_size),
         falseCase: values
       });
