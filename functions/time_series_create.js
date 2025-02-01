@@ -30,10 +30,10 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
   var space_series_img = function(img){
     var date = img.get('system:time_start');
     
-    /*
-    var insert_null = function(element){
+    
+    var make_number = function(element){
       return ee.Number(element);
-    };*/
+    };
     
     var create_single_field_value = function(feature_of_cycle){
       
@@ -42,6 +42,8 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
         reducer: ee.Reducer.median(),
         scale: scale_to_use,
         bestEffort: true}).values());
+        
+      values = values.map(make_number);
       
       /* wrong for the next ee.FeatureCollection()
       var values_size = values.size();
