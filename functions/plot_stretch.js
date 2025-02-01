@@ -18,8 +18,10 @@
 
 exports.plot_stretch = function(img,bands,stretch,scale_to_use){
   
+  img = ee.Image(img);
   stretch = ee.Number(stretch);
   scale_to_use = ee.Number(scale_to_use);
+  
   var geometry_of_image = img.geometry();
   var band_names;
   var num_bands;
