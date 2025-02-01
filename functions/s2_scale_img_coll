@@ -7,12 +7,12 @@
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.ImageCollection
- * Output: ee.ImageCollection
- * Description: as functions/s2_scale_img but for an image collection
+ * Input: ee.ImageCollection or ee.Image
+ * Output: ee.ImageCollection or ee.Image
+ * Description: scale and offset a Sentinel-2 L2A image collection
 *******************************************************/
 
-exports.s2_scale_img_coll = function(img_coll){
+exports.s2_scale = function(img_coll){
   
   img_coll = ee.ImageCollection(img_coll);
   
