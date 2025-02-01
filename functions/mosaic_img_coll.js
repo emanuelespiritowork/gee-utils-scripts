@@ -12,7 +12,7 @@
  * Description: make a mosaic of an image collection
 *******************************************************/
 
-exports.mosaic = function(img_coll){
+exports.mosaic_to = function(img_coll){
   
   var bands_names = img_coll.first().bandNames();
   
