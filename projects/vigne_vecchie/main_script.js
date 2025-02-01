@@ -2,11 +2,17 @@
 var AOI = 
     /* color: #d63000 */
     /* shown: false */
-    ee.Geometry.Polygon(
-        [[[8.667363735022805, 45.45548958753395],
-          [8.667798252883218, 45.45468054930045],
-          [8.668779941382668, 45.45496653623484],
-          [8.668329330268167, 45.455824488336106]]]);
+    ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[8.667363735022805, 45.45548958753395],
+                  [8.667798252883218, 45.45468054930045],
+                  [8.668779941382668, 45.45496653623484],
+                  [8.668329330268167, 45.455824488336106]]]),
+            {
+              "id": "vigne",
+              "system:index": "0"
+            })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /******************************************************
  * Author: Emanuele Spirito
@@ -23,6 +29,8 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
 var landsat_mask = require("users/emanuelespiritowork/SharedRepo:functions/landsat_mask.js");
 var landsat_scale = require("users/emanuelespiritowork/SharedRepo:functions/landsat_scale.js");
 var landsat_ndfi = require("users/emanuelespiritowork/SharedRepo:functions/landsat_ndfi.js");
+var time_series_create = require("users/emanuelespiritowork/SharedRepo:functions/time_series_create.js");
+var time_series_get_plot = require("users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot.js");
 
 /******************************************************
  * ABOUT THIS PROJECT
@@ -43,7 +51,11 @@ var l8_scaled = landsat_scale.landsat_scale(l8_masked);
 
 var ndfi = landsat_ndfi.landsat_ndfi(l8_scaled);
 
-print(ndfi);
+var time_series = time_series_create.time_series_create(ndfi, AOI, "id", scale_to_use);
+
+print(time_series);
+
+
 
 Map.addLayer(ndfi);
 
