@@ -9,11 +9,10 @@
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection
  * Output: ee.Image 
- * Description: this script is a function that makes a mosaic of an
- * ee.ImageCollection ordering correctly all the bands.
+ * Description: make a mosaic of an image collection
 *******************************************************/
 
-exports.mosaic_img_coll = function(img_coll){
+exports.mosaic = function(img_coll){
   
   var bands_names = img_coll.first().bandNames();
   
