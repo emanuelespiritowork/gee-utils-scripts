@@ -45,7 +45,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
       
       values = values.map(function(value){
         return ee.Algorithms.If({
-          condition: value.eq(undefined),
+          condition: ee.Number(value).eq(undefined),
           trueCase: null,
           falseCase: value
         });
