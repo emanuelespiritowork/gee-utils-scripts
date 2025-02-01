@@ -55,6 +55,8 @@ exports.time_series_get_plot = function(time_series,which_property){
       falseCase: null
     })
     });
+    
+  var anotherproperty = xProperty;
 
   var yProperties;
   if(which_property === undefined || which_property === null)
@@ -76,7 +78,7 @@ exports.time_series_get_plot = function(time_series,which_property){
   
   var plot = ui.Chart.feature.groups({
     features: time_series, 
-    xProperty: xProperty.getInfo(),
+    xProperty: anotherproperty.getInfo(),
     yProperty: yProperties.getInfo(),
     seriesProperty: 'id',
   }).setChartType("LineChart")
