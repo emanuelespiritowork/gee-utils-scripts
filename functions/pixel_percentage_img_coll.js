@@ -7,15 +7,15 @@
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.ImageCollection
- * Output: ee.ImageCollection
- * Description: this script is a function that, taken an already masked 
- * image (with any mask applied), considers as valid only the cropfields 
- * that are not masked for more than assets/threshold_percentage*100%. All
- * the other cropfields are completely masked.
+ * Input: ee.ImageCollection or ee.Image
+ * Output: ee.ImageCollection or ee.Image
+ * Description: taken an already masked image (with any mask applied), 
+ * considers as valid only the cropfields that are not masked for more 
+ * than threshold_percentage*100%. All the other cropfields are 
+ * completely masked.
 *******************************************************/
 
-exports.pixel_percentage_img_coll = function(img_coll,AOI,threshold_percentage,scale_to_use){
+exports.pixel_percentage = function(img_coll,AOI,threshold_percentage,scale_to_use){
   
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
