@@ -23,8 +23,8 @@ var square =
  * LOAD FUNCTIONS PATH
 *******************************************************/
 
-var clip_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/clip_img_coll.js');
-var plot_stretch_img = require('users/emanuelespiritowork/SharedRepo:functions/plot_stretch_img');
+var clip_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/clip_to.js');
+var plot_stretch_img = require('users/emanuelespiritowork/SharedRepo:functions/plot_stretch_img.js');
 
 /******************************************************
  * SCRIPT
@@ -37,6 +37,10 @@ var scale_to_use = ee.Number(30);
 var stretch = ee.Number(2);
 var threshold_percentage = ee.Number(0.5);
 var transect = null;
+
+print(AOI);
+print(ee.FeatureCollection(AOI));
+print(ee.FeatureCollection(ee.FeatureCollection(AOI)));
 
 var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate('2024-12-15','2025-01-24')
@@ -68,13 +72,13 @@ var clip_img = function(image){
   
 //var clipped_image = clip_img(first_image);
 
-var clipped_image = clip_img_coll.clip_img_coll(image_coll,AOI,scale_to_use);
+var clipped_image = clip_img_coll.clip_to(image_coll,AOI,scale_to_use);
 
 var s2_mask_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_mask_img_coll');
 
 var masked_image = s2_mask_img_coll.s2_mask_img_coll(clipped_image);
 
-var pixel_percentage_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/pixel_percentage_img_coll');
+var pixel_percentage_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/pixel_percentage.js');
 
 print(masked_image);
 
