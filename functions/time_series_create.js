@@ -43,7 +43,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
         scale: scale_to_use,
         bestEffort: true}).values());
       
-      /*
+      /* wrong for the next ee.FeatureCollection()
       var values_size = values.size();
       
       values = ee.Algorithms.If({
