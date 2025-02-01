@@ -9,9 +9,8 @@
  * PURPOSE OF THIS SCRIPT
  * Input: ee.FeatureCollection
  * Output: (nothing) 
- * Description: this script is a function that exports 
- * the time series (input) as a csv on your Google Drive. Time series
- * should be created using functions/time_series_create_img_coll
+ * Description: exports the time series as a csv on your Google Drive. 
+ * Use the function time_series_create.js to create the time_series
 *******************************************************/
 
 exports.time_series_export_ts = function(time_series, export_folder){
