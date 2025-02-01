@@ -8,7 +8,7 @@
 /******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection or ee.Image, ee.FeatureCollection, ee.Number
- * Output: ee.ImageCollection
+ * Output: ee.ImageCollection or ee.Image
  * Description: clipping an image or image collection to the geometry
  * of the feature collection at a specific scale
 *******************************************************/
