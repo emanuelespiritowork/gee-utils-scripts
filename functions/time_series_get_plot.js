@@ -109,7 +109,8 @@ exports.time_series_get_plot = function(time_series,which_property){
       type: 'linear'
     },*/
     linewidth: 1,
-    pointsize: 3
+    pointsize: 3,
+    interpolateNulls: true
   });
   
   return plot;
