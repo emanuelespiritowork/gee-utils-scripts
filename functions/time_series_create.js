@@ -43,13 +43,22 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
         scale: scale_to_use,
         bestEffort: true}).values());
       
+      var values_size = values.size();
+      
+      values = ee.Algorithms.If({
+        condition: values.filter(ee.Filter.notNull["item"]).equals([]),
+        trueCase: ee.List.repeat(null,values_size),
+        falseCase: values
+      });
+      
+      /*
       values = values.map(function(value){
         return ee.Algorithms.If({
           condition: ee.String(value).eq("undefined"),
           trueCase: null,
           falseCase: value
         });
-      });
+      });*/
       
       //values = values.map(insert_null);
         
