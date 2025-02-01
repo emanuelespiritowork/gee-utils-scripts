@@ -19,10 +19,10 @@ exports.time_series_get_plot = function(time_series,which_property){
   time_series = ee.FeatureCollection(time_series);
   which_property = ee.String(which_property);
   
-  var propertyNames = ee.List([]);
+  var propertyNames;
   
   var get_property = function(feature){
-    //propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
+    propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
     return 0;
   };
   
