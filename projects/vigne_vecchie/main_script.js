@@ -10,7 +10,7 @@ var AOI =
                   [8.668779941382668, 45.45496653623484],
                   [8.668329330268167, 45.455824488336106]]]),
             {
-              "id": "vigne",
+              "area": "vigne",
               "system:index": "0"
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
@@ -51,7 +51,9 @@ var l8_scaled = landsat_scale.landsat_scale(l8_masked);
 
 var ndfi = landsat_ndfi.landsat_ndfi(l8_scaled);
 
-var time_series = time_series_create.time_series_create(ndfi, AOI, "id", scale_to_use);
+print(AOI);
+
+var time_series = time_series_create.time_series_create(ndfi, AOI, "area", scale_to_use);
 
 var plot = time_series_get_plot.time_series_get_plot(time_series,"ndfi");
 
