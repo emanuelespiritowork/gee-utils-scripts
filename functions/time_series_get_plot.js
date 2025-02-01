@@ -10,11 +10,11 @@
  * Input: ee.FeatureCollection, ee.String
  * Output: ui.Chart
  * Description: this script is a function that generates the plot
- * of a time series created by functions/time_series_create_img_coll 
- * using as y variable the input string.  
+ * of a time series created by time_series_create using as y variable 
+ * the input string.  
 *******************************************************/
 
-exports.time_series_get_plot_ts = function(time_series,which_property){
+exports.time_series_get_plot = function(time_series,which_property){
   
   time_series = ee.FeatureCollection(time_series);
   which_property = ee.String(which_property);
