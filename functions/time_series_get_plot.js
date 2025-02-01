@@ -19,9 +19,9 @@ exports.time_series_get_plot = function(time_series,which_property){
   time_series = ee.FeatureCollection(time_series);
   which_property = ee.String(which_property);
   
-  /*
-  var propertyNames = time_series.first().propertyNames();
   
+  var propertyNames = time_series.first().propertyNames();
+  /*
   var get_property = function(feature){
     return ee.Feature(null,propertyNames.cat(feature.propertyNames()).distinct());
   };
