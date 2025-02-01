@@ -53,7 +53,10 @@ var ndfi = landsat_ndfi.landsat_ndfi(l8_scaled);
 
 var time_series = time_series_create.time_series_create(ndfi, AOI, "id", scale_to_use);
 
+var plot = time_series_get_plot.time_series_get_plot(time_series,"ndfi");
+
 print(time_series);
+print(plot);
 
 
 
