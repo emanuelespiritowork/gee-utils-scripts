@@ -17,7 +17,7 @@
 exports.time_series_export_ts = function(time_series, export_folder){
   
   time_series = ee.FeatureCollection(time_series);
-  //export
+  export_folder = ee.String(export_folder);
   
   var selectors_name = ee.String(time_series.first().propertyNames()
   .remove("system:index")
