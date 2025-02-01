@@ -7,12 +7,12 @@
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.ImageCollection
- * Output: ee.ImageCollection
- * Description: as functions/s2_mask_img but for an image collection
+ * Input: ee.ImageCollection or ee.Image
+ * Output: ee.ImageCollection or ee.Image
+ * Description: make a mask over a Sentinel-2 L2A image collection
 *******************************************************/
 
-exports.s2_mask_img_coll = function(img_coll){
+exports.s2_mask = function(img_coll){
   
   img_coll = ee.ImageCollection(img_coll);
   
