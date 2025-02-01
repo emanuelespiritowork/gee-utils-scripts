@@ -38,7 +38,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
       bestEffort: true}).values());
     
     var insert_null = function(element){
-      element = ee.Number(element);
+      return ee.Number(element);
     };
     
     values = values.map(insert_null);
