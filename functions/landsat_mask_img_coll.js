@@ -12,7 +12,7 @@
  * Description: as functions/landsat_mask_img but for an image collection
 *******************************************************/
 
-exports.landsat_mask_img_coll = function(img_coll){
+exports.landsat_mask = function(img_coll){
   
   img_coll = ee.ImageCollection(img_coll);
   
