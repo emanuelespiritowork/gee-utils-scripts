@@ -88,7 +88,7 @@ exports.time_series_get_plot = function(time_series,which_property){
   }*/
   
   
-  print(yProperties);
+  //print(yProperties);
   
   var p_title = 'Time series of ';
   p_title = ee.String(p_title).cat(ee.String(yProperties));
