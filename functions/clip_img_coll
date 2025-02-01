@@ -7,9 +7,9 @@
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.ImageCollection
+ * Input: ee.ImageCollection or ee.Image, ee.FeatureCollection, ee.Number
  * Output: ee.ImageCollection
- * Description: as functions/clip_img but for an ImageCollection
+ * Description: 
 *******************************************************/
 
 exports.clip_img_coll = function(img_coll, AOI, scale_to_use){
