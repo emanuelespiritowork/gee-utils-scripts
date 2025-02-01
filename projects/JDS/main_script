@@ -94,6 +94,10 @@ var time_series_create = require('users/emanuelespiritowork/SharedRepo:functions
 
 var time_series = time_series_create.time_series_create(evi,AOI,"id_geom",scale_to_use);
 
+var time_series_name = time_series.select("[^date].*")
+.select("[^system].*")
+.first()
+
 //print(time_series);
 //print(time_series.propertyNames());
 
