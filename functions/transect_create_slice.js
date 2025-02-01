@@ -18,7 +18,7 @@
 exports.transect_create_slice = function(img, transect, scale_to_use) {
   
   img = ee.Image(img);
-  //transect = ee.Geometry.LineString(transect); it has to be a LineString
+  //transect = ee.Geometry(transect); it has to be a LineString
   scale_to_use = ee.Number(scale_to_use);
   
   var length = transect.length();
