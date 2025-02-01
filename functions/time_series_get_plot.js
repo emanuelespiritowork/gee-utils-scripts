@@ -37,7 +37,8 @@ exports.time_series_get_plot = function(time_series,which_property){
   //var propertyNames = time_series.first().propertyNames();
   
   var counter = 0;
-  while(counter <= time_series.length()){
+  var counter_end = time_series.length();
+  while(counter <= counter_end){
     feature = time_series.get(counter);
     propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
   }
