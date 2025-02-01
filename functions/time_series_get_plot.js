@@ -101,13 +101,15 @@ exports.time_series_get_plot = function(time_series,which_property){
   }).setChartType("LineChart")
   .setOptions({
     title: p_title.getInfo(),
-    /*trendlines: {
+    trendlines: {
       0: {
-        color: 'CC0000',
-      },
-      visibleInLegend: 'true',
-      type: 'linear'
-    },*/
+        color: 'purple',
+        opacity: 0.2,
+        lineWidth: 10,
+        visibleInLegend: 'true',
+        type: 'linear'
+      }
+    },
     linewidth: 1,
     pointsize: 3,
     interpolateNulls: true
