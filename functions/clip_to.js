@@ -13,7 +13,7 @@
  * of the feature collection at a specific scale
 *******************************************************/
 
-exports.clip = function(img_coll, AOI, scale_to_use){
+exports.clip_to = function(img_coll, AOI, scale_to_use){
   
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
