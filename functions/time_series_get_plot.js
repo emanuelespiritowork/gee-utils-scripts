@@ -19,15 +19,16 @@ exports.time_series_get_plot = function(time_series,which_property){
   time_series = ee.FeatureCollection(time_series);
   which_property = ee.String(which_property);
   
+  /*
   var propertyNames = time_series.first().propertyNames();
   
   var get_property = function(feature){
-    return ee.List(propertyNames.cat(feature.propertyNames()).distinct());
+    return ee.Feature(null,propertyNames.cat(feature.propertyNames()).distinct());
   };
   
   var list_of_lists = time_series.map(get_property);
   
-  print(list_of_lists);
+  print(list_of_lists);*/
   
   //se è mascherato non è detto che il primo lo contenga
   //bisogna ordinare prendere tutte le proprietà tra tutte le feature
@@ -46,9 +47,9 @@ exports.time_series_get_plot = function(time_series,which_property){
   */
   //var propertyNames = time_series.first().propertyNames();
   
-  print("senso",propertyNames);
+  //print("senso",propertyNames);
   
-  /*
+  
   var xProperty = ee.Algorithms.If({
       condition: propertyNames.contains('system:time_start'),
       trueCase: 'system:time_start',
@@ -59,8 +60,9 @@ exports.time_series_get_plot = function(time_series,which_property){
     })
     });
 
-  var yProperties;
+  var yProperties = which_property;
   
+  /*
   yProperties = ee.Algorithms.If({
     condition: which_property === undefined || which_property === null,
     trueCase: propertyNames.remove('date')
@@ -69,7 +71,7 @@ exports.time_series_get_plot = function(time_series,which_property){
     .remove('system:index')
     .getString(0),
     falseCase: ee.String(which_property)
-  });
+  });*/
   
   /*
   if(which_property === undefined || which_property === null)
@@ -84,7 +86,7 @@ exports.time_series_get_plot = function(time_series,which_property){
     yProperties = ee.String(which_property);
   }*/
   
-  /*
+  
   print(yProperties);
   
   var p_title = 'Time series of ';
@@ -109,7 +111,5 @@ exports.time_series_get_plot = function(time_series,which_property){
     pointsize: 3
   });
   
-  return plot;*/
-  
-  return 0;
+  return plot;
 };
