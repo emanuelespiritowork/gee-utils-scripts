@@ -24,14 +24,16 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
   id_name = ee.String(id_name);
   scale_to_use = ee.Number(scale_to_use);
   
+  var layer_names = img_coll.first().bandNames();
+  //print(layer_names);
+  
   var space_series_img = function(img){
     var date = img.get('system:time_start');
-    var layer_names = img.bandNames();
-    //print(layer_names);
     
+    /*
     var insert_null = function(element){
       return ee.Number(element);
-    };
+    };*/
     
     var create_single_field_value = function(feature_of_cycle){
       var values = ee.List(img.reduceRegion({
@@ -40,7 +42,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
         scale: scale_to_use,
         bestEffort: true}).values());
         
-        values = values.map(insert_null);
+        //values = values.map(insert_null);
         
         //print("values",values);
         
