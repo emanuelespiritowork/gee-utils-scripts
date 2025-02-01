@@ -23,20 +23,20 @@ var square =
  * LOAD FUNCTIONS PATH
 *******************************************************/
 
-var clip_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/clip_img_coll');
+var clip_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/clip_img_coll.js');
 var plot_stretch_img = require('users/emanuelespiritowork/SharedRepo:functions/plot_stretch_img');
 
 /******************************************************
  * SCRIPT
 *******************************************************/
 
-AOI.AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI");
-export_folder.export_folder = ee.String("Exports");
-id_name.id_name = ee.String("id_geom");
-scale_to_use.scale_to_use = ee.Number(30);
-stretch.stretch = ee.Number(2);
-threshold_percentage.threshold_percentage = ee.Number(0.5);
-transect.transect = null;
+var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/AOI");
+var export_folder = ee.String("Exports");
+var id_name = ee.String("id_geom");
+var scale_to_use = ee.Number(30);
+var stretch = ee.Number(2);
+var threshold_percentage = ee.Number(0.5);
+var transect = null;
 
 var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate('2024-12-15','2025-01-24')
@@ -46,9 +46,8 @@ var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 
 var first_image = image_coll.first();
 
-var AOI = AOI.AOI;
-//var AOI = ee.FeatureCollection(square);
-var scale_to_use = scale_to_use.scale_to_use;
+AOI = AOI;
+//AOI = ee.FeatureCollection(square);
 var geometry = AOI.geometry();
 print(AOI);
 print(geometry);
@@ -69,7 +68,7 @@ var clip_img = function(image){
   
 //var clipped_image = clip_img(first_image);
 
-var clipped_image = clip_img_coll.clip_img_coll(image_coll,AOI,scale_to_use.scale_to_use);
+var clipped_image = clip_img_coll.clip_img_coll(image_coll,AOI,scale_to_use);
 
 var s2_mask_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_mask_img_coll');
 
