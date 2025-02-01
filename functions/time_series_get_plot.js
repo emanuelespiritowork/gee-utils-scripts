@@ -22,7 +22,17 @@ exports.time_series_get_plot = function(time_series,which_property){
   //se è mascherato non è detto che il primo lo contenga
   //bisogna ordinare prendere tutte le proprietà tra tutte le feature
   //della collezione
-  var propertyNames = time_series.first().propertyNames();
+  
+  var propertyNames;
+  
+  var get_property = function(feature){
+    propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
+    return 0;
+  };
+  
+  var null_var = time_series.map(get_property);
+  
+  //var propertyNames = time_series.first().propertyNames();
   
   print(propertyNames);
   var xProperty = ee.Algorithms.If({
