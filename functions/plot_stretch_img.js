@@ -7,16 +7,16 @@
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.Image, ee.List([ee.String,ee.String,ee.String])
+ * Input: ee.Image, ee.Number, ee.Number
  * Output: (no output) it prints an image layer 
  * Description: this script has a function that want to create an image 
- * stretch of assets/stretch*sigma of a ee.Image and print it on 
+ * stretch of stretch*sigma of a ee.Image and print it on 
  * your map composing the bands you select. If you do not select 
  * any band, the function will choose the first three bands. This script
- * works at assets/scale_to_use scale
+ * works at scale_to_use scale
 *******************************************************/
 
-exports.plot_stretch_img = function(img,bands,stretch,scale_to_use){
+exports.plot_stretch = function(img,bands,stretch,scale_to_use){
   
   stretch = ee.Number(stretch);
   scale_to_use = ee.Number(scale_to_use);
