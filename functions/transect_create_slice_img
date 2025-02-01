@@ -15,7 +15,7 @@
  * https://code.earthengine.google.com/b09759b8ac60366ee2ae4eccdd19e615
 *******************************************************/
 
-exports.transect_create_slice_img = function(img, transect, scale_to_use) {
+exports.transect_create_slice = function(img, transect, scale_to_use) {
   
   img = ee.Image(img);
   //transect = ee.Geometry.LineString(transect); it has to be a LineString
