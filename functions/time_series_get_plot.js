@@ -22,7 +22,7 @@ exports.time_series_get_plot = function(time_series,which_property){
   var propertyNames = time_series.first().propertyNames();
   
   var get_property = function(feature){
-    return propertyNames.cat(feature.propertyNames()).distinct();
+    return ee.Feature(null,propertyNames.cat(feature.propertyNames()).distinct());
   };
   
   var list_of_lists = time_series.map(get_property);
