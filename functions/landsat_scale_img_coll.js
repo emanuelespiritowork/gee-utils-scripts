@@ -7,12 +7,12 @@
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.ImageCollection
- * Output: ee.ImageCollection
- * Description: as landsat_scale_img but for image collection
+ * Input: ee.ImageCollection or ee.Image
+ * Output: ee.ImageCollection or ee.Image
+ * Description: apply scale and offset to Landsat 8/9 image 
 *******************************************************/
 
-exports.landsat_scale_img_coll = function(img_coll){
+exports.landsat_scale = function(img_coll){
   
   img_coll = ee.ImageCollection(img_coll);
   
