@@ -7,12 +7,12 @@
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.ImageCollection
- * Output: ee.ImageCollection
- * Description: as functions/s2_ndfi_img but for an image collection
+ * Input: ee.ImageCollection or ee.Image
+ * Output: ee.ImageCollection or ee.Image
+ * Description: create an NDFI layer over a Sentinel-2 L2A image collection
 *******************************************************/
 
-exports.s2_ndfi_img_coll = function(img_coll){
+exports.s2_ndfi = function(img_coll){
   
   img_coll = ee.ImageCollection(img_coll);
   
