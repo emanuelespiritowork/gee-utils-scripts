@@ -19,7 +19,7 @@ var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_t
  * Input: ee.ImageCollection
  * Output: ee.Image 
  * Description: this script is a function that makes a mosaic of an
- * ee.ImageCollection and clip it into assets/AOI.
+ * ee.ImageCollection and clip it into AOI at a specific scale
 *******************************************************/
 
 exports.recent_mosaic = function(img_coll, AOI, scale_to_use){
