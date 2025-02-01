@@ -102,7 +102,7 @@ exports.time_series_get_plot = function(time_series,which_property){
   }).setChartType("LineChart")
   .setOptions({
     title: p_title.getInfo(),
-    trendlines: {
+    /*trendlines: {
       0: {
         color: 'purple',
         opacity: 0.2,
@@ -110,7 +110,7 @@ exports.time_series_get_plot = function(time_series,which_property){
         visibleInLegend: 'true',
         type: 'linear'
       }
-    },
+    },*/
     linewidth: 1,
     pointsize: 3,
     interpolateNulls: true
