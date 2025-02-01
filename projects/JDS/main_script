@@ -23,8 +23,8 @@ var square =
  * LOAD FUNCTIONS PATH
 *******************************************************/
 
-var clip_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/clip_to.js');
-var plot_stretch_img = require('users/emanuelespiritowork/SharedRepo:functions/plot_stretch_img.js');
+var clip_to = require('users/emanuelespiritowork/SharedRepo:functions/clip_to.js');
+var s2_mask = require('users/emanuelespiritowork/SharedRepo:functions/s2_mask.js');
 
 /******************************************************
  * SCRIPT
@@ -43,10 +43,10 @@ print(ee.FeatureCollection(AOI));
 print(ee.FeatureCollection(ee.FeatureCollection(AOI)));
 
 var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-.filterDate('2024-12-15','2025-01-24')
+.filterDate('2024-01-01','2025-01-24')
 .filterBounds(AOI)
-.filter(ee.Filter.gt("CLOUDY_PIXEL_PERCENTAGE",30))
-.sort("CLOUDY_PIXEL_PERCENTAGE",true);
+//.filter(ee.Filter.gt("CLOUDY_PIXEL_PERCENTAGE",30))
+//.sort("CLOUDY_PIXEL_PERCENTAGE",true);
 
 var first_image = image_coll.first();
 
@@ -72,34 +72,31 @@ var clip_img = function(image){
   
 //var clipped_image = clip_img(first_image);
 
-var clipped_image = clip_img_coll.clip_to(image_coll,AOI,scale_to_use);
+var clipped_image = clip_to.clip_to(image_coll,AOI,scale_to_use);
 
-var s2_mask_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_mask_img_coll');
+var masked_image = s2_mask.s2_mask(clipped_image);
 
-var masked_image = s2_mask_img_coll.s2_mask_img_coll(clipped_image);
-
-var pixel_percentage_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/pixel_percentage.js');
+var pixel_percentage = require('users/emanuelespiritowork/SharedRepo:functions/pixel_percentage.js');
 
 print(masked_image);
 
-var pixel_percentage_image = pixel_percentage_img_coll.pixel_percentage_img_coll(masked_image,AOI,0.5,30);
+var pixel_percentage_image = pixel_percentage.pixel_percentage(masked_image,AOI,0.5,30);
 
 Map.addLayer(clipped_image.first());
 Map.addLayer(masked_image.first());
 Map.addLayer(pixel_percentage_image.first());
-/*
-var s2_evi_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi_img_coll');
 
-var evi = s2_evi_img_coll.s2_evi_img_coll(pixel_percentage_image);
+var s2_evi = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi.js');
 
-var time_series_create_img_coll = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create_img_coll');
+var evi = s2_evi.s2_evi(pixel_percentage_image);
 
-var time_series = time_series_create_img_coll.time_series_create_img_coll(evi,AOI,"id_geom",30);
+var time_series_create = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create.js');
 
-var time_series_get_plot_ts = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot_ts');
+var time_series = time_series_create.time_series_create(evi,AOI,"id_geom",30);
 
-var plot = time_series_get_plot_ts.time_series_get_plot_ts(time_series,"evi2");
+var time_series_get_plot = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot.js');
+
+var plot = time_series_get_plot.time_series_get_plot(time_series,"evi2");
 
 print(time_series);
 print(plot);
-*/
