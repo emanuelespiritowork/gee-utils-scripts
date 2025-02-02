@@ -181,10 +181,14 @@ var landsat_mask_img = function(image){
     
     return image.updateMask(mask);
   };
-
+  
+var img = l8_coll.filterDate("2014-03-28","2014-03-30")
+.filterBounds(ee.Feature(geometry).geometry()).first();
+  
 var image_mask = landsat_mask_img(l8_coll.filterDate("2014-03-28","2014-03-30")
 .filterBounds(ee.Feature(geometry).geometry()).first());
 
+Map.addLayer(img);
 Map.addLayer(image_mask);
 
 
