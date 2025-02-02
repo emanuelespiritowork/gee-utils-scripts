@@ -1,8 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var aoi = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.Feature(
+var aoi = /* color: #d63000 */ee.Feature(
         ee.Geometry.Polygon(
             [[[8.667363735022805, 45.45548958753395],
               [8.667798252883218, 45.45468054930045],
@@ -12,10 +9,7 @@ var aoi =
           "area": "vigne",
           "system:index": "0"
         }),
-    geometry = 
-    /* color: #98ff00 */
-    /* shown: false */
-    ee.Feature(
+    geometry = /* color: #98ff00 */ee.Feature(
         ee.Geometry.Polygon(
             [[[8.684830848659528, 44.38687624849542],
               [8.696176931103023, 44.383842724743616],
@@ -62,11 +56,11 @@ var l8_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
 
 var scale_to_use = ee.Number(30);
 
-var l8_clipped = clip_to.clip_to(l8_coll,AOI,scale_to_use);
-
-var l8_masked = landsat_mask.landsat_mask(l8_clipped);
+var l8_masked = landsat_mask.landsat_mask(l8_coll);
 
 var l8_scaled = landsat_scale.landsat_scale(l8_masked);
+
+//var l8_clipped = clip_to.clip_to(l8_scaled,AOI,scale_to_use);
 
 var ndvi = landsat_ndvi.landsat_ndvi(l8_scaled);
 
