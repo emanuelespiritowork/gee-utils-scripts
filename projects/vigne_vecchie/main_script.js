@@ -182,7 +182,7 @@ var landsat_mask_img = function(image){
     return image.updateMask(mask);
   };
 
-var image_mask = landsat_mask_img.landsat_mask_img(l8_coll.filterDate("2014-03-28","2014-03-30")
+var image_mask = landsat_mask_img(l8_coll.filterDate("2014-03-28","2014-03-30")
 .filterBounds(ee.Feature(geometry).geometry()).first());
 
 Map.addLayer(image_mask);
