@@ -17,7 +17,13 @@ exports.s2_ndvi = function(img_coll){
   img_coll = ee.ImageCollection(img_coll);
   
   var s2_ndvi_img = function(image){
-    var ndvi = image.normalizedDifference(['B8','B4']).rename('ndvi');
+    var ndvi = image.expression({
+      expression: '(NIR - RED) / (NIR + RED)',
+      map: { // Map between variables in the expression and images.
+      'NIR': image.select('B8'),
+      'RED': image.select('B4')
+      }
+    }).rename('ndvi');
     var time_start_value = image.get('system:time_start');
     ndvi = ndvi.set({'system:time_start':time_start_value});
     return ndvi;
