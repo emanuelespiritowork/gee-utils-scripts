@@ -17,7 +17,7 @@ exports.landsat_ndvi = function(img_coll){
   img_coll = ee.ImageCollection(img_coll);
   
   var landsat_ndvi_img = function(image){
-    var ndvi = image.normalizedDifference(['SR_B4','SR_B7']).rename('ndvi');
+    var ndvi = image.normalizedDifference(['SR_B8','SR_B4']).rename('ndvi');
     var time_start_value = image.get('system:time_start');
     ndvi = ndvi.set({'system:time_start':time_start_value});
     return ndvi;
