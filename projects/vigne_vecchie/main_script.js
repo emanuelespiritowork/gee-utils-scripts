@@ -75,7 +75,7 @@ print(time_series);
 print(plot);
 
 Map.addLayer(l8_coll.filterDate("2014-03-28","2014-03-30")
-.filterBounds(geometry).first());
+.filterBounds(ee.Feature(geometry)).first());
 
 //Map.addLayer(ndvi);
 
