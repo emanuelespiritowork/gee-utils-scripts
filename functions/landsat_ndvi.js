@@ -20,7 +20,7 @@ exports.landsat_ndvi = function(img_coll){
     var ndvi = image.normalizedDifference(['SR_B4','SR_B7']).rename('ndvi');
     var time_start_value = image.get('system:time_start');
     ndvi = ndvi.set({'system:time_start':time_start_value});
-    return ndvi2;
+    return ndvi;
   };
   
   return img_coll.map(landsat_ndvi_img);
