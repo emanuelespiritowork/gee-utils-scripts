@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var aoi = /* color: #d63000 */ee.Feature(
+var aoi = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Feature(
         ee.Geometry.Polygon(
             [[[8.667363735022805, 45.45548958753395],
               [8.667798252883218, 45.45468054930045],
@@ -9,7 +12,10 @@ var aoi = /* color: #d63000 */ee.Feature(
           "area": "vigne",
           "system:index": "0"
         }),
-    geometry = /* color: #98ff00 */ee.Feature(
+    geometry = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.Feature(
         ee.Geometry.Polygon(
             [[[8.687856380428315, 44.38776563455465],
               [8.690018579204839, 44.387262364104345],
@@ -75,7 +81,16 @@ print(time_series);
 print(plot);
 
 Map.addLayer(l8_coll.filterDate("2014-03-28","2014-03-30")
-.filterBounds(ee.Feature(geometry)).first());
+.filterBounds(ee.Feature(geometry).geometry()).first());
+
+Map.addLayer(l8_masked.filterDate("2014-03-28","2014-03-30")
+.filterBounds(ee.Feature(geometry).geometry()).first());
+
+Map.addLayer(l8_scaled.filterDate("2014-03-28","2014-03-30")
+.filterBounds(ee.Feature(geometry).geometry()).first());
+
+Map.addLayer(ndvi.filterDate("2014-03-28","2014-03-30")
+.filterBounds(ee.Feature(geometry).geometry()).first());
 
 //Map.addLayer(ndvi);
 
