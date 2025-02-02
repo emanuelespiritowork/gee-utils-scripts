@@ -12,11 +12,14 @@ var aoi =
           "area": "vigne",
           "system:index": "0"
         }),
-    geometry = /* color: #98ff00 */ee.Feature(
+    geometry = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.Feature(
         ee.Geometry.Polygon(
-            [[[8.687856380428315, 44.38776563455465],
-              [8.690018579204839, 44.387262364104345],
-              [8.691043845188853, 44.388609357553676],
+            [[[8.684830848659528, 44.38687624849542],
+              [8.696176931103023, 44.383842724743616],
+              [8.69857548810268, 44.38750530599057],
               [8.689235542779235, 44.38975150368779]]]),
         {
           "area": "water",
@@ -71,6 +74,7 @@ print(AOI);
 
 var time_series = time_series_create.time_series_create(ndvi, AOI, "area", scale_to_use);
 
+
 var plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi");
 
 print(time_series);
@@ -83,6 +87,9 @@ Map.addLayer(l8_coll.filterDate("2014-03-28","2014-03-30")
 Map.addLayer(l8_coll.filterDate("2014-03-28","2014-03-30")
 .filterBounds(ee.Feature(geometry).geometry()).sort("system:time_start",false).first());
 
+Map.addLayer(l8_clipped.filterDate("2014-03-28","2014-03-30")
+.filterBounds(ee.Feature(geometry).geometry()).first());
+
 Map.addLayer(l8_masked.filterDate("2014-03-28","2014-03-30")
 .filterBounds(ee.Feature(geometry).geometry()).first());
 
@@ -90,14 +97,17 @@ Map.addLayer(l8_scaled.filterDate("2014-03-28","2014-03-30")
 .filterBounds(ee.Feature(geometry).geometry()).first());
 
 Map.addLayer(ndvi.filterDate("2014-03-28","2014-03-30")
-.filterBounds(ee.Feature(geometry).geometry()).sort("system:time_start",true).first());
+.filterBounds(ee.Feature(geometry).geometry()).first());
 
 print(ndvi.filterDate("2014-03-28","2014-03-30")
 .filterBounds(ee.Feature(geometry).geometry()));
 
 //Map.addLayer(ndvi);
 
+var image_mask = landsat_mask.landsat_mask(l8_coll.filterDate("2014-03-28","2014-03-30")
+.filterBounds(ee.Feature(geometry).geometry()));
 
+Map.addLayer(image_mask);
 
 
 
