@@ -12,10 +12,7 @@ var aoi =
           "area": "vigne",
           "system:index": "0"
         }),
-    geometry = 
-    /* color: #98ff00 */
-    /* shown: false */
-    ee.Feature(
+    geometry = /* color: #98ff00 */ee.Feature(
         ee.Geometry.Polygon(
             [[[8.687856380428315, 44.38776563455465],
               [8.690018579204839, 44.387262364104345],
@@ -50,9 +47,9 @@ var time_series_get_plot = require("users/emanuelespiritowork/SharedRepo:functio
  * street of Pernate, 28100, Novara, Italy
 *******************************************************/
 
-var AOI = ee.FeatureCollection(ee.List([aoi,geometry]));
+//var AOI = ee.FeatureCollection(ee.List([aoi,geometry]));
 
-//var AOI = ee.FeatureCollection(aoi);
+var AOI = ee.FeatureCollection(geometry);
 
 var l8_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
 .filterDate("2013-01-01","2025-01-25")
@@ -81,7 +78,10 @@ print(time_series);
 print(plot);
 
 Map.addLayer(l8_coll.filterDate("2014-03-28","2014-03-30")
-.filterBounds(ee.Feature(geometry).geometry()).first());
+.filterBounds(ee.Feature(geometry).geometry()).sort("system:time_start",true).first());
+
+Map.addLayer(l8_coll.filterDate("2014-03-28","2014-03-30")
+.filterBounds(ee.Feature(geometry).geometry()).sort("system:time_start",false).first());
 
 Map.addLayer(l8_masked.filterDate("2014-03-28","2014-03-30")
 .filterBounds(ee.Feature(geometry).geometry()).first());
@@ -90,7 +90,10 @@ Map.addLayer(l8_scaled.filterDate("2014-03-28","2014-03-30")
 .filterBounds(ee.Feature(geometry).geometry()).first());
 
 Map.addLayer(ndvi.filterDate("2014-03-28","2014-03-30")
-.filterBounds(ee.Feature(geometry).geometry()).first());
+.filterBounds(ee.Feature(geometry).geometry()).sort("system:time_start",true).first());
+
+print(ndvi.filterDate("2014-03-28","2014-03-30")
+.filterBounds(ee.Feature(geometry).geometry()));
 
 //Map.addLayer(ndvi);
 
