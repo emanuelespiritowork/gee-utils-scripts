@@ -23,5 +23,5 @@ exports.landsat_ndwi = function(img_coll){
     return ndwi;
   };
   
-  return img_coll.map(landsat_ndfi_img);
+  return img_coll.map(landsat_ndwi_img);
 };
