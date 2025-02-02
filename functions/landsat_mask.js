@@ -41,6 +41,8 @@ exports.landsat_mask = function(img_coll){
     var cloud_confidence_medium = ee.Image(2 << 10);
     var snow_confidence_high = ee.Image(3 << 12);
     var snow_confidence_medium = ee.Image(2 << 12);
+    var cirrus_confidence_high = ee.Image(3 << 14);
+    var cirrus_confidence_medium = ee.Image(2 << 14);
     
     var select_cloud_bit = qa_pixel_layer.bitwiseAnd(cloud_confidence_high);
     
@@ -58,6 +60,14 @@ exports.landsat_mask = function(img_coll){
     var snow_confidence_medium_mask = select_snow_bit
     .eq(snow_confidence_medium);
     
+    var select_cirrus_bit = qa_pixel_layer.bitwiseAnd(cirrus_confidence_high);
+    
+    var cirrus_confidence_high_mask = select_cirrus_bit
+    .eq(cirrus_confidence_high);
+    
+    var cirrus_confidence_medium_mask = select_cirrus_bit
+    .eq(cirrus_confidence_medium);
+    
     //Apply masks
     
     var opposite_mask = ee.Image(0)
@@ -69,7 +79,9 @@ exports.landsat_mask = function(img_coll){
     .or(cloud_confidence_high_mask)
     .or(cloud_confidence_medium_mask)
     .or(snow_confidence_high_mask)
-    .or(snow_confidence_medium_mask);
+    .or(snow_confidence_medium_mask)
+    .or(cirrus_confidence_high_mask)
+    .or(cirrus_confidence_medium_mask);
     //.or(image.select("SR_B2").multiply(0.0000275).add(-0.2).gt(5000));//my mask
     
     //creating the xor (1 will be not cloud pixel, 0 will be cloud pixel)
