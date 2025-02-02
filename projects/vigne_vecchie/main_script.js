@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var aoi = /* color: #d63000 */ee.Feature(
+var aoi = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Feature(
         ee.Geometry.Polygon(
             [[[8.667363735022805, 45.45548958753395],
               [8.667798252883218, 45.45468054930045],
@@ -9,7 +12,10 @@ var aoi = /* color: #d63000 */ee.Feature(
           "area": "vigne",
           "system:index": "0"
         }),
-    geometry = /* color: #98ff00 */ee.Feature(
+    geometry = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.Feature(
         ee.Geometry.Polygon(
             [[[8.684830848659528, 44.38687624849542],
               [8.696176931103023, 44.383842724743616],
@@ -34,13 +40,13 @@ var aoi = /* color: #d63000 */ee.Feature(
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var landsat_mask = require("users/emanuelespiritowork/SharedRepo:functions/landsat_mask.js");
 var landsat_scale = require("users/emanuelespiritowork/SharedRepo:functions/landsat_scale.js");
-var landsat_ndvi = require("users/emanuelespiritowork/SharedRepo:functions/landsat_ndvi.js");
+var landsat_ndwi = require("users/emanuelespiritowork/SharedRepo:functions/landsat_ndwi.js");
 var time_series_create = require("users/emanuelespiritowork/SharedRepo:functions/time_series_create.js");
 var time_series_get_plot = require("users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot.js");
 
 /******************************************************
  * ABOUT THIS PROJECT
- * I computed the time series of ndvi to see if any flooding happened to the Vigne Vecchie
+ * I computed the time series of ndwi to see if any flooding happened to the Vigne Vecchie
  * street of Pernate, 28100, Novara, Italy
 *******************************************************/
 
@@ -56,49 +62,46 @@ var l8_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
 
 var scale_to_use = ee.Number(30);
 
-var l8_masked = landsat_mask.landsat_mask(l8_coll);
+var l8_clipped = clip_to.clip_to(l8_coll,AOI,scale_to_use);
+
+var l8_masked = landsat_mask.landsat_mask(l8_clipped);
 
 var l8_scaled = landsat_scale.landsat_scale(l8_masked);
 
-//var l8_clipped = clip_to.clip_to(l8_scaled,AOI,scale_to_use);
-
-var ndvi = landsat_ndvi.landsat_ndvi(l8_scaled);
+var ndwi = landsat_ndwi.landsat_ndwi(l8_scaled);
 
 print(AOI);
 
-var time_series = time_series_create.time_series_create(ndvi, AOI, "area", scale_to_use);
+var time_series = time_series_create.time_series_create(ndwi, AOI, "area", scale_to_use);
 
 
-var plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi");
+var plot = time_series_get_plot.time_series_get_plot(time_series,"ndwi");
 
 print(time_series);
-//print(time_series.sort("ndvi2",false).first().get("ndvi2"));
+//print(time_series.sort("ndwi2",false).first().get("ndwi2"));
 print(plot);
 
-/*
-Map.addLayer(l8_coll.filterDate("2014-03-28","2014-03-30")
-.filterBounds(ee.Feature(geometry).geometry()).sort("system:time_start",true).first());
 
 Map.addLayer(l8_coll.filterDate("2014-03-28","2014-03-30")
-.filterBounds(ee.Feature(geometry).geometry()).sort("system:time_start",false).first());
+.filterBounds(geometry.geometry()).first());
 
 Map.addLayer(l8_clipped.filterDate("2014-03-28","2014-03-30")
-.filterBounds(ee.Feature(geometry).geometry()).first());
+.filterBounds(geometry.geometry()).first());
 
 Map.addLayer(l8_masked.filterDate("2014-03-28","2014-03-30")
-.filterBounds(ee.Feature(geometry).geometry()).first());
+.filterBounds(geometry.geometry()).first());
 
 Map.addLayer(l8_scaled.filterDate("2014-03-28","2014-03-30")
-.filterBounds(ee.Feature(geometry).geometry()).first());
+.filterBounds(geometry.geometry()).first());
 
-Map.addLayer(ndvi.filterDate("2014-03-28","2014-03-30")
-.filterBounds(ee.Feature(geometry).geometry()).first());
+Map.addLayer(ndwi.filterDate("2014-03-28","2014-03-30")
+.filterBounds(geometry.geometry()).first());
 
-print(ndvi.filterDate("2014-03-28","2014-03-30")
-.filterBounds(ee.Feature(geometry).geometry()));
-*/
-//Map.addLayer(ndvi);
+print(ndwi.filterDate("2014-03-28","2014-03-30")
+.filterBounds(geometry.geometry()));
 
+//Map.addLayer(ndwi);
+/*
 var landsat_mask_img = function(image){
     var qa_pixel_layer = image.select("QA_PIXEL");
     
@@ -188,7 +191,7 @@ var image_mask_2 = landsat_mask.landsat_mask(l8_coll.filterDate("2014-03-28","20
 Map.addLayer(img);
 Map.addLayer(image_mask);
 Map.addLayer(image_mask_2.first());
-
+*/
 
 
 
