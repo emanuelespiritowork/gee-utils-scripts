@@ -34,13 +34,13 @@ var aoi = /* color: #d63000 */ee.Feature(
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var landsat_mask = require("users/emanuelespiritowork/SharedRepo:functions/landsat_mask.js");
 var landsat_scale = require("users/emanuelespiritowork/SharedRepo:functions/landsat_scale.js");
-var landsat_ndwi = require("users/emanuelespiritowork/SharedRepo:functions/landsat_ndwi.js");
+var landsat_ndvi = require("users/emanuelespiritowork/SharedRepo:functions/landsat_ndvi.js");
 var time_series_create = require("users/emanuelespiritowork/SharedRepo:functions/time_series_create.js");
 var time_series_get_plot = require("users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot.js");
 
 /******************************************************
  * ABOUT THIS PROJECT
- * I computed the time series of ndwi to see if any flooding happened to the Vigne Vecchie
+ * I computed the time series of ndvi to see if any flooding happened to the Vigne Vecchie
  * street of Pernate, 28100, Novara, Italy
 *******************************************************/
 
@@ -62,21 +62,21 @@ var l8_masked = landsat_mask.landsat_mask(l8_clipped);
 
 var l8_scaled = landsat_scale.landsat_scale(l8_masked);
 
-var ndwi = landsat_ndwi.landsat_ndwi(l8_scaled);
+var ndvi = landsat_ndvi.landsat_ndvi(l8_scaled);
 
 print(AOI);
 
-var time_series = time_series_create.time_series_create(ndwi, AOI, "area", scale_to_use);
+var time_series = time_series_create.time_series_create(ndvi, AOI, "area", scale_to_use);
 
-var plot = time_series_get_plot.time_series_get_plot(time_series,"ndwi");
+var plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi");
 
 print(time_series);
-//print(time_series.sort("ndwi2",false).first().get("ndwi2"));
+//print(time_series.sort("ndvi2",false).first().get("ndvi2"));
 print(plot);
 
 
 
-//Map.addLayer(ndwi);
+//Map.addLayer(ndvi);
 
 
 
