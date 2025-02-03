@@ -27,6 +27,8 @@ exports.mosaic_date = function(img_coll, AOI, start_date, latest_date, scale_to_
   img_coll = ee.ImageCollection(img_coll);
   start_date = ee.Date(start_date);//"YYYY-MM-DD"
   latest_date = ee.Date(latest_date);//"YYYY-MM-DD"
+  print(start_date);
+  print(latest_date);
   AOI = ee.FeatureCollection(AOI);
   scale_to_use = ee.Number(scale_to_use);
   
