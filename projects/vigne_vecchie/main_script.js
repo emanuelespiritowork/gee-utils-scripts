@@ -39,16 +39,16 @@ var aoi =
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var landsat_mask = require("users/emanuelespiritowork/SharedRepo:functions/landsat_mask.js");
 var landsat_scale = require("users/emanuelespiritowork/SharedRepo:functions/landsat_scale.js");
-var landsat_ndfi = require("users/emanuelespiritowork/SharedRepo:functions/landsat_ndfi.js");
+var landsat_ndvi = require("users/emanuelespiritowork/SharedRepo:functions/landsat_ndvi.js");
 var time_series_create = require("users/emanuelespiritowork/SharedRepo:functions/time_series_create.js");
 var time_series_get_plot = require("users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot.js");
 var s2_mask = require("users/emanuelespiritowork/SharedRepo:functions/s2_mask.js");
 var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
-var s2_ndfi = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndfi.js");
+var s2_ndvi = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndvi.js");
 
 /******************************************************
  * ABOUT THIS PROJECT
- * I computed the time series of ndfi to see if any flooding happened to the Vigne Vecchie
+ * I computed the time series of ndvi to see if any flooding happened to the Vigne Vecchie
  * street of Pernate, 28100, Novara, Italy
 *******************************************************/
 
@@ -71,16 +71,16 @@ var l8_masked = landsat_mask.landsat_mask(l8_clipped);
 var l8_scaled = landsat_scale.landsat_scale(l8_masked);
 
 
-var ndfi = landsat_ndfi.landsat_ndfi(l8_scaled);
+var ndvi = landsat_ndvi.landsat_ndvi(l8_scaled);
 
 print(AOI);
 
-var time_series = time_series_create.time_series_create(ndfi, AOI, "area", scale_to_use);
+var time_series = time_series_create.time_series_create(ndvi, AOI, "area", scale_to_use);
 
-var plot = time_series_get_plot.time_series_get_plot(time_series,"ndfi");
+var plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi");
 
 print(time_series);
-//print(time_series.sort("ndfi2",false).first().get("ndfi2"));
+//print(time_series.sort("ndvi2",false).first().get("ndvi2"));
 print(plot);
 
 
@@ -96,13 +96,13 @@ Map.addLayer(l8_masked.filterDate("2015-07-05","2015-07-07")
 Map.addLayer(l8_scaled.filterDate("2015-07-05","2015-07-07")
 .filterBounds(geometry.geometry()).first());
 
-Map.addLayer(ndfi.filterDate("2015-07-05","2015-07-07")
+Map.addLayer(ndvi.filterDate("2015-07-05","2015-07-07")
 .filterBounds(geometry.geometry()).first());
 
-print(ndfi.filterDate("2015-07-05","2015-07-07")
+print(ndvi.filterDate("2015-07-05","2015-07-07")
 .filterBounds(geometry.geometry()));
 
-//Map.addLayer(ndfi);
+//Map.addLayer(ndvi);
 /*
 var landsat_mask_img = function(image){
     var qa_pixel_layer = image.select("QA_PIXEL");
@@ -213,16 +213,16 @@ var s2_masked = s2_mask.s2_mask(s2_clipped);
 
 var s2_scaled = s2_scale.s2_scale(s2_masked);
 
-ndfi = s2_ndfi.s2_ndfi(s2_scaled);
+ndvi = s2_ndvi.s2_ndvi(s2_scaled);
 
 //print(AOI);
 
-time_series = time_series_create.time_series_create(ndfi, AOI, "area", scale_to_use);
+time_series = time_series_create.time_series_create(ndvi, AOI, "area", scale_to_use);
 
-plot = time_series_get_plot.time_series_get_plot(time_series,"ndfi");
+plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi");
 
 //print(time_series);
-//print(time_series.sort("ndfi2",false).first().get("ndfi2"));
+//print(time_series.sort("ndvi2",false).first().get("ndvi2"));
 print(plot);
 
 
