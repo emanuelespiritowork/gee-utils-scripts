@@ -20,8 +20,10 @@ exports.clip_to = function(img_coll, AOI, scale_to_use){
   scale_to_use = ee.Number(scale_to_use);
   //print(AOI);
   
-  var projection = img_coll.first()
-  .select(img_coll.first().bandNames().getString(0)).projection();
+  var img_coll_near = img_coll.filterBounds(AOI);
+  
+  var projection = img_coll_near.first()
+  .select(img_coll_near.first().bandNames().getString(0)).projection();
   print("projection",projection);
   var geometry = AOI.geometry();
   print("geometry",geometry);
