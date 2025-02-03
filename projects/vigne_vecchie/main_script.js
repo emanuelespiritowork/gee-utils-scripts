@@ -52,9 +52,9 @@ var s2_ndvi = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndvi.js
  * street of Pernate, 28100, Novara, Italy
 *******************************************************/
 
-//var AOI = ee.FeatureCollection(ee.List([aoi,geometry]));
+var AOI = ee.FeatureCollection(ee.List([aoi,geometry]));
 
-var AOI = ee.FeatureCollection(geometry);
+//var AOI = ee.FeatureCollection(geometry);
 
 var l8_coll = ee.ImageCollection("LANDSAT/LC08/C02/T1_L2")
 .filterDate("2013-01-01","2025-01-25")
