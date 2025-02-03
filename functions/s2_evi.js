@@ -25,7 +25,6 @@ exports.s2_evi = function(img_coll){
       'BLUE': image.select('B2')
       }
     }).rename('evi');
-    
     var time_start_value = image.get('system:time_start');
     evi = evi.set({'system:time_start':time_start_value});
     return evi;
