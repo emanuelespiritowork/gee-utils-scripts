@@ -9,7 +9,7 @@
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection or ee.Image
  * Output: ee.ImageCollection or ee.Image
- * Description: reduce the speckle for an Sentinel-1 GRD image
+ * Description: reduce the speckle for an Sentinel-1 Ground Range Detected image
 *******************************************************/
 
 exports.s1_speckle = function(img_coll){
