@@ -42,8 +42,18 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    * VV:	Partial Dual, VV only	VV+VH was acquired, only VV is available in this product
    * VH:	Partial Dual, VH only	VV+VH was acquired, only VH is available in this product
    *******/
-  orbit = ee.String(orbit); //DESCENDING or ASCENDING
-  spatial_resolution = ee.Number(spatial_resolution);
+  orbit = ee.String(orbit); 
+  /******
+   * ASCENDING	Data acquired when the satellite was traveling approx. 
+   * towards the Earth's North pole.
+   * DESCENDING	Data acquired when the satellite was traveling approx. 
+   * towards the Earth's South pole.
+   *******/
+   spatial_resolution = ee.Number(spatial_resolution); 
+  /******
+   * HIGH	10m/px for IW/SM and 25m/px for EW
+   * MEDIUM	40m/px for IW/SM and EW
+   *******/
   
   var select_image = function(image){
     
