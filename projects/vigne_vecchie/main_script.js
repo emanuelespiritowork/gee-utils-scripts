@@ -12,12 +12,14 @@ var aoi =
           "area": "vigne",
           "system:index": "0"
         }),
-    geometry = /* color: #98ff00 */ee.Feature(
+    geometry = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.Feature(
         ee.Geometry.Polygon(
-            [[[8.627132178290235, 45.48446966563759],
-              [8.626732529147016, 45.484291017509406],
-              [8.627000750048506, 45.48402210399559],
-              [8.627121449454176, 45.48431546412881]]]),
+            [[[8.585019969261571, 45.82031014754006],
+              [8.57231702736704, 45.81217453034049],
+              [8.591199778831884, 45.80978147554862]]]),
         {
           "area": "water",
           "system:index": "0"
@@ -40,6 +42,9 @@ var landsat_scale = require("users/emanuelespiritowork/SharedRepo:functions/land
 var landsat_ndvi = require("users/emanuelespiritowork/SharedRepo:functions/landsat_ndvi.js");
 var time_series_create = require("users/emanuelespiritowork/SharedRepo:functions/time_series_create.js");
 var time_series_get_plot = require("users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot.js");
+var s2_mask = require("users/emanuelespiritowork/SharedRepo:functions/s2_mask.js");
+var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
+var s2_ndvi = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndvi.js");
 
 /******************************************************
  * ABOUT THIS PROJECT
@@ -79,22 +84,22 @@ print(time_series);
 print(plot);
 
 
-Map.addLayer(l8_coll.filterDate("2014-03-28","2014-03-30")
+Map.addLayer(l8_coll.filterDate("2015-07-05","2015-07-07")
 .filterBounds(geometry.geometry()).first());
 
-Map.addLayer(l8_clipped.filterDate("2014-03-28","2014-03-30")
+Map.addLayer(l8_clipped.filterDate("2015-07-05","2015-07-07")
 .filterBounds(geometry.geometry()).first());
 
-Map.addLayer(l8_masked.filterDate("2014-03-28","2014-03-30")
+Map.addLayer(l8_masked.filterDate("2015-07-05","2015-07-07")
 .filterBounds(geometry.geometry()).first());
 
-Map.addLayer(l8_scaled.filterDate("2014-03-28","2014-03-30")
+Map.addLayer(l8_scaled.filterDate("2015-07-05","2015-07-07")
 .filterBounds(geometry.geometry()).first());
 
-Map.addLayer(ndvi.filterDate("2014-03-28","2014-03-30")
+Map.addLayer(ndvi.filterDate("2015-07-05","2015-07-07")
 .filterBounds(geometry.geometry()).first());
 
-print(ndvi.filterDate("2014-03-28","2014-03-30")
+print(ndvi.filterDate("2015-07-05","2015-07-07")
 .filterBounds(geometry.geometry()));
 
 //Map.addLayer(ndvi);
@@ -195,6 +200,30 @@ Map.addLayer(image_mask_2.first());
 
 
 
+//sentinel
+var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED") 
+.filterDate("2013-01-01","2025-01-25")
+.filterBounds(AOI);
+
+var scale_to_use = ee.Number(10);
+
+var s2_clipped = clip_to.clip_to(s2_coll,AOI,scale_to_use);
+
+var s2_masked = s2_mask.s2_mask(s2_clipped);
+
+var s2_scaled = s2_scale.s2_scale(s2_masked);
+
+ndvi = s2_ndvi.s2_ndvi(s2_scaled);
+
+//print(AOI);
+
+time_series = time_series_create.time_series_create(ndvi, AOI, "area", scale_to_use);
+
+plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi");
+
+//print(time_series);
+//print(time_series.sort("ndvi2",false).first().get("ndvi2"));
+print(plot);
 
 
 
