@@ -57,6 +57,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    * (H) HIGH	10m/px for IW/SM and 25m/px for EW
    * (M) MEDIUM	40m/px for IW/SM and EW
    *******/
+   
   var selected_coll = img_coll
   .filter(ee.Filter.eq("instrumentMode",instrument))
   .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
