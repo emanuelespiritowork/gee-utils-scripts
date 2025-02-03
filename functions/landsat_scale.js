@@ -107,7 +107,9 @@ exports.landsat_scale = function(img_coll){
     
     //return image
     return fullImage;
-  };*/
+  };
   
   return img_coll.map(landsat_scale_img);
+  */
+  return img_coll;
 };
