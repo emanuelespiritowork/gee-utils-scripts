@@ -90,19 +90,19 @@ var s2_evi = require('users/emanuelespiritowork/SharedRepo:functions/s2_evi.js')
 
 var evi = s2_evi.s2_evi(masked_image);
 
-print(evi.filterDate("2023-10-03","2023-10-06").sort("evi2",true).first().bandNames());
+print(evi.filterDate("2023-10-03","2023-10-06").sort("evi",true).first().bandNames());
 
 var null_var = ee.List([null,10]);
 
 print(null_var.filter(ee.Filter.notNull(["item"])).equals([]));
 
-evi = evi.sort("evi2",true);
+evi = evi.sort("evi",true);
 
 var time_series_create = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create.js');
 
 var time_series = time_series_create.time_series_create(evi,AOI,"id_geom",scale_to_use);
 
-print(time_series.sort("evi2",true).limit(4999));
+print(time_series.sort("evi",true).limit(4999));
 
 var time_series_name = ""; 
 var null_var = time_series.select("[^date].*")
@@ -117,7 +117,7 @@ print(time_series_name);
 
 var time_series_get_plot = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot.js');
 
-var plot = time_series_get_plot.time_series_get_plot(time_series,"evi2");
+var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
 
 //print(time_series);
 print(plot);
