@@ -16,15 +16,27 @@ exports.landsat_scale = function(img_coll){
   
   img_coll = ee.ImageCollection(img_coll);
   
+  function applyScaleFactors(SR_image) {
+  var opticalBands = SR_image.select('SR_B.').multiply(0.0000275).add(-0.2);
+  var thermalBands = SR_image.select('ST_B.*').multiply(0.00341802).add(149.0);
+  return SR_image.addBands(opticalBands, null, true)
+              .addBands(thermalBands, null, true);
+}
+  
+  img_coll = img_coll.map(applyScaleFactors);
+  /*
   var landsat_scale_img = function(image){
     //SR bands
+    
+    
+    
+    
     var landsat_SR_bands_names = image.select("SR_B.*").bandNames();
-    //print("landsat_SR_bands_names",landsat_SR_bands_names);
     var scale_SR_band = function(band){
       return image.select(ee.String(band)).multiply(0.0000275).add(-0.2);
     };
     var scaled_SR_image = landsat_SR_bands_names.map(scale_SR_band);
-    //print("scaled_SR_image",scaled_SR_image);
+    
     var collection_of_SR_image = ee.ImageCollection.fromImages(scaled_SR_image);
     var imageSRMulti = collection_of_SR_image.toBands()
     .rename(landsat_SR_bands_names);
@@ -95,7 +107,7 @@ exports.landsat_scale = function(img_coll){
     
     //return image
     return fullImage;
-  };
+  };*/
   
   return img_coll.map(landsat_scale_img);
 };
