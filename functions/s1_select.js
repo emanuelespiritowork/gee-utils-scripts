@@ -12,7 +12,7 @@
  * Description: select a desidered Sentinel-1 Ground Range Detected image
 *******************************************************/
 
-exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_resolution){
+exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_resolution, angle){
   
   //for choosing right parameters https://sentiwiki.copernicus.eu/web/s1-applications
   //for explanation of parameters https://docs.sentinel-hub.com/api/latest/data/sentinel-1-grd/
@@ -58,12 +58,20 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    * (M) MEDIUM	40m/px for IW/SM and EW
    *******/
    
-  var selected_coll = img_coll
-  .filter(ee.Filter.eq("instrumentMode",instrument))
-  .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
-  .filter(ee.Filter.eq("orbitProperties_pass",orbit))
-  .filter(ee.Filter.eq("resolution",spatial_resolution))
-  .select(polarization);
+  var selected_coll = ee.Algorithms.If({
+    condition: angle,
+    trueCase: img_coll
+    .filter(ee.Filter.eq("instrumentMode",instrument))
+    .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
+    .filter(ee.Filter.eq("orbitProperties_pass",orbit))
+    .filter(ee.Filter.eq("resolution",spatial_resolution))
+    .select(ee.List([polarization,"angle"])),
+    falseCase: img_coll
+    .filter(ee.Filter.eq("instrumentMode",instrument))
+    .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
+    .filter(ee.Filter.eq("orbitProperties_pass",orbit))
+    .filter(ee.Filter.eq("resolution",spatial_resolution))
+    .select(polarization)});
   
   return selected_coll;
 };
