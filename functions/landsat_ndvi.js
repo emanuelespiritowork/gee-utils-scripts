@@ -17,13 +17,11 @@ exports.landsat_ndvi = function(img_coll){
   img_coll = ee.ImageCollection(img_coll);
   
   var landsat_ndvi_img = function(image){
-    var ndvi = image.expression({
-      expression: ' (NIR - RED) / (NIR + RED) ',
-      map: { // Map between variables in the expression and images.
-      'NIR': image.select('SR_B5'),
-      'RED': image.select('SR_B4'),
-      }
-    }).rename('ndvi');
+    var NIR = image.select("SR_B5");
+    var RED = image.select("SR_B4");
+    var num_ndvi = NIR.subtract(RED);
+    var den_ndvi = NIR.add(RED);
+    var ndvi = num_ndvi.divide(den_ndvi).rename('ndvi');
     
     var time_start_value = image.get('system:time_start');
     ndvi = ndvi.set({'system:time_start':time_start_value});
