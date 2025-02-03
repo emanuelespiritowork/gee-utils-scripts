@@ -54,13 +54,14 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    *******/
    spatial_resolution = ee.Number(spatial_resolution); 
   /******
-   * HIGH	10m/px for IW/SM and 25m/px for EW
-   * MEDIUM	40m/px for IW/SM and EW
+   * (H) HIGH	10m/px for IW/SM and 25m/px for EW
+   * (M) MEDIUM	40m/px for IW/SM and EW
    *******/
-  
-  var select_image = function(image){
-    
-  };
+  var selected_coll = img_coll
+  .filter(ee.Filter.eq("instrumentMode",instrument))
+  .filter(ee.Filter.listContains("transmitterReceiverPolarisation"),polarization)
+  .filter(ee.Filter.eq("orbitProperties_pass",orbit))
+  .filter(ee.Filter.eq("resolution",spatial_resolution))
   
   return img_coll.map(select_image);
 };
