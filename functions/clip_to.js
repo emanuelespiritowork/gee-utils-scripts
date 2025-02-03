@@ -26,6 +26,7 @@ exports.clip_to = function(img_coll, AOI, scale_to_use){
   print("geometry",geometry);
   var area = geometry.area();
   print("area",area);
+  print("area.sqrt().divide(ee.Number(10))",area.sqrt().divide(ee.Number(10)));
   var filtered_coll = img_coll.filterBounds(geometry.coveringGrid({
     proj: projection,
     scale: area.sqrt().divide(ee.Number(10))
