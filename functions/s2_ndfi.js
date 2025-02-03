@@ -17,16 +17,16 @@ exports.s2_ndfi = function(img_coll){
   img_coll = ee.ImageCollection(img_coll);
   
   var s2_ndfi_img = function(image){
-    var ndfi2 = image.expression({
+    var ndfi = image.expression({
       expression: '(RED - SWIR_2)/(RED + SWIR_2)',
       map: { // Map between variables in the expression and images.
       'SWIR_2': image.select('B12'),
       'RED': image.select('B4'),
       }
-    }).rename('ndfi2');
+    }).rename('ndfi');
     var time_start_value = image.get('system:time_start');
-    ndfi2 = ndfi2.set({'system:time_start':time_start_value});
-    return ndfi2;
+    ndfi = ndfi.set({'system:time_start':time_start_value});
+    return ndfi;
   };
   
   return img_coll.map(s2_ndfi_img);
