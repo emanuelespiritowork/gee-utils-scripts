@@ -17,7 +17,14 @@ exports.landsat_ndfi = function(img_coll){
   img_coll = ee.ImageCollection(img_coll);
   
   var landsat_ndfi_img = function(image){
-    var ndfi2 = image.normalizedDifference(['SR_B4','SR_B7']).rename('ndfi2');
+    var ndfi2 = image.expression({
+      expression: '(RED - SWIR_2)/(RED + SWIR_2)',
+      map: { // Map between variables in the expression and images.
+      'SWIR_2': image.select('SR_B7'),
+      'RED': image.select('SR_B4'),
+      }
+    }).rename('ndfi2');
+    
     var time_start_value = image.get('system:time_start');
     ndfi2 = ndfi2.set({'system:time_start':time_start_value});
     return ndfi2;
