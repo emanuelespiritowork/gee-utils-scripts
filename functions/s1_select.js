@@ -17,6 +17,9 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   //for choosing right parameters https://sentiwiki.copernicus.eu/web/s1-applications
   //for explanation of parameters https://docs.sentinel-hub.com/api/latest/data/sentinel-1-grd/
   
+  //if you do not find the data with the parameters you want, check the ESA archive:
+  //https://sentinel.esa.int/web/sentinel/copernicus/sentinel-1/acquisition-plans-archive
+  
   img_coll = ee.ImageCollection(img_coll);
   instrument = ee.String(instrument); 
   /*****
