@@ -52,7 +52,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    * DESCENDING	Data acquired when the satellite was traveling approx. 
    * towards the Earth's South pole.
    *******/
-   spatial_resolution = ee.Number(spatial_resolution); 
+   spatial_resolution = ee.String(spatial_resolution); 
   /******
    * (H) HIGH	10m/px for IW/SM and 25m/px for EW
    * (M) MEDIUM	40m/px for IW/SM and EW
