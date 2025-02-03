@@ -14,6 +14,8 @@
 
 exports.s1_speckle = function(img_coll){
   
+  img_coll = ee.ImageCollection(img_coll);
+  
   var speckle_lee = function(image){
     
   };
