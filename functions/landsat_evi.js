@@ -17,11 +17,13 @@ exports.landsat_evi = function(img_coll){
   img_coll = ee.ImageCollection(img_coll);
   
   var landsat_evi_img = function(image){
+    
     var evi = image.expression({
-      expression: '(GREEN - NIR)/(GREEN + NIR)',
+      expression: '2.5 * ((NIR - RED) / (NIR + 6 * RED - 7.5 * BLUE + 1))',
       map: { // Map between variables in the expression and images.
       'NIR': image.select('SR_B5'),
-      'GREEN': image.select('SR_B3'),
+      'RED': image.select('SR_B4'),
+      'BLUE': image.select('SR_B2')
       }
     }).rename('evi');
     
