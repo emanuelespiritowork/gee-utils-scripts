@@ -22,7 +22,7 @@ exports.landsat_scale = function(img_coll){
     //print("landsat_SR_bands_names",landsat_SR_bands_names);
     var scale_SR_band = function(band){
       return image.select(ee.String(band)).multiply(ee.Number(0.0000275))
-      .add(ee.Number(-0.2));
+      .add(-0.2);
     };
     var scaled_SR_image = landsat_SR_bands_names.map(scale_SR_band);
     //print("scaled_SR_image",scaled_SR_image);
