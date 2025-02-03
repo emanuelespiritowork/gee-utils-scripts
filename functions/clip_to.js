@@ -22,6 +22,7 @@ exports.clip_to = function(img_coll, AOI, scale_to_use){
   
   var projection = img_coll.first()
   .select(img_coll.first().bandNames().getString(0)).projection();
+  print("projection",projection);
   var geometry = AOI.geometry();
   print("geometry",geometry);
   var area = geometry.area();
