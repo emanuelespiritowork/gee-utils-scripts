@@ -62,7 +62,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
   .filter(ee.Filter.eq("orbitProperties_pass",orbit))
   .filter(ee.Filter.eq("resolution",spatial_resolution))
-  .select(polarization);
+  .select(polarization.cat("angle"));
   
   return selected_coll;
 };
