@@ -18,7 +18,7 @@ exports.landsat_ndvi = function(img_coll){
   
   var landsat_ndvi_img = function(image){
     var ndvi = image.expression({
-      expression: '(NIR - RED)/(NIR + RED)',
+      expression: ' (NIR - RED) / (NIR + RED) ',
       map: { // Map between variables in the expression and images.
       'NIR': image.select('SR_B5'),
       'RED': image.select('SR_B4'),
