@@ -32,6 +32,7 @@ exports.mosaic_date = function(img_coll, AOI, start_date, latest_date, scale_to_
   AOI = ee.FeatureCollection(AOI);
   scale_to_use = ee.Number(scale_to_use);
   
+  print(img_coll.filterDate(start_date,latest_date));
   var clip = clip_to.clip_to(img_coll, AOI, scale_to_use);
   print(clip);
   var latest_img_coll = clip.filterDate(start_date,latest_date);
