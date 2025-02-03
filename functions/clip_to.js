@@ -28,6 +28,7 @@ exports.clip_to = function(img_coll, AOI, scale_to_use){
     proj: projection,
     scale: area.sqrt().divide(ee.Number(10))
   }));
+  print(filtered_coll);
   
   var clip_img = function(image){
     
