@@ -22,7 +22,7 @@ var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_t
  * ee.ImageCollection and clip it into AOI at a specific scale
 *******************************************************/
 
-exports.recent_mosaic = function(img_coll, AOI, scale_to_use){
+exports.mosaic_recent = function(img_coll, AOI, scale_to_use){
   
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
