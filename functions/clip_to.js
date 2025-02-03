@@ -24,21 +24,16 @@ exports.clip_to = function(img_coll, AOI, scale_to_use){
   
   var projection = img_coll_near.first()
   .select(img_coll_near.first().bandNames().getString(0)).projection();
-  print("projection",projection);
+  //print("projection",projection);
   var geometry = AOI.geometry();
-  print("geometry",geometry);
+  //print("geometry",geometry);
   var area = geometry.area();
-  print("area",area);
-  print("area.sqrt().divide(ee.Number(10))",area.sqrt().divide(ee.Number(10)));
+  //print("area",area);
+  //print("area.sqrt().divide(ee.Number(10))",area.sqrt().divide(ee.Number(10)));
   var filtered_coll = img_coll.filterBounds(geometry.coveringGrid({
     proj: projection,
     scale: area.sqrt().divide(ee.Number(10))
   }));
-  Map.addLayer(geometry.coveringGrid({
-    proj: projection,
-    scale: area.sqrt().divide(ee.Number(10))
-  }));
-  print("filtered_coll",filtered_coll);
   
   var clip_img = function(image){
     
