@@ -12,7 +12,9 @@
  * Description: select a desidered Sentinel-1 Ground Range Detected image
 *******************************************************/
 
-exports.s1_select = function(img_coll){
+exports.s1_select = function(img_coll, acquisition, polarization, orbit){
+  
+  //refers to https://sentiwiki.copernicus.eu/web/s1-applications
   
   img_coll = ee.ImageCollection(img_coll);
   
