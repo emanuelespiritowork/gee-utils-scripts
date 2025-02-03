@@ -9,7 +9,7 @@
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection or ee.Image
  * Output: ee.ImageCollection or ee.Image
- * Description: create an evi layer for a Sentinel-2 L2A image collection
+ * Description: reduce the speckle for an Sentinel-1 GRD image
 *******************************************************/
 
 exports.s1_speckle = function(img_coll){
