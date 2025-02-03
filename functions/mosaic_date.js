@@ -22,9 +22,11 @@ var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_t
  * ee.ImageCollection and clip it into AOI at a specific scale
 *******************************************************/
 
-exports.mosaic_recent = function(img_coll, AOI, scale_to_use){
+exports.mosaic_date = function(img_coll, AOI, start_date, latest_date, scale_to_use){
   
   img_coll = ee.ImageCollection(img_coll);
+  start_date = ee.Date(start_date);//"YYYY-MM-DD"
+  latest_date = ee.Date(latest_date);//"YYYY-MM-DD"
   AOI = ee.FeatureCollection(AOI);
   scale_to_use = ee.Number(scale_to_use);
   
@@ -32,11 +34,6 @@ exports.mosaic_recent = function(img_coll, AOI, scale_to_use){
   var sorted_img_coll = clip.sort({
     property: "system:time_start", 
     ascending: false
-  });
-  var latest_date = ee.Date(sorted_img_coll.first().get("system:time_start"));
-  var start_date = latest_date.advance({
-    delta: -1,
-    unit: "month"
   });
   var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date);
   
