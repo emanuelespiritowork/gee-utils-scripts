@@ -38,7 +38,7 @@ exports.mosaic_date = function(img_coll, AOI, start_date, latest_date, scale_to_
     ascending: false
   });
   var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date);
-  
+  print(latest_img_coll);
   var footprint = clip.first().geometry();
   
   var mosaic = mosaic_to.mosaic_to(latest_img_coll);
