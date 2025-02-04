@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.FeatureCollection(
+var geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[-93.55869988676085, 29.675437148892513],
@@ -9,7 +12,8 @@ var geometry = /* color: #d63000 */ee.FeatureCollection(
                   [-96.41514519926085, 28.5042095078147]]]),
             {
               "system:index": "0"
-            })]);
+            })]),
+    AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_river");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*****************************
  *        FUNCTIONS
@@ -39,22 +43,13 @@ var visualization = {
 
 Map.addLayer(dataset, visualization, 'Occurrence');
 
+Map.addLayer(AOI);
 
-
-var selected = s1_select.s1_select(s1_coll, "IW", "VH", "DESCENDING", "H", false);
+var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", false);
 
 var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",300);
 
-var asc = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", false);
-Map.addLayer(selected);
-//var null_var = plot_map.plot_map(mosaic,2,300);
-
-var mos_asc = mosaic_date.mosaic_date(asc,geometry,"2020-01-01","2020-12-31",300);
-//print(mos_asc);
-
-//var null_var_asc = plot_map.plot_map(mos_asc,2,300);
-
-//Map.addLayer(mosaic);
+var null_var = plot_map.plot_map(mosaic,2,300);
 
 //var speckled = s1_speckle.s1_speckle(selected,);
 
