@@ -4,4 +4,4 @@ var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_selec
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VV", "DESCENDING", "H", false);
 
-print(selected.limit(5));
+print(selected.first());
