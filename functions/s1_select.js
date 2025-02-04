@@ -75,7 +75,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
     .filter(ee.Filter.eq("resolution",spatial_resolution))
     .select(polarization)});
   
-  print(selected_coll.limit(500));
+  print(selected_coll.first());
   
   return selected_coll;
 };
