@@ -14,13 +14,16 @@
  * https://www.sciencedirect.com/science/article/pii/S1569843222001911?via%3Dihub
 *******************************************************/
 
-exports.s1_speckle = function(img_coll){
-  
+exports.s1_speckle = function(img_coll, radius, type, meter){
   
   img_coll = ee.ImageCollection(img_coll);
+  radius = ee.Number(radius);
+  type = ee.String(type);
+  //meter is a boolean
   
   var speckle_lee = function(image){
-    focalMean
+    var remove_speckle = image.focalMean(radius,type,meter);
+    return remove_speckle;
   };
   
   return img_coll.map(speckle_lee);
