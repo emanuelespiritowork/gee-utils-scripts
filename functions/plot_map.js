@@ -25,6 +25,7 @@ exports.plot_map = function(img,stretch,scale_to_use){
   var geometry_of_image = img.geometry();
   
   var first_band = img.select(img.bandNames());
+  print(first_band);
   
   var computed_img_std_1 = img.select(first_band).reduceRegion({
     reducer: ee.Reducer.stdDev(),
