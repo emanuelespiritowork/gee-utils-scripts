@@ -60,20 +60,34 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    //angle is a boolean: true if you want to add angle layer to the image, 
    //false if you do not want
    
-  var selected_coll = ee.ImageCollection(ee.Algorithms.If({
-    condition: angle,
-    trueCase: img_coll
-    .filter(ee.Filter.eq("instrumentMode",instrument))
-    .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
-    .filter(ee.Filter.eq("orbitProperties_pass",orbit))
-    .filter(ee.Filter.eq("resolution",spatial_resolution))
-    .select(ee.List([polarization,"angle"])),
-    falseCase: img_coll
-    .filter(ee.Filter.eq("instrumentMode",instrument))
-    .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
-    .filter(ee.Filter.eq("orbitProperties_pass",orbit))
-    .filter(ee.Filter.eq("resolution",spatial_resolution))
-    .select(polarization)}));
-  
+  var selected_coll = ee.ImageCollection(
+    ee.Algorithms.If({
+      condition: ee.Filter.eq(polarization,"ALL"),
+      trueCase: ee.Algorithms.If({
+        condition: angle,
+        trueCase: img_coll
+        .filter(ee.Filter.eq("instrumentMode",instrument))
+        .filter(ee.Filter.eq("orbitProperties_pass",orbit))
+        .filter(ee.Filter.eq("resolution",spatial_resolution)),
+        falseCase: img_coll
+        .filter(ee.Filter.eq("instrumentMode",instrument))
+        .filter(ee.Filter.eq("orbitProperties_pass",orbit))
+        .filter(ee.Filter.eq("resolution",spatial_resolution))
+        .select(["[^angle].*"])}),
+      falseCase: ee.Algorithms.If({
+        condition: angle,
+        trueCase: img_coll
+        .filter(ee.Filter.eq("instrumentMode",instrument))
+        .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
+        .filter(ee.Filter.eq("orbitProperties_pass",orbit))
+        .filter(ee.Filter.eq("resolution",spatial_resolution))
+        .select(ee.List([polarization,"angle"])),
+        falseCase: img_coll
+        .filter(ee.Filter.eq("instrumentMode",instrument))
+        .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
+        .filter(ee.Filter.eq("orbitProperties_pass",orbit))
+        .filter(ee.Filter.eq("resolution",spatial_resolution))
+        .select(polarization)})
+    }));
   return selected_coll;
 };
