@@ -9,10 +9,13 @@
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection or ee.Image
  * Output: ee.ImageCollection or ee.Image
- * Description: reduce the speckle for an Sentinel-1 Ground Range Detected image
+ * Description: reduce the speckle for an Sentinel-1 Ground Range Detected image  
+ * https://un-spider.org/advisory-support/recommended-practices/recommended-practice-google-earth-engine-flood-mapping/step-by-step
+ * https://www.sciencedirect.com/science/article/pii/S1569843222001911?via%3Dihub
 *******************************************************/
 
 exports.s1_speckle = function(img_coll){
+  
   
   img_coll = ee.ImageCollection(img_coll);
   
