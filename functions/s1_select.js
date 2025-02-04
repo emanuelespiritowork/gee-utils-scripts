@@ -62,7 +62,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    
   var selected_coll = ee.ImageCollection(
     ee.Algorithms.If({
-      condition: ee.Filter.eq(polarization,"ALL"),
+      condition: ee.Filter.equals(polarization,"ALL"),
       trueCase: ee.Algorithms.If({
         condition: angle,
         trueCase: img_coll
