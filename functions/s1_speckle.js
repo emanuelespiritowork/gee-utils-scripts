@@ -20,7 +20,7 @@ exports.s1_speckle = function(img_coll){
   img_coll = ee.ImageCollection(img_coll);
   
   var speckle_lee = function(image){
-    
+    focalMean
   };
   
   return img_coll.map(speckle_lee);
