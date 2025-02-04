@@ -60,7 +60,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    //angle is a boolean: true if you want to add angle layer to the image, 
    //false if you do not want
    
-  var selected_coll = ee.Algorithms.If({
+  var selected_coll = ee.ImageCollection(ee.Algorithms.If({
     condition: true,
     trueCase: img_coll
     .filter(ee.Filter.eq("instrumentMode",instrument))
@@ -73,7 +73,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
     .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
     .filter(ee.Filter.eq("orbitProperties_pass",orbit))
     .filter(ee.Filter.eq("resolution",spatial_resolution))
-    .select(polarization)});
+    .select(polarization)}));
   
   print(img_coll
     .filter(ee.Filter.eq("instrumentMode",instrument))
