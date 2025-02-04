@@ -57,6 +57,8 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    * (H) HIGH	10m/px for IW/SM and 25m/px for EW
    * (M) MEDIUM	40m/px for IW/SM and EW
    *******/
+   //angle is a boolean: true if you want to add angle layer to the image, 
+   //false if you do not want
    
   var selected_coll = ee.Algorithms.If({
     condition: angle,
@@ -73,7 +75,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
     .filter(ee.Filter.eq("resolution",spatial_resolution))
     .select(polarization)});
   
-  print(selected_coll)
+  print(selected_coll);
   
   return selected_coll;
 };
