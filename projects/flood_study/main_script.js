@@ -43,7 +43,7 @@ var visualization = {
 
 Map.addLayer(dataset, visualization, 'Occurrence');
 
-Map.addLayer(AOI);
+//Map.addLayer(AOI);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", false);
 
