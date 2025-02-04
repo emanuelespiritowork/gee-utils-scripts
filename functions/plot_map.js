@@ -51,16 +51,15 @@ exports.plot_map = function(img,stretch,scale_to_use){
   
   var computed_img_max = computed_img_mean.add(array_of_stretch.multiply(computed_img_std));
   //print("computed_img_max",computed_img_max);
-
-var vis_specific_image = {
-  bands: first_band.getInfo(),
-  min: computed_img_min.toList().getInfo(),
-  max: computed_img_max.toList().getInfo()
-};
-
-Map.addLayer(img, vis_specific_image, 'stretched_image', true);
-Map.centerObject(img);
-
-
-return 0;
+  
+  var vis_specific_image = {
+    bands: first_band.getInfo(),
+    min: computed_img_min.toList().getInfo(),
+    max: computed_img_max.toList().getInfo()
+  };
+  
+  Map.addLayer(img, vis_specific_image, 'stretched_image', true);
+  Map.centerObject(img);
+  
+  return 0;
 };
