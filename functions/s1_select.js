@@ -61,7 +61,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    //false if you do not want
    
   var selected_coll = ee.Algorithms.If({
-    condition: angle.getInfo(),
+    condition: true,
     trueCase: img_coll
     .filter(ee.Filter.eq("instrumentMode",instrument))
     .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
