@@ -89,10 +89,11 @@ var speckle = s1_speckle.s1_speckle(mosaic,5*scale_to_use,"meters","circle").fir
 var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
 var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
 
-var subset_null_var_2 = histogram_map.histogram_map(subset_speckle,geometry2,subset_scale);
-var null_var_2 = histogram_map.histogram_map(speckle,geometry,scale_to_use);
+var subset_null_var_2 = histogram_map.histogram_map(subset_speckle,geometry2,subset_scale,true);
+var null_var_2 = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
 
 print(subset_null_var_2);
+print(null_var_2);
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
