@@ -9,7 +9,8 @@ var geometry = /* color: #d63000 */ee.FeatureCollection(
                   [-96.41514519926085, 28.5042095078147]]]),
             {
               "system:index": "0"
-            })]);
+            })]),
+    AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_river_basin");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*****************************
  *        FUNCTIONS
@@ -43,7 +44,7 @@ var scale_to_use = ee.Number(10);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", false);
 
-var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",scale_to_use);
+var mosaic = mosaic_date.mosaic_date(selected,AOI,"2020-01-01","2020-12-31",scale_to_use);
 
 var speckle = s1_speckle.s1_speckle(mosaic,50,"meters","circle").first();
 
