@@ -23,8 +23,6 @@ var s1_speckle = require("users/emanuelespiritowork/SharedRepo:functions/s1_spec
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
 var mosaic_date = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_date.js");
 
-
-
 /*****************************
  *        PROJECT
  ***************************/
@@ -48,6 +46,8 @@ Map.addLayer(dataset, visualization, 'Occurrence');
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", false);
 
 var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",300);
+
+var speckle = s1_speckle.s1_speckle(mosaic,)
 
 var null_var = plot_map.plot_map(mosaic,2,300);
 
