@@ -53,10 +53,10 @@ var visualization = {
 
 //Map.addLayer(dataset, visualization, 'Occurrence');
 
-Map.addLayer(AOI.geometry());
-print(AOI);
+//Map.addLayer(AOI.geometry());
+//print(AOI);
 
-var scale_to_use = ee.Number(50);
+var scale_to_use = ee.Number(200);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", false);
 
