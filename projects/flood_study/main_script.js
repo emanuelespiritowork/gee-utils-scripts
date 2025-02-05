@@ -25,7 +25,12 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
                   [-95.60935734400184, 28.788175305717893]]]),
             {
               "system:index": "0"
-            })]);
+            })]),
+    geometry2 = /* color: #98ff00 */ee.Geometry.Polygon(
+        [[[-99.00635160605253, 32.862273453268706],
+          [-99.10248197714628, 32.790725562596045],
+          [-99.00772489706816, 32.707565403127354],
+          [-98.91571439902128, 32.79822925530258]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*****************************
  *        FUNCTIONS
@@ -57,17 +62,17 @@ Map.addLayer(dataset, visualization, 'Occurrence');
 //Map.addLayer(AOI.geometry());
 //print(AOI);
 
-var scale_to_use = ee.Number(200);
+var scale_to_use = ee.Number(10);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", false);
 
-var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",scale_to_use);
+var mosaic = mosaic_date.mosaic_date(selected,geometry2,"2020-01-01","2020-12-31",scale_to_use);
 
 var speckle = s1_speckle.s1_speckle(mosaic,5*scale_to_use,"meters","circle").first();
 
-//var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
+var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
 
-var null_var_2 = histogram_map.histogram_map(speckle,geometry,scale_to_use);
+var null_var_2 = histogram_map.histogram_map(speckle,geometry2,scale_to_use);
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
