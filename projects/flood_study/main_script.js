@@ -1,6 +1,9 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_river_basin"),
-    geometry = /* color: #d63000 */ee.FeatureCollection(
+    geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[-95.25779484400184, 28.90365305399671],
@@ -53,13 +56,13 @@ var visualization = {
 Map.addLayer(AOI.geometry());
 print(AOI);
 
-var scale_to_use = ee.Number(300);
+var scale_to_use = ee.Number(50);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", false);
 
 var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",scale_to_use);
 
-var speckle = s1_speckle.s1_speckle(mosaic,50,"meters","circle").first();
+var speckle = s1_speckle.s1_speckle(mosaic,5*scale_to_use,"meters","circle").first();
 
 var null_var = plot_map.plot_map(speckle,2,scale_to_use);
 
