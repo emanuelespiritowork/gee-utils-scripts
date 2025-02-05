@@ -47,7 +47,7 @@ var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", false)
 
 var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",300);
 
-var speckle = s1_speckle.s1_speckle(mosaic,10,"pixels","circle").first();
+var speckle = s1_speckle.s1_speckle(mosaic,50,"meters","circle").first();
 
 var null_var_1 = plot_map.plot_map(mosaic,2,300);
 var null_var_2 = plot_map.plot_map(speckle,2,300);
