@@ -64,8 +64,9 @@ var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31"
 
 var speckle = s1_speckle.s1_speckle(mosaic,5*scale_to_use,"meters","circle").first();
 
-var null_var = plot_map.plot_map(speckle,2,scale_to_use);
+//var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
 
+var null_var_2 = histogram_map.histogram_map(speckle,geometry,scale_to_use);
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
