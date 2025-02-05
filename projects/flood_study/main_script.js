@@ -62,17 +62,17 @@ Map.addLayer(dataset, visualization, 'Occurrence');
 //Map.addLayer(AOI.geometry());
 //print(AOI);
 
-var scale_to_use = ee.Number(10);
+var scale_to_use = ee.Number(200);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", false);
 
-var mosaic = mosaic_date.mosaic_date(selected,geometry2,"2020-01-01","2020-12-31",scale_to_use);
+var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",scale_to_use);
 
 var speckle = s1_speckle.s1_speckle(mosaic,5*scale_to_use,"meters","circle").first();
 
 var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
 
-var null_var_2 = histogram_map.histogram_map(speckle,geometry2,scale_to_use);
+var null_var_2 = histogram_map.histogram_map(speckle,geometry,scale_to_use);
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
