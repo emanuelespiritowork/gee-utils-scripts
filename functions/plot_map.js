@@ -8,12 +8,10 @@
 /******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.Image, ee.Number, ee.Number
- * Output: (no output) it prints an image layer 
+ * Output: (no output) it prints an image as a greyscale 
  * Description: this script has a function that want to create an image 
  * stretch of stretch*sigma of a ee.Image and print it on 
- * your map composing the bands you select. If you do not select 
- * any band, the function will choose the first three bands. This script
- * works at scale_to_use scale
+ * your map.
 *******************************************************/
 
 exports.plot_map = function(img,stretch,scale_to_use){
