@@ -34,6 +34,7 @@ var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_selec
 var s1_speckle = require("users/emanuelespiritowork/SharedRepo:functions/s1_speckle.js");
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
 var mosaic_date = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_date.js");
+var histogram_map = require("users/emanuelespiritowork/SharedRepo:functions/histogram_map.js");
 
 /*****************************
  *        PROJECT
