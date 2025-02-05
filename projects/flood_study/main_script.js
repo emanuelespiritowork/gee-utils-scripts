@@ -75,7 +75,7 @@ Map.addLayer(dataset, visualization, 'Occurrence');
 //Map.addLayer(AOI.geometry());
 //print(AOI);
 
-var subset_scale = ee.Number(40);
+var subset_scale = ee.Number(50);
 var scale_to_use = ee.Number(200);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", false);
@@ -89,11 +89,16 @@ var speckle = s1_speckle.s1_speckle(mosaic,5*scale_to_use,"meters","circle").fir
 var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
 var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
 
-var subset_null_var_2 = histogram_map.histogram_map(subset_speckle,geometry2,subset_scale,false);
-var null_var_2 = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
+var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry2,subset_scale,false);
+var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
 
-print(subset_null_var_2);
-print(null_var_2);
+print(subset_histogram);
+print(histogram);
+
+//from the subset histogram I choose the threshold. I should see
+//at least a small peak in the complete histogram
+
+
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
