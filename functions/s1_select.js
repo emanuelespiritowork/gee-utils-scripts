@@ -62,20 +62,20 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    //angle is a boolean: true if you want to add angle layer to the image, 
    //false if you do not want
    
-  var first_selected_coll = img_coll.filter(ee.Filter.eq("instrumentMode",instrument))
+  var measure_selected_coll = img_coll.filter(ee.Filter.eq("instrumentMode",instrument))
   .filter(ee.Filter.eq("orbitProperties_pass",orbit))
   .filter(ee.Filter.eq("resolution",spatial_resolution));
   
   var add_sigma_0 = function(string){
-    return string.cat("_sigma0");
+    return ee.String(string).cat("_sigma0");
   };
   
   var add_gamma_0 = function(string){
-    return string.cat("_gamma0");
+    return ee.String(string).cat("_gamma0");
   };
   
   var create_terrain_correction = function(image){
-    var cos_angle_rad = image.select("angle").multiply(0.01745).cos();
+    var cos_angle_rad = image.select("angle").multiply(ee.Number(0.01745)).cos();
     var get_layer_names = image.bandNames();
     var sigma_0_names = get_layer_names.map(add_sigma_0);
     var gamma_0_names = get_layer_names.map(add_gamma_0);
@@ -83,35 +83,20 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
     .addBands(image.select(["[^angle].*"]).divide(cos_angle_rad).rename(gamma_0_names))
     .addBands(image.select(["[^angle].*"]).rename(sigma_0_names));
   };
-   
-  var selected_coll = ee.ImageCollection(
-    ee.Algorithms.If({
-      condition: polarization.equals(ee.String("ALL")),
-      trueCase: ee.Algorithms.If({
-        condition: angle,
-        trueCase: img_coll
-        .filter(ee.Filter.eq("instrumentMode",instrument))
-        .filter(ee.Filter.eq("orbitProperties_pass",orbit))
-        .filter(ee.Filter.eq("resolution",spatial_resolution)),
-        falseCase: img_coll
-        .filter(ee.Filter.eq("instrumentMode",instrument))
-        .filter(ee.Filter.eq("orbitProperties_pass",orbit))
-        .filter(ee.Filter.eq("resolution",spatial_resolution))
-        .select(["[^angle].*"])}),
-      falseCase: ee.Algorithms.If({
-        condition: angle,
-        trueCase: img_coll
-        .filter(ee.Filter.eq("instrumentMode",instrument))
-        .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
-        .filter(ee.Filter.eq("orbitProperties_pass",orbit))
-        .filter(ee.Filter.eq("resolution",spatial_resolution))
-        .select(ee.List([polarization,"angle"])),
-        falseCase: img_coll
-        .filter(ee.Filter.eq("instrumentMode",instrument))
-        .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
-        .filter(ee.Filter.eq("orbitProperties_pass",orbit))
-        .filter(ee.Filter.eq("resolution",spatial_resolution))
-        .select(polarization)})
-    }));
-  return selected_coll;
+  
+  var polarization_selected = ee.ImageCollection(ee.Algorithms.If({
+    condition: polarization.equals(ee.String("ALL")),
+    trueCase: measure_selected_coll,
+    falseCase: measure_selected_coll.select(polarization)
+  }));
+  
+  var terrain_correction = polarization_selected.map(create_terrain_correction);
+  
+  var angle_selection = ee.Algorithms.If({
+    condition: angle,
+    trueCase: terrain_correction,
+    falseCase: terrain_correction.select(["[^angle].*"])
+  });
+  
+  return angle_selection;
 };
