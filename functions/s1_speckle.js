@@ -19,8 +19,13 @@ exports.s1_speckle = function(img_coll, radius, units, type){
   img_coll = ee.ImageCollection(img_coll);
   radius = ee.Number(radius);
   units = ee.String(units);
+  /*******
+   * 'pixels', 'meters'
+   *********/
   type = ee.String(type);
-  //meter is a boolean
+  /*******
+   * 'circle', 'square', 'cross', 'plus', 'octagon', and 'diamond'.
+   *********/
   
   var speckle_lee = function(image){
     var remove_speckle = image.focalMean({
