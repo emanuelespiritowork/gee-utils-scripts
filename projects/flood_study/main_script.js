@@ -26,7 +26,10 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
             {
               "system:index": "0"
             })]),
-    geometry2 = /* color: #98ff00 */ee.Geometry.MultiPolygon(
+    geometry2 = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.Geometry.MultiPolygon(
         [[[[-99.00635160605253, 32.862273453268706],
            [-99.10248197714628, 32.790725562596045],
            [-99.00772489706816, 32.707565403127354],
@@ -98,9 +101,9 @@ print(histogram);
 //from the subset histogram I choose the threshold. I should see
 //at least a small peak in the complete histogram
 
-var threshold = ee.Number(-25);
+var threshold = ee.Number(-26);
 
-var threshold_mask = speckle.lt(-25);
+var threshold_mask = speckle.lt(threshold);
 
 var low_reflectance = speckle.updateMask(threshold_mask);
 
