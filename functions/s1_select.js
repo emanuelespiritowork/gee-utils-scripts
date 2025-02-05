@@ -9,16 +9,17 @@
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection or ee.Image
  * Output: ee.ImageCollection or ee.Image
- * Description: select a desidered Sentinel-1 Ground Range Detected image
+ * Description: select a desidered Sentinel-1 Ground Range Detected image making it a 
+ * coherent description. For further discussions on applications:
+ * https://sentiwiki.copernicus.eu/web/s1-applications
+ * The explanation of parameters can be found in:
+ * https://docs.sentinel-hub.com/api/latest/data/sentinel-1-grd/
+ * Sentinel-1 mission is a constellation of satellites and during its operations there 
+ * has been change in acquisitions. To see which data are available you can navigate through:
+ * https://sentinel.esa.int/web/sentinel/copernicus/sentinel-1/acquisition-plans-archive
 *******************************************************/
 
 exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_resolution, angle){
-  
-  //for choosing right parameters https://sentiwiki.copernicus.eu/web/s1-applications
-  //for explanation of parameters https://docs.sentinel-hub.com/api/latest/data/sentinel-1-grd/
-  
-  //if you do not find the data with the parameters you want, check the ESA archive:
-  //https://sentinel.esa.int/web/sentinel/copernicus/sentinel-1/acquisition-plans-archive
   
   img_coll = ee.ImageCollection(img_coll);
   instrument = ee.String(instrument); 
