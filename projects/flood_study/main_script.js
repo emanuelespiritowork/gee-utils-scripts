@@ -1,8 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.FeatureCollection(
+var geometry = /* color: #d63000 */ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[-93.55869988676085, 29.675437148892513],
@@ -12,8 +9,7 @@ var geometry =
                   [-96.41514519926085, 28.5042095078147]]]),
             {
               "system:index": "0"
-            })]),
-    AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_river");
+            })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*****************************
  *        FUNCTIONS
