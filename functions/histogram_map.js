@@ -15,6 +15,8 @@
 exports.histogram_map = function(img, AOI, scale_to_use){
   
   img = ee.Image(img);
+  AOI = ee.FeatureCollection(AOI);
+  scale_to_use = ee.Number(scale_to_use);
   
   var plot = ui.Chart.image.histogram({
     image: img,
