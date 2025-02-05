@@ -48,7 +48,7 @@ var mosaic = mosaic_date.mosaic_date(selected,AOI,"2020-01-01","2020-12-31",scal
 
 var speckle = s1_speckle.s1_speckle(mosaic,50,"meters","circle").first();
 
-var null_var = plot_map.plot_map(speckle,2,50);
+var null_var = plot_map.plot_map(speckle,2,scale_to_use);
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
