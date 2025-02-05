@@ -39,7 +39,11 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
          [[[-97.51930694160397, 31.01213600337887],
            [-97.5261733966821, 31.05096876763615],
            [-97.67174224433835, 31.021551460735513],
-           [-97.66762237129147, 30.988593290634626]]]]);
+           [-97.66762237129147, 30.988593290634626]]],
+         [[[-98.42721477630423, 32.00657896668095],
+           [-98.50137249114798, 32.06711468814616],
+           [-98.58651653411673, 32.00424987056985],
+           [-98.50961223724173, 31.943672608802554]]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*****************************
  *        FUNCTIONS
@@ -71,7 +75,7 @@ Map.addLayer(dataset, visualization, 'Occurrence');
 //Map.addLayer(AOI.geometry());
 //print(AOI);
 
-var subset_scale = ee.Number(10);
+var subset_scale = ee.Number(40);
 var scale_to_use = ee.Number(200);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", false);
