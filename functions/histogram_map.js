@@ -22,7 +22,14 @@ exports.histogram_map = function(img, AOI, scale_to_use){
     scale: scale_to_use
   });
   
+  var histogram = img.reduceRegion({
+    reducer: ee.Reducer.frequencyHistogram(),
+    geometry: AOI.geometry(),
+    scale: scale_to_use,
+    bestEffort: true
+  });
+  
   print(plot);
   
-  return 0;
+  return histogram;
 };
