@@ -101,6 +101,8 @@ print(histogram);
 //from the subset histogram I choose the threshold. I should see
 //at least a small peak in the complete histogram
 
+//see also Otsu 1979
+
 var threshold = ee.Number(-26);
 
 var threshold_mask = speckle.lt(threshold);
