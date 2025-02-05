@@ -17,7 +17,7 @@
 *******************************************************/
 
 exports.plot_map = function(img,stretch,scale_to_use){
-  print(img);
+  
   img = ee.Image(img);
   stretch = ee.Number(stretch);
   scale_to_use = ee.Number(scale_to_use);
