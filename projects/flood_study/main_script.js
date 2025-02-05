@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.FeatureCollection(
+var geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[-93.55869988676085, 29.675437148892513],
@@ -36,11 +39,12 @@ var visualization = {
 
 //Map.setCenter(59.414, 45.182, 6);
 
-Map.addLayer(dataset, visualization, 'Occurrence');
+//Map.addLayer(dataset, visualization, 'Occurrence');
 
-//Map.addLayer(AOI);
+Map.addLayer(AOI.geometry());
+print(AOI);
 
-var scale_to_use = ee.Number(10);
+var scale_to_use = ee.Number(300);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", false);
 
@@ -49,6 +53,7 @@ var mosaic = mosaic_date.mosaic_date(selected,AOI,"2020-01-01","2020-12-31",scal
 var speckle = s1_speckle.s1_speckle(mosaic,50,"meters","circle").first();
 
 var null_var = plot_map.plot_map(speckle,2,scale_to_use);
+
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
