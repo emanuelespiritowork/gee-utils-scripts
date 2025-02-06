@@ -104,15 +104,17 @@ var visualization = {
 var subset_scale = ee.Number(30);
 var scale_to_use = ee.Number(10);
 
-var selected = s1_select.s1_select(s1_coll, "SM", "VH", "DESCENDING", "H", true);
-var sm_selected = s1_select.s1_select(s1_coll, "SM", "VH", "DESCENDING", "H", true);
+var selected = s1_select.s1_select(s1_coll, "SM", "VH", "DESCENDING", "H");
+var sm_selected = s1_select.s1_select(s1_coll, "SM", "VH", "DESCENDING", "H");
+print(ee.ImageCollection(selected).first());
 
-var subset_mosaic = mosaic_date.mosaic_date(selected,geometry3,"2016-05-17","2016-05-27",subset_scale);
+//var subset_mosaic = mosaic_date.mosaic_date(selected,geometry3,"2016-05-17","2016-05-27",subset_scale);
 
-var mosaic_before = mosaic_date.mosaic_date(sm_selected,geometry4,"2016-05-17","2016-05-27",scale_to_use);
-var mosaic_after = mosaic_date.mosaic_date(sm_selected,geometry4,"2016-05-28","2016-05-31",scale_to_use);
+//var mosaic_before = mosaic_date.mosaic_date(sm_selected,geometry4,"2016-05-17","2016-05-27",scale_to_use);
+//var mosaic_after = mosaic_date.mosaic_date(sm_selected,geometry4,"2016-05-28","2016-05-31",scale_to_use);
 
-
+//print(mosaic_before);
+//print(mosaic_after);
 
 //print(mosaic_before_houston);
 //print(mosaic_after_houston);
@@ -123,7 +125,7 @@ var mosaic_after = mosaic_date.mosaic_date(sm_selected,geometry4,"2016-05-28","2
 //print("mosaic_before",mosaic_before);
 //print("mosaic_after",mosaic_after);
 //print(subset_mosaic);
-
+/*
 var flatten_before = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_before,30,undefined).first();
 var flatten_after = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_after,30,undefined).first();
 var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic,30,undefined).first();
@@ -167,33 +169,34 @@ var threshold_mask_before = speckle_before.lt(threshold);
 
 var low_reflectance_before = speckle_before.updateMask(threshold_mask_before);
 var low_reflectance_after = speckle_after.updateMask(threshold_mask_after);
-
+*/
 /**********************
  * FILTER THE BEFORE 
  **********************/
-
+/*
 var before_filter = ee.Image(0).gt(low_reflectance_before).not().unmask(1);
 var before_filtered = low_reflectance_after.updateMask(before_filter);
-
+*/
 /**********************
  * FILTER PERMANENT WATER 
  **********************/
+/*
 //now I remove permanent water using JRC asset
 var permanent_water_mask = surface_water.select("seasonality").unmask(0).lt(2);
 var non_permanent_water = before_filtered.updateMask(permanent_water_mask);
 Map.addLayer(non_permanent_water);
-
+*/
 /**********************
  * FILTER UNCONNECTED PIXELS 
  **********************/
+/* there is still some visualization problem 
 var connectedPixels = non_permanent_water.toInt().connectedPixelCount({
   maxSize: 100,
   eightConnected: true
 });
 var unconnected_mask = connectedPixels.gte(20);
 var connected = non_permanent_water.updateMask(unconnected_mask);
-Map.addLayer(connected);
-
+Map.addLayer(connected);*/
 
 
 
