@@ -101,7 +101,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
     falseCase: polarization_selected.select(["[^angle].*"])
   });
   
-  var size = angle_selection.size();
+  var size = ee.ImageCollection(angle_selection).size();
   
   var result = ee.Algorithms.If({
     condition: size.eq(1),
