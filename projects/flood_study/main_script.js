@@ -84,8 +84,8 @@ Map.addLayer(dataset, visualization, 'Occurrence', false);
 //Map.addLayer(AOI.geometry());
 //print(AOI);
 
-var subset_scale = ee.Number(60);
-var scale_to_use = ee.Number(60);
+var subset_scale = ee.Number(10);
+var scale_to_use = ee.Number(10);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", true);
 
