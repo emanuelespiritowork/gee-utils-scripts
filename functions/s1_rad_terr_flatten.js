@@ -90,7 +90,7 @@ var s1_rad_terr_flatten = function(collection,options){
         var heading = image.select('angle').reduceRegion({
           reducer: ee.Reducer.mean(),
           geometry: geom,
-          scale: 100
+          scale: 1000
         }).get("angle");
 
         // Sigma0 to Power of input image
