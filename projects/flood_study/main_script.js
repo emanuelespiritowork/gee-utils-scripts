@@ -107,7 +107,7 @@ var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", true);
 var subset_mosaic = mosaic_date.mosaic_date(selected,geometry2,"2020-01-01","2020-12-31",subset_scale);
 var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",scale_to_use);
 
-var flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic);
+var flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic).first();
 flatten = flatten.select("VH").updateMask(flatten.select("no_data_mask"));
 print(flatten);
 var subset_speckle = s1_speckle.s1_speckle(subset_mosaic,5*subset_scale,"meters","circle").first();
