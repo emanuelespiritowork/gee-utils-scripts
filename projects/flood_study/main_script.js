@@ -29,24 +29,44 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
     geometry2 = 
     /* color: #98ff00 */
     /* shown: false */
-    ee.Geometry.MultiPolygon(
-        [[[[-99.00635160605253, 32.862273453268706],
-           [-99.10248197714628, 32.790725562596045],
-           [-99.00772489706816, 32.707565403127354],
-           [-98.91571439902128, 32.79822925530258]]],
-         [[[-98.37164393841731, 30.789609608937983],
-           [-98.33456508099543, 30.82735353746729],
-           [-98.41421595990168, 30.948741050641114],
-           [-98.53781215130793, 30.891012778217707],
-           [-98.43344203412043, 30.71525794540285]]],
-         [[[-97.51930694160397, 31.01213600337887],
-           [-97.5261733966821, 31.05096876763615],
-           [-97.67174224433835, 31.021551460735513],
-           [-97.66762237129147, 30.988593290634626]]],
-         [[[-98.42721477630423, 32.00657896668095],
-           [-98.50137249114798, 32.06711468814616],
-           [-98.58651653411673, 32.00424987056985],
-           [-98.50961223724173, 31.943672608802554]]]]);
+    ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-99.00635160605253, 32.862273453268706],
+                  [-99.10248197714628, 32.790725562596045],
+                  [-99.00772489706816, 32.707565403127354],
+                  [-98.91571439902128, 32.79822925530258]]]),
+            {
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-98.37164393841731, 30.789609608937983],
+                  [-98.33456508099543, 30.82735353746729],
+                  [-98.41421595990168, 30.948741050641114],
+                  [-98.53781215130793, 30.891012778217707],
+                  [-98.43344203412043, 30.71525794540285]]]),
+            {
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-97.51930694160397, 31.01213600337887],
+                  [-97.5261733966821, 31.05096876763615],
+                  [-97.67174224433835, 31.021551460735513],
+                  [-97.66762237129147, 30.988593290634626]]]),
+            {
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-98.42721477630423, 32.00657896668095],
+                  [-98.50137249114798, 32.06711468814616],
+                  [-98.58651653411673, 32.00424987056985],
+                  [-98.50961223724173, 31.943672608802554]]]),
+            {
+              "system:index": "3"
+            })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*****************************
  *        FUNCTIONS
@@ -81,7 +101,7 @@ Map.addLayer(dataset, visualization, 'Occurrence');
 var subset_scale = ee.Number(50);
 var scale_to_use = ee.Number(200);
 
-var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", false);
+var selected = s1_select.s1_select(s1_coll, "IW", "ALL", "ASCENDING", "H", true);
 
 var subset_mosaic = mosaic_date.mosaic_date(selected,geometry2,"2020-01-01","2020-12-31",subset_scale);
 var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",scale_to_use);
@@ -90,7 +110,7 @@ var subset_speckle = s1_speckle.s1_speckle(subset_mosaic,5*subset_scale,"meters"
 var speckle = s1_speckle.s1_speckle(mosaic,5*scale_to_use,"meters","circle").first();
 
 //var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
-//var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
+var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
 
 var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry2,subset_scale,false);
 var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
