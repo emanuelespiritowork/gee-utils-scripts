@@ -146,7 +146,7 @@ exports.s1_rad_terr_flatten = function(collection,options){
     var result = ee.Algorithms.If({
       condition: size.eq(1),
       trueCase: ee.Image(collection.map(_correct).first()),
-      falseCase: collection.map(_correct)
+      falseCase: ee.ImageCollection(collection.map(_correct))
     });
 
     return result;
