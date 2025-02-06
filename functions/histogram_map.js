@@ -25,7 +25,7 @@ exports.histogram_map = function(img, AOI, scale_to_use, all_data){
     scale: scale_to_use
   });
   
-  var histogram = ee.Algorithms.If({
+  /*var histogram = ee.Algorithms.If({
     condition: all_data,
     trueCase: img.reduceRegion({
     reducer: ee.Reducer.frequencyHistogram(),
@@ -34,9 +34,9 @@ exports.histogram_map = function(img, AOI, scale_to_use, all_data){
     bestEffort: true
     }),
     falseCase: null
-  });
+  });*/
   
   print(plot);
   
-  return histogram;
+  return 0;
 };
