@@ -104,9 +104,9 @@ var visualization = {
 var subset_scale = ee.Number(30);
 var scale_to_use = ee.Number(10);
 
-var selected = s1_select.s1_select(s1_coll, "SM", "VH", "DESCENDING", "H");
-var sm_selected = s1_select.s1_select(s1_coll, "SM", "VH", "DESCENDING", "H");
-print(ee.ImageCollection(selected).first());
+var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H");//SM, descending
+var sm_selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H");//SM, descending
+print(ee.ImageCollection(selected.filterDate("2020-01-01","2020-01-31")).first());
 
 //var subset_mosaic = mosaic_date.mosaic_date(selected,geometry3,"2016-05-17","2016-05-27",subset_scale);
 
