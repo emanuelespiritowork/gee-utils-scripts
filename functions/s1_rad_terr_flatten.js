@@ -13,10 +13,11 @@
  * image collection
  * Taken from: https://github.com/ESA-PhiLab/radiometric-slope-correction
  * https://www.mdpi.com/2072-4292/12/11/1867
+ * There is a possible error in this script. Might be better to check
 *******************************************************/
 // correction function for radiometric slope correction on a
 // Sentinel-1 image collection
-exports.s1_rad_terr_flatten = function(collection,options){
+var s1_rad_terr_flatten = function(collection,options){
   
     collection = ee.ImageCollection(collection);
     print(collection);
@@ -82,7 +83,7 @@ exports.s1_rad_terr_flatten = function(collection,options){
         var geom = image.geometry();
         var proj = image.select(1).projection();
 
-        // get look direction angle
+        // get look direction angle PROBABLY WRONG
         var heading = (ee.Terrain.aspect(
             image.select('angle')).reduceRegion(ee.Reducer.mean(), geom, 1000).get('aspect')
             );
@@ -136,6 +137,7 @@ exports.s1_rad_terr_flatten = function(collection,options){
         var mask = _masking(alpha_rRad, theta_iRad, proj, buffer);
 
         // return gamma_flat plus mask
+        
         return gamma0_flatDB.addBands(mask).copyProperties(image);
 
 
