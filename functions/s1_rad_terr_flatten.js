@@ -128,7 +128,7 @@ exports.s1_rad_terr_flatten = function(collection,options){
 
         // transform to dB-scale
         var gamma0_flatDB = (ee.Image.constant(10)
-            .multiply(gamma0_flat.log10()).select(['VV', 'VH'])
+            .multiply(gamma0_flat.log10()).select("[^angle].*")
             );
 
         // get Layover/Shadow mask
