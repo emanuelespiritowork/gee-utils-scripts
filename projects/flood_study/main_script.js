@@ -56,10 +56,10 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
               "system:index": "3"
             })]),
     geometry3 = /* color: #d63000 */ee.Geometry.Polygon(
-        [[[-96.70829092431222, 30.356104228882874],
-          [-96.69113294807894, 30.257981642913844],
-          [-96.50193493416265, 30.27103442205583],
-          [-96.51155286574303, 30.355814008508503]]]),
+        [[[-95.68549802278902, 29.509526285447432],
+          [-95.68908257702583, 29.46758472102303],
+          [-95.61403619475962, 29.472863508967293],
+          [-95.61808511927094, 29.511625911371844]]]),
     geometry4 = 
     /* color: #d63000 */
     /* shown: false */
@@ -83,7 +83,7 @@ var s1_rad_terr_flatten = require("users/emanuelespiritowork/SharedRepo:function
 /*****************************
  *        PROJECT
  ***************************/
-var dataset = ee.Image('JRC/GSW1_4/GlobalSurfaceWater');
+var surface_water = ee.Image("JRC/GSW1_4/GlobalSurfaceWater");
 var s1_coll = ee.ImageCollection("COPERNICUS/S1_GRD");
 
 
@@ -96,7 +96,7 @@ var visualization = {
 
 //Map.setCenter(59.414, 45.182, 6);
 
-Map.addLayer(dataset, visualization, 'Occurrence', false);
+Map.addLayer(surface_water, visualization, 'Occurrence', false);
 
 //Map.addLayer(AOI.geometry());
 //print(AOI);
@@ -104,12 +104,10 @@ Map.addLayer(dataset, visualization, 'Occurrence', false);
 var subset_scale = ee.Number(30);
 var scale_to_use = ee.Number(10);
 
-var selected = s1_select.s1_select(s1_coll, "IW", "ALL", "DESCENDING", "H", true);
+var selected = s1_select.s1_select(s1_coll, "SM", "VH", "DESCENDING", "H", true);
 var sm_selected = s1_select.s1_select(s1_coll, "SM", "VH", "DESCENDING", "H", true);
 
-var subset_mosaic = mosaic_date.mosaic_date(selected,geometry3,"2016-05-01","2016-05-29",subset_scale);
-var mosaic_before_stead = mosaic_date.mosaic_date(selected,geometry,"2016-05-20","2016-05-27",scale_to_use);
-var mosaic_after_stead = mosaic_date.mosaic_date(selected,geometry,"2016-05-28","2016-06-07",scale_to_use);
+var subset_mosaic = mosaic_date.mosaic_date(selected,geometry3,"2016-05-17","2016-05-27",subset_scale);
 
 var mosaic_before = mosaic_date.mosaic_date(sm_selected,geometry4,"2016-05-17","2016-05-27",scale_to_use);
 var mosaic_after = mosaic_date.mosaic_date(sm_selected,geometry4,"2016-05-28","2016-05-31",scale_to_use);
@@ -129,9 +127,9 @@ var mosaic_after = mosaic_date.mosaic_date(sm_selected,geometry4,"2016-05-28","2
 var flatten_before = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_before,30,undefined).first();
 var flatten_after = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_after,30,undefined).first();
 var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic,30,undefined).first();
-Map.addLayer(subset_flatten);
-//flatten_before = flatten_before.select("VH")//.updateMask(flatten_before.select("no_data_mask"));
-//flatten_after = flatten_after.select("VH")//.updateMask(flatten_after.select("no_data_mask"));
+
+flatten_before = flatten_before.select("VH").updateMask(flatten_before.select("no_data_mask"));
+flatten_after = flatten_after.select("VH").updateMask(flatten_after.select("no_data_mask"));
 subset_flatten = subset_flatten.select("VH").updateMask(subset_flatten.select("no_data_mask"));
 
 //print(flatten_before);
@@ -139,42 +137,61 @@ subset_flatten = subset_flatten.select("VH").updateMask(subset_flatten.select("n
 
 //Map.addLayer(flatten_before);
 //Map.addLayer(flatten_after);
-Map.addLayer(subset_flatten);
+//Map.addLayer(subset_flatten);
 //print(subset_flatten);
 
-/*
-//var subset_speckle = s1_speckle.s1_speckle(subset_flatten,subset_scale.multiply(5),"meters","circle").first();
+
+var subset_speckle = s1_speckle.s1_speckle(subset_flatten,subset_scale.multiply(5),"meters","circle").first();
 var speckle_before = s1_speckle.s1_speckle(flatten_before,scale_to_use.multiply(5),"meters","circle").first();
 var speckle_after = s1_speckle.s1_speckle(flatten_after,scale_to_use.multiply(5),"meters","circle").first();
 
-print(speckle_before);
-print(speckle_after);
+//print(speckle_before);
+//print(speckle_after);
 //print(subset_speckle);
 //print(speckle);
 
 //var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
-var null_var_1_before = plot_map.plot_map(speckle_before,2,scale_to_use.multiply(5));
-var null_var_1_after = plot_map.plot_map(speckle_after,2,scale_to_use.multiply(5));
+//var null_var_1_before = plot_map.plot_map(speckle_before,2,scale_to_use.multiply(5));
+//var null_var_1_after = plot_map.plot_map(speckle_after,2,scale_to_use.multiply(5));
 
-//var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale,false);
+var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale,false);
 //var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
-*/
-//from the subset histogram I choose the threshold. I should see
-//at least a small peak in the complete histogram
+
+//from the subset histogram I choose the threshold 
 
 //see also Otsu 1979
+var threshold = ee.Number(-22);
 
-/*
-var threshold = ee.Number(-23.4);
+var threshold_mask_after = speckle_after.lt(threshold);
+var threshold_mask_before = speckle_before.lt(threshold);
 
-var threshold_mask = speckle.lt(threshold);
+var low_reflectance_before = speckle_before.updateMask(threshold_mask_before);
+var low_reflectance_after = speckle_after.updateMask(threshold_mask_after);
 
-var low_reflectance = speckle.updateMask(threshold_mask);
+/**********************
+ * FILTER THE BEFORE 
+ **********************/
 
-var null_var_3 = plot_map.plot_map(low_reflectance,2,scale_to_use);
+var before_filter = ee.Image(0).gt(low_reflectance_before).not().unmask(1);
+var before_filtered = low_reflectance_after.updateMask(before_filter);
 
-//now to filter the data outside water I use a connected filter
-*/
+/**********************
+ * FILTER PERMANENT WATER 
+ **********************/
+//now I remove permanent water using JRC asset
+var permanent_water_mask = surface_water.select("seasonality").unmask(0).lt(2);
+var non_permanent_water = before_filtered.updateMask(permanent_water_mask);
+
+
+/**********************
+ * FILTER UNCONNECTED PIXELS 
+ **********************/
+Map.addLayer(before_filtered)
+Map.addLayer(non_permanent_water);
+
+
+
+
 
 
 
