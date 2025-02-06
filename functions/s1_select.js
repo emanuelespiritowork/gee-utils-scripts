@@ -96,8 +96,8 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   
   var angle_selection = ee.Algorithms.If({
     condition: angle,
-    trueCase: terrain_correction,
-    falseCase: terrain_correction.select(["[^angle].*"])
+    trueCase: polarization_selected,
+    falseCase: polarization_selected.select(["[^angle].*"])
   });
   
   return angle_selection;
