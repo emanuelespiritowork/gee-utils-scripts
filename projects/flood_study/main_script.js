@@ -109,8 +109,9 @@ var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31"
 var subset_speckle = s1_speckle.s1_speckle(subset_mosaic,5*subset_scale,"meters","circle").first();
 var speckle = s1_speckle.s1_speckle(mosaic,5*scale_to_use,"meters","circle").first();
 
+Map.addLayer(speckle);
 //var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
-var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
+//var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
 
 var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry2,subset_scale,false);
 var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
