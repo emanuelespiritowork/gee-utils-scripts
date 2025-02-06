@@ -1,6 +1,9 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_river_basin"),
-    geometry = /* color: #d63000 */ee.FeatureCollection(
+    geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[-95.99964240255444, 30.032726703037216],
@@ -11,7 +14,10 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
             {
               "system:index": "0"
             })]),
-    geometry2 = /* color: #98ff00 */ee.FeatureCollection(
+    geometry2 = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[-99.00635160605253, 32.862273453268706],
@@ -48,7 +54,12 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
                   [-98.50961223724173, 31.943672608802554]]]),
             {
               "system:index": "3"
-            })]);
+            })]),
+    geometry3 = /* color: #d63000 */ee.Geometry.Polygon(
+        [[[-96.72648533889932, 30.355810892824945],
+          [-96.70725926468057, 30.2467285447443],
+          [-95.45893773147745, 30.358180899883063],
+          [-95.54820164749307, 30.594891199416157]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*****************************
  *        FUNCTIONS
@@ -81,14 +92,20 @@ Map.addLayer(dataset, visualization, 'Occurrence', false);
 //Map.addLayer(AOI.geometry());
 //print(AOI);
 
-var subset_scale = ee.Number(40);
-var scale_to_use = ee.Number(40);
+var subset_scale = ee.Number(300);
+var scale_to_use = ee.Number(10);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", true);
 
-var subset_mosaic = mosaic_date.mosaic_date(selected,geometry2,"2020-01-01","2020-12-31",subset_scale);
+var subset_mosaic = mosaic_date.mosaic_date(selected,geometry3,"2020-01-01","2020-12-31",subset_scale);
 var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",scale_to_use);
 
+print(subset_mosaic);
+print(mosaic);
+
+Map.addLayer(subset_mosaic);
+Map.addLayer(mosaic);
+/*
 var flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic).first();
 var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic).first();
 flatten = flatten.select("VH").updateMask(flatten.select("no_data_mask"));
@@ -102,7 +119,7 @@ print(speckle);
 //var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
 //var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
 
-var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry2,subset_scale,false);
+var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale,false);
 var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
 
 //print(subset_histogram);
@@ -112,7 +129,7 @@ var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false)
 //at least a small peak in the complete histogram
 
 //see also Otsu 1979
-
+*/
 /*
 var threshold = ee.Number(-26);
 
