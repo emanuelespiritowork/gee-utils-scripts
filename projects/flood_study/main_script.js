@@ -89,8 +89,8 @@ var scale_to_use = ee.Number(10);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", true);
 
-var subset_mosaic = mosaic_date.mosaic_date(selected,geometry2,"2020-06-01","2020-10-01",subset_scale);
-var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-06-01","2020-10-01",scale_to_use);
+var subset_mosaic = mosaic_date.mosaic_date(selected,geometry2,"2020-01-01","2020-12-31",subset_scale);
+var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",scale_to_use);
 
 var flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic).first();
 var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic).first();
