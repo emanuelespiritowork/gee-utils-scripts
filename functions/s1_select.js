@@ -29,7 +29,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    * Extra Wide Swath mode (EW)
    * Wave Mode (WV) not available for Ground Range Detected.
    *******/
-  polarization = ee.List([polarization]); 
+  polarization = ee.List([polarization]) || ee.List(["VH","VV","HV","HH"]); 
   /*****
    * SM: HH+HV, VV+VH, HH, VV
    * IW: HH+HV, VV+VH, HH, VV
@@ -46,7 +46,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    * VV:	Partial Dual, VV only	VV+VH was acquired, only VV is available in this product
    * VH:	Partial Dual, VH only	VV+VH was acquired, only VH is available in this product
    *******/
-  orbit = ee.String(orbit); 
+  orbit = ee.String(orbit) || "DESCENDING"; 
   /******
    * ASCENDING	Data acquired when the satellite was traveling approx. 
    * towards the Earth's North pole.
@@ -61,9 +61,11 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    //angle is a boolean: true if you want to add angle layer to the image, 
    //false if you do not want
    
-  var measure_selected_coll = img_coll.filter(ee.Filter.eq("instrumentMode",instrument))
+  var selected = img_coll.filter(ee.Filter.eq("instrumentMode",instrument))
   .filter(ee.Filter.eq("orbitProperties_pass",orbit))
-  .filter(ee.Filter.eq("resolution",spatial_resolution));
+  .filter(ee.Filter.eq("resolution",spatial_resolution))
+  .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
+  .select(polarization.cat(ee.List([ee.String("angle")])));
   
   /*
   var add_sigma_0 = function(string){
@@ -84,21 +86,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
     .addBands(image.select(["[^angle].*"]).divide(cos_angle_rad).rename(gamma_0_names))
     .addBands(image.select(["[^angle].*"]).rename(sigma_0_names));
   };*/
-  
-  polarization = polarization || ee.List(["VH","VV","HV","HH"]);
-  
-  var polarization_selected = img_coll.first();
-    
-  var take_polarizations = function(element){
-    var element_img_coll = ee.ImageCollection(measure_selected_coll)
-    .filter(ee.Filter.listContains("transmitterReceiverPolarisation",element))
-    .select(ee.List([element,ee.String("angle")]));
-    polarization_selected = ee.ImageCollection(polarization_selected).merge(element_img_coll);
-    return ee.Image(0);
-  };
-  
-  var null_var = polarization.map(take_polarizations);
-  
+
   /*
   var polarization_selected = ee.ImageCollection(ee.Algorithms.If({
     condition: polarization.equals(ee.String("ALL")),
@@ -109,5 +97,5 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   
   //var terrain_correction = polarization_selected.map(create_terrain_correction);
   
-  return polarization_selected;
+  return selected;
 };
