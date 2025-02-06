@@ -1,16 +1,13 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_river_basin"),
-    geometry = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.FeatureCollection(
+    geometry = /* color: #d63000 */ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
-                [[[-95.99964240255444, 30.032726703037216],
-                  [-95.99483588399976, 30.241754101602453],
-                  [-96.14795783224194, 30.244126867143507],
-                  [-96.23653510274976, 30.21327644746703],
-                  [-96.22760871114819, 30.039859921352715]]]),
+                [[[-96.0737948544642, 30.041044322288684],
+                  [-96.04564455529275, 30.09274781553181],
+                  [-96.04633397262877, 30.243533550595362],
+                  [-96.21388079279673, 30.220996684101458],
+                  [-96.22212095589569, 30.04698863641669]]]),
             {
               "system:index": "0"
             })]),
@@ -95,7 +92,7 @@ Map.addLayer(dataset, visualization, 'Occurrence', false);
 //Map.addLayer(AOI.geometry());
 //print(AOI);
 
-var subset_scale = ee.Number(10);
+var subset_scale = ee.Number(30);
 var scale_to_use = ee.Number(10);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", true);
@@ -107,18 +104,19 @@ print(subset_mosaic);
 print(mosaic);
 
 var flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic).first();
-var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic).first();
+//var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic).first();
 flatten = flatten.select("VH").updateMask(flatten.select("no_data_mask"));
-subset_flatten = subset_flatten.select("VH").updateMask(subset_flatten.select("no_data_mask"));
+//subset_flatten = subset_flatten.select("VH").updateMask(subset_flatten.select("no_data_mask"));
 
 print(flatten);
-print(subset_flatten);
+//print(subset_flatten);
 
-var subset_speckle = s1_speckle.s1_speckle(subset_flatten,5*subset_scale,"meters","circle").first();
-var speckle = s1_speckle.s1_speckle(flatten,5*scale_to_use,"meters","circle").first();
+//var subset_speckle = s1_speckle.s1_speckle(subset_flatten,5*subset_scale,"meters","circle").first();
+//var speckle = s1_speckle.s1_speckle(flatten,5*scale_to_use,"meters","circle").first();
 
-print(subset_speckle);
-print(speckle);
+//print(subset_speckle);
+//print(speckle);
+
 //var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
 //var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
 
