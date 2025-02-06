@@ -89,7 +89,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   var polarization_selected = ee.ImageCollection(ee.Algorithms.If({
     condition: polarization.equals(ee.String("ALL")),
     trueCase: measure_selected_coll,
-    falseCase: measure_selected_coll.select(polarization.cat(ee.String("angle")))
+    falseCase: measure_selected_coll.select(ee.List([polarization,ee.String("angle")]))
   }));
   
   //var terrain_correction = polarization_selected.map(create_terrain_correction);
