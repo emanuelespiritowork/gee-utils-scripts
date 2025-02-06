@@ -65,7 +65,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   var selected = img_coll.filter(ee.Filter.eq("instrumentMode",instrument))
   .filter(ee.Filter.eq("orbitProperties_pass",orbit))
   .filter(ee.Filter.eq("resolution",spatial_resolution))
-  .filter(ee.Filter.inList("transmitterReceiverPolarisation",polarization))
+  .filter(ee.Filter.inList(polarization,"transmitterReceiverPolarisation"))
   
   //print(selected.first());
   //
