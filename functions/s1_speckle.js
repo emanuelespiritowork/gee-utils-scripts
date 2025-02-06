@@ -36,5 +36,5 @@ exports.s1_speckle = function(img_coll, radius, units, type){
     return remove_speckle;
   };
   
-  return img_coll.map(speckle_lee);
+  return ee.ImageCollection(img_coll.map(speckle_lee));
 };
