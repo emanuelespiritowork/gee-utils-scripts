@@ -87,7 +87,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   
   polarization = polarization || ee.List(["VH","VV","HV","HH"]);
   
-  var polarization = ee.ImageCollection(measure_selected_coll)
+  var polarization_selected = ee.ImageCollection(measure_selected_coll)
     .filter(ee.Filter.listContains("transmitterReceiverPolarisation",element))
     .select(ee.List([element,ee.String("angle")]));
     
@@ -99,7 +99,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
     return ee.Image(0);
   };
   
-  var polarization_selected = polarization.map(take_polarizations);
+  var null_var = polarization.map(take_polarizations);
   
   /*
   var polarization_selected = ee.ImageCollection(ee.Algorithms.If({
