@@ -18,7 +18,7 @@
 *******************************************************/
 // correction function for radiometric slope correction on a
 // Sentinel-1 image collection
-exports.s1_rad_terr_flatten = function(collection,options,scale_to_use){
+exports.s1_rad_terr_flatten = function(collection,options){
   
     collection = ee.ImageCollection(collection);
     
