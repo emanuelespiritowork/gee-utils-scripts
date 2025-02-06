@@ -56,7 +56,9 @@ exports.plot_map = function(img,stretch,scale_to_use){
     max: computed_img_max.toList().getInfo()
   };
   
-  Map.addLayer(img, vis_specific_image, 'stretched_image', true);
+  var name = first_band.cat("stretched");
+  
+  Map.addLayer(img, vis_specific_image, name.getInfo(), true);
   Map.centerObject(img);
   
   return 0;
