@@ -143,9 +143,9 @@ exports.s1_rad_terr_flatten = function(collection,options){
 
         // return gamma_flat plus mask
         
-        return gamma0_flatDB.addBands(mask).copyProperties(image);
-
-
+        return gamma0_flatDB.addBands(mask).copyProperties(image)
+        .clipToBoundsAndScale(geom)
+        .clip(geom);
     }
     
     // run correction function and return corrected collection
