@@ -41,5 +41,5 @@ exports.mosaic_to = function(img_coll){
     "system:time_end": true_latest_date.millis()
   });
   
-  return img_mosaic;
+  return ee.Image(img_mosaic);
 };
