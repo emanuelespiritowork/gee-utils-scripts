@@ -76,6 +76,7 @@ var s1_speckle = require("users/emanuelespiritowork/SharedRepo:functions/s1_spec
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
 var mosaic_date = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_date.js");
 var histogram_map = require("users/emanuelespiritowork/SharedRepo:functions/histogram_map.js");
+var s1_rad_terr_flatten = require("users/emanuelespiritowork/SharedRepo:functions/s1_rad_terr_flatten.js");
 
 /*****************************
  *        PROJECT
@@ -106,8 +107,10 @@ var selected = s1_select.s1_select(s1_coll, "IW", "ALL", "ASCENDING", "H", true)
 var subset_mosaic = mosaic_date.mosaic_date(selected,geometry2,"2020-01-01","2020-12-31",subset_scale);
 var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",scale_to_use);
 
+var flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic);
+
 var subset_speckle = s1_speckle.s1_speckle(subset_mosaic,5*subset_scale,"meters","circle").first();
-var speckle = s1_speckle.s1_speckle(mosaic,5*scale_to_use,"meters","circle").first();
+var speckle = s1_speckle.s1_speckle(flatten,5*scale_to_use,"meters","circle").first();
 
 //Map.addLayer(speckle);
 var plot_gamma0 = plot_map.plot_map(speckle.select("VH_gamma0"),2,scale_to_use);
