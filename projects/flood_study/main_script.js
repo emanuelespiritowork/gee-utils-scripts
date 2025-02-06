@@ -141,6 +141,12 @@ var low_reflectance = speckle.updateMask(threshold_mask);
 
 var null_var_3 = plot_map.plot_map(low_reflectance,2,scale_to_use);
 
+//now to filter the data outside water I use a connected filter
+
+
+
+
+
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
