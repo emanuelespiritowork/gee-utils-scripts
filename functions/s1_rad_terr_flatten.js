@@ -141,6 +141,6 @@ exports.s1_rad_terr_flatten = function(collection,options){
     }
 
     // run correction function and return corrected collection
-    return collection.map(_correct);
+    return ee.ImageCollection(collection.map(_correct));
 
 };
