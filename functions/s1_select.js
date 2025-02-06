@@ -101,5 +101,5 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
     falseCase: polarization_selected.select(["[^angle].*"])
   });
   
-  return angle_selection;
+  return ee.ImageCollection(angle_selection);
 };
