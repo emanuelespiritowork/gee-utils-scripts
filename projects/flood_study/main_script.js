@@ -113,7 +113,7 @@ collection = ee.ImageCollection(collection);
 
     // set defaults if undefined options
     options = options || {};
-    var model = options.model || 'surface';
+    var model = options.model || 'volume';
     var elevation = options.elevation || ee.Image('USGS/SRTMGL1_003');
     var buffer = options.buffer || 0;
 
@@ -183,7 +183,7 @@ collection = ee.ImageCollection(collection);
           reducer: ee.Reducer.mean(),
           geometry: geom,
           scale: 1000
-        });
+        }).get("angle");
 
         // Sigma0 to Power of input image
         var sigma0Pow = ee.Image.constant(10).pow(image.divide(10.0));
