@@ -67,7 +67,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   .filter(ee.Filter.eq("orbitProperties_pass",orbit))
   .filter(ee.Filter.eq("resolution",spatial_resolution))
   .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
-  .select(polarization.cat(ee.String("angle")));
+  .select(ee.List([polarization,ee.String("angle")]))
   
   //print(selected.first());
   //
