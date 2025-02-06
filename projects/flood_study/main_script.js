@@ -109,7 +109,7 @@ var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31"
 
 var flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic);
 flatten = flatten.select("VH").updateMask(flatten.select("no_data_mask"));
-
+print(flatten);
 var subset_speckle = s1_speckle.s1_speckle(subset_mosaic,5*subset_scale,"meters","circle").first();
 var speckle = s1_speckle.s1_speckle(flatten,5*scale_to_use,"meters","circle").first();
 var speckle1 = s1_speckle.s1_speckle(mosaic,5*scale_to_use,"meters","circle").first();
