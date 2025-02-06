@@ -1,28 +1,13 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_river_basin"),
-    geometry = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.FeatureCollection(
+    geometry = /* color: #d63000 */ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
-                [[[-95.25779484400184, 28.90365305399671],
-                  [-95.43357609400184, 29.63201811739143],
-                  [-95.74119328150184, 29.860945508501302],
-                  [-95.96091984400184, 31.4111364833597],
-                  [-96.26853703150184, 31.74807403454215],
-                  [-97.98240421900184, 33.157149242352794],
-                  [-99.16892765650184, 33.81685813714122],
-                  [-100.48728703150184, 33.74380562272459],
-                  [-101.54197453150184, 34.399028601584],
-                  [-103.16795109400184, 34.833018632465254],
-                  [-103.08006046900184, 33.52427469862098],
-                  [-101.89353703150184, 32.86233728546707],
-                  [-101.19041203150184, 32.714562319414554],
-                  [-100.66306828150184, 32.12101604449994],
-                  [-99.25681828150184, 32.04654876186368],
-                  [-98.42185734400184, 30.69584507373936],
-                  [-95.60935734400184, 28.788175305717893]]]),
+                [[[-95.99964240255444, 30.032726703037216],
+                  [-95.99483588399976, 30.241754101602453],
+                  [-96.14795783224194, 30.244126867143507],
+                  [-96.23653510274976, 30.21327644746703],
+                  [-96.22760871114819, 30.039859921352715]]]),
             {
               "system:index": "0"
             })]),
@@ -104,8 +89,8 @@ var scale_to_use = ee.Number(300);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", true);
 
-var subset_mosaic = mosaic_date.mosaic_date(selected,geometry2,"2020-10-01","2020-12-31",subset_scale);
-var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-10-01","2020-12-31",scale_to_use);
+var subset_mosaic = mosaic_date.mosaic_date(selected,geometry2,"2020-06-01","2020-10-01",subset_scale);
+var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-06-01","2020-10-01",scale_to_use);
 
 var flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic).first();
 var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic).first();
@@ -115,6 +100,8 @@ subset_flatten = subset_flatten.select("VH").updateMask(subset_flatten.select("n
 var subset_speckle = s1_speckle.s1_speckle(subset_flatten,5*subset_scale,"meters","circle").first();
 var speckle = s1_speckle.s1_speckle(flatten,5*scale_to_use,"meters","circle").first();
 
+print(subset_speckle);
+print(speckle);
 //var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
 //var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
 
