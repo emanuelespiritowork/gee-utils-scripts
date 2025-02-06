@@ -29,7 +29,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    * Extra Wide Swath mode (EW)
    * Wave Mode (WV) not available for Ground Range Detected.
    *******/
-  polarization = ee.List(polarization); 
+  polarization = ee.List([polarization]); 
   /*****
    * SM: HH+HV, VV+VH, HH, VV
    * IW: HH+HV, VV+VH, HH, VV
