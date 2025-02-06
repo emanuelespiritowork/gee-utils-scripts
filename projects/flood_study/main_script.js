@@ -98,16 +98,18 @@ Map.addLayer(dataset, visualization, 'Occurrence', false);
 var subset_scale = ee.Number(30);
 var scale_to_use = ee.Number(10);
 
-var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", true);
+var selected = s1_select.s1_select(s1_coll, "IW", "ALL", "DESCENDING", "H", true);
 
-var subset_mosaic = mosaic_date.mosaic_date(selected,geometry3,"2020-01-01","2020-12-31",subset_scale);
-var mosaic_before = mosaic_date.mosaic_date(selected,geometry,"2016-05-26","2020-05-27",scale_to_use);
-var mosaic_after = mosaic_date.mosaic_date(selected,geometry,"2016-05-28","2020-05-29",scale_to_use);
+var subset_mosaic = mosaic_date.mosaic_date(selected,geometry3,"2016-05-26","2016-05-29",subset_scale);
+var mosaic_before = mosaic_date.mosaic_date(selected,geometry,"2016-05-20","2016-05-27",scale_to_use);
+var mosaic_after = mosaic_date.mosaic_date(selected,geometry,"2016-05-28","2016-06-07",scale_to_use);
 
+//Map.addLayer(mosaic_before);
+//Map.addLayer(mosaic_after);
 //print("mosaic_before",mosaic_before);
 //print("mosaic_after",mosaic_after);
 //print(subset_mosaic);
-
+/*
 var flatten_before = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_before).first();
 var flatten_after = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_after).first();
 var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic).first();
@@ -124,6 +126,7 @@ var speckle_before = s1_speckle.s1_speckle(flatten_before,scale_to_use.multiply(
 var speckle_after = s1_speckle.s1_speckle(flatten_after,scale_to_use.multiply(5),"meters","circle").first();
 
 Map.addLayer(speckle_before);
+Map.addLayer(speckle_after);
 
 //print(subset_speckle);
 //print(speckle);
@@ -134,7 +137,7 @@ Map.addLayer(speckle_before);
 
 //var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale,false);
 //var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
-
+*/
 //from the subset histogram I choose the threshold. I should see
 //at least a small peak in the complete histogram
 
