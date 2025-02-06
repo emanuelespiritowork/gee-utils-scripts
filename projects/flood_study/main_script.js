@@ -11,10 +11,7 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
             {
               "system:index": "0"
             })]),
-    geometry2 = 
-    /* color: #98ff00 */
-    /* shown: false */
-    ee.FeatureCollection(
+    geometry2 = /* color: #98ff00 */ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[-99.00635160605253, 32.862273453268706],
@@ -84,8 +81,8 @@ Map.addLayer(dataset, visualization, 'Occurrence', false);
 //Map.addLayer(AOI.geometry());
 //print(AOI);
 
-var subset_scale = ee.Number(10);
-var scale_to_use = ee.Number(10);
+var subset_scale = ee.Number(40);
+var scale_to_use = ee.Number(40);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", true);
 
