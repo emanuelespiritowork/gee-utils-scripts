@@ -89,7 +89,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   var polarization_selected = ee.ImageCollection(ee.Algorithms.If({
     condition: polarization.equals(ee.String("ALL")),
     trueCase: measure_selected_coll,
-    falseCase: measure_selected_coll.filter(ee.Filter.listContains(transmitterReceiverPolarisation),polarization)
+    falseCase: measure_selected_coll.filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
     .select(ee.List([polarization,ee.String("angle")]))
   }));
   
