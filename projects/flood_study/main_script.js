@@ -55,14 +55,20 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
             {
               "system:index": "3"
             })]),
-    geometry3 = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.Geometry.Polygon(
+    geometry3 = /* color: #d63000 */ee.Geometry.Polygon(
         [[[-96.70829092431222, 30.356104228882874],
           [-96.69113294807894, 30.257981642913844],
           [-96.50193493416265, 30.27103442205583],
-          [-96.51155286574303, 30.355814008508503]]]);
+          [-96.51155286574303, 30.355814008508503]]]),
+    geometry4 = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
+        [[[-95.99334473924377, 29.61054349466859],
+          [-95.9185003788922, 29.691400780868005],
+          [-95.99986787156799, 29.747753550985834],
+          [-96.09050507859924, 29.731059732629266],
+          [-96.04793305711486, 29.627257335035313]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*****************************
  *        FUNCTIONS
@@ -99,41 +105,56 @@ var subset_scale = ee.Number(30);
 var scale_to_use = ee.Number(10);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "ALL", "DESCENDING", "H", true);
+var sm_selected = s1_select.s1_select(s1_coll, "SM", "VH", "DESCENDING", "H", true);
 
-var subset_mosaic = mosaic_date.mosaic_date(selected,geometry3,"2016-05-26","2016-05-29",subset_scale);
-var mosaic_before = mosaic_date.mosaic_date(selected,geometry,"2016-05-20","2016-05-27",scale_to_use);
-var mosaic_after = mosaic_date.mosaic_date(selected,geometry,"2016-05-28","2016-06-07",scale_to_use);
+var subset_mosaic = mosaic_date.mosaic_date(selected,geometry3,"2016-05-01","2016-05-29",subset_scale);
+var mosaic_before_stead = mosaic_date.mosaic_date(selected,geometry,"2016-05-20","2016-05-27",scale_to_use);
+var mosaic_after_stead = mosaic_date.mosaic_date(selected,geometry,"2016-05-28","2016-06-07",scale_to_use);
 
+var mosaic_before = mosaic_date.mosaic_date(sm_selected,geometry4,"2016-05-17","2016-05-27",scale_to_use);
+var mosaic_after = mosaic_date.mosaic_date(sm_selected,geometry4,"2016-05-28","2016-05-31",scale_to_use);
+
+
+
+//print(mosaic_before_houston);
+//print(mosaic_after_houston);
 //Map.addLayer(mosaic_before);
 //Map.addLayer(mosaic_after);
+//Map.addLayer(mosaic_before_houston);
+//Map.addLayer(mosaic_after_houston);
 //print("mosaic_before",mosaic_before);
 //print("mosaic_after",mosaic_after);
 //print(subset_mosaic);
-/*
-var flatten_before = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_before).first();
-var flatten_after = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_after).first();
-var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic).first();
 
-flatten_before = flatten_before.select("VH").updateMask(flatten_before.select("no_data_mask"));
-flatten_after = flatten_after.select("VH").updateMask(flatten_after.select("no_data_mask"));
+var flatten_before = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_before,30,undefined).first();
+var flatten_after = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_after,30,undefined).first();
+var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic,30,undefined).first();
+Map.addLayer(subset_flatten);
+//flatten_before = flatten_before.select("VH")//.updateMask(flatten_before.select("no_data_mask"));
+//flatten_after = flatten_after.select("VH")//.updateMask(flatten_after.select("no_data_mask"));
 subset_flatten = subset_flatten.select("VH").updateMask(subset_flatten.select("no_data_mask"));
 
-//print(flatten);
+//print(flatten_before);
+//print(flatten_after);
+
+//Map.addLayer(flatten_before);
+//Map.addLayer(flatten_after);
+Map.addLayer(subset_flatten);
 //print(subset_flatten);
 
+/*
 //var subset_speckle = s1_speckle.s1_speckle(subset_flatten,subset_scale.multiply(5),"meters","circle").first();
 var speckle_before = s1_speckle.s1_speckle(flatten_before,scale_to_use.multiply(5),"meters","circle").first();
 var speckle_after = s1_speckle.s1_speckle(flatten_after,scale_to_use.multiply(5),"meters","circle").first();
 
-Map.addLayer(speckle_before);
-Map.addLayer(speckle_after);
-
+print(speckle_before);
+print(speckle_after);
 //print(subset_speckle);
 //print(speckle);
 
 //var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
-//var null_var_1_before = plot_map.plot_map(speckle_before,2,scale_to_use.multiply(5));
-//var null_var_1_after = plot_map.plot_map(speckle_after,2,scale_to_use.multiply(5));
+var null_var_1_before = plot_map.plot_map(speckle_before,2,scale_to_use.multiply(5));
+var null_var_1_after = plot_map.plot_map(speckle_after,2,scale_to_use.multiply(5));
 
 //var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale,false);
 //var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
