@@ -76,7 +76,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   
   var create_terrain_correction = function(image){
     var cos_angle_rad = image.select("angle").multiply(ee.Number(0.01745)).cos();
-    var get_layer_names = image.select(["[^angle].*"]);
+    var get_layer_names = ee.List(image.select(["[^angle].*"]));
     var sigma_0_names = get_layer_names.map(add_sigma_0);
     var gamma_0_names = get_layer_names.map(add_gamma_0);
     return image.select("angle")
