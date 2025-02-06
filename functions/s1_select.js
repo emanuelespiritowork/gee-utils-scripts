@@ -31,7 +31,6 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    *******/
   polarization = ee.String(polarization); 
   /*****
-   * ALL is ee.List([["VH"],["VV"],["HV"],["HH"],["VH","VV"],["VV","VH"],["HV","HH"],["HH","HV"]])
    * SM: HH+HV, VV+VH, HH, VV
    * IW: HH+HV, VV+VH, HH, VV
    * EW: HH+HV, VV+VH, HH, VV
