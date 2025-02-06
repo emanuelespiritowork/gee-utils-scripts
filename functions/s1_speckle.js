@@ -41,7 +41,7 @@ exports.s1_speckle = function(img_coll, radius, units, type){
   var result = ee.Algorithms.If({
     condition: size.eq(1),
     trueCase: ee.Image(img_coll.map(speckle_lee).first()),
-    falseCase: img_coll.map(speckle_lee)
+    falseCase: ee.ImageCollection(img_coll.map(speckle_lee))
   });
   
   return result;
