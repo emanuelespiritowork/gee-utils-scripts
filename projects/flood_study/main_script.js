@@ -101,31 +101,37 @@ var scale_to_use = ee.Number(10);
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", true);
 
 var subset_mosaic = mosaic_date.mosaic_date(selected,geometry3,"2020-01-01","2020-12-31",subset_scale);
-var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",scale_to_use);
+var mosaic_before = mosaic_date.mosaic_date(selected,geometry,"2016-05-26","2020-05-27",scale_to_use);
+var mosaic_after = mosaic_date.mosaic_date(selected,geometry,"2016-05-28","2020-05-29",scale_to_use);
 
+//print("mosaic_before",mosaic_before);
+//print("mosaic_after",mosaic_after);
 //print(subset_mosaic);
-//print(mosaic);
-//Map.addLayer(mosaic);
 
-var flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic).first();
+var flatten_before = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_before).first();
+var flatten_after = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_after).first();
 var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic).first();
-flatten = flatten.select("VH").updateMask(flatten.select("no_data_mask"));
+
+flatten_before = flatten_before.select("VH").updateMask(flatten_before.select("no_data_mask"));
+flatten_after = flatten_after.select("VH").updateMask(flatten_after.select("no_data_mask"));
 subset_flatten = subset_flatten.select("VH").updateMask(subset_flatten.select("no_data_mask"));
 
 //print(flatten);
 //print(subset_flatten);
 
 var subset_speckle = s1_speckle.s1_speckle(subset_flatten,subset_scale.multiply(5),"meters","circle").first();
-var speckle = s1_speckle.s1_speckle(flatten,scale_to_use.multiply(5),"meters","circle").first();
+var speckle_before = s1_speckle.s1_speckle(flatten_before,scale_to_use.multiply(5),"meters","circle").first();
+var speckle_after = s1_speckle.s1_speckle(flatten_after,scale_to_use.multiply(5),"meters","circle").first();
 
 //print(subset_speckle);
 //print(speckle);
 
-//var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
-//var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
+var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
+var null_var_1_before = plot_map.plot_map(speckle_before,2,scale_to_use);
+var null_var_1_after = plot_map.plot_map(speckle_after,2,scale_to_use);
 
-var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale,false);
-var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
+//var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale,false);
+//var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
 
 //from the subset histogram I choose the threshold. I should see
 //at least a small peak in the complete histogram
