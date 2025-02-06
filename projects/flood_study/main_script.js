@@ -93,7 +93,7 @@ var visualization = {
 
 //Map.setCenter(59.414, 45.182, 6);
 
-Map.addLayer(dataset, visualization, 'Occurrence');
+Map.addLayer(dataset, visualization, 'Occurrence', false);
 
 //Map.addLayer(AOI.geometry());
 //print(AOI);
