@@ -1,6 +1,9 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_river_basin"),
-    geometry = /* color: #d63000 */ee.FeatureCollection(
+    geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[-96.0737948544642, 30.041044322288684],
@@ -100,15 +103,145 @@ var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", true);
 var subset_mosaic = mosaic_date.mosaic_date(selected,geometry3,"2020-01-01","2020-12-31",subset_scale);
 var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",scale_to_use);
 
-print(subset_mosaic);
-print(mosaic);
+//print(subset_mosaic);
+//print(mosaic);
+Map.addLayer(mosaic);
+var collection = mosaic;
+var options = undefined;
+collection = ee.ImageCollection(collection);
+    //print(collection);
 
-var flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic).first();
+    // set defaults if undefined options
+    options = options || {};
+    var model = options.model || 'surface';
+    var elevation = options.elevation || ee.Image('USGS/SRTMGL1_003');
+    var buffer = options.buffer || 0;
+
+    // we need a 90 degree in radians image for a couple of calculations
+    var ninetyRad = ee.Image.constant(90).multiply(Math.PI/180);
+
+    // Volumetric Model Hoekman 1990
+    function _volume_model(theta_iRad, alpha_rRad){
+
+      var nominator = (ninetyRad.subtract(theta_iRad).add(alpha_rRad)).tan();
+      var denominator = (ninetyRad.subtract(theta_iRad)).tan();
+      return nominator.divide(denominator);
+    }
+
+    // surface model Ulander et al. 1996
+    function _surface_model(theta_iRad, alpha_rRad, alpha_azRad){
+
+      var nominator = (ninetyRad.subtract(theta_iRad)).cos();
+      var denominator = alpha_azRad.cos()
+        .multiply((ninetyRad.subtract(theta_iRad).add(alpha_rRad)).cos());
+      return nominator.divide(denominator);
+    }
+
+    // buffer function (thanks Noel)
+    function _erode(img, distance) {
+
+      var d = (img.not().unmask(1)
+          .fastDistanceTransform(30).sqrt()
+          .multiply(ee.Image.pixelArea().sqrt()));
+
+      return img.updateMask(d.gt(distance));
+    }
+
+    // calculate masks
+    function _masking(alpha_rRad, theta_iRad, proj, buffer){
+
+        // layover, where slope > radar viewing angle
+        var layover = alpha_rRad.lt(theta_iRad).rename('layover');
+
+        // shadow
+        var shadow = alpha_rRad.gt(ee.Image.constant(-1).multiply(ninetyRad.subtract(theta_iRad))).rename('shadow');
+
+        // combine layover and shadow
+        var mask = layover.and(shadow);
+
+        // add buffer to final mask
+        if (buffer > 0)
+            mask = _erode(mask, buffer);
+
+        return mask.rename('no_data_mask');
+   }
+
+    function _correct(image){
+
+        // get image geometry and projection
+        var geom = image.geometry();
+        var proj = image.select(1).projection();
+
+        // get look direction angle
+        var heading = (ee.Terrain.aspect(
+            image.select('angle')).reduceRegion(ee.Reducer.mean(), geom, 1000).get('aspect')
+            );
+
+        // Sigma0 to Power of input image
+        var sigma0Pow = ee.Image.constant(10).pow(image.divide(10.0));
+
+        // Radar geometry
+        var theta_iRad = image.select('angle').multiply(Math.PI/180).clip(geom);
+        var phi_iRad = ee.Image.constant(heading).multiply(Math.PI/180);
+
+        // Terrain geometry
+        var alpha_sRad = ee.Terrain.slope(elevation).select('slope')
+            .multiply(Math.PI/180).setDefaultProjection(proj).clip(geom);
+        var phi_sRad = ee.Terrain.aspect(elevation).select('aspect')
+            .multiply(Math.PI/180).setDefaultProjection(proj).clip(geom);
+
+        // Model geometry
+
+        //reduce to 3 angle
+        var phi_rRad = phi_iRad.subtract(phi_sRad);
+
+        // slope steepness in range
+        var alpha_rRad = (alpha_sRad.tan().multiply(phi_rRad.cos())).atan();
+
+        // slope steepness in azimuth
+        var alpha_azRad = (alpha_sRad.tan().multiply(phi_rRad.sin())).atan();
+
+        // Gamma_nought
+        var gamma0 = sigma0Pow.divide(theta_iRad.cos());
+
+               // models
+        var corrModel;
+        if (model == 'volume')
+          corrModel = _volume_model(theta_iRad, alpha_rRad);
+
+        if (model == 'surface')
+          corrModel = _surface_model(theta_iRad, alpha_rRad, alpha_azRad);
+
+        if (model == 'direct')
+          corrModel = _direct_model(theta_iRad, alpha_rRad, alpha_azRad);
+
+        print(gamma0);
+        print(corrModel);
+        // apply model to derive gamma0_flat
+        var gamma0_flat = gamma0.divide(corrModel);
+
+        // transform to dB-scale
+        var gamma0_flatDB = (ee.Image.constant(10)
+            .multiply(gamma0_flat.log10()).select("[^angle].*")
+            );
+
+        // get Layover/Shadow mask
+        var mask = _masking(alpha_rRad, theta_iRad, proj, buffer);
+
+        // return gamma_flat plus mask
+        return gamma0_flatDB.addBands(mask).copyProperties(image);
+
+
+    }
+    
+var flatten = _correct(mosaic);
+
+//var flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic);
 //var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic).first();
-flatten = flatten.select("VH").updateMask(flatten.select("no_data_mask"));
+//flatten = flatten.select("VH").updateMask(flatten.select("no_data_mask"));
 //subset_flatten = subset_flatten.select("VH").updateMask(subset_flatten.select("no_data_mask"));
 
-print(flatten);
+//print(flatten);
 //print(subset_flatten);
 
 //var subset_speckle = s1_speckle.s1_speckle(subset_flatten,5*subset_scale,"meters","circle").first();
