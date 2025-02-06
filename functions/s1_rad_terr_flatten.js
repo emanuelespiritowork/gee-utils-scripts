@@ -141,8 +141,10 @@ exports.s1_rad_terr_flatten = function(collection,options){
 
     }
     
+    var result = collection.map(_correct);
+    print(result);
+    
     // run correction function and return corrected collection
-
-    return collection.map(_correct);
+    return result;
 
 };
