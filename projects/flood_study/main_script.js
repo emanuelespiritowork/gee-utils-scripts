@@ -104,7 +104,7 @@ var visualization = {
 var subset_scale = ee.Number(30);
 var scale_to_use = ee.Number(10);
 
-var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H");//SM, descending
+var selected = s1_select.s1_select(s1_coll, "IW", ["VH","VV"], "ASCENDING", "H");//SM, descending
 var sm_selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H");//SM, descending
 print(ee.ImageCollection(selected.filterDate("2020-01-01","2020-01-31")).first());
 
