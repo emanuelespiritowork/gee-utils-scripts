@@ -29,9 +29,9 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    * Extra Wide Swath mode (EW)
    * Wave Mode (WV) not available for Ground Range Detected.
    *******/
-  polarization = ee.String(polarization) || ee.List([["VH"],["VV"],["HV"],["HH"],
-  ["VH","VV"],["VV","VH"],["HV","HH"],["HH","HV"]]); 
+  polarization = ee.String(polarization); 
   /*****
+   * ALL is ee.List([["VH"],["VV"],["HV"],["HH"],["VH","VV"],["VV","VH"],["HV","HH"],["HH","HV"]])
    * SM: HH+HV, VV+VH, HH, VV
    * IW: HH+HV, VV+VH, HH, VV
    * EW: HH+HV, VV+VH, HH, VV
@@ -66,11 +66,12 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   var selected = img_coll.filter(ee.Filter.eq("instrumentMode",instrument))
   .filter(ee.Filter.eq("orbitProperties_pass",orbit))
   .filter(ee.Filter.eq("resolution",spatial_resolution))
-  .filter(ee.Filter.inList("transmitterReceiverPolarisation",polarization))
+  .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
+  .select(polarization.cat(ee.String("angle")));
   
   //print(selected.first());
   //
-  //.select(polarization.cat(ee.List([ee.String("angle")])));
+  //
   
   /*
   var add_sigma_0 = function(string){
