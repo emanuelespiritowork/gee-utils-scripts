@@ -40,5 +40,5 @@ exports.mosaic_date = function(img_coll, AOI, start_date, latest_date, scale_to_
   
   var mosaic = mosaic_to.mosaic_to(latest_img_coll);
   
-  return mosaic;
+  return ee.Image(mosaic);
 };
