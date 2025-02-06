@@ -55,11 +55,14 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
             {
               "system:index": "3"
             })]),
-    geometry3 = /* color: #d63000 */ee.Geometry.Polygon(
-        [[[-96.73335179397745, 30.355810892824945],
-          [-96.7086325556962, 30.23723739012434],
-          [-96.4889059931962, 30.281126294564146],
-          [-96.52873143264932, 30.394908665226712]]]);
+    geometry3 = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
+        [[[-96.64511953759347, 30.358474228834474],
+          [-96.63620130745394, 30.263912469581417],
+          [-96.58021252205327, 30.26866230644726],
+          [-96.51155286574303, 30.355814008508503]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*****************************
  *        FUNCTIONS
@@ -103,14 +106,14 @@ var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31"
 print(subset_mosaic);
 print(mosaic);
 
-Map.addLayer(subset_mosaic);
-Map.addLayer(mosaic);
-/*
 var flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic).first();
 var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic).first();
 flatten = flatten.select("VH").updateMask(flatten.select("no_data_mask"));
 subset_flatten = subset_flatten.select("VH").updateMask(subset_flatten.select("no_data_mask"));
-//print(flatten);
+
+print(flatten);
+print(subset_flatten);
+
 var subset_speckle = s1_speckle.s1_speckle(subset_flatten,5*subset_scale,"meters","circle").first();
 var speckle = s1_speckle.s1_speckle(flatten,5*scale_to_use,"meters","circle").first();
 
@@ -119,17 +122,14 @@ print(speckle);
 //var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
 //var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
 
-var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale,false);
-var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
-
-//print(subset_histogram);
-//print(histogram);
+//var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale,false);
+//var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
 
 //from the subset histogram I choose the threshold. I should see
 //at least a small peak in the complete histogram
 
 //see also Otsu 1979
-*/
+
 /*
 var threshold = ee.Number(-26);
 
