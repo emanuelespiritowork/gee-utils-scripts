@@ -16,9 +16,7 @@
 *******************************************************/
 // correction function for radiometric slope correction on a
 // Sentinel-1 image collection
-var slope_correction = function (collection,
-                                 options
-                                 ){
+exports.s1_terrain_flattening = function(collection,options){
 
     // set defaults if undefined options
     options = options || {};
@@ -144,6 +142,3 @@ var slope_correction = function (collection,
     return collection.map(_correct);
 
 };
-
-// export function
-exports.slope_correction = slope_correction;
