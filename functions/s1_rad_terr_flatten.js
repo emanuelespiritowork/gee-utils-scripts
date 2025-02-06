@@ -14,10 +14,11 @@
  * Taken from: https://github.com/ESA-PhiLab/radiometric-slope-correction
  * https://www.mdpi.com/2072-4292/12/11/1867
  * There is a possible error in this script. Might be better to check
+ * https://github.com/ESA-PhiLab/radiometric-slope-correction/issues/3
 *******************************************************/
 // correction function for radiometric slope correction on a
 // Sentinel-1 image collection
-var s1_rad_terr_flatten = function(collection,options){
+exports.s1_rad_terr_flatten = function(collection,options){
   
     collection = ee.ImageCollection(collection);
     print(collection);
