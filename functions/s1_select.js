@@ -64,8 +64,10 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   var selected = img_coll.filter(ee.Filter.eq("instrumentMode",instrument))
   .filter(ee.Filter.eq("orbitProperties_pass",orbit))
   .filter(ee.Filter.eq("resolution",spatial_resolution))
-  .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
-  .select(polarization.cat(ee.List([ee.String("angle")])));
+  
+  print(selected.first());
+  //.filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
+  //.select(polarization.cat(ee.List([ee.String("angle")])));
   
   /*
   var add_sigma_0 = function(string){
