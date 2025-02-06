@@ -1,9 +1,6 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_river_basin"),
-    geometry = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.FeatureCollection(
+    geometry = /* color: #d63000 */ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[-96.0737948544642, 30.041044322288684],
@@ -55,13 +52,10 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
             {
               "system:index": "3"
             })]),
-    geometry3 = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.Geometry.Polygon(
-        [[[-96.64511953759347, 30.358474228834474],
-          [-96.63620130745394, 30.263912469581417],
-          [-96.58021252205327, 30.26866230644726],
+    geometry3 = /* color: #d63000 */ee.Geometry.Polygon(
+        [[[-96.70829092431222, 30.356104228882874],
+          [-96.69113294807894, 30.257981642913844],
+          [-96.50193493416265, 30.27103442205583],
           [-96.51155286574303, 30.355814008508503]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /*****************************
