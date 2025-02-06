@@ -84,9 +84,14 @@ var s1_rad_terr_flatten = function(collection,options){
         var proj = image.select(1).projection();
 
         // get look direction angle PROBABLY WRONG
-        var heading = (ee.Terrain.aspect(
+        /*var heading = (ee.Terrain.aspect(
             image.select('angle')).reduceRegion(ee.Reducer.mean(), geom, 1000).get('aspect')
-            );
+            );*/
+        var heading = image.select('angle').reduceRegion({
+          reducer: ee.Reducer.mean(),
+          geometry: geom,
+          scale: 1000
+        }).get("angle");
 
         // Sigma0 to Power of input image
         var sigma0Pow = ee.Image.constant(10).pow(image.divide(10.0));
