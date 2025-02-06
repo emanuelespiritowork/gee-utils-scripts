@@ -110,8 +110,8 @@ var subset_speckle = s1_speckle.s1_speckle(subset_mosaic,5*subset_scale,"meters"
 var speckle = s1_speckle.s1_speckle(mosaic,5*scale_to_use,"meters","circle").first();
 
 Map.addLayer(speckle);
-var plot_gamma0 = plot_map.plot_map(speckle.select("VH_gamma0"),2,subset_scale);
-var plot_sigma0 = plot_map.plot_map(speckle.select("VH_sigma0"),2,subset_scale);
+var plot_gamma0 = plot_map.plot_map(speckle.select("VH_gamma0"),2,scale_to_use);
+var plot_sigma0 = plot_map.plot_map(speckle.select("VH_sigma0"),2,scale_to_use);
 
 //var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
 //var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
