@@ -187,10 +187,10 @@ Map.addLayer(non_permanent_water);
  * FILTER UNCONNECTED PIXELS 
  **********************/
 var connectedPixels = non_permanent_water.toInt().connectedPixelCount({
-  maxSize: 9,
+  maxSize: 100,
   eightConnected: true
 });
-var unconnected_mask = connectedPixels.gte(7);
+var unconnected_mask = connectedPixels.gte(20);
 var connected = non_permanent_water.updateMask(unconnected_mask);
 Map.addLayer(connected);
 
