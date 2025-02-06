@@ -44,5 +44,5 @@ exports.mosaic_recent = function(img_coll, AOI, scale_to_use){
   
   var mosaic = mosaic_to.mosaic_to(latest_img_coll);
   
-  return mosaic;
+  return ee.Image(mosaic);
 };
