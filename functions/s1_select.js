@@ -29,7 +29,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    * Extra Wide Swath mode (EW)
    * Wave Mode (WV) not available for Ground Range Detected.
    *******/
-  polarization = ee.List([polarization]) || ee.List(["VH","VV","HV","HH"]); 
+  polarization = ee.String(polarization) || ee.List(["VH","VV","HV","HH"]); 
   /*****
    * SM: HH+HV, VV+VH, HH, VV
    * IW: HH+HV, VV+VH, HH, VV
@@ -65,7 +65,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   var selected = img_coll.filter(ee.Filter.eq("instrumentMode",instrument))
   .filter(ee.Filter.eq("orbitProperties_pass",orbit))
   .filter(ee.Filter.eq("resolution",spatial_resolution))
-  .filter(ee.Filter.listContains(polarization,"transmitterReceiverPolarisation"))
+  .filter(ee.Filter.inList("transmitterReceiverPolarisation",polarization))
   
   //print(selected.first());
   //
