@@ -87,7 +87,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   
   polarization = polarization || ee.List(["VH","VV","HV","HH"]);
   
-  var polarization_selected = ee.ImageCollection(ee.Image(0));
+  var polarization_selected = img_coll.first();
     
   var take_polarizations = function(element){
     var element_img_coll = ee.ImageCollection(measure_selected_coll)
