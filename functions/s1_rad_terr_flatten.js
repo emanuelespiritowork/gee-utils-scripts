@@ -139,8 +139,16 @@ exports.s1_rad_terr_flatten = function(collection,options){
 
 
     }
-
+    
+    var size = collection.size();
+    
     // run correction function and return corrected collection
-    return ee.ImageCollection(collection.map(_correct));
+    var result = ee.Algorithms.If({
+      condition: size.eq(1),
+      trueCase: ee.Image(collection.map(_correct).first()),
+      falseCase: collection.map(_correct)
+    });
+
+    return result;
 
 };
