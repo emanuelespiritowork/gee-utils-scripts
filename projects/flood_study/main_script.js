@@ -99,13 +99,13 @@ Map.addLayer(dataset, visualization, 'Occurrence', false);
 //Map.addLayer(AOI.geometry());
 //print(AOI);
 
-var subset_scale = ee.Number(50);
+var subset_scale = ee.Number(60);
 var scale_to_use = ee.Number(300);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H", true);
 
-var subset_mosaic = mosaic_date.mosaic_date(selected,geometry2,"2020-01-01","2020-12-31",subset_scale);
-var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31",scale_to_use);
+var subset_mosaic = mosaic_date.mosaic_date(selected,geometry2,"2020-10-01","2020-12-31",subset_scale);
+var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-10-01","2020-12-31",scale_to_use);
 
 var flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic).first();
 var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic).first();
@@ -115,8 +115,8 @@ subset_flatten = subset_flatten.select("VH").updateMask(subset_flatten.select("n
 var subset_speckle = s1_speckle.s1_speckle(subset_flatten,5*subset_scale,"meters","circle").first();
 var speckle = s1_speckle.s1_speckle(flatten,5*scale_to_use,"meters","circle").first();
 
-var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
-var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
+//var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
+//var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
 
 var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry2,subset_scale,false);
 var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
