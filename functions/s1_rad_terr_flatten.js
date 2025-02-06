@@ -144,7 +144,10 @@ exports.s1_rad_terr_flatten = function(collection,options){
         // return gamma_flat plus mask
         
         return ee.Image(gamma0_flatDB.addBands(mask).copyProperties(image))
-        .clipToBoundsAndScale(geom)
+        .clipToBoundsAndScale({
+          geometry: geom,
+          scale: 30
+        })
         .clip(geom);
     }
     
