@@ -132,8 +132,14 @@ collection = ee.ImageCollection(collection);
     function _surface_model(theta_iRad, alpha_rRad, alpha_azRad){
 
       var nominator = (ninetyRad.subtract(theta_iRad)).cos();
+      print("alpha_azRad",alpha_azRad);
+      print("theta_iRad",theta_iRad);
+      print("alpha_rRad",alpha_rRad);
+      print("ninetyRad",ninetyRad);
       var denominator = alpha_azRad.cos()
         .multiply((ninetyRad.subtract(theta_iRad).add(alpha_rRad)).cos());
+      print("nominator",nominator);
+      print("denominator",denominator);
       return nominator.divide(denominator);
     }
 
@@ -173,15 +179,19 @@ collection = ee.ImageCollection(collection);
         var proj = image.select(1).projection();
 
         // get look direction angle
-        var heading = (ee.Terrain.aspect(
-            image.select('angle')).reduceRegion(ee.Reducer.mean(), geom, 1000).get('aspect')
-            );
+        var heading = image.select('angle').reduceRegion({
+          reducer: ee.Reducer.mean(),
+          geometry: geom,
+          scale: 1000
+        });
 
         // Sigma0 to Power of input image
         var sigma0Pow = ee.Image.constant(10).pow(image.divide(10.0));
 
         // Radar geometry
         var theta_iRad = image.select('angle').multiply(Math.PI/180).clip(geom);
+        print("heading",heading);
+        print("Math.PI",Math.PI);
         var phi_iRad = ee.Image.constant(heading).multiply(Math.PI/180);
 
         // Terrain geometry
@@ -193,9 +203,13 @@ collection = ee.ImageCollection(collection);
         // Model geometry
 
         //reduce to 3 angle
+        print("phi_iRad",phi_iRad);
+        print("phi_sRad",phi_sRad);
         var phi_rRad = phi_iRad.subtract(phi_sRad);
 
         // slope steepness in range
+        print("alpha_sRad",alpha_sRad);
+        print("phi_rRad",phi_rRad);
         var alpha_rRad = (alpha_sRad.tan().multiply(phi_rRad.cos())).atan();
 
         // slope steepness in azimuth
