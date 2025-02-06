@@ -31,7 +31,6 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    *******/
   polarization = ee.List(polarization); 
   /*****
-   * If you want all polarizations, say ALL
    * SM: HH+HV, VV+VH, HH, VV
    * IW: HH+HV, VV+VH, HH, VV
    * EW: HH+HV, VV+VH, HH, VV
