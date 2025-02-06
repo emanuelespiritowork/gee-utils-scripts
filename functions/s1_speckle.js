@@ -38,12 +38,10 @@ exports.s1_speckle = function(img_coll, radius, units, type){
     return remove_speckle;
   };
   
-  var speckle = img_coll.map(speckle_lee);
-  
   var result = ee.Algorithms.If({
     condition: size.eq(1),
-    trueCase: ee.Image(speckle.first()),
-    falseCase: speckle
+    trueCase: ee.Image(img_coll.map(speckle_lee).first()),
+    falseCase: img_coll.map(speckle_lee)
   });
   
   return result;
