@@ -106,17 +106,17 @@ var subset_flatten = s1_rad_terr_flatten.s1_rad_terr_flatten(subset_mosaic).firs
 flatten = flatten.select("VH").updateMask(flatten.select("no_data_mask"));
 subset_flatten = subset_flatten.select("VH").updateMask(subset_flatten.select("no_data_mask"));
 
-print(flatten);
-print(subset_flatten);
+//print(flatten);
+//print(subset_flatten);
 
 var subset_speckle = s1_speckle.s1_speckle(subset_flatten,5*subset_scale,"meters","circle").first();
 var speckle = s1_speckle.s1_speckle(flatten,5*scale_to_use,"meters","circle").first();
 
-print(subset_speckle);
-print(speckle);
+//print(subset_speckle);
+//print(speckle);
 
-var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
-var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
+//var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
+//var null_var_1 = plot_map.plot_map(speckle,2,scale_to_use);
 
 var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale,false);
 var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
@@ -126,15 +126,15 @@ var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false)
 
 //see also Otsu 1979
 
-/*
-var threshold = ee.Number(-26);
+
+var threshold = ee.Number(-21);
 
 var threshold_mask = speckle.lt(threshold);
 
 var low_reflectance = speckle.updateMask(threshold_mask);
 
 var null_var_3 = plot_map.plot_map(low_reflectance,2,scale_to_use);
-*/
+
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
