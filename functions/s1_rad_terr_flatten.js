@@ -19,6 +19,7 @@
 exports.s1_rad_terr_flatten = function(collection,options){
   
     collection = ee.ImageCollection(collection);
+    print(collection);
 
     // set defaults if undefined options
     options = options || {};
