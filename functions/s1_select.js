@@ -19,7 +19,7 @@
  * https://sentinel.esa.int/web/sentinel/copernicus/sentinel-1/acquisition-plans-archive
 *******************************************************/
 
-exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_resolution, angle){
+exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_resolution){
   
   img_coll = ee.ImageCollection(img_coll);
   instrument = ee.String(instrument); 
@@ -95,11 +95,5 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   
   //var terrain_correction = polarization_selected.map(create_terrain_correction);
   
-  var angle_selection = ee.ImageCollection(ee.Algorithms.If({
-    condition: angle,
-    trueCase: polarization_selected,
-    falseCase: polarization_selected.select(["[^angle].*"])
-  }));
-  
-  return ee.ImageCollection(angle_selection);
+  return ee.ImageCollection(polarization_selected);
 };
