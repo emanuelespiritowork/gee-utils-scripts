@@ -29,7 +29,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
    * Extra Wide Swath mode (EW)
    * Wave Mode (WV) not available for Ground Range Detected.
    *******/
-  polarization = ee.String(polarization); 
+  polarization = ee.List(polarization); 
   /*****
    * If you want all polarizations, say ALL
    * SM: HH+HV, VV+VH, HH, VV
@@ -85,6 +85,10 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
     .addBands(image.select(["[^angle].*"]).divide(cos_angle_rad).rename(gamma_0_names))
     .addBands(image.select(["[^angle].*"]).rename(sigma_0_names));
   };*/
+  
+  polarization = polarization || ee.List(["VH","VV","HV","HH"]);
+  
+  
   
   var polarization_selected = ee.ImageCollection(ee.Algorithms.If({
     condition: polarization.equals(ee.String("ALL")),
