@@ -99,7 +99,7 @@ Map.addLayer(dataset, visualization, 'Occurrence', false);
 //print(AOI);
 
 var subset_scale = ee.Number(50);
-var scale_to_use = ee.Number(200);
+var scale_to_use = ee.Number(300);
 
 var selected = s1_select.s1_select(s1_coll, "IW", "ALL", "ASCENDING", "H", true);
 
@@ -109,7 +109,7 @@ var mosaic = mosaic_date.mosaic_date(selected,geometry,"2020-01-01","2020-12-31"
 var subset_speckle = s1_speckle.s1_speckle(subset_mosaic,5*subset_scale,"meters","circle").first();
 var speckle = s1_speckle.s1_speckle(mosaic,5*scale_to_use,"meters","circle").first();
 
-Map.addLayer(speckle);
+//Map.addLayer(speckle);
 var plot_gamma0 = plot_map.plot_map(speckle.select("VH_gamma0"),2,scale_to_use);
 var plot_sigma0 = plot_map.plot_map(speckle.select("VH_sigma0"),2,scale_to_use);
 
