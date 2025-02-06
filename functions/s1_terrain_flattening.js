@@ -1,3 +1,19 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.ImageCollection or ee.Image
+ * Output: ee.ImageCollection or ee.Image
+ * Description: apply radiometric terrain flattening to a Sentinel-1 GRD
+ * image collection
+ * Taken from: https://github.com/ESA-PhiLab/radiometric-slope-correction
+ * https://www.mdpi.com/2072-4292/12/11/1867
+*******************************************************/
 // correction function for radiometric slope correction on a
 // Sentinel-1 image collection
 var slope_correction = function (collection,
