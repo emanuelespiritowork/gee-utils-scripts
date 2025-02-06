@@ -27,6 +27,8 @@ exports.s1_speckle = function(img_coll, radius, units, type){
    * 'circle', 'square', 'cross', 'plus', 'octagon', and 'diamond'.
    *********/
   
+  var size = img_coll.size();
+  
   var speckle_lee = function(image){
     var remove_speckle = image.focalMean({
       radius: radius,
@@ -36,5 +38,13 @@ exports.s1_speckle = function(img_coll, radius, units, type){
     return remove_speckle;
   };
   
-  return ee.ImageCollection(img_coll.map(speckle_lee));
+  var speckle = img_coll.map(speckle_lee);
+  
+  var result = ee.Algorithms.If({
+    condition: size.eq(1),
+    trueCase: ee.Image(speckle.first()),
+    falseCase: speckle
+  });
+  
+  return result;
 };
