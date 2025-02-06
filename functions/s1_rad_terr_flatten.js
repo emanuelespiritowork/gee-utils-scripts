@@ -23,7 +23,7 @@ exports.s1_rad_terr_flatten = function(collection,options){
 
     // set defaults if undefined options
     options = options || {};
-    var model = options.model || 'surface';
+    var model = options.model || 'volume';
     var elevation = options.elevation || ee.Image('USGS/SRTMGL1_003');
     var buffer = options.buffer || 0;
 
