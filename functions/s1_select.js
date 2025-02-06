@@ -66,6 +66,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   .filter(ee.Filter.eq("orbitProperties_pass",orbit))
   .filter(ee.Filter.eq("resolution",spatial_resolution));
   
+  /*
   var add_sigma_0 = function(string){
     return ee.String(string).cat("_sigma0");
   };
@@ -73,6 +74,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   var add_gamma_0 = function(string){
     return ee.String(string).cat("_gamma0");
   };
+  
   
   var create_terrain_correction = function(image){
     var cos_angle_rad = image.select("angle").multiply(ee.Number(0.01745)).cos();
@@ -82,7 +84,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
     return image.select("angle")
     .addBands(image.select(["[^angle].*"]).divide(cos_angle_rad).rename(gamma_0_names))
     .addBands(image.select(["[^angle].*"]).rename(sigma_0_names));
-  };
+  };*/
   
   var polarization_selected = ee.ImageCollection(ee.Algorithms.If({
     condition: polarization.equals(ee.String("ALL")),
