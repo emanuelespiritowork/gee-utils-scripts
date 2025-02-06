@@ -18,7 +18,7 @@
 *******************************************************/
 // correction function for radiometric slope correction on a
 // Sentinel-1 image collection
-exports.s1_rad_terr_flatten = function(collection,options){
+exports.s1_rad_terr_flatten = function(collection,options,scale_to_use){
   
     collection = ee.ImageCollection(collection);
     
@@ -144,7 +144,10 @@ exports.s1_rad_terr_flatten = function(collection,options){
         // return gamma_flat plus mask
         
         return gamma0_flatDB.addBands(mask).copyProperties(image)
-        .clipToBoundsAndScale(geom)
+        .clipToBoundsAndScale({
+          geometry: geom,
+          scale: scale_to_use
+          })
         .clip(geom);
     }
     
