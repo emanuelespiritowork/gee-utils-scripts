@@ -89,7 +89,7 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   
   var take_polarizations = function(element){
     var element_img_coll = measure_selected_coll
-    .listContains("transmitterReceiverPolarisation",element)
+    .filter(ee.Filter.listContains("transmitterReceiverPolarisation",element))
     .select(ee.List([element,ee.String("angle")]));
     return element_img_coll.flatten();
   };
