@@ -21,8 +21,7 @@
 exports.s1_rad_terr_flatten = function(collection,options){
   
     collection = ee.ImageCollection(collection);
-    print(collection);
-
+    
     // set defaults if undefined options
     options = options || {};
     var model = options.model || 'volume';
@@ -149,10 +148,7 @@ exports.s1_rad_terr_flatten = function(collection,options){
 
     }
     
-    var result = collection.map(_correct);
-    print(result);
-    
     // run correction function and return corrected collection
-    return result;
+    return collection.map(_correct);
 
 };
