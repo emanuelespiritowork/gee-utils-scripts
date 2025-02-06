@@ -87,16 +87,24 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   
   polarization = polarization || ee.List(["VH","VV","HV","HH"]);
   
+  var take_polarizations = function(element){
+    var element_img_coll = measure_selected_coll
+    .listContains("transmitterReceiverPolarisation",element)
+    .select(ee.List([element,ee.String("angle")]));
+    return element_img_coll.flatten();
+  };
   
+  var polarization_selected = polarization.map(take_polarizations);
   
+  /*
   var polarization_selected = ee.ImageCollection(ee.Algorithms.If({
     condition: polarization.equals(ee.String("ALL")),
     trueCase: measure_selected_coll,
     falseCase: measure_selected_coll.filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
     .select(ee.List([polarization,ee.String("angle")]))
-  }));
+  }));*/
   
   //var terrain_correction = polarization_selected.map(create_terrain_correction);
   
-  return ee.ImageCollection(polarization_selected);
+  return polarization_selected;
 };
