@@ -1,6 +1,9 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_river_basin"),
-    geometry = /* color: #d63000 */ee.FeatureCollection(
+    geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[-96.0737948544642, 30.041044322288684],
@@ -52,7 +55,10 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
             {
               "system:index": "3"
             })]),
-    geometry3 = /* color: #d63000 */ee.Geometry.Polygon(
+    geometry3 = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[-96.70829092431222, 30.356104228882874],
           [-96.69113294807894, 30.257981642913844],
           [-96.50193493416265, 30.27103442205583],
@@ -109,8 +115,8 @@ subset_flatten = subset_flatten.select("VH").updateMask(subset_flatten.select("n
 //print(flatten);
 //print(subset_flatten);
 
-var subset_speckle = s1_speckle.s1_speckle(subset_flatten,5*subset_scale,"meters","circle").first();
-var speckle = s1_speckle.s1_speckle(flatten,5*scale_to_use,"meters","circle").first();
+var subset_speckle = s1_speckle.s1_speckle(subset_flatten,subset_scale.multiply(5),"meters","circle").first();
+var speckle = s1_speckle.s1_speckle(flatten,scale_to_use.multiply(5),"meters","circle").first();
 
 //print(subset_speckle);
 //print(speckle);
@@ -127,7 +133,7 @@ var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false)
 //see also Otsu 1979
 
 
-var threshold = ee.Number(-21);
+var threshold = ee.Number(-23.4);
 
 var threshold_mask = speckle.lt(threshold);
 
