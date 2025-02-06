@@ -96,7 +96,7 @@ var visualization = {
 
 //Map.setCenter(59.414, 45.182, 6);
 
-Map.addLayer(surface_water, visualization, 'Occurrence', false);
+//Map.addLayer(surface_water, visualization, 'Occurrence', false);
 
 //Map.addLayer(AOI.geometry());
 //print(AOI);
@@ -154,7 +154,7 @@ var speckle_after = s1_speckle.s1_speckle(flatten_after,scale_to_use.multiply(5)
 //var null_var_1_before = plot_map.plot_map(speckle_before,2,scale_to_use.multiply(5));
 //var null_var_1_after = plot_map.plot_map(speckle_after,2,scale_to_use.multiply(5));
 
-var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale,false);
+var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale.multiply(5),false);
 //var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
 
 //from the subset histogram I choose the threshold 
@@ -181,13 +181,18 @@ var before_filtered = low_reflectance_after.updateMask(before_filter);
 //now I remove permanent water using JRC asset
 var permanent_water_mask = surface_water.select("seasonality").unmask(0).lt(2);
 var non_permanent_water = before_filtered.updateMask(permanent_water_mask);
-
+Map.addLayer(non_permanent_water);
 
 /**********************
  * FILTER UNCONNECTED PIXELS 
  **********************/
-Map.addLayer(before_filtered)
-Map.addLayer(non_permanent_water);
+var connectedPixels = non_permanent_water.toInt().connectedPixelCount({
+  maxSize: 9,
+  eightConnected: true
+});
+var unconnected_mask = connectedPixels.gte(7);
+var connected = non_permanent_water.updateMask(unconnected_mask);
+Map.addLayer(connected);
 
 
 
