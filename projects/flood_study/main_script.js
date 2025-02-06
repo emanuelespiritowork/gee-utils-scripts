@@ -6,11 +6,11 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
     ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
-                [[[-96.0737948544642, 30.041044322288684],
-                  [-96.04564455529275, 30.09274781553181],
-                  [-96.04633397262877, 30.243533550595362],
-                  [-96.21388079279673, 30.220996684101458],
-                  [-96.22212095589569, 30.04698863641669]]]),
+                [[[-96.10400725680795, 30.05768630223045],
+                  [-96.11018923302713, 30.10225289326337],
+                  [-96.1191183964569, 30.167576194036062],
+                  [-96.20289446467173, 30.158084263320347],
+                  [-96.19190855355194, 30.064818152018713]]]),
             {
               "system:index": "0"
             })]),
@@ -119,16 +119,18 @@ subset_flatten = subset_flatten.select("VH").updateMask(subset_flatten.select("n
 //print(flatten);
 //print(subset_flatten);
 
-var subset_speckle = s1_speckle.s1_speckle(subset_flatten,subset_scale.multiply(5),"meters","circle").first();
+//var subset_speckle = s1_speckle.s1_speckle(subset_flatten,subset_scale.multiply(5),"meters","circle").first();
 var speckle_before = s1_speckle.s1_speckle(flatten_before,scale_to_use.multiply(5),"meters","circle").first();
 var speckle_after = s1_speckle.s1_speckle(flatten_after,scale_to_use.multiply(5),"meters","circle").first();
+
+Map.addLayer(speckle_before);
 
 //print(subset_speckle);
 //print(speckle);
 
-var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
-var null_var_1_before = plot_map.plot_map(speckle_before,2,scale_to_use);
-var null_var_1_after = plot_map.plot_map(speckle_after,2,scale_to_use);
+//var subset_null_var_1 = plot_map.plot_map(subset_speckle,2,subset_scale);
+//var null_var_1_before = plot_map.plot_map(speckle_before,2,scale_to_use.multiply(5));
+//var null_var_1_after = plot_map.plot_map(speckle_after,2,scale_to_use.multiply(5));
 
 //var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale,false);
 //var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
@@ -138,7 +140,7 @@ var null_var_1_after = plot_map.plot_map(speckle_after,2,scale_to_use);
 
 //see also Otsu 1979
 
-
+/*
 var threshold = ee.Number(-23.4);
 
 var threshold_mask = speckle.lt(threshold);
@@ -148,7 +150,7 @@ var low_reflectance = speckle.updateMask(threshold_mask);
 var null_var_3 = plot_map.plot_map(low_reflectance,2,scale_to_use);
 
 //now to filter the data outside water I use a connected filter
-
+*/
 
 
 
