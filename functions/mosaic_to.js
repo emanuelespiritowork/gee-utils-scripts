@@ -38,7 +38,9 @@ exports.mosaic_to = function(img_coll){
   var img_mosaic = img_coll_reordered.mosaic().set({
     "system:footprint": footprint,
     "system:time_start": true_start_date.millis(),
-    "system:time_end": true_latest_date.millis()
+    "system:time_end": true_latest_date.millis(),
+    "date_start": true_start_date,
+    "date_end": true_latest_date
   });
   
   return ee.Image(img_mosaic);
