@@ -120,15 +120,16 @@ exports.s1_rad_terr_flatten = function(collection,scale_to_use,options){
         // Gamma_nought
         var gamma0 = sigma0Pow .divide(theta_iRad.cos());
 
+        var corrModel;
                // models
         if (model == 'volume')
-          var corrModel = _volume_model(theta_iRad, alpha_rRad);
+          corrModel = _volume_model(theta_iRad, alpha_rRad);
 
         if (model == 'surface')
-          var corrModel = _surface_model(theta_iRad, alpha_rRad, alpha_azRad);
+          corrModel = _surface_model(theta_iRad, alpha_rRad, alpha_azRad);
 
         if (model == 'direct')
-          var corrModel = _direct_model(theta_iRad, alpha_rRad, alpha_azRad);
+          corrModel = _direct_model(theta_iRad, alpha_rRad, alpha_azRad);
 
         // apply model to derive gamma0_flat
         var gamma0_flat = gamma0.divide(corrModel);
