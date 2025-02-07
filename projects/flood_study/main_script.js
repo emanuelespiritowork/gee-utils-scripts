@@ -8,7 +8,10 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
           [-95.68908257702583, 29.46758472102303],
           [-95.61403619475962, 29.472863508967293],
           [-95.61808511927094, 29.511625911371844]]]),
-    geometry4 = /* color: #d63000 */ee.Geometry.Polygon(
+    geometry4 = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[-95.99334473924377, 29.61054349466859],
           [-95.9185003788922, 29.691400780868005],
           [-95.99986787156799, 29.747753550985834],
@@ -157,13 +160,16 @@ Map.addLayer(plain_water);
  * FLOOD SURFACE EXTENSION
  **********************/
 var pixelArea = ee.Image.pixelArea();
-var area = pixelArea.mask(plain_water.lt(0));
+var area = pixelArea.mask(plain_water.lt(0)).unmask(0).clip(geometry4);
 Map.addLayer(area);
 var flooded_area = area.reduceRegion({
   reducer: ee.Reducer.sum(),
-  geometry: geometry4
-});
+  geometry: geometry4,
+  scale: 10,
+  bestEffort: true
+}).getNumber("area");
 print(flooded_area,"m^2");
+print(flooded_area.divide(10000),"ha");
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
