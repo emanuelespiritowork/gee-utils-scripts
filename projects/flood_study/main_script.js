@@ -159,7 +159,9 @@ Map.addLayer(plain_water);
 /**********************
  * FLOOD SURFACE EXTENSION
  **********************/
- 
+var pixelArea = ee.Image.pixelArea();
+var area = pixelArea.mask(plain_water);
+Map.addLayer(area);
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
