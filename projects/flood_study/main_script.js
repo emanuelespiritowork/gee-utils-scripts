@@ -156,6 +156,11 @@ var slope_mask = slope.lt(max_degree);
 var plain_water = connected_water.updateMask(slope_mask);
 Map.addLayer(plain_water);
 
+/**********************
+ * FLOOD SURFACE EXTENSION
+ **********************/
+ 
+
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
 
