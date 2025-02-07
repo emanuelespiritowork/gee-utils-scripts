@@ -18,6 +18,9 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_ri
           [-96.09050507859924, 29.731059732629266],
           [-96.04793305711486, 29.627257335035313]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
+//refers to https://www.sciencedirect.com/science/article/pii/S1569843222001911?via%3Dihub#b0245
+
+
 /*****************************
  *        FUNCTIONS
  ***************************/
@@ -33,7 +36,7 @@ var s1_rad_terr_flatten = require("users/emanuelespiritowork/SharedRepo:function
  ***************************/
 var surface_water = ee.Image("JRC/GSW1_4/GlobalSurfaceWater");
 var s1_coll = ee.ImageCollection("COPERNICUS/S1_GRD");
-
+var elevation = ee.Image("WWF/HydroSHEDS/03CONDEM");
 
 var visualization = {
   bands: ['occurrence'],
@@ -134,20 +137,24 @@ Map.addLayer(non_permanent_water);
 /**********************
  * FILTER UNCONNECTED PIXELS 
  **********************/
+// connectedPixelCount is Zoom dependent, so visual result will vary
+//as found in https://courses.spatialthoughts.com/gee-water-resources-management.html
 var connectedPixels = non_permanent_water.toInt().connectedPixelCount({
-  maxSize: 100,
+  maxSize: 25,
   eightConnected: true
 });
-var unconnected_mask = connectedPixels.gte(20);
-var connected = non_permanent_water.updateMask(unconnected_mask);
-Map.addLayer(connected);
+var unconnected_mask = connectedPixels.gte(8);
+var connected_water = non_permanent_water.updateMask(unconnected_mask);
+Map.addLayer(connected_water);
 
-
-
-
-
-
-
+/**********************
+ * REMOVE PIXEL WITH HIGH SLOPE
+ **********************/
+var slope = ee.Terrain.slope(elevation);
+var max_degree = 2.862; //arctan(5/100);
+var slope_mask = slope.lt(max_degree);
+var plain_water = connected_water.updateMask(slope_mask);
+Map.addLayer(plain_water);
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
