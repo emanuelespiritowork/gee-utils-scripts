@@ -160,8 +160,12 @@ Map.addLayer(plain_water);
  * FLOOD SURFACE EXTENSION
  **********************/
 var pixelArea = ee.Image.pixelArea();
-var area = pixelArea.mask(plain_water);
+var area = pixelArea.mask(plain_water.lt(0));
 Map.addLayer(area);
+var flooded_area = area.reduceRegion({
+  reducer: ee.Reducer.sum()
+});
+print(flooded_area,"m^2");
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
