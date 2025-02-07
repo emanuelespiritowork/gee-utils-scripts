@@ -1,61 +1,9 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/brazos_river_basin"),
-    geometry = 
+    geometry3 = 
     /* color: #d63000 */
     /* shown: false */
-    ee.FeatureCollection(
-        [ee.Feature(
-            ee.Geometry.Polygon(
-                [[[-96.10400725680795, 30.05768630223045],
-                  [-96.11018923302713, 30.10225289326337],
-                  [-96.1191183964569, 30.167576194036062],
-                  [-96.20289446467173, 30.158084263320347],
-                  [-96.19190855355194, 30.064818152018713]]]),
-            {
-              "system:index": "0"
-            })]),
-    geometry2 = 
-    /* color: #98ff00 */
-    /* shown: false */
-    ee.FeatureCollection(
-        [ee.Feature(
-            ee.Geometry.Polygon(
-                [[[-99.00635160605253, 32.862273453268706],
-                  [-99.10248197714628, 32.790725562596045],
-                  [-99.00772489706816, 32.707565403127354],
-                  [-98.91571439902128, 32.79822925530258]]]),
-            {
-              "system:index": "0"
-            }),
-        ee.Feature(
-            ee.Geometry.Polygon(
-                [[[-98.37164393841731, 30.789609608937983],
-                  [-98.33456508099543, 30.82735353746729],
-                  [-98.41421595990168, 30.948741050641114],
-                  [-98.53781215130793, 30.891012778217707],
-                  [-98.43344203412043, 30.71525794540285]]]),
-            {
-              "system:index": "1"
-            }),
-        ee.Feature(
-            ee.Geometry.Polygon(
-                [[[-97.51930694160397, 31.01213600337887],
-                  [-97.5261733966821, 31.05096876763615],
-                  [-97.67174224433835, 31.021551460735513],
-                  [-97.66762237129147, 30.988593290634626]]]),
-            {
-              "system:index": "2"
-            }),
-        ee.Feature(
-            ee.Geometry.Polygon(
-                [[[-98.42721477630423, 32.00657896668095],
-                  [-98.50137249114798, 32.06711468814616],
-                  [-98.58651653411673, 32.00424987056985],
-                  [-98.50961223724173, 31.943672608802554]]]),
-            {
-              "system:index": "3"
-            })]),
-    geometry3 = /* color: #d63000 */ee.Geometry.Polygon(
+    ee.Geometry.Polygon(
         [[[-95.68549802278902, 29.509526285447432],
           [-95.68908257702583, 29.46758472102303],
           [-95.61403619475962, 29.472863508967293],
@@ -157,7 +105,6 @@ var speckle_after = s1_speckle.s1_speckle(flatten_after,scale_to_use.multiply(5)
 //var null_var_1_after = plot_map.plot_map(speckle_after,2,scale_to_use.multiply(5));
 
 var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale.multiply(5),false);
-//var histogram = histogram_map.histogram_map(speckle,geometry,scale_to_use,false);
 
 //from the subset histogram I choose the threshold 
 
