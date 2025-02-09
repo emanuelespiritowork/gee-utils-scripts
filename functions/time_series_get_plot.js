@@ -59,7 +59,7 @@ exports.time_series_get_plot = function(time_series,which_property){
       trueCase: 'date',
       falseCase: null
     })
-    });
+  });
 
   var yProperties = which_property;
   
