@@ -65,39 +65,5 @@ exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_
   .filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
   .select(ee.List([polarization,ee.String("angle")]));
   
-  //print(selected.first());
-  //
-  //
-  
-  /*
-  var add_sigma_0 = function(string){
-    return ee.String(string).cat("_sigma0");
-  };
-  
-  var add_gamma_0 = function(string){
-    return ee.String(string).cat("_gamma0");
-  };
-  
-  
-  var create_terrain_correction = function(image){
-    var cos_angle_rad = image.select("angle").multiply(ee.Number(0.01745)).cos();
-    var get_layer_names = image.select(["[^angle].*"]).bandNames();
-    var sigma_0_names = get_layer_names.map(add_sigma_0);
-    var gamma_0_names = get_layer_names.map(add_gamma_0);
-    return image.select("angle")
-    .addBands(image.select(["[^angle].*"]).divide(cos_angle_rad).rename(gamma_0_names))
-    .addBands(image.select(["[^angle].*"]).rename(sigma_0_names));
-  };*/
-
-  /*
-  var polarization_selected = ee.ImageCollection(ee.Algorithms.If({
-    condition: polarization.equals(ee.String("ALL")),
-    trueCase: measure_selected_coll,
-    falseCase: measure_selected_coll.filter(ee.Filter.listContains("transmitterReceiverPolarisation",polarization))
-    .select(ee.List([polarization,ee.String("angle")]))
-  }));*/
-  
-  //var terrain_correction = polarization_selected.map(create_terrain_correction);
-  
   return selected;
 };
