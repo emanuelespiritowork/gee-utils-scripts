@@ -12,7 +12,7 @@
  * Description: create an EVI2 layer over a Landsat-8/9 L2 image collection
 *******************************************************/
 
-exports.histogram_map = function(img, AOI, scale_to_use, all_data){
+exports.plot_histogram = function(img, AOI, scale_to_use, all_data){
   
   img = ee.Image(img);
   AOI = ee.FeatureCollection(AOI);
@@ -24,17 +24,6 @@ exports.histogram_map = function(img, AOI, scale_to_use, all_data){
     region: AOI,
     scale: scale_to_use
   });
-  
-  /*var histogram = ee.Algorithms.If({
-    condition: all_data,
-    trueCase: img.reduceRegion({
-    reducer: ee.Reducer.frequencyHistogram(),
-    geometry: AOI.geometry(),
-    scale: scale_to_use,
-    bestEffort: true
-    }),
-    falseCase: null
-  });*/
   
   print(plot);
   
