@@ -9,8 +9,8 @@
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection or ee.Image
  * Output: ee.ImageCollection or ee.Image
- * Description: select a desidered Sentinel-1 Ground Range Detected image making it a 
- * coherent description. For further discussions on applications:
+ * Description: select a desidered Sentinel-1 Ground Range Detected image collection
+ * making it a coherent description. For further discussions on applications:
  * https://sentiwiki.copernicus.eu/web/s1-applications
  * The explanation of parameters can be found in:
  * https://docs.sentinel-hub.com/api/latest/data/sentinel-1-grd/
