@@ -12,7 +12,7 @@
  * Description: create an EVI2 layer over a Landsat-8/9 L2 image collection
 *******************************************************/
 
-exports.plot_histogram = function(img, AOI, scale_to_use, all_data){
+exports.plot_histogram = function(img, AOI, scale_to_use){
   
   img = ee.Image(img);
   AOI = ee.FeatureCollection(AOI);
