@@ -44,17 +44,6 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
         bestEffort: true}).values());
         
       values = values.map(make_number);
-      
-      /* wrong for the next ee.FeatureCollection()
-      var values_size = values.size();
-      
-      values = ee.Algorithms.If({
-        condition: values.filter(ee.Filter.notNull(['item'])).equals([]),
-        trueCase: ee.List.repeat(null,values_size),
-        falseCase: values
-      });*/
-      
-      //print("values",values);
         
       var keys_list = ['system:time_start','date','id'];
       keys_list = ee.List(keys_list).cat(layer_names);
