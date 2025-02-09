@@ -58,8 +58,6 @@ exports.s1_select = function(img_coll, instrument, orbit, spatial_resolution){
    * (H) HIGH	10m/px for IW/SM and 25m/px for EW
    * (M) MEDIUM	40m/px for IW/SM and EW
    *******/
-   //angle is a boolean: true if you want to add angle layer to the image, 
-   //false if you do not want
    
   var selected = img_coll.filter(ee.Filter.eq("instrumentMode",instrument))
   .filter(ee.Filter.eq("orbitProperties_pass",orbit))
