@@ -47,7 +47,7 @@ exports.plot_stretch = function(img,bands,stretch,scale_to_use){
     });
   }
   
-  print(bands);
+  //print(bands);
   
   var first_band = ee.List(bands).getString(0);
   var second_band = ee.List(bands).getString(1);
@@ -108,17 +108,16 @@ exports.plot_stretch = function(img,bands,stretch,scale_to_use){
   
   var computed_img_max = computed_img_mean.add(array_of_stretch.multiply(computed_img_std));
   //print("computed_img_max",computed_img_max);
-
-var vis_specific_image = {
-  bands: ee.List(bands).getInfo(),
-  min: computed_img_min.toList().getInfo(),
-  max: computed_img_max.toList().getInfo()
-};
-
-Map.addLayer(img, vis_specific_image, 'stretched_image', true);
-Map.centerObject(img);
-
-
-return 0;
+  
+  var vis_specific_image = {
+    bands: ee.List(bands).getInfo(),
+    min: computed_img_min.toList().getInfo(),
+    max: computed_img_max.toList().getInfo()
+  };
+  
+  Map.addLayer(img, vis_specific_image, 'stretched_image', true);
+  Map.centerObject(img);
+  
+  return 0;
 };
 
