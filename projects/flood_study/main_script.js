@@ -175,10 +175,17 @@ print(flooded_area.divide(10000),"ha");
  * AFFECTED POPULATION
  **********************/
 var population = ee.ImageCollection("JRC/GHSL/P2023A/GHS_POP")
-.filter(ee.Filter.eq("system:index",2015))
+.filter(ee.Filter.eq("system:index","2015"))
 .first();
-var affected_population = population.multiply(plain_water.lt(0));
+var affected_population = population.multiply(plain_water.lt(0))
+.unmask(0).clip(geometry4);
 Map.addLayer(affected_population);
+var sum_of_affected_population = affected_population.reduceRegion({
+  reducer: ee.Reducer.sum(),
+  geometry: geometry4,
+  scale: scale_to_use
+}).getNumber("population_count");
+print("sum_of_affected_population",sum_of_affected_population);
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
