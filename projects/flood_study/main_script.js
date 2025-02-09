@@ -141,10 +141,10 @@ var null_var_2 = plot_map.plot_map(non_permanent_water,2,10);
 // connectedPixelCount is Zoom dependent, so visual result will vary
 //as found in https://courses.spatialthoughts.com/gee-water-resources-management.html
 var connectedPixels = non_permanent_water.toInt().connectedPixelCount({
-  maxSize: 25,
+  maxSize: 100,
   eightConnected: true
 });
-var unconnected_mask = connectedPixels.gte(8);
+var unconnected_mask = connectedPixels.gte(25);
 var connected_water = non_permanent_water.updateMask(unconnected_mask);
 var null_var_3 = plot_map.plot_map(connected_water,2,10);
 
@@ -171,6 +171,14 @@ var flooded_area = area.reduceRegion({
 }).getNumber("area");
 print(flooded_area,"m^2");
 print(flooded_area.divide(10000),"ha");
+/**********************
+ * AFFECTED POPULATION
+ **********************/
+var population = ee.ImageCollection("JRC/GHSL/P2023A/GHS_POP")
+.filter(ee.Filter.eq("system:index",2015))
+.first();
+var affected_population = population.multiply(plain_water.lt(0));
+Map.addLayer(affected_population);
 
 //var null_var_1 = plot_map.plot_map(mosaic,2,scale_to_use);
 //var null_var_2 = plot_map.plot_map(speckle,2,scale_to_use);
