@@ -19,7 +19,7 @@
  * https://sentinel.esa.int/web/sentinel/copernicus/sentinel-1/acquisition-plans-archive
 *******************************************************/
 
-exports.s1_select = function(img_coll, instrument, polarization, orbit, spatial_resolution){
+exports.s1_select = function(img_coll, instrument, orbit, spatial_resolution){
   
   img_coll = ee.ImageCollection(img_coll);
   instrument = ee.String(instrument); 
