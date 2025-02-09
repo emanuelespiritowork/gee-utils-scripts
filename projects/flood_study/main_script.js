@@ -28,7 +28,7 @@ var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_selec
 var s1_speckle = require("users/emanuelespiritowork/SharedRepo:functions/s1_speckle.js");
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
 var mosaic_date = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_date.js");
-var histogram_map = require("users/emanuelespiritowork/SharedRepo:functions/histogram_map.js");
+var plot_histogram = require("users/emanuelespiritowork/SharedRepo:functions/plot_histogram.js");
 var s1_rad_terr_flatten = require("users/emanuelespiritowork/SharedRepo:functions/s1_rad_terr_flatten.js");
 
 /*****************************
@@ -105,7 +105,7 @@ var speckle_after = s1_speckle.s1_speckle(flatten_after,scale_to_use.multiply(5)
 //var null_var_1_before = plot_map.plot_map(speckle_before,2,scale_to_use.multiply(5));
 //var null_var_1_after = plot_map.plot_map(speckle_after,2,scale_to_use.multiply(5));
 
-var subset_histogram = histogram_map.histogram_map(subset_speckle,geometry3,subset_scale.multiply(5),false);
+var subset_histogram = plot_histogram.plot_histogram(subset_speckle,geometry3,subset_scale.multiply(5),false);
 
 //from the subset histogram I choose the threshold 
 
