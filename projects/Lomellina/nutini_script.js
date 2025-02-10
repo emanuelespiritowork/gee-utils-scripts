@@ -33,15 +33,15 @@ var RemoteCfarms = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")//get collec
   .clip(AOI.geometry())}); //masking
 print(RemoteCfarms); //see result
  
-var evi = s2_evi.s2_evi(RemoteCfarms);
+//var evi = s2_evi.s2_evi(RemoteCfarms);
 
-//var evi = RemoteCfarms.select("SCL");
+var evi = RemoteCfarms.select("SCL");
  
 // Convert collection to list and then plot the image
 var RemoteCfarms_list = evi.toList(evi.size());
 print(RemoteCfarms_list, 'list');
 var imgS2_1 = ee.Image(RemoteCfarms_list.get(0));//0 = first element
- 
+ print("Evi,crs",evi.first().projection());
 //var bandsToDisplay = ['B8', 'B4', 'B3']; 
 Map.addLayer(imgS2_1, {
   //bands: bandsToDisplay, 
