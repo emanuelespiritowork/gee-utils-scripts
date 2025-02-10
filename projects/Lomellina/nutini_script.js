@@ -29,8 +29,8 @@ var RemoteCfarms = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")//get collec
   .filterBounds(AOI)//around AOI
   //.filterMetadata('MGRS_TILE', 'equals', '32TQQ') // force Filter by tile ID
   //.select(['B1','B2','B3','B4','B5','B6','B7','B8','B9','B11','B12'])
-  .map(function(image){return image.clipToBoundsAndScale(AOI.geometry)
-  .clip(AOI.geometry)}); //masking
+  .map(function(image){return image.clipToBoundsAndScale(AOI.geometry())
+  .clip(AOI.geometry())}); //masking
 print(RemoteCfarms); //see result
  
 //var evi = s2_evi.s2_evi(RemoteCfarms);
