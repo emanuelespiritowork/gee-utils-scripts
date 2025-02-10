@@ -33,9 +33,9 @@ var RemoteCfarms = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")//get collec
   .clip(AOI.geometry())}); //masking
 print(RemoteCfarms); //see result
  
-//var evi = s2_evi.s2_evi(RemoteCfarms);
+var evi = s2_evi.s2_evi(RemoteCfarms);
 
-var evi = RemoteCfarms.select("SCL");
+//var evi = RemoteCfarms.select("SCL");
  
 // Convert collection to list and then plot the image
 var RemoteCfarms_list = evi.toList(evi.size());
