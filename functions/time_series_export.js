@@ -22,12 +22,12 @@ exports.time_series_export = function(time_series, which_property, export_folder
   .remove("system:index")
   .remove("system:time_start")
   .join(", "))
-  .getInfo();
-  print(selectors_name);*/
+  .getInfo();*/
   
   var selectors_name = ee.List([which_property,"id","date"])
   .join(", ")
   .getInfo();
+  print(selectors_name);
   
   Export.table.toDrive({
     collection: time_series, 
