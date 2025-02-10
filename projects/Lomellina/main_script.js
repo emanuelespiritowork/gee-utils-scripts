@@ -21,6 +21,7 @@ var s2_ndvi = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndvi.js
 var s2_mask = require("users/emanuelespiritowork/SharedRepo:functions/s2_mask.js");
 var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
+var pixel_percentage = require("users/emanuelespiritowork/SharedRepo:functions/pixel_percentage.js");
 
 /******************************************************
  * SCRIPT
@@ -28,7 +29,15 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
 
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 
-var s2_mask = 
+var scale_to_use = ee.Number(10);
 
-var ndvi = s2_ndvi.s2_ndvi(s2_coll);
+var clip = clip_to.clip_to(s2_coll,AOI,scale_to_use);
+
+var mask = s2_mask.s2_mask(clip);
+
+var scale = s2_scale.s2_scale(mask);
+
+var ndvi = s2_ndvi.s2_ndvi(scale);
+
+Map.addLayer(ndvi.first());
 
