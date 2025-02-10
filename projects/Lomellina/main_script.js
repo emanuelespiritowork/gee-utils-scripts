@@ -20,6 +20,7 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/Lomellina
 var s2_evi = require("users/emanuelespiritowork/SharedRepo:functions/s2_evi.js");
 var s2_mask = require("users/emanuelespiritowork/SharedRepo:functions/s2_mask.js");
 var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
+var s2_scl_weights = require("users/emanuelespiritowork/SharedRepo:functions/s2_scl_weights.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var pixel_percentage = require("users/emanuelespiritowork/SharedRepo:functions/pixel_percentage.js");
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
@@ -39,11 +40,13 @@ var scale_to_use = ee.Number(10);
 
 var clip = clip_to.clip_to(s2_coll,AOI,scale_to_use);
 
+print(clip);
+
 //var mask = s2_mask.s2_mask(clip);
 
 //var pixel = pixel_percentage.pixel_percentage(mask,AOI,0.5,scale_to_use);
 
-var scale = s2_scale.s2_scale(pixel);
+var scale = s2_scale.s2_scale(clip);
 
 //var scale = s2_scale.s2_scale(clip);
 
