@@ -24,7 +24,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
   id_name = ee.String(id_name);
   scale_to_use = ee.Number(scale_to_use);
   
-  var layer_names = img_coll.first().bandNames();
+  var layer_names = img_coll.first().bandNames().sort();
   print(layer_names);
   
   var space_series_img = function(img){
