@@ -26,7 +26,11 @@ exports.landsat_evi = function(img_coll){
       }
     }).rename('evi');
     var time_start_value = image.get('system:time_start');
-    evi = evi.set({'system:time_start':time_start_value});
+    var footprint = image.get('system:footprint');
+    evi = evi.set({
+      'system:time_start':time_start_value,
+      'system:footprint': footprint
+    });
     return evi;
   };
   
