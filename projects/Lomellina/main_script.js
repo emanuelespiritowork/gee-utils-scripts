@@ -23,6 +23,9 @@ var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var pixel_percentage = require("users/emanuelespiritowork/SharedRepo:functions/pixel_percentage.js");
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
+var time_series_create = require("users/emanuelespiritowork/SharedRepo:functions/time_series_create.js");
+var time_series_get_plot = require("users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot.js");
+var time_series_export = require("users/emanuelespiritowork/SharedRepo:functions/time_series_export.js");
 
 /******************************************************
  * SCRIPT
@@ -43,11 +46,16 @@ var pixel = pixel_percentage.pixel_percentage(mask,AOI,0.5,scale_to_use);
 var scale = s2_scale.s2_scale(pixel);
 
 var ndvi = s2_ndvi.s2_ndvi(scale);
+
 print(ndvi);
 
-//var null_var = plot_map.plot_map(ndvi.first(),2,scale_to_use);
+var null_var = plot_map.plot_map(ndvi.first(),2,scale_to_use);
 
-print(ndvi.first().date());
-Map.addLayer(ndvi.first());
+var time_series = time_series_create.time_series_create(ndvi,AOI,"field_name",scale_to_use);
+
+var plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi");
+
+
+
 Map.centerObject(AOI);
 
