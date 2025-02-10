@@ -39,11 +39,13 @@ var scale_to_use = ee.Number(10);
 
 var clip = clip_to.clip_to(s2_coll,AOI,scale_to_use);
 
-var mask = s2_mask.s2_mask(clip);
+//var mask = s2_mask.s2_mask(clip);
 
-var pixel = pixel_percentage.pixel_percentage(mask,AOI,0.5,scale_to_use);
+//var pixel = pixel_percentage.pixel_percentage(mask,AOI,0.5,scale_to_use);
 
-var scale = s2_scale.s2_scale(pixel);
+//var scale = s2_scale.s2_scale(pixel);
+
+var scale = s2_scale.s2_scale(clip);
 
 var ndvi = s2_ndvi.s2_ndvi(scale);
 
@@ -55,9 +57,9 @@ var time_series = time_series_create.time_series_create(ndvi,AOI,"field_name",sc
 
 var null_var = time_series_export.time_series_export(time_series, "ndvi", "Exports_sen2rts");
 
-var plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi");
+//var plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi");
 
-print(plot);
+//print(plot);
 
 Map.centerObject(AOI);
 
