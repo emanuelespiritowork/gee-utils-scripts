@@ -47,9 +47,9 @@ var scale = s2_scale.s2_scale(pixel);
 
 var ndvi = s2_ndvi.s2_ndvi(scale);
 
-print(ndvi);
+//print(ndvi);
 
-var null_var = plot_map.plot_map(ndvi.first(),2,scale_to_use);
+//var null_var = plot_map.plot_map(ndvi.first(),2,scale_to_use);
 
 var time_series = time_series_create.time_series_create(ndvi,AOI,"field_name",scale_to_use);
 
