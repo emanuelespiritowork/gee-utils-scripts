@@ -92,7 +92,11 @@ exports.landsat_scale = function(img_coll){
     
     //insert time
     var time_start_value = image.get('system:time_start');
-    fullImage = fullImage.set({'system:time_start':time_start_value});
+    var footprint = image.get('system:footprint');
+    fullImage = fullImage.set({
+      'system:time_start':time_start_value,
+      'system:footprint':footprint
+    });
     
     //return image
     return fullImage;
