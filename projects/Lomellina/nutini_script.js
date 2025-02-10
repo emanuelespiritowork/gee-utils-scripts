@@ -29,7 +29,8 @@ var RemoteCfarms = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")//get collec
   .filterBounds(AOI)//around AOI
   //.filterMetadata('MGRS_TILE', 'equals', '32TQQ') // force Filter by tile ID
   //.select(['B1','B2','B3','B4','B5','B6','B7','B8','B9','B11','B12'])
-  .map(function(image){return image.clip(AOI)}); //masking
+  .map(function(image){return image.clipToBoundsAndScale(AOI.geometry)
+  .clip(AOI.geometry)}); //masking
 print(RemoteCfarms); //see result
  
 //var evi = s2_evi.s2_evi(RemoteCfarms);
@@ -48,11 +49,11 @@ Map.addLayer(imgS2_1, {
   max: 1} , 'S2 image PRE');//plot
  
  
-var stackedImageRemoteCfarms = evi.toBands().int16();//stack all BOA
+var stackedImageRemoteCfarms = evi.toBands();//stack all BOA
 print(stackedImageRemoteCfarms, 'stack');
  
 Export.image.toDrive({
-  image: stackedImageRemoteCfarms.unmask(-9999),
+  image: stackedImageRemoteCfarms,
   description: 'S2_export',
   folder: 'Exports_sen2rts',
   scale: 10,
