@@ -15,8 +15,6 @@
 exports.s2_scale = function(img_coll){
   
   img_coll = ee.ImageCollection(img_coll);
-  //var region = img_coll.first().geometry();
-  //var scale_to_use = img_coll.first().projection().nominalScale();
   
   var s2_scale_img = function(image){
     var s2_B_bands_names = image.select("B.*").bandNames();
@@ -39,13 +37,7 @@ exports.s2_scale = function(img_coll){
     fullImage = fullImage.set({
       'system:time_start':time_start_value,
       'system:footprint': footprint
-    })
-    /*
-    .clipToBoundsAndScale({
-      geometry: region,
-      scale: scale_to_use
-    })
-    .clip(region);*/
+    });
     
     return fullImage;
   };
