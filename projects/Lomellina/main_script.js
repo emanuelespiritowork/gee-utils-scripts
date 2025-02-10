@@ -17,7 +17,7 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/Lomellina
  * LIBRARIES
 *******************************************************/
 
-var s2_ndvi = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndvi.js");
+var s2_evi = require("users/emanuelespiritowork/SharedRepo:functions/s2_evi.js");
 var s2_mask = require("users/emanuelespiritowork/SharedRepo:functions/s2_mask.js");
 var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
@@ -47,17 +47,17 @@ var clip = clip_to.clip_to(s2_coll,AOI,scale_to_use);
 
 var scale = s2_scale.s2_scale(clip);
 
-var ndvi = s2_ndvi.s2_ndvi(scale);
+var evi = s2_evi.s2_evi(scale);
 
-//print(ndvi);
+//print(evi);
 
-//var null_var = plot_map.plot_map(ndvi.first(),2,scale_to_use);
+//var null_var = plot_map.plot_map(evi.first(),2,scale_to_use);
 
-var time_series = time_series_create.time_series_create(ndvi,AOI,"field_name",scale_to_use);
+var time_series = time_series_create.time_series_create(evi,AOI,"field_name",scale_to_use);
 
-var null_var = time_series_export.time_series_export(time_series, "ndvi", "Exports_sen2rts");
+var null_var = time_series_export.time_series_export(time_series, "evi", "Exports_sen2rts");
 
-//var plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi");
+//var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
 
 //print(plot);
 
