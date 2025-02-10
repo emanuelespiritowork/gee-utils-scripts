@@ -40,7 +40,7 @@ var scale_to_use = ee.Number(10);
 
 var clip = clip_to.clip_to(s2_coll,AOI,scale_to_use);
 
-print(clip);
+//print(clip);
 
 //var mask = s2_mask.s2_mask(clip);
 
@@ -48,9 +48,9 @@ print(clip);
 
 var scale = s2_scale.s2_scale(clip);
 
-print("scale",scale);
+//print("scale",scale);
 
-Map.addLayer(scale.first().geometry());
+//Map.addLayer(scale.first().geometry());
 
 //var scale = s2_scale.s2_scale(clip);
 
@@ -64,11 +64,17 @@ var scl = s2_scl_weights.s2_scl_weights(scale,AOI,scale_to_use);
 print(scl);
 Map.addLayer(scl);
 
+var evi_scl = evi.combine(scl);
+
+print(evi_scl);
+
 //print(evi);
 
 //var null_var = plot_map.plot_map(evi.first(),2,scale_to_use);
 
-//var time_series = time_series_create.time_series_create(evi,AOI,"field_name",scale_to_use);
+var time_series = time_series_create.time_series_create(evi_scl,AOI,"field_name",scale_to_use);
+
+print(time_series);
 
 //var null_var = time_series_export.time_series_export(time_series, "evi", "Exports_sen2rts");
 
