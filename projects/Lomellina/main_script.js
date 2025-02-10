@@ -53,7 +53,7 @@ var ndvi = s2_ndvi.s2_ndvi(scale);
 
 var time_series = time_series_create.time_series_create(ndvi,AOI,"field_name",scale_to_use);
 
-var null_var = time_series_export.time_series_export(time_series, "Exports_sen2rts");
+var null_var = time_series_export.time_series_export(time_series, "ndvi", "Exports_sen2rts");
 
 var plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi");
 
