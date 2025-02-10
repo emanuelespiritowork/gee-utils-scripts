@@ -31,9 +31,9 @@ var time_series_export = require("users/emanuelespiritowork/SharedRepo:functions
  * SCRIPT
 *******************************************************/
 
-var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-.filterDate("2016-01-01","2020-01-07")
-.sort("system:time_start",false);
+var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
+//.filterDate("2016-01-01","2020-01-07")
+//.sort("system:time_start",false);
 
 var scale_to_use = ee.Number(10);
 
@@ -55,7 +55,7 @@ var time_series = time_series_create.time_series_create(ndvi,AOI,"field_name",sc
 
 var plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi");
 
-
+print(plot);
 
 Map.centerObject(AOI);
 
