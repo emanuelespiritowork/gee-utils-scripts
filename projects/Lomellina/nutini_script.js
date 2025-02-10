@@ -23,7 +23,7 @@ Map.addLayer(AOI.style(styling));
  
 // Filter and export  
 var RemoteCfarms = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")//get collection
-  .filterDate('2022-01-11', '2022-06-13')//period
+  .filterDate("2021-01-01","2024-01-01")//period
   .filterMetadata('CLOUDY_PIXEL_PERCENTAGE', 'less_than', 100) //cloud cover filtering
   .filterBounds(AOI)//around AOI
   .filterMetadata('MGRS_TILE', 'equals', '32TQQ') // force Filter by tile ID
