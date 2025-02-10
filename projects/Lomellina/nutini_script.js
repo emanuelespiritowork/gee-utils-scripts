@@ -72,7 +72,7 @@ var bandNamesFirstImageFC = ee.FeatureCollection([ee.Feature(null, { 'BandNames'
 Export.table.toDrive({
   collection: bandNamesFirstImageFC,
   description: 'bands_number',
-  folder: 'GEE_Export',
+  folder: 'Exports_sen2rts',
   fileFormat: 'CSV'
 });
  
@@ -85,6 +85,6 @@ var allFeaturesCollection = evi.map(function(image) {
 Export.table.toDrive({
   collection: allFeaturesCollection,
   description: 'date_list',
-  folder: 'GEE_Export',
+  folder: 'Exports_sen2rts',
   fileFormat: 'CSV'
 });
