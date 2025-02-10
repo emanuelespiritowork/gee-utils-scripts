@@ -19,8 +19,12 @@ exports.s2_scl_weights = function(img_coll, AOI, scale_to_use){
     };
     
     var time_start_value = image.get('system:time_start');
+    var footprint = image.get('system:footprint');
     var mosaic = ee.ImageCollection(AOI.map(set_scl_each_field)).mosaic()
-    .set({'system:time_start':time_start_value});
+    .set({
+      'system:time_start':time_start_value,
+      'system:footprint':footprint
+    });
     
     return mosaic;
   };
