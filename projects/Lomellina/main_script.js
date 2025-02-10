@@ -57,12 +57,12 @@ Map.addLayer(scale.first().geometry());
 var evi = s2_evi.s2_evi(scale);
 
 print(evi.first().geometry());
-Map.addLayer(evi.first().geometry());
+Map.addLayer(evi.first());
 
 var scl = s2_scl_weights.s2_scl_weights(scale,AOI,scale_to_use);
 
 print(scl);
-Map.addLayer(scl.first().geometry());
+Map.addLayer(scl);
 
 //print(evi);
 
