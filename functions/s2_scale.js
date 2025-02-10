@@ -16,7 +16,6 @@ exports.s2_scale = function(img_coll){
   
   img_coll = ee.ImageCollection(img_coll);
   var region = img_coll.first().geometry();
-  Map.addLayer(region);
   var scale_to_use = img_coll.first().projection().nominalScale();
   
   var s2_scale_img = function(image){
