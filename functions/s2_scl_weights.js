@@ -15,7 +15,7 @@ exports.s2_scl_weights = function(img_coll, AOI, scale_to_use){
       return ee.Image(scl_value).clipToBoundsAndScale({
         geometry: region.geometry(),
         scale: scale_to_use
-      }).clip(region.geometry());
+      }).clip(region.geometry()).rename("SCL");
     };
     
     var time_start_value = image.get('system:time_start');
