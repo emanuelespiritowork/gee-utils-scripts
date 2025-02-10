@@ -60,7 +60,8 @@ exports.pixel_percentage = function(img_coll,AOI,threshold_percentage,scale_to_u
     .mosaic().clipToBoundsAndScale({
       geometry: AOI.geometry(),
       scale: scale_to_use
-    });
+    })
+    .clip(AOI.geometry());
     
     var time_start_value = image.get('system:time_start');
     
