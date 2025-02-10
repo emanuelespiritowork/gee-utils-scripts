@@ -11,6 +11,7 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/Lomellina
 //var style = {color:'black', fillColor:'00000000'};
 //Map.addLayer(table2.style(style), {}, 'region', true);
 
+var s2_evi = require("users/emanuelespiritowork/SharedRepo:functions/s2_evi.js");
  
 //Display the shapefile into the interactive map
 Map.addLayer(AOI);
@@ -23,13 +24,15 @@ Map.addLayer(AOI.style(styling));
  
 // Filter and export  
 var RemoteCfarms = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")//get collection
-  .filterDate("2021-01-01","2024-01-01")//period
+  .filterDate("2021-01-01","2025-01-01")//period
   .filterMetadata('CLOUDY_PIXEL_PERCENTAGE', 'less_than', 100) //cloud cover filtering
   .filterBounds(AOI)//around AOI
   //.filterMetadata('MGRS_TILE', 'equals', '32TQQ') // force Filter by tile ID
-  .select(['B1','B2','B3','B4','B5','B6','B7','B8','B9','B11','B12'])
+  //.select(['B1','B2','B3','B4','B5','B6','B7','B8','B9','B11','B12'])
   .map(function(image){return image.clip(AOI)}); //masking
 print(RemoteCfarms); //see result
+ 
+var evi = s2_evi.s2_evi(RemoteCfarms);
  
 // Convert collection to list and then plot the image
 var RemoteCfarms_list = RemoteCfarms.toList(RemoteCfarms.size());
@@ -46,7 +49,7 @@ print(stackedImageRemoteCfarms, 'stack');
 Export.image.toDrive({
   image: stackedImageRemoteCfarms.unmask(-9999),
   description: 'S2_export',
-  folder: 'GEE_Export',
+  folder: 'Exports_sen2rts',
   scale: 10,
   region: AOI
 });
