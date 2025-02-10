@@ -49,6 +49,8 @@ var scale = s2_scale.s2_scale(pixel);
 
 var evi = s2_evi.s2_evi(scale);
 
+var scl = s2_scl_weights
+
 //print(evi);
 
 //var null_var = plot_map.plot_map(evi.first(),2,scale_to_use);
