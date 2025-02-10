@@ -28,7 +28,9 @@ var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.
  * SCRIPT
 *******************************************************/
 
-var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
+var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+.filterDate("2016-01-01","2020-01-07")
+.sort("system:time_start",false);
 
 var scale_to_use = ee.Number(10);
 
@@ -36,12 +38,16 @@ var clip = clip_to.clip_to(s2_coll,AOI,scale_to_use);
 
 var mask = s2_mask.s2_mask(clip);
 
-var scale = s2_scale.s2_scale(mask);
+var pixel = pixel_percentage.pixel_percentage(mask,AOI,0.5,scale_to_use);
+
+var scale = s2_scale.s2_scale(pixel);
 
 var ndvi = s2_ndvi.s2_ndvi(scale);
 print(ndvi);
 
-var null_var = plot_map.plot_map(ndvi.first(),2,scale_to_use);
+//var null_var = plot_map.plot_map(ndvi.first(),2,scale_to_use);
 
-//Map.addLayer(ndvi.first());
+print(ndvi.first().date());
+Map.addLayer(ndvi.first());
+Map.centerObject(AOI);
 
