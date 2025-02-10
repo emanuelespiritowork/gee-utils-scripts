@@ -39,8 +39,11 @@ var RemoteCfarms_list = evi.toList(evi.size());
 print(RemoteCfarms_list, 'list');
 var imgS2_1 = ee.Image(RemoteCfarms_list.get(0));//0 = first element
  
-var bandsToDisplay = ['B8', 'B4', 'B3']; 
-Map.addLayer(imgS2_1, {bands: bandsToDisplay, min: -1, max: 1} , 'S2 image PRE');//plot
+//var bandsToDisplay = ['B8', 'B4', 'B3']; 
+Map.addLayer(imgS2_1, {
+  //bands: bandsToDisplay, 
+  min: -1, 
+  max: 1} , 'S2 image PRE');//plot
  
  
 var stackedImageRemoteCfarms = evi.toBands().int16();//stack all BOA
