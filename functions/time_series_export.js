@@ -28,6 +28,6 @@ exports.time_series_export = function(time_series, export_folder){
     collection: time_series, 
     description: "export_time_series",
     selectors: selectors_name,
-    folder: export_folder});
+    folder: export_folder.getInfo()});
   return 0;
 };
