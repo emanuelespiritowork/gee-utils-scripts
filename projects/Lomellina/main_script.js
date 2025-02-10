@@ -39,13 +39,13 @@ var scale_to_use = ee.Number(10);
 
 var clip = clip_to.clip_to(s2_coll,AOI,scale_to_use);
 
-//var mask = s2_mask.s2_mask(clip);
+var mask = s2_mask.s2_mask(clip);
 
-//var pixel = pixel_percentage.pixel_percentage(mask,AOI,0.5,scale_to_use);
+var pixel = pixel_percentage.pixel_percentage(mask,AOI,0.5,scale_to_use);
 
-//var scale = s2_scale.s2_scale(pixel);
+var scale = s2_scale.s2_scale(pixel);
 
-var scale = s2_scale.s2_scale(clip);
+//var scale = s2_scale.s2_scale(clip);
 
 var evi = s2_evi.s2_evi(scale);
 
