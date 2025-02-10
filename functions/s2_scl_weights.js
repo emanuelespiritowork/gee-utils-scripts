@@ -8,7 +8,7 @@ exports.s2_scl_weights = function(img_coll, AOI, scale_to_use){
       
       var scl_value = image.reduceRegion({
         reducer: ee.Reducer.mode(),
-        geometry: region,
+        geometry: region.geometry(),
         scale: scale_to_use
       }).getNumber("SCL");
       
