@@ -63,7 +63,7 @@ Export.image.toDrive({
  
  
 // Get band names from the first image in the collection
-var firstImage = ee.Image(RemoteCfarms.first());
+var firstImage = ee.Image(evi.first());
 var bandNamesFirstImage = firstImage.bandNames();
 print('Band names of the first image:', bandNamesFirstImage);
  
@@ -77,7 +77,7 @@ Export.table.toDrive({
 });
  
 // Create a table with all features from the image collection
-var allFeaturesCollection = RemoteCfarms.map(function(image) {
+var allFeaturesCollection = evi.map(function(image) {
   return ee.Feature(null, {'system:index': image.id()});
 });
  
