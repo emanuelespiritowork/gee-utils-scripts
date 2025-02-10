@@ -1,4 +1,6 @@
-exports.s2_scl_weights = function(scl, AOI, scale_to_use){
+exports.s2_scl_weights = function(img_coll, AOI, scale_to_use){
+  
+  var scl = img_coll.select("SCL");
   
   var set_scl_each_image = function(image){
     
