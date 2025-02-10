@@ -24,7 +24,7 @@ exports.pixel_percentage = function(img_coll,AOI,threshold_percentage,scale_to_u
   
   var pixel_percentage_img = function(image){
     var clip_image_following_feature = function(region){
-      var clipped_image = image.clipToBoundsAndScale(region).clip(region); 
+      var clipped_image = image.clip(region); 
       
       var not_masked_pixels = clipped_image.reduceRegion({
         reducer: ee.Reducer.count(),
@@ -48,7 +48,7 @@ exports.pixel_percentage = function(img_coll,AOI,threshold_percentage,scale_to_u
       });
       
       var updateMask_image = clipped_image.updateMask(possible_mask)
-      .clip(region);
+      .clipToBoundsAndScale(region).clip(region);
       
       return updateMask_image;
     };
