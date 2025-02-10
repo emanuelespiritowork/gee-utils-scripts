@@ -19,7 +19,11 @@ exports.landsat_ndvi = function(img_coll){
   var landsat_ndvi_img = function(image){
     var ndvi = image.normalizedDifference(["SR_B5","SR_B4"]).rename('ndvi');
     var time_start_value = image.get('system:time_start');
-    ndvi = ndvi.set({'system:time_start':time_start_value});
+    var footprint = image.get('system:footprint');
+    ndvi = ndvi.set({
+      'system:time_start':time_start_value,
+      'system:footprint':footprint
+    });
     return ndvi;
   };
   
