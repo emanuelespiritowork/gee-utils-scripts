@@ -57,16 +57,16 @@ exports.pixel_percentage = function(img_coll,AOI,threshold_percentage,scale_to_u
     .map(clip_image_following_feature);
     
     var imageMosaic = ee.ImageCollection(imageCollection_of_clipped_image)
-    .mosaic().clipToBoundsAndScale({
-      geometry: AOI.geometry(),
-      scale: scale_to_use
-    })
-    .clip(AOI.geometry());
+    .mosaic();
     
+    var footprint = image.get('system:footprint');
     var time_start_value = image.get('system:time_start');
     
     imageMosaic = imageMosaic
-    .set({'system:time_start':time_start_value});
+    .set({
+      'system:time_start':time_start_value,
+      'system:footprint': footprint
+    });
     
     return imageMosaic;
   };
