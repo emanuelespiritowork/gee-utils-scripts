@@ -22,6 +22,7 @@ var s2_mask = require("users/emanuelespiritowork/SharedRepo:functions/s2_mask.js
 var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var pixel_percentage = require("users/emanuelespiritowork/SharedRepo:functions/pixel_percentage.js");
+var plot_map = = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
 
 /******************************************************
  * SCRIPT
@@ -39,5 +40,7 @@ var scale = s2_scale.s2_scale(mask);
 
 var ndvi = s2_ndvi.s2_ndvi(scale);
 
-Map.addLayer(ndvi.first());
+var null_var = plot_map.plot_map(ndvi.first(),2,scale_to_use);
+
+//Map.addLayer(ndvi.first());
 
