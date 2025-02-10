@@ -49,19 +49,23 @@ var scale = s2_scale.s2_scale(pixel);
 
 var evi = s2_evi.s2_evi(scale);
 
-var scl = s2_scl_weights
+print(evi);
+
+var scl = s2_scl_weights.s2_scl_weights(scale,AOI,scale_to_use);
+
+print(scl);
 
 //print(evi);
 
 //var null_var = plot_map.plot_map(evi.first(),2,scale_to_use);
 
-var time_series = time_series_create.time_series_create(evi,AOI,"field_name",scale_to_use);
+//var time_series = time_series_create.time_series_create(evi,AOI,"field_name",scale_to_use);
 
-var null_var = time_series_export.time_series_export(time_series, "evi", "Exports_sen2rts");
+//var null_var = time_series_export.time_series_export(time_series, "evi", "Exports_sen2rts");
 
-var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
+//var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
 
-print(plot);
+//print(plot);
 
 Map.centerObject(AOI);
 
