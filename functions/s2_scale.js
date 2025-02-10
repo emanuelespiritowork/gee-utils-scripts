@@ -35,12 +35,17 @@ exports.s2_scale = function(img_coll){
     var fullImage = imageMulti.addBands(s2_not_B_bands);
     
     var time_start_value = image.get('system:time_start');
-    fullImage = fullImage.set({'system:time_start':time_start_value})
+    var footprint = image.get('system:footprint');
+    fullImage = fullImage.set({
+      'system:time_start':time_start_value,
+      'system:footprint': footprint
+    })
+    /*
     .clipToBoundsAndScale({
       geometry: region,
       scale: scale_to_use
     })
-    .clip(region);
+    .clip(region);*/
     
     return fullImage;
   };
