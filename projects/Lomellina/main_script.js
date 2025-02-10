@@ -61,10 +61,10 @@ Map.addLayer(evi.first());
 
 var scl = s2_scl_weights.s2_scl_weights(scale,AOI,scale_to_use);
 
-print(scl);
+//print(scl);
 Map.addLayer(scl);
 
-var evi_scl = evi.combine(scl);
+var evi_scl = scl.combine(evi);
 
 print(evi_scl);
 
@@ -78,9 +78,9 @@ print(time_series);
 
 //var null_var = time_series_export.time_series_export(time_series, "evi", "Exports_sen2rts");
 
-//var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
+var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
 
-//print(plot);
+print(plot);
 
 Map.centerObject(AOI);
 
