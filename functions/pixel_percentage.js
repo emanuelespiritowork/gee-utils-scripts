@@ -48,7 +48,10 @@ exports.pixel_percentage = function(img_coll,AOI,threshold_percentage,scale_to_u
       });
       
       var updateMask_image = clipped_image.updateMask(possible_mask)
-      .clipToBoundsAndScale(region.geometry()).clip(region);
+      .clipToBoundsAndScale({
+        geometry: region.geometry(),
+        scale: scale_to_use
+      }).clip(region);
       
       return updateMask_image;
     };
