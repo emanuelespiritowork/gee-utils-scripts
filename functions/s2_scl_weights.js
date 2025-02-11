@@ -10,7 +10,7 @@ exports.s2_scl_weights = function(img_coll, AOI, scale_to_use){
         reducer: ee.Reducer.mode(),
         geometry: region.geometry(),
         scale: scale_to_use
-      })).combine(ee.Dictionary(ee.List([0]),ee.List([1])),false).getNumber("SCL");
+      })).combine(ee.Dictionary.fromLists(ee.List([0]),ee.List([1])),false).getNumber("SCL");
       
       return ee.Image(scl_value).clipToBoundsAndScale({
         geometry: region.geometry(),
