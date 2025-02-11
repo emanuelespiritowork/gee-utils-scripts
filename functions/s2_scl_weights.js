@@ -10,23 +10,12 @@ exports.s2_scl_weights = function(img_coll, AOI, scale_to_use){
         reducer: ee.Reducer.mode(),
         geometry: region.geometry(),
         scale: scale_to_use
-      }).getNumber("SCL");
+      }).getNumber("SCL").combine(1,false);
       
-      var start_image = ee.Image(-1).remap({
-        from: ee.List([-1]),
-        to: ee.List([scl_value])
-      });
-      
-      return start_image.clipToBoundsAndScale({
-        geometry: region.geometry(),
-        scale: scale_to_use
-      }).clip(region.geometry()).rename("SCL");
-      
-      /*
       return ee.Image(scl_value).clipToBoundsAndScale({
         geometry: region.geometry(),
         scale: scale_to_use
-      }).clip(region.geometry()).rename("SCL");*/
+      }).clip(region.geometry()).rename("SCL");
     };
     
     var time_start_value = image.get('system:time_start');
