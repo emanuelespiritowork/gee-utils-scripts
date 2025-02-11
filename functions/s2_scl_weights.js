@@ -9,7 +9,8 @@ exports.s2_scl_weights = function(img_coll, AOI, scale_to_use){
       var scl_value = ee.Dictionary(image.reduceRegion({
         reducer: ee.Reducer.mode(),
         geometry: region.geometry(),
-        scale: scale_to_use
+        scale: scale_to_use,
+        bestEffort: true
       })).combine(ee.Dictionary.fromLists(ee.List(["SCL"]),ee.List([ee.Number(1).int32()])),false)
       .getNumber("SCL").round();
       
