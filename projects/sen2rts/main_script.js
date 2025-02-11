@@ -70,7 +70,7 @@ var scl = s2_scl_weights.s2_scl_weights(scale,AOI,scale_to_use);
 
 var evi_scl = scl.combine(evi);
 
-//print(evi_scl);
+print(evi_scl);
 
 //print(evi);
 
