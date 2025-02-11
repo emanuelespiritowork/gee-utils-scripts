@@ -13,7 +13,7 @@
  * Use the function time_series_create.js to create the time_series
 *******************************************************/
 
-exports.time_series_export = function(time_series, which_property, export_folder){
+exports.time_series_export = function(time_series, property_list, export_folder){
   
   time_series = ee.FeatureCollection(time_series);
   export_folder = ee.String(export_folder);
@@ -24,7 +24,7 @@ exports.time_series_export = function(time_series, which_property, export_folder
   .join(", "))
   .getInfo();*/
   
-  var selectors_name = ee.List([which_property,"id","date"])
+  var selectors_name = ee.List(property_list.cat(ee.String("id")).cat(ee.String("date")))
   .join(", ")
   .getInfo();
   print(selectors_name);
