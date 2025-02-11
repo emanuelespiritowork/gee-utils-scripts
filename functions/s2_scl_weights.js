@@ -11,7 +11,7 @@ exports.s2_scl_weights = function(img_coll, AOI, scale_to_use){
         geometry: region.geometry(),
         scale: scale_to_use
       })).combine(ee.Dictionary.fromLists(ee.List(["SCL"]),ee.List([ee.Number(1).int()])),false)
-      .getNumber("SCL").toInt();
+      .getNumber("SCL").round();
       
       return ee.Image(scl_value).clipToBoundsAndScale({
         geometry: region.geometry(),
