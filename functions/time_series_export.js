@@ -17,6 +17,7 @@ exports.time_series_export = function(time_series, property_list, export_folder)
   
   time_series = ee.FeatureCollection(time_series);
   export_folder = ee.String(export_folder);
+  property_list = ee.List(property_list);
   
   /*var selectors_name = ee.String(time_series.first().propertyNames()
   .remove("system:index")
@@ -24,7 +25,7 @@ exports.time_series_export = function(time_series, property_list, export_folder)
   .join(", "))
   .getInfo();*/
   
-  var selectors_name = ee.List(property_list.cat(ee.String("id")).cat(ee.String("date")))
+  var selectors_name = property_list.cat(ee.String("id")).cat(ee.String("date"))
   .join(", ")
   .getInfo();
   print(selectors_name);
