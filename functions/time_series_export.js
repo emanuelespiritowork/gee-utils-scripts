@@ -25,7 +25,7 @@ exports.time_series_export = function(time_series, property_list, export_folder)
   .join(", "))
   .getInfo();*/
   
-  var selectors_name = property_list.cat(ee.String("id")).cat(ee.String("date"))
+  var selectors_name = property_list.cat("id").cat("date")
   .join(", ");
   print(selectors_name);
   
