@@ -16,7 +16,7 @@ exports.s2_scl_weights = function(img_coll, AOI, scale_to_use){
       return ee.Image(scl_value).clipToBoundsAndScale({
         geometry: region.geometry(),
         scale: scale_to_use
-      }).clip(region.geometry()).rename("SCL").toByte();
+      }).clip(region.geometry()).rename("SCL").toInt();
     };
     
     var time_start_value = image.get('system:time_start');
@@ -25,7 +25,7 @@ exports.s2_scl_weights = function(img_coll, AOI, scale_to_use){
     .set({
       'system:time_start':time_start_value,
       'system:footprint':footprint
-    }).toByte();
+    }).toInt();
     
     return mosaic;
   };
