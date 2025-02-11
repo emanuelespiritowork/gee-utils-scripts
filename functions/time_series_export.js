@@ -17,7 +17,7 @@ exports.time_series_export = function(time_series, property_list, export_folder)
   
   time_series = ee.FeatureCollection(time_series);
   export_folder = ee.String(export_folder);
-  property_list = ee.List(property_list.getInfo());
+  property_list = ee.List(property_list);
   
   /*var selectors_name = ee.String(time_series.first().propertyNames()
   .remove("system:index")
@@ -26,14 +26,13 @@ exports.time_series_export = function(time_series, property_list, export_folder)
   .getInfo();*/
   
   var selectors_name = property_list.cat(ee.String("id")).cat(ee.String("date"))
-  .join(", ")
-  .getInfo();
+  .join(", ");
   print(selectors_name);
   
   Export.table.toDrive({
     collection: time_series, 
     description: "export_time_series",
-    selectors: selectors_name,
+    selectors: selectors_name.getInfo(),
     folder: export_folder.getInfo()});
   return 0;
 };
