@@ -26,7 +26,7 @@ exports.s2_scl_weights = function(img_coll, AOI, scale_to_use){
     .set({
       'system:time_start':time_start_value,
       'system:footprint':footprint
-    });
+    }).int32();
     
     return mosaic;
   };
