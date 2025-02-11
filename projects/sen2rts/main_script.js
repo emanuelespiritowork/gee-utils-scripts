@@ -42,17 +42,17 @@ var clip = clip_to.clip_to(s2_coll,AOI,scale_to_use);
 
 //print(clip);
 
-var mask = s2_mask.s2_mask(clip);
+//var mask = s2_mask.s2_mask(clip);
 
-var pixel = pixel_percentage.pixel_percentage(mask,AOI,0.5,scale_to_use);
+//var pixel = pixel_percentage.pixel_percentage(mask,AOI,0.5,scale_to_use);
 
-var scale = s2_scale.s2_scale(pixel);
+//var scale = s2_scale.s2_scale(pixel);
 
 //print("scale",scale);
 
 //Map.addLayer(scale.first().geometry());
 
-//var scale = s2_scale.s2_scale(clip);
+var scale = s2_scale.s2_scale(clip);
 
 var evi = s2_evi.s2_evi(scale);
 
@@ -63,12 +63,12 @@ print("evi.first().geometry()",evi.first().geometry());
 Map.centerObject(AOI);
 Map.addLayer(evi.first());
 
-//var scl = s2_scl_weights.s2_scl_weights(scale,AOI,scale_to_use);
+var scl = s2_scl_weights.s2_scl_weights(scale,AOI,scale_to_use);
 
 //print("scl",scl);
 //Map.addLayer(scl);
 
-//var evi_scl = scl.combine(evi);
+var evi_scl = scl.combine(evi);
 
 //print(evi_scl);
 
@@ -76,18 +76,18 @@ Map.addLayer(evi.first());
 
 //var null_var = plot_map.plot_map(evi.first(),2,scale_to_use);
 
-//var time_series = time_series_create.time_series_create(evi_scl,AOI,"fid",scale_to_use);
+var time_series = time_series_create.time_series_create(evi_scl,AOI,"fid",scale_to_use);
 
-var time_series = time_series_create.time_series_create(evi,AOI,"fid",scale_to_use);
+//var time_series = time_series_create.time_series_create(evi,AOI,"fid",scale_to_use);
 
-//print(time_series);
+print(time_series);
 
 //var null_var = time_series_export.time_series_export(time_series, ["evi","SCL"], "Exports_sen2rts");
 
 //var null_var = time_series_export.time_series_export(time_series, ["evi"], "Exports_sen2rts");
 
-var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
+//var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
 
-print(plot);
+//print(plot);
 
 
