@@ -80,9 +80,9 @@ var time_series = time_series_create.time_series_create(evi_scl,AOI,"fid",scale_
 
 //var time_series = time_series_create.time_series_create(evi,AOI,"fid",scale_to_use);
 
-print(time_series);
+//print(time_series);
 
-//var null_var = time_series_export.time_series_export(time_series, ["evi","SCL"], "Exports_sen2rts");
+var null_var = time_series_export.time_series_export(time_series, ["evi","SCL"], "Exports_sen2rts");
 
 //var null_var = time_series_export.time_series_export(time_series, ["evi"], "Exports_sen2rts");
 
