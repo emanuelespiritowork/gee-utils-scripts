@@ -1,6 +1,3 @@
-/**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/Lomellina");
-/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /******************************************************
  * Author: Emanuele Spirito
  * Copyright: 2025
@@ -10,7 +7,7 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/Lomellina
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Create Lomellina time series
+ * Create Lomellina/Chiavenna/JDS time series
 *******************************************************/
 
 /******************************************************
