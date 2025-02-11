@@ -56,12 +56,16 @@ var scale = s2_scale.s2_scale(clip);
 
 var evi = s2_evi.s2_evi(scale);
 
-print(evi.first().geometry());
+print("evi",evi);
+
+print("evi.first().geometry()",evi.first().geometry());
+
+Map.centerObject(AOI);
 Map.addLayer(evi.first());
 
 var scl = s2_scl_weights.s2_scl_weights(scale,AOI,scale_to_use);
 
-//print(scl);
+print("scl",scl);
 Map.addLayer(scl);
 
 var evi_scl = scl.combine(evi);
@@ -82,5 +86,4 @@ var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
 
 print(plot);
 
-Map.centerObject(AOI);
 
