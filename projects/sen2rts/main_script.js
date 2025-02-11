@@ -1,5 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/Chiavenna");
+var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/Lomellina");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /******************************************************
  * Author: Emanuele Spirito
@@ -80,14 +80,14 @@ var time_series = time_series_create.time_series_create(evi_scl,AOI,"fid",scale_
 
 //var time_series = time_series_create.time_series_create(evi,AOI,"fid",scale_to_use);
 
-//print(time_series);
+print(time_series);
 
 var null_var = time_series_export.time_series_export(time_series, ["evi","SCL"], "Exports_sen2rts");
 
 //var null_var = time_series_export.time_series_export(time_series, ["evi"], "Exports_sen2rts");
 
-//var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
+var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
 
-//print(plot);
+print(plot);
 
 
