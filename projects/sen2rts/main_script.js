@@ -63,7 +63,7 @@ print("evi.first().geometry()",evi.first().geometry());
 Map.centerObject(AOI);
 Map.addLayer(evi.first());
 
-var scl = s2_scl_weights.s2_scl_weights(scale,AOI,scale_to_use);
+var scl = s2_scl_weights.s2_scl_weights(scale,AOI);
 
 //print("scl",scl);
 //Map.addLayer(scl);
