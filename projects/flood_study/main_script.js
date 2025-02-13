@@ -96,6 +96,7 @@ var subset_speckle = s1_speckle.s1_speckle(subset_flatten,subset_scale.multiply(
 var speckle_before = s1_speckle.s1_speckle(flatten_before,scale_to_use.multiply(5),"meters","circle").first();
 var speckle_after = s1_speckle.s1_speckle(flatten_after,scale_to_use.multiply(5),"meters","circle").first();
 
+print(subset_speckle);
 //print(speckle_before);
 //print(speckle_after);
 //print(subset_speckle);
