@@ -1,3 +1,19 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.ImageCollection, ee.FeatureCollection
+ * Output: ee.ImageCollection
+ * Description: given an image collection with the Sentinel-2 SCL layer
+ * this script creates the scl_weight layer based on the default sen2rts
+ * weights
+*******************************************************/
+
 exports.s2_scl_weights = function(img_coll, AOI){
   
   var scl = img_coll.select("SCL");
