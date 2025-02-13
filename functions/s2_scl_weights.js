@@ -11,13 +11,13 @@ exports.s2_scl_weights = function(img_coll, AOI){
         geometry: region.geometry(),
         scale: 20,
         bestEffort: true
-      })).combine(ee.Dictionary.fromLists(ee.List(["SCL"]),ee.List([ee.Number(1).double()])),false)
+      })).combine(ee.Dictionary.fromLists(ee.List(["SCL"]),ee.List([ee.Number(1)])),false)
       .getNumber("SCL");
       
       return ee.Image(scl_value).clipToBoundsAndScale({
         geometry: region.geometry(),
         scale: 20
-      }).clip(region.geometry()).rename("SCL").double();
+      }).clip(region.geometry()).rename("SCL").toByte();
     };
     
     var time_start_value = image.get('system:time_start');
