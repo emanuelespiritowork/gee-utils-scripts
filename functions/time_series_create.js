@@ -47,16 +47,16 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
       var keys_list = ['system:time_start','date','clock','id'];
       keys_list = ee.List(keys_list).cat(layer_names);
         
+        
       var values_list = [date,ee.Date(date).format('Y/M/d'), ee.Date(date).format('H:m:s'), ee.String(feature_of_cycle.get(id_name))];
       values_list = ee.List(values_list).cat(values);
         
-      var feature_of_single_field = ee.Feature({
-        //geometry: ee.Feature(feature_of_cycle).geometry(),
-        properties: ee.Dictionary.fromLists({
-          keys: keys_list,
-          values: values_list
-        })
-      });
+        
+      //do we want to insert in the feature collection the geometry?
+      var feature_of_single_field = ee.Feature(null, ee.Dictionary.fromLists({
+        keys: keys_list,
+        values: values_list
+      }));
         
       return feature_of_single_field;
     };
