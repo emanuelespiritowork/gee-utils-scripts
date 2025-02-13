@@ -34,8 +34,7 @@ var time_series_export = require("users/emanuelespiritowork/SharedRepo:functions
 *******************************************************/
 
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-.filterDate("2022-01-01","2025-01-01")
-//.sort("system:time_start",false);
+.filterDate("2022-01-01","2025-01-01");
 
 var scale_to_use = ee.Number(10);
 
