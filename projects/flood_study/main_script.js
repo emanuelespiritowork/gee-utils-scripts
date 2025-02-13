@@ -183,6 +183,7 @@ var population = ee.ImageCollection("JRC/GHSL/P2023A/GHS_POP")
 var affected_population = population.multiply(plain_water.lt(0))
 .unmask(0).clip(geometry4);
 Map.addLayer(affected_population);
+print(affected_population);
 var sum_of_affected_population = affected_population.reduceRegion({
   reducer: ee.Reducer.sum(),
   geometry: geometry4,
