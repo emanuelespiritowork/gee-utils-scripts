@@ -87,7 +87,13 @@ exports.landsat_mask = function(img_coll){
     //creating the xor (1 will be not cloud pixel, 0 will be cloud pixel)
     var mask = opposite_mask.eq(0);
     
-    return image.updateMask(mask);
+    var time_start_value = image.get('system:time_start');
+    var footprint = image.get('system:footprint');
+    
+    return image.updateMask(mask).set({
+      'system:time_start': time_start_value,
+      'system:footprint': footprint
+    });
   };
   
   return img_coll.map(landsat_mask_img);
