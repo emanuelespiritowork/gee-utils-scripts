@@ -144,12 +144,15 @@ exports.s1_rad_terr_flatten = function(collection,scale_to_use,options){
 
         // return gamma_flat plus mask
         
+        var time_start_value = image.get('system:time_start');
+        
         return ee.Image(gamma0_flatDB.addBands(mask).copyProperties(image))
         .clipToBoundsAndScale({
           geometry: geom,
           scale: scale_to_use
         })
-        .clip(geom);
+        .clip(geom)
+        .set({'system:time_start': time_start_value});
     }
     
     // run correction function and return corrected collection
