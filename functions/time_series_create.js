@@ -52,7 +52,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
       values_list = ee.List(values_list).cat(values);
         
         
-      var feature_of_single_field = ee.Feature(feature_of_cycle,
+      var feature_of_single_field = ee.Feature(feature_of_cycle.geometry(),
       ee.Dictionary.fromLists({
         keys: keys_list,
         values: values_list
