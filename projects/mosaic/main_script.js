@@ -1,8 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.FeatureCollection(
+var AOI = /* color: #d63000 */ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[-73.70132431186397, 49.24519193518415],
@@ -10,6 +7,16 @@ var AOI =
                   [-73.54751571811397, 46.55014521497358]]]),
             {
               "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[-84.64255787130436, 45.34202109323244],
+                  [-86.18064380880436, 44.12457386688757],
+                  [-85.96091724630436, 42.3316569741353],
+                  [-83.71970630880436, 42.3641355574562],
+                  [-83.80759693380436, 45.06334673652873]]]),
+            {
+              "system:index": "1"
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
