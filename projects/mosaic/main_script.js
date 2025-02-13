@@ -27,4 +27,4 @@ print("mosaic",mosaic);
 //Map.addLayer(clipped);
 
 var mosaic = mosaic_date.mosaic_date(s2_coll,AOI,"2024-12-10","2024-12-31",100);
-var null_var = plot_stretch.plot_stretch(mosaic,[""],2,10);
+var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
