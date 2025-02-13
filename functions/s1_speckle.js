@@ -28,12 +28,20 @@ exports.s1_speckle = function(img_coll, radius, units, type){
    *********/
   
   var speckle_lee = function(image){
+    
+    var time_start_value = image.get('system:time_start');
+    var footprint = image.get('system:footprint');
+    
     var remove_speckle = image.focalMean({
       radius: radius,
       kernelType: type,
       units: units
     });
-    return remove_speckle;
+    
+    return remove_speckle.set({
+      'system:time_start': time_start_value,
+      'system:footprint': footprint
+    });
   };
   
   return img_coll.map(speckle_lee);
