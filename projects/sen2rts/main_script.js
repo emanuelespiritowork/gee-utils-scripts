@@ -20,7 +20,7 @@ var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/Chiavenna
 var s2_evi = require("users/emanuelespiritowork/SharedRepo:functions/s2_evi.js");
 var s2_mask = require("users/emanuelespiritowork/SharedRepo:functions/s2_mask.js");
 var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
-var s2_scl_weights = require("users/emanuelespiritowork/SharedRepo:functions/s2_scl_weights.js");
+var s2_scl_uniform = require("users/emanuelespiritowork/SharedRepo:functions/s2_scl_uniform.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var pixel_percentage = require("users/emanuelespiritowork/SharedRepo:functions/pixel_percentage.js");
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
@@ -63,7 +63,7 @@ print("evi.first().geometry()",evi.first().geometry());
 Map.centerObject(AOI);
 Map.addLayer(evi.first());
 
-var scl = s2_scl_weights.s2_scl_weights(scale,AOI);
+var scl = s2_scl_uniform.s2_scl_uniform(scale,AOI);
 
 //print("scl",scl);
 //Map.addLayer(scl);
