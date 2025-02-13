@@ -53,7 +53,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
         
         
       //do we want to insert in the feature collection the geometry?
-      var feature_of_single_field = ee.Feature(null, ee.Dictionary.fromLists({
+      var feature_of_single_field = ee.Feature(feature_of_cycle.geometry(), ee.Dictionary.fromLists({
         keys: keys_list,
         values: values_list
       }));
