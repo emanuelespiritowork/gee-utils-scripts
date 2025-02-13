@@ -11,13 +11,13 @@ exports.s2_scl_weights = function(img_coll, AOI){
         geometry: region.geometry(),
         scale: 20,
         bestEffort: true
-      })).combine(ee.Dictionary.fromLists(ee.List(["SCL"]),ee.List([ee.Number(1).int32()])),false)
+      })).combine(ee.Dictionary.fromLists(ee.List(["SCL"]),ee.List([ee.Number(1).float()])),false)
       .getNumber("SCL").round();
       
       return ee.Image(scl_value).clipToBoundsAndScale({
         geometry: region.geometry(),
         scale: 20
-      }).clip(region.geometry()).rename("SCL").int32();
+      }).clip(region.geometry()).rename("SCL").byte();
     };
     
     var time_start_value = image.get('system:time_start');
@@ -26,7 +26,7 @@ exports.s2_scl_weights = function(img_coll, AOI){
     .set({
       'system:time_start':time_start_value,
       'system:footprint':footprint
-    }).int32();
+    }).byte();
     
     return mosaic;
   };
