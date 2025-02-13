@@ -21,6 +21,7 @@ var s2_evi = require("users/emanuelespiritowork/SharedRepo:functions/s2_evi.js")
 var s2_mask = require("users/emanuelespiritowork/SharedRepo:functions/s2_mask.js");
 var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
 var s2_scl_uniform = require("users/emanuelespiritowork/SharedRepo:functions/s2_scl_uniform.js");
+var s2_scl_weights = require("users/emanuelespiritowork/SharedRepo:functions/s2_scl_weights.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var pixel_percentage = require("users/emanuelespiritowork/SharedRepo:functions/pixel_percentage.js");
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
@@ -65,10 +66,12 @@ Map.addLayer(evi.first());
 
 var scl = s2_scl_uniform.s2_scl_uniform(scale,AOI);
 
+var scl_weights = s2_scl_weights.s2_scl_weights(scl,AOI);
+
 //print("scl",scl);
 //Map.addLayer(scl);
 
-var evi_scl = scl.combine(evi);
+var evi_scl = scl_weights.combine(evi);
 
 print(evi_scl);
 
