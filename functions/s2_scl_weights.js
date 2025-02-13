@@ -16,7 +16,7 @@ exports.s2_scl_weights = function(img_coll, AOI){
       
       return ee.Image(scl_value).clipToBoundsAndScale({
         geometry: region.geometry(),
-        scale: scale_to_use
+        scale: 20
       }).clip(region.geometry()).rename("SCL").int32();
     };
     
