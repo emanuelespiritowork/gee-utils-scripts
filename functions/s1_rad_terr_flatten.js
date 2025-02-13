@@ -145,14 +145,18 @@ exports.s1_rad_terr_flatten = function(collection,scale_to_use,options){
         // return gamma_flat plus mask
         
         var time_start_value = image.get('system:time_start');
+        var footprint = image.get('system:footprint');
         
         return ee.Image(gamma0_flatDB.addBands(mask).copyProperties(image))
-        .clipToBoundsAndScale({
-          geometry: geom,
-          scale: scale_to_use
-        })
-        .clip(geom)
-        .set({'system:time_start': time_start_value});
+        //.clipToBoundsAndScale({
+        //  geometry: geom,
+        //  scale: scale_to_use
+        //})
+        //.clip(geom)
+        .set({
+          'system:time_start': time_start_value,
+          'system:footprint': footprint
+        });
     }
     
     // run correction function and return corrected collection
