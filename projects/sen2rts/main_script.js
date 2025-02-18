@@ -88,7 +88,7 @@ var time_series = time_series_create.time_series_create(evi_scl,AOI,"field_name"
 
 //var null_var = time_series_export.time_series_export(time_series, ["evi"], "Exports_sen2rts");
 
-var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
+var plot = time_series_get_plot.time_series_get_plot(time_series,"evi",["2022-01-01","2025-01-01"],[0,1]);
 
 print(plot);
 
