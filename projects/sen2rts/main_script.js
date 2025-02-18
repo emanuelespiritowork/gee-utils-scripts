@@ -92,16 +92,15 @@ var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
 
 print(ee.Date("2025-01-01"));
 
-/*
+
 plot = plot.setOptions({
           hAxis: {
-            viewWindow: {min: 0, max: 6},
+            viewWindow: {min: "2022-01-01", max: "2025-01-01"},
           },
           vAxis: {
-            title: 'LAI',
-            viewWindow: {min: 1, max: 7}
+            viewWindow: {min: 0, max: 1}
           },
-        });*/
+        });
 
 print(plot);
 
