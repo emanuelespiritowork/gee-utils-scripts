@@ -95,7 +95,7 @@ print(ee.Date("2025-01-01"));
 
 plot = plot.setOptions({
           hAxis: {
-            viewWindow: {min: "2022-01-01", max: "2025-01-01"},
+            viewWindow: {min: ee.Date("2022-01-01"), max: ee.Date("2025-01-01")},
           },
           vAxis: {
             viewWindow: {min: 0, max: 1}
