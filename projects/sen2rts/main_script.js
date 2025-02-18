@@ -96,7 +96,7 @@ var min = ee.Date("2022-01-01");
 var max = ee.Date("2025-01-01");
 
 plot = plot.setOptions({
-    title: p_title.getInfo(),
+    title: "Time series of EVI",
     /*trendlines: {
       0: {
         color: 'purple',
