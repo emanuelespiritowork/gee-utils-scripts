@@ -96,9 +96,6 @@ var min = ee.Date("2022-01-01");
 var max = ee.Date("2025-01-01");
 
 plot = plot.setOptions({
-          hAxis: {
-            viewWindow: {min: min.getInfo(), max: max.getInfo()},
-          },
           vAxis: {
             viewWindow: {min: 0, max: 1}
           },
