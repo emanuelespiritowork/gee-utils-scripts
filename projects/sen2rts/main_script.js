@@ -96,10 +96,23 @@ var min = ee.Date("2022-01-01");
 var max = ee.Date("2025-01-01");
 
 plot = plot.setOptions({
-          vAxis: {
+    title: p_title.getInfo(),
+    /*trendlines: {
+      0: {
+        color: 'purple',
+        opacity: 0.2,
+        lineWidth: 10,
+        visibleInLegend: 'true',
+        type: 'linear'
+      }
+    },*/
+    vAxis: {
             viewWindow: {min: 0, max: 1}
           },
-        });
+    linewidth: 1,
+    pointsize: 3,
+    interpolateNulls: true
+  });
 
 print(plot);
 
