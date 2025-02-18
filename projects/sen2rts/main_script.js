@@ -92,10 +92,12 @@ var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
 
 print(ee.Date("2025-01-01"));
 
+var min = ee.Date("2022-01-01");
+var max = ee.Date("2025-01-01");
 
 plot = plot.setOptions({
           hAxis: {
-            viewWindow: {min: ee.Date("2022-01-01").getInfo(), max: ee.Date("2025-01-01").getInfo()},
+            viewWindow: {min: min, max: max},
           },
           vAxis: {
             viewWindow: {min: 0, max: 1}
