@@ -88,7 +88,20 @@ var time_series = time_series_create.time_series_create(evi_scl,AOI,"field_name"
 
 //var null_var = time_series_export.time_series_export(time_series, ["evi"], "Exports_sen2rts");
 
-var plot = time_series_get_plot.time_series_get_plot(time_series,"evi",["2022-01-01","2025-01-01"],[0,1]);
+var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
+
+print(ee.Date("2025-01-01"));
+
+/*
+plot = plot.setOptions({
+          hAxis: {
+            viewWindow: {min: 0, max: 6},
+          },
+          vAxis: {
+            title: 'LAI',
+            viewWindow: {min: 1, max: 7}
+          },
+        });*/
 
 print(plot);
 
