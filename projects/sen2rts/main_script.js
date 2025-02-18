@@ -106,6 +106,8 @@ plot = plot.setOptions({
         type: 'linear'
       }
     },*/
+    width: 400,
+    height: 240,
     vAxis: {
             viewWindow: {min: 0, max: 1}
           },
