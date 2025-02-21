@@ -87,12 +87,12 @@ var geometry =
 
 var unsup_classification = require("users/emanuelespiritowork/SharedRepo:functions/unsup_classification.js");
 var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
+var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
 
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 
 var mosaic = mosaic_recent.mosaic_recent(s2_coll, geometry, 10);
-
-Map.addLayer(mosaic);
+var null_var = plot_stretch.plot_stretch(mosaic, ["B4","B3","B2"], 2, 10);
 
 var unsup = unsup_classification.unsup_classification(mosaic, geometry2, 5, 10);
 
