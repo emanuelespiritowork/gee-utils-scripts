@@ -58,7 +58,7 @@ exports.plot_class = function(img, scale_to_use){
   var range = max.subtract(min).add(1);
 
 /******************************************************
- * Plot a palette
+ * Plot
  *******************************************************/
   Map.addLayer(img, {min: min.getInfo(), 
   max: max.getInfo(),
