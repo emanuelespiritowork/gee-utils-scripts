@@ -13,9 +13,16 @@
 *******************************************************/
 
 exports.landsat_evi = function(img_coll){
-  
+
+/******************************************************
+ * Check variable types
+ *******************************************************/
   img_coll = ee.ImageCollection(img_coll);
-  
+
+/******************************************************
+ * Compute EVI for Landsat image while keep the time_start
+ * and the footprint of the original image
+ *******************************************************/
   var landsat_evi_img = function(image){
     var evi = image.expression({
       expression: '2.5 * ((NIR - RED) / (NIR + 6 * RED - 7.5 * BLUE + 1))',
