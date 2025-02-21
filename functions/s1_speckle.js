@@ -15,7 +15,9 @@
 *******************************************************/
 
 exports.s1_speckle = function(img_coll, radius, units, type){
-  
+/******************************************************
+ * Check variable types
+*******************************************************/
   img_coll = ee.ImageCollection(img_coll);
   radius = ee.Number(radius);
   units = ee.String(units);
@@ -26,7 +28,10 @@ exports.s1_speckle = function(img_coll, radius, units, type){
   /*******
    * 'circle', 'square', 'cross', 'plus', 'octagon', and 'diamond'.
    *********/
-  
+   
+/******************************************************
+ * Apply Lee speckle filter
+*******************************************************/
   var speckle_lee = function(image){
     
     var time_start_value = image.get('system:time_start');
