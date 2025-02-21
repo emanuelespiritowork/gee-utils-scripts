@@ -42,7 +42,11 @@ exports.plot_class = function(img, scale_to_use){
     bestEffort: true
   });
   
-  Map.addLayer(, {}, "classification");
+  var range = max.subtract(min);
+  
+  Map.addLayer(img, {min: min.getInfo(), 
+  max: max.getInfo(), 
+  palette: igbpPalette.slice(1,range).getInfo()}, "classification");
   
   return 0;
 };
