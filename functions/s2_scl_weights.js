@@ -12,6 +12,7 @@
  * Description: given an image collection with the Sentinel-2 SCL layer
  * this script creates the scl_weight layer based on the default sen2rts
  * weights
+ * See https://rdrr.io/github/ranghetti/sen2rts/man/scl_weights.html
 *******************************************************/
 
 exports.s2_scl_weights = function(img_coll, AOI){
@@ -21,10 +22,12 @@ exports.s2_scl_weights = function(img_coll, AOI){
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
 /******************************************************
- * Get SCL layer
+ * Select SCL layer
 *******************************************************/
   var scl = img_coll.select("SCL");
-  
+/******************************************************
+ * Remap from SCL values to SCL_weights of sen2rts
+*******************************************************/
   var set_scl_weights = function(image){
     
     var time_start_value = image.get('system:time_start');
