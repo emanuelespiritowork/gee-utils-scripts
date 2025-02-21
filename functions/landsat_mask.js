@@ -15,9 +15,19 @@
 
 exports.landsat_mask = function(img_coll){
   
+/******************************************************
+ * Check variable types
+ *******************************************************/
   img_coll = ee.ImageCollection(img_coll);
-  
+
+/******************************************************
+ * Mask landsat image
+ *******************************************************/
   var landsat_mask_img = function(image){
+    
+/******************************************************
+ * Quality Assessment layer
+ *******************************************************/
     var qa_pixel_layer = image.select("QA_PIXEL");
     
     var dilated_clouds = 1 << 1;
@@ -25,7 +35,10 @@ exports.landsat_mask = function(img_coll){
     var cloud = 1 << 3;
     var cloud_shadow = 1 << 4;
     var snow = 1 << 5;
-    
+
+/******************************************************
+ * Create masks
+ *******************************************************/
     var dilated_clouds_mask = qa_pixel_layer
     .bitwiseAnd(dilated_clouds).neq(0);
     var cirrus_mask = qa_pixel_layer
@@ -68,7 +81,9 @@ exports.landsat_mask = function(img_coll){
     var cirrus_confidence_medium_mask = select_cirrus_bit
     .eq(cirrus_confidence_medium);
     
-    //Apply masks
+/******************************************************
+ * Generate complete mask
+ *******************************************************/
     
     var opposite_mask = ee.Image(0)
     .or(dilated_clouds_mask)
@@ -87,9 +102,12 @@ exports.landsat_mask = function(img_coll){
     //creating the xor (1 will be not cloud pixel, 0 will be cloud pixel)
     var mask = opposite_mask.eq(0);
     
+/******************************************************
+ * Keep time_start and footprint of the image and apply mask
+ *******************************************************/
     var time_start_value = image.get('system:time_start');
     var footprint = image.get('system:footprint');
-    
+
     return image.updateMask(mask).set({
       'system:time_start': time_start_value,
       'system:footprint': footprint
