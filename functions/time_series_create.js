@@ -18,22 +18,36 @@
 *******************************************************/
 
 exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
-  
+/******************************************************
+ * Check variable types
+*******************************************************/
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
   id_name = ee.String(id_name);
   scale_to_use = ee.Number(scale_to_use);
-  
+
+/******************************************************
+ * Get layer name
+*******************************************************/
   var layer_names = img_coll.first().bandNames().sort();
   print(layer_names);
-  
+
+/******************************************************
+ * Create time series for each feature
+*******************************************************/
   var space_series_img = function(img){
     var date = img.get('system:time_start');
     
+    /******************************************************
+    * Cast to number the values of the time series
+    *******************************************************/
     var make_number = function(element){
       return ee.Number(element);
     };
     
+    /******************************************************
+    * Create value for a feature for a image
+    *******************************************************/
     var create_single_field_value = function(feature_of_cycle){
       
       var values = ee.List(img.reduceRegion({
@@ -62,8 +76,6 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
     };
     
     var all_field_features = AOI.map(create_single_field_value);
-    
-    //var all_field_features = create_single_field_value(single_feature.single_feature);
     
     return all_field_features;
   };
