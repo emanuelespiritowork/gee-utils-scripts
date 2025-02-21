@@ -13,4 +13,17 @@
 
 exports.plot_class = function(img){
   
-}
+  img = ee.Image(img);
+  
+  var palette = img.randomVisualizer();
+  
+  Map.addLayer(img, palette, "classification");
+  
+  return 0;
+};
+
+
+
+
+
+
