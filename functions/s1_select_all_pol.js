@@ -20,7 +20,9 @@
 *******************************************************/
 
 exports.s1_select = function(img_coll, instrument, orbit, spatial_resolution){
-  
+/******************************************************
+ * Check variable types
+*******************************************************/
   img_coll = ee.ImageCollection(img_coll);
   instrument = ee.String(instrument); 
   /*****
@@ -58,10 +60,13 @@ exports.s1_select = function(img_coll, instrument, orbit, spatial_resolution){
    * (H) HIGH	10m/px for IW/SM and 25m/px for EW
    * (M) MEDIUM	40m/px for IW/SM and EW
    *******/
-   
+
+/******************************************************
+ * Filter image collection
+*******************************************************/
   var selected = img_coll.filter(ee.Filter.eq("instrumentMode",instrument))
   .filter(ee.Filter.eq("orbitProperties_pass",orbit))
-  .filter(ee.Filter.eq("resolution",spatial_resolution))
+  .filter(ee.Filter.eq("resolution",spatial_resolution));
   
   return selected;
 };
