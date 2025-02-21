@@ -14,8 +14,14 @@
 
 exports.landsat_ndwi = function(img_coll){
   
+/******************************************************
+ * Check variable types
+ *******************************************************/
   img_coll = ee.ImageCollection(img_coll);
-  
+
+/******************************************************
+ * Create ndwi layer
+ *******************************************************/
   var landsat_ndwi_img = function(image){
     var ndwi = image.normalizedDifference(["SR_B3","SR_B5"]).rename('ndwi');
     var time_start_value = image.get('system:time_start');
