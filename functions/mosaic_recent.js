@@ -23,11 +23,16 @@ var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_t
 *******************************************************/
 
 exports.mosaic_recent = function(img_coll, AOI, scale_to_use){
-  
+/******************************************************
+ * Check variable types
+ *******************************************************/
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
   scale_to_use = ee.Number(scale_to_use);
-  
+
+/******************************************************
+ * Clip image collection
+ *******************************************************/
   var clip = clip_to.clip_to(img_coll, AOI, scale_to_use);
   var sorted_img_coll = clip.sort({
     property: "system:time_start", 
