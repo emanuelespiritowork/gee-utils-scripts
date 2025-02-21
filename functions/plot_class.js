@@ -17,7 +17,7 @@ exports.plot_class = function(img){
   
   var palette = img.randomVisualizer();
   
-  Map.addLayer(img, palette, "classification");
+  Map.addLayer(img.randomVisualizer(), {}, "classification");
   
   return 0;
 };
