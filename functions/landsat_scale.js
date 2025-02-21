@@ -38,7 +38,9 @@ exports.landsat_scale = function(img_coll){
     var imageSRMulti = collection_of_SR_image.toBands()
     .rename(landsat_SR_bands_names);
     
-    //ST_ATRAN, ST_EMIS, ST_EMSD
+    /******************************************************
+    * ST_ATRAN, ST_EMIS, ST_EMSD bands
+    *******************************************************/
     var landsat_ST_ATRAN_bands_names = image.select([
       "ST_ATRAN","ST_EMIS","ST_EMSD"]).bandNames();
     var scale_ST_ATRAN_bands = function(band){
@@ -52,7 +54,9 @@ exports.landsat_scale = function(img_coll){
     var imageSTATRANMulti = collection_of_ST_ATRAN_image.toBands()
     .rename(landsat_ST_ATRAN_bands_names);
     
-    //ST_DRAD, ST_TRAD, ST_URAD
+    /******************************************************
+    * ST_DRAD, ST_TRAD, ST_URAD bands
+    *******************************************************/
     var landsat_ST_DRAD_bands_names = image.select([
       "ST_DRAD","ST_TRAD","ST_URAD"]).bandNames();
     var scale_ST_DRAD_bands = function(band){
@@ -66,7 +70,9 @@ exports.landsat_scale = function(img_coll){
     var imageSTDRADMulti = collection_of_ST_DRAD_image.toBands()
     .rename(landsat_ST_DRAD_bands_names);
     
-    //ST_CDIST, ST_QA
+    /******************************************************
+    * ST_CDIST, ST_QA bands
+    *******************************************************/
     var landsat_ST_CDIST_bands_names = image.select([
       "ST_CDIST","ST_QA"]).bandNames();
     var scale_ST_CDIST_bands = function(band){
@@ -79,18 +85,26 @@ exports.landsat_scale = function(img_coll){
     var imageSTCDISTMulti = collection_of_ST_CDIST_image.toBands()
     .rename(landsat_ST_CDIST_bands_names);
     
-    //SR_QA
+    /******************************************************
+    * SR_QA bands
+    *******************************************************/
     var landsat_SR_QA = image.select('SR_QA.*');
     
-    //STB10 bands
+    /******************************************************
+    * STB10 bands
+    *******************************************************/
     var scaled_STB10_image = image.select('ST_B10')
     .multiply(ee.Number(0.00341802))
     .add(ee.Number(149));
     
-    //not S bands
+    /******************************************************
+    * not S bands
+    *******************************************************/
     var landsat_not_S = image.select('[^S].*');
     
-    //create full image
+    /******************************************************
+    * create full image
+    *******************************************************/
     var fullImage = imageSRMulti.addBands(scaled_STB10_image)
     .addBands(imageSTATRANMulti)
     .addBands(imageSTDRADMulti)
@@ -98,7 +112,9 @@ exports.landsat_scale = function(img_coll){
     .addBands(landsat_not_S)
     .addBands(landsat_SR_QA);
     
-    //insert time
+    /******************************************************
+    * insert time
+    *******************************************************/
     var time_start_value = image.get('system:time_start');
     var footprint = image.get('system:footprint');
     fullImage = fullImage.set({
@@ -106,7 +122,6 @@ exports.landsat_scale = function(img_coll){
       'system:footprint':footprint
     });
     
-    //return image
     return fullImage;
   };
   
