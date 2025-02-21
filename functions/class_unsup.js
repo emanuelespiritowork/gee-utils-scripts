@@ -7,7 +7,7 @@
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.Image, ee.FeatureCollection, ee.Number
+ * Input: ee.Image, ee.FeatureCollection, ee.Number, ee.Number
  * Output: ee.Image
  * Description: unsupervised classification of an image
 *******************************************************/
