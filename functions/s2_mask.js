@@ -13,12 +13,20 @@
 *******************************************************/
 
 exports.s2_mask = function(img_coll){
-  
+/******************************************************
+ * Check variable types
+*******************************************************/
   img_coll = ee.ImageCollection(img_coll);
-  
+
+/******************************************************
+ * Apply s2 mask
+*******************************************************/
   var s2_mask_img = function(image){
   //cloud-masking 
   
+/******************************************************
+ * s2 masks
+*******************************************************/
   var opaque = image.select('MSK_CLASSI_OPAQUE').unmask(0);
   var cirrus = image.select('MSK_CLASSI_CIRRUS').unmask(0);
   var snow = image.select('MSK_CLASSI_SNOW_ICE').unmask(0);
@@ -31,7 +39,10 @@ exports.s2_mask = function(img_coll){
   var qa = image.select('QA60');
   var qa_cloud = qa.bitwiseAnd(cloudBitMask).neq(0);
   var qa_cirrus = qa.bitwiseAnd(cirrusBitMask).neq(0);
-  
+
+/******************************************************
+ * Create complete masks
+*******************************************************/
   //or mask (1 will be cloud pixel, 0 will be not cloud pixel)
   var opposite_mask = qa_cloud
       .or(qa_cirrus)
@@ -49,10 +60,16 @@ exports.s2_mask = function(img_coll){
       
   //creating the xor (1 will be not cloud pixel, 0 will be cloud pixel)
   var mask = opposite_mask.eq(0);
-  
+
+/******************************************************
+ * Get time_start and footprint  
+*******************************************************/
   var time_start_value = image.get('system:time_start');
   var footprint = image.get('system:footprint');
-  
+
+/******************************************************
+ * Apply mask
+*******************************************************/
   return image.updateMask(mask).set({
     'system:time_start': time_start_value,
     'system:footprint': footprint
