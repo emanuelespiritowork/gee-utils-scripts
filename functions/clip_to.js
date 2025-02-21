@@ -15,25 +15,62 @@
 
 exports.clip_to = function(img_coll, AOI, scale_to_use){
   
+/******************************************************
+ * Check variable types
+ *******************************************************/
+  
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
   scale_to_use = ee.Number(scale_to_use);
   //print(AOI);
   
+/******************************************************
+ * Keep only images near the AOI bounds (for a polygon
+ * this means images that touches the vertices)
+ *******************************************************/
+ 
   var img_coll_near = img_coll.filterBounds(AOI);
   
+/******************************************************
+ * Get projection
+ *******************************************************/
+ 
   var projection = img_coll_near.first()
   .select(img_coll_near.first().bandNames().getString(0)).projection();
   //print("projection",projection);
+  
+/******************************************************
+ * Get geometry of the AOI
+ *******************************************************/
+ 
   var geometry = AOI.geometry();
   //print("geometry",geometry);
+  
+/******************************************************
+ * Get area of the AOI
+ *******************************************************/
+ 
   var area = geometry.area();
   //print("area",area);
   //print("area.sqrt().divide(ee.Number(10))",area.sqrt().divide(ee.Number(10)));
+
+/******************************************************
+ * Create a covering grid of the AOI and keep only images
+ * that intersect the vertices of the covering grid (both
+ * internal and external). The covering grid is scaled 
+ * to the area of the image
+ *******************************************************/
+  
   var filtered_coll = img_coll.filterBounds(geometry.coveringGrid({
     proj: projection,
     scale: area.sqrt().divide(ee.Number(10))
   }));
+  
+/******************************************************
+ * Define the function that clip the image to the AOI. This is 
+ * done for both the cases of a clip smaller than a tile and a clip
+ * greater than a tile.
+ *******************************************************/
   
   var clip_img = function(image){
     
