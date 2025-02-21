@@ -92,6 +92,8 @@ var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 
 var mosaic = mosaic_recent.mosaic_recent(s2_coll, geometry, 10);
 
+Map.addLayer(mosaic);
+
 var unsup = unsup_classification.unsup_classification(mosaic, geometry2, 5, 10);
 
 Map.addLayer(unsup.select("unsup"));
