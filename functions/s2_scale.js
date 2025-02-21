@@ -23,7 +23,7 @@ exports.s2_scale = function(img_coll){
 *******************************************************/
   var s2_scale_img = function(image){
     /******************************************************
-     * Scale B bands
+    * Scale B bands
     *******************************************************/
     var s2_B_bands_names = image.select("B.*").bandNames();
     var scale_B_band = function(band){
@@ -37,7 +37,7 @@ exports.s2_scale = function(img_coll){
     var imageMulti = collection_of_image.toBands().rename(s2_B_bands_names);
     
     /******************************************************
-     * Add not B bands
+    * Add not B bands
     *******************************************************/
     var s2_not_B_bands = image.select('[^B].*');
     var fullImage = imageMulti.addBands(s2_not_B_bands);
