@@ -36,6 +36,8 @@ exports.plot_class = function(img, scale_to_use){
     bestEffort: true
   }).get(0);
   
+  print(min);
+  
   var max = img.reduceRegion({
     reducer: ee.Reducer.max(),
     scale: scale_to_use,
