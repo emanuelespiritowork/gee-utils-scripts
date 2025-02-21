@@ -14,9 +14,20 @@
 *******************************************************/
 
 exports.s2_scl_uniform = function(img_coll, AOI){
-  
+/******************************************************
+ * Check variable types
+*******************************************************/
+  img_coll = ee.ImageCollection(img_coll);
+  AOI = ee.FeatureCollection(AOI);
+/******************************************************
+ * Select SCL layer
+*******************************************************/
   var scl = img_coll.select("SCL");
-  
+
+/******************************************************
+ * Uniform SCL layer over each feature of the feature collection
+ * by take the mode of SCL in each feature
+*******************************************************/
   var set_scl_each_image = function(image){
     
     var set_scl_each_field = function(region){
