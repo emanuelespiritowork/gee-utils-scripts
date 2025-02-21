@@ -79,7 +79,7 @@ var geometry =
 var unsup_classification = require("users/emanuelespiritowork/SharedRepo:functions/unsup_classification.js");
 var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
 var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
-var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
+var plot_class = require("users/emanuelespiritowork/SharedRepo:functions/plot_class.js");
 
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",20));
@@ -89,5 +89,5 @@ var null_var = plot_stretch.plot_stretch(mosaic, ["B4","B3","B2"], 2, 10);
 
 var unsup_bands = ["B.*"];
 var unsup = unsup_classification.unsup_classification(mosaic, unsup_bands, geometry2, 6, 10);
-var null_var_2 = plot_map.plot_map(unsup, 2, 10);
+var null_var_2 = plot_class.plot_class(unsup);
 Map.addLayer(unsup, {min: 0, max: 5, palette: ["green","yellow","red","blue","black","pink"]},"unsup");
