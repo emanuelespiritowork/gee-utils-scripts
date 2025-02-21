@@ -12,7 +12,7 @@
  * Description: unsupervised classification of an image
 *******************************************************/
 
-exports.unsup_classification = function(img, sample_regions, classes, scale_to_use){
+exports.class_unsup = function(img, sample_regions, classes, scale_to_use){
   
   img = ee.Image(img);
   sample_regions = ee.FeatureCollection(sample_regions);
