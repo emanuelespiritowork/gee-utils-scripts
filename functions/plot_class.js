@@ -8,15 +8,21 @@
 /******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.Image
- * Output: plot classification map
+ * Output: plot classification map. 
+ * see https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12C1#bands
 *******************************************************/
 
 exports.plot_class = function(img, scale_to_use){
-  
+
+/******************************************************
+ * Check variable types
+ *******************************************************/
   img = ee.Image(img);
   scale_to_use = ee.Number(scale_to_use);
-  
-  //see https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12C1#bands
+
+/******************************************************
+ * Create palette of IGBP
+ *******************************************************/
   var igbpPalette = [
   'aec3d4', // water
   '152106', '225129', '369b47', '30eb5b', '387242', // forest
@@ -29,9 +35,12 @@ exports.plot_class = function(img, scale_to_use){
   'f7e084', // barren
   '6f6f6f',  // tundra
   ];
-  
+
+/******************************************************
+ * Get minimum and maximum values of classification
+ *******************************************************/
   var band_name = img.bandNames();
-  
+
   var min = img.reduceRegion({
     reducer: ee.Reducer.min(),
     scale: scale_to_use,
@@ -47,7 +56,10 @@ exports.plot_class = function(img, scale_to_use){
   }).getNumber(band_name.getString(0));
   
   var range = max.subtract(min).add(1);
-  
+
+/******************************************************
+ * Plot a palette
+ *******************************************************/
   Map.addLayer(img, {min: min.getInfo(), 
   max: max.getInfo(),
   palette: igbpPalette.slice(min.getInfo(),min.add(range).getInfo())
