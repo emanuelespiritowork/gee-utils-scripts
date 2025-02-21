@@ -85,8 +85,8 @@ var geometry =
  * https://github.com/emanuelespiritowork/gee-utils-scripts
 *******************************************************/
 
-var unsup_classification = require("users/emanuelespiritowork/SharedRepo:functions/unsup_classification");
-var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent");
+var unsup_classification = require("users/emanuelespiritowork/SharedRepo:functions/unsup_classification.js");
+var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
 
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 
