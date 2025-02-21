@@ -34,13 +34,13 @@ exports.plot_class = function(img, scale_to_use){
     reducer: ee.Reducer.min(),
     scale: scale_to_use,
     bestEffort: true
-  });
+  }).get(0);
   
   var max = img.reduceRegion({
     reducer: ee.Reducer.max(),
     scale: scale_to_use,
     bestEffort: true
-  });
+  }).get(0);
   
   var range = max.subtract(min);
   
