@@ -36,7 +36,7 @@ exports.plot_class = function(img, scale_to_use){
     reducer: ee.Reducer.min(),
     scale: scale_to_use,
     bestEffort: true
-  }).getNumber(band_name);
+  }).getNumber(band_name.getString(0));
   
   print(min);
   
