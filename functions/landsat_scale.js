@@ -13,11 +13,19 @@
 *******************************************************/
 
 exports.landsat_scale = function(img_coll){
-  
+
+/******************************************************
+ * Check variable types
+ *******************************************************/
   img_coll = ee.ImageCollection(img_coll);
-  
+
+/******************************************************
+ * Apply scale to landsat image
+ *******************************************************/
   var landsat_scale_img = function(image){
-    //SR bands
+    /******************************************************
+    * Surface reflectance bands
+    *******************************************************/
     
     var landsat_SR_bands_names = image.select("SR_B.*").bandNames();
     var scale_SR_band = function(band){
