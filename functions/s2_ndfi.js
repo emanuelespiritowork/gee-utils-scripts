@@ -13,9 +13,14 @@
 *******************************************************/
 
 exports.s2_ndfi = function(img_coll){
-  
+/******************************************************
+ * Check variable types
+*******************************************************/
   img_coll = ee.ImageCollection(img_coll);
-  
+
+/******************************************************
+ * Create ndfi layer
+*******************************************************/
   var s2_ndfi_img = function(image){
     var ndfi = image.normalizedDifference(["B4","B12"]).rename('ndfi');
     var time_start_value = image.get('system:time_start');
