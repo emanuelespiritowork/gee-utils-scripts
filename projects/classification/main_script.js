@@ -102,4 +102,4 @@ var null_var = plot_stretch.plot_stretch(mosaic, ["B4","B3","B2"], 2, 10);
 var unsup_bands = ["B8A","B12","B11"];
 var unsup = unsup_classification.unsup_classification(mosaic.select(unsup_bands), geometry2, 3, 10);
 var null_var_2 = plot_map.plot_map(unsup, 2, 10);
-Map.addLayer(unsup, {min: 1, max: 3, palette: ["green","yellow","red"]},"unsup");
+Map.addLayer(unsup, {min: 0, max: 2, palette: ["green","yellow","red"]},"unsup");
