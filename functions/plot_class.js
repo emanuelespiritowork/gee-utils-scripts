@@ -16,9 +16,11 @@ exports.plot_class = function(img, scale_to_use){
   img = ee.Image(img);
   scale_to_use = ee.Number(scale_to_use);
   
-  //see https://fluxnet.org/data/badm-data-templates/igbp-classification/
+  //see https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD12C1#bands
   var igbpPalette = [
   'aec3d4', // water
+  '152106', '225129', '369b47', '30eb5b', '387242', // forest
+  '6a2325', 'c3aa69', 'b76031', 'd9903d', '91af40',  // shrub, grass
   '111149', // wetlands
   'cdb33b', // croplands
   'cc0013', // urban
@@ -26,8 +28,6 @@ exports.plot_class = function(img, scale_to_use){
   'd7cdcc', // snow and ice
   'f7e084', // barren
   '6f6f6f',  // tundra
-  '152106', '225129', '369b47', '30eb5b', '387242', // forest
-  '6a2325', 'c3aa69', 'b76031', 'd9903d', '91af40'  // shrub, grass
   ];
   
   var min = img.reduceRegion({
