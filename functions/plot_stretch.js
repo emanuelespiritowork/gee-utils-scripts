@@ -17,12 +17,25 @@
 *******************************************************/
 
 exports.plot_stretch = function(img,bands,stretch,scale_to_use){
-  
+
+/******************************************************
+ * Check variable types
+*******************************************************/
   img = ee.Image(img);
   stretch = ee.Number(stretch);
   scale_to_use = ee.Number(scale_to_use);
-  
+
+/******************************************************
+ * Get geometry
+*******************************************************/
   var geometry_of_image = img.geometry();
+  
+/******************************************************
+ * If band names are not given or they are less
+ * than 3 we use three bands from the image, using the logic:
+ * three-bands-image -> use those bands
+ * not three-bands-image -> use 4,3,2
+*******************************************************/
   var band_names;
   var num_bands;
   if(bands === undefined){
@@ -47,12 +60,16 @@ exports.plot_stretch = function(img,bands,stretch,scale_to_use){
     });
   }
   
-  //print(bands);
-  
+/******************************************************
+ * Get bands names
+*******************************************************/
   var first_band = ee.List(bands).getString(0);
   var second_band = ee.List(bands).getString(1);
   var third_band = ee.List(bands).getString(2);
-  
+
+/******************************************************
+ * Compute standard deviation
+*******************************************************/
   var computed_img_std_1 = img.select(first_band).reduceRegion({
     reducer: ee.Reducer.stdDev(),
     scale: scale_to_use,
@@ -73,7 +90,10 @@ exports.plot_stretch = function(img,bands,stretch,scale_to_use){
     geometry: geometry_of_image,
     bestEffort: true
   }).getNumber(third_band);
-  
+
+/******************************************************
+ * Compute mean
+*******************************************************/
   var computed_img_mean_1 = img.select(first_band).reduceRegion({
     reducer: ee.Reducer.mean(),
     scale: scale_to_use,
@@ -94,7 +114,10 @@ exports.plot_stretch = function(img,bands,stretch,scale_to_use){
     geometry: geometry_of_image,
     bestEffort: true
   }).getNumber(third_band);
-  
+
+/******************************************************
+ * Compute stretch
+*******************************************************/
   var computed_img_mean = ee.Array(ee.List([computed_img_mean_1,
   computed_img_mean_2,computed_img_mean_3]));
   
@@ -108,7 +131,10 @@ exports.plot_stretch = function(img,bands,stretch,scale_to_use){
   
   var computed_img_max = computed_img_mean.add(array_of_stretch.multiply(computed_img_std));
   //print("computed_img_max",computed_img_max);
-  
+
+/******************************************************
+ * Plot
+*******************************************************/
   var vis_specific_image = {
     bands: ee.List(bands).getInfo(),
     min: computed_img_min.toList().getInfo(),
