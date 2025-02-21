@@ -13,7 +13,10 @@ var geometry =
             {
               "system:index": "0"
             })]),
-    geometry2 = /* color: #98ff00 */ee.FeatureCollection(
+    geometry2 = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[10.145110922214249, 46.14038777780239],
@@ -80,7 +83,7 @@ var geometry =
  * https://github.com/emanuelespiritowork/gee-utils-scripts
 *******************************************************/
 
-var unsup_classification = require("users/emanuelespiritowork/SharedRepo:functions/unsup_classification.js");
+var class_unsup = require("users/emanuelespiritowork/SharedRepo:functions/class_unsup.js");
 var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
 var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
 var plot_class = require("users/emanuelespiritowork/SharedRepo:functions/plot_class.js");
@@ -92,6 +95,6 @@ var mosaic = mosaic_recent.mosaic_recent(s2_coll, geometry, 10);
 var null_var = plot_stretch.plot_stretch(mosaic, ["B4","B3","B2"], 2, 10);
 
 var unsup_bands = ["B.*"];
-var unsup = unsup_classification.unsup_classification(mosaic.select(unsup_bands), geometry2, 5, 10);
+var unsup = class_unsup.class_unsup(mosaic.select(unsup_bands), geometry2, 5, 10);
 var null_var_2 = plot_class.plot_class(unsup, 10);
 //Map.addLayer(unsup, {min: 0, max: 5, palette: ["green","yellow","red","blue","black","pink"]},"unsup");
