@@ -88,6 +88,6 @@ var mosaic = mosaic_recent.mosaic_recent(s2_coll, geometry, 10);
 var null_var = plot_stretch.plot_stretch(mosaic, ["B4","B3","B2"], 2, 10);
 
 var unsup_bands = ["B.*"];
-var unsup = unsup_classification.unsup_classification(mosaic.select(unsup_bands), geometry2, 6, 10);
-var null_var_2 = plot_class.plot_class(unsup);
-Map.addLayer(unsup, {min: 0, max: 5, palette: ["green","yellow","red","blue","black","pink"]},"unsup");
+var unsup = unsup_classification.unsup_classification(mosaic.select(unsup_bands), geometry2, 3, 10);
+var null_var_2 = plot_class.plot_class(unsup, 10);
+//Map.addLayer(unsup, {min: 0, max: 5, palette: ["green","yellow","red","blue","black","pink"]},"unsup");
