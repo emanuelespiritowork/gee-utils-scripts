@@ -7,11 +7,27 @@
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.Image, ee.Number
+ * Input: ee.Image, ee.FeatureCollection, ee.Number
  * Output: ee.Image
  * Description: unsupervised classification of an image
 *******************************************************/
 
-exports.unsup_classification = function(img, classes){
+exports.unsup_classification = function(img, sample_regions, classes, scale_to_use){
   
-}
+  img = ee.Image(img);
+  sample_regions = ee.FeatureCollection(sample_regions);
+  classes = ee.Number(classes);
+  
+  var clusterer = ee.Clusterer.wekaKMeans(classes);
+  var sample = img.sample({
+    region: sample_regions.geometry(),
+    scale: scale_to_use
+  });
+  
+  var trained = clusterer.train(sample);
+  
+  var classification = img.cluster(trained, "unsup");
+  
+  return classification;
+  
+};
