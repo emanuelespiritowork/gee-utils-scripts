@@ -30,11 +30,13 @@ exports.plot_class = function(img, scale_to_use){
   '6f6f6f',  // tundra
   ];
   
+  var band_name = img.bandNames();
+  
   var min = img.reduceRegion({
     reducer: ee.Reducer.min(),
     scale: scale_to_use,
     bestEffort: true
-  });
+  }).getNumber(band_name);
   
   print(min);
   
