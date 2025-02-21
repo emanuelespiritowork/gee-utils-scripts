@@ -13,9 +13,15 @@
 *******************************************************/
 
 exports.s2_ndvi = function(img_coll){
-  
+
+/******************************************************
+ * Check variable types
+*******************************************************/
   img_coll = ee.ImageCollection(img_coll);
-  
+
+/******************************************************
+ * Create ndvi layer
+*******************************************************/
   var s2_ndvi_img = function(image){
     var ndvi = image.normalizedDifference(["B8","B4"]).rename('ndvi');
     var time_start_value = image.get('system:time_start');
