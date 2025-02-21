@@ -13,9 +13,15 @@
 *******************************************************/
 
 exports.landsat_ndvi = function(img_coll){
-  
+
+/******************************************************
+ * Check variable types
+ *******************************************************/  
   img_coll = ee.ImageCollection(img_coll);
   
+/******************************************************
+ * Create ndvi layer
+ *******************************************************/
   var landsat_ndvi_img = function(image){
     var ndvi = image.normalizedDifference(["SR_B5","SR_B4"]).rename('ndvi');
     var time_start_value = image.get('system:time_start');
