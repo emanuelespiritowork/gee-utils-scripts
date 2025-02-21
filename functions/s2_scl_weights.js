@@ -15,7 +15,14 @@
 *******************************************************/
 
 exports.s2_scl_weights = function(img_coll, AOI){
-  
+/******************************************************
+ * Check variable types
+*******************************************************/
+  img_coll = ee.ImageCollection(img_coll);
+  AOI = ee.FeatureCollection(AOI);
+/******************************************************
+ * Get SCL layer
+*******************************************************/
   var scl = img_coll.select("SCL");
   
   var set_scl_weights = function(image){
