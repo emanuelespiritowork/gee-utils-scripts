@@ -34,19 +34,32 @@ exports.mosaic_recent = function(img_coll, AOI, scale_to_use){
  * Clip image collection
  *******************************************************/
   var clip = clip_to.clip_to(img_coll, AOI, scale_to_use);
+/******************************************************
+ * Sort from the latest to the oldest
+ *******************************************************/
   var sorted_img_coll = clip.sort({
     property: "system:time_start", 
     ascending: false
   });
+/******************************************************
+ * Get latest date
+ *******************************************************/
   var latest_date = ee.Date(sorted_img_coll.first().get("system:time_start"));
+/******************************************************
+ * Get date of one month earlier
+ *******************************************************/  
   var start_date = latest_date.advance({
     delta: -1,
     unit: "month"
   });
+/******************************************************
+ * Generate collection from a month earlier to the latest date
+ *******************************************************/  
   var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date);
-  
-  var footprint = clip.first().geometry();
-  
+
+/******************************************************
+ * Get mosaic
+ *******************************************************/  
   var mosaic = mosaic_to.mosaic_to(latest_img_coll);
   
   return ee.Image(mosaic);
