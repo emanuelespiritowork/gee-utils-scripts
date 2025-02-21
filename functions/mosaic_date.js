@@ -38,7 +38,7 @@ exports.mosaic_date = function(img_coll, AOI, start_date, latest_date, scale_to_
   var clip = clip_to.clip_to(img_coll, AOI, scale_to_use);
 
 /******************************************************
- * Get latest image collection
+ * Get image collection between those dates
  *******************************************************/
   var latest_img_coll = clip.filterDate(start_date,latest_date);
 
