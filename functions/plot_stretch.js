@@ -133,7 +133,7 @@ exports.plot_stretch = function(img,bands,stretch,scale_to_use){
   //print("computed_img_max",computed_img_max);
 
 /******************************************************
- * Plot
+ * Print stretched image
 *******************************************************/
   var vis_specific_image = {
     bands: ee.List(bands).getInfo(),
