@@ -61,10 +61,14 @@ var geometry =
             }),
         ee.Feature(
             ee.Geometry.Polygon(
-                [[[10.158727628099452, 46.15558807231598],
-                  [10.15928552757455, 46.15404221732237],
-                  [10.16452119957162, 46.156331256375296],
-                  [10.16353414665414, 46.15677716199318]]]),
+                [[[10.141796021313594, 46.15127401319771],
+                  [10.147031693310664, 46.15008480461001],
+                  [10.14986410603039, 46.1530280489639],
+                  [10.152524857373164, 46.15314696461951],
+                  [10.157417206616328, 46.15237400826509],
+                  [10.15992759091992, 46.15466313632391],
+                  [10.165270714611934, 46.156952129932414],
+                  [10.150035767407344, 46.15522794699986]]]),
             {
               "system:index": "5"
             })]);
@@ -88,6 +92,6 @@ var mosaic = mosaic_recent.mosaic_recent(s2_coll, geometry, 10);
 var null_var = plot_stretch.plot_stretch(mosaic, ["B4","B3","B2"], 2, 10);
 
 var unsup_bands = ["B.*"];
-var unsup = unsup_classification.unsup_classification(mosaic.select(unsup_bands), geometry2, 3, 10);
+var unsup = unsup_classification.unsup_classification(mosaic.select(unsup_bands), geometry2, 5, 10);
 var null_var_2 = plot_class.plot_class(unsup, 10);
 //Map.addLayer(unsup, {min: 0, max: 5, palette: ["green","yellow","red","blue","black","pink"]},"unsup");
