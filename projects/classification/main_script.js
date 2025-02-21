@@ -13,7 +13,10 @@ var geometry =
             {
               "system:index": "0"
             })]),
-    geometry2 = /* color: #98ff00 */ee.FeatureCollection(
+    geometry2 = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[10.145110922214249, 46.14038777780239],
@@ -89,7 +92,8 @@ var unsup_classification = require("users/emanuelespiritowork/SharedRepo:functio
 var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
 var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
 
-var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
+var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+.filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",20));
 
 var mosaic = mosaic_recent.mosaic_recent(s2_coll, geometry, 10);
 var null_var = plot_stretch.plot_stretch(mosaic, ["B4","B3","B2"], 2, 10);
