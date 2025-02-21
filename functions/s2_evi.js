@@ -13,9 +13,14 @@
 *******************************************************/
 
 exports.s2_evi = function(img_coll){
-  
+/******************************************************
+ * Check variable types
+*******************************************************/
   img_coll = ee.ImageCollection(img_coll);
-  
+
+/******************************************************
+ * Create evi layer
+*******************************************************/
   var s2_evi_img = function(image){
     var evi = image.expression({
       expression: '2.5 * ((NIR - RED) / (NIR + 6 * RED - 7.5 * BLUE + 1))',
