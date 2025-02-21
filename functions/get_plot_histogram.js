@@ -13,12 +13,17 @@
 *******************************************************/
 
 exports.get_plot_histogram = function(img, AOI, scale_to_use){
-  
+
+/******************************************************
+ * Check variable types
+ *******************************************************/
   img = ee.Image(img);
   AOI = ee.FeatureCollection(AOI);
   scale_to_use = ee.Number(scale_to_use);
-  //all_data is boolean
   
+/******************************************************
+ * Create frequency histogram
+ *******************************************************/
   var plot = ui.Chart.image.histogram({
     image: img,
     region: AOI,
