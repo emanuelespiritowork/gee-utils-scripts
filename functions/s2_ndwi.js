@@ -13,9 +13,14 @@
 *******************************************************/
 
 exports.s2_ndwi = function(img_coll){
-  
+/******************************************************
+ * Check variable types
+*******************************************************/ 
   img_coll = ee.ImageCollection(img_coll);
-  
+
+/******************************************************
+ * Create ndwi layer
+*******************************************************/
   var s2_ndwi_img = function(image){
     var ndwi = image.normalizedDifference(["B3","B8"]).rename('ndwi');
     var time_start_value = image.get('system:time_start');
