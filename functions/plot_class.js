@@ -46,7 +46,7 @@ exports.plot_class = function(img, scale_to_use){
     bestEffort: true
   }).getNumber(band_name.getString(0));
   
-  var range = max.subtract(min);
+  var range = max.subtract(min).add(1);
   
   print(range);
   
