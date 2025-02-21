@@ -50,7 +50,7 @@ exports.plot_class = function(img, scale_to_use){
   
   print(range);
   
-  print(igbpPalette.slice(min.getInfo(),min.add(range).getInfo()));
+  print(igbpPalette.slice(min,min.add(range)).getInfo());
   
   Map.addLayer(img, {min: min.getInfo(), 
   max: max.getInfo()}, "classification");
