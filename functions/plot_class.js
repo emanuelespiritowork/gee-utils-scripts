@@ -48,9 +48,12 @@ exports.plot_class = function(img, scale_to_use){
   
   var range = max.subtract(min);
   
+  print(range);
+  
+  print(igbpPalette.slice(1,range));
+  
   Map.addLayer(img, {min: min.getInfo(), 
-  max: max.getInfo(), 
-  palette: igbpPalette.slice(1,range).getInfo()}, "classification");
+  max: max.getInfo()}, "classification");
   
   return 0;
 };
