@@ -17,6 +17,7 @@ exports.unsup_classification = function(img, sample_regions, classes, scale_to_u
   img = ee.Image(img);
   sample_regions = ee.FeatureCollection(sample_regions);
   classes = ee.Number(classes);
+  scale_to_use = ee.Number(scale_to_use);
   
   var clusterer = ee.Clusterer.wekaKMeans(classes);
   var sample = img.sample({
