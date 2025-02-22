@@ -13,10 +13,15 @@
 *******************************************************/
 
 exports.class_sup = function(img, samples, scale_to_use){
-  
+/******************************************************
+ * Check variable types
+*******************************************************/
   img = ee.Image(img);
-  samples = ;
-  
+  samples = ee.FeatureCollection(samples);
+  scale_to_use = ee.Number(scale_to_use);
+/******************************************************
+ * Check variable types
+*******************************************************/
   
   
 };
