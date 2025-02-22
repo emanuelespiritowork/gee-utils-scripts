@@ -28,17 +28,23 @@ exports.class_sup = function(img, points, scale_to_use, classProperty){
  * Define the classifier
 *******************************************************/
   var classifier = ee.Classifier.smileCart();
-  
+/******************************************************
+ * Get sample points band values
+*******************************************************/
   var samples = img.sampleRegions({
     collection: points,
     scale: scale_to_use,
   });
-
+/******************************************************
+ * Train the classifier
+*******************************************************/
   var trained = classifier.train({
     features: samples,
     classProperty: property_name
   });
-  
+/******************************************************
+ * Create classification
+*******************************************************/
   var classification = img.classify(trained);
   
   return classification;
