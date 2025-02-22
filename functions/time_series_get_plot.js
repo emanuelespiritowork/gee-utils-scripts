@@ -64,7 +64,7 @@ exports.time_series_get_plot = function(time_series,which_property){
   var plot = ui.Chart.feature.groups({
     features: time_series, 
     xProperty: xProperty.getInfo(),
-    yProperty: yProperties.getInfo(),
+    yProperty: ee.String(yProperties).getInfo(),
     seriesProperty: 'id',
   }).setChartType("LineChart")
   .setOptions({
