@@ -32,10 +32,6 @@ exports.time_series_get_plot = function(time_series,which_property){
 *******************************************************/
   var propertyNames = time_series_get_property_names.time_series_get_property_names(time_series);
 /******************************************************
- * Set x property as the date
-*******************************************************/
-  var xProperty = "date";
-/******************************************************
  * Set y property as request
 *******************************************************/
   var yProperties = which_property || ee.List(propertyNames).getString(0);
@@ -50,7 +46,7 @@ exports.time_series_get_plot = function(time_series,which_property){
 *******************************************************/  
   var plot = ui.Chart.feature.groups({
     features: time_series, 
-    xProperty: xProperty.getInfo(),
+    xProperty: "date",
     yProperty: ee.String(yProperties).getInfo(),
     seriesProperty: 'id',
   }).setChartType("LineChart")
