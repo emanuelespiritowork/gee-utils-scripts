@@ -25,7 +25,6 @@ exports.time_series_export = function(time_series, export_folder, property_list)
 *******************************************************/
   time_series = ee.FeatureCollection(time_series);
   export_folder = ee.String(export_folder);
-  property_list = ee.List(property_list);
   
 /******************************************************
  * Get layers name
