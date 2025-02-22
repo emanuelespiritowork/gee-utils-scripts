@@ -47,7 +47,7 @@ exports.time_series_get_plot = function(time_series,which_property){
 /******************************************************
  * Set y property as request
 *******************************************************/
-  var yProperties = ee.String(which_property) || propertyNames.remove('date')
+  var yProperties = which_property || propertyNames.remove('date')
   .remove('system:time_start')
   .remove('id')
   .remove('system:index')
