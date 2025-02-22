@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = /* color: #bf04c2 */ee.Geometry.Polygon(
+var AOI = 
+    /* color: #bf04c2 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[8.792860534194146, 45.44595189716361],
           [8.785908248427544, 45.44450666473064],
           [8.77603771925274, 45.44089342166084],
@@ -13,7 +16,8 @@ var AOI = /* color: #bf04c2 */ee.Geometry.Polygon(
           [8.799126174452935, 45.43860491469251],
           [8.798954513075982, 45.441013866824775]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
+var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+.filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",20));
 
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
