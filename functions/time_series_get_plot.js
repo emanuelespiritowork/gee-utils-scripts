@@ -46,7 +46,7 @@ exports.time_series_get_plot = function(time_series,which_property){
 /******************************************************
  * Set y property as request
 *******************************************************/
-  var yProperties = which_property || propertyNames.getString(0);
+  var yProperties = which_property || ee.List(propertyNames).getString(0);
   print(yProperties);
 /******************************************************
  * Set title
