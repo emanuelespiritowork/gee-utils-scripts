@@ -1,3 +1,17 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.FeatureCollection
+ * Output: ee.List 
+ * Description: find the list of property layer names of a time
+ * series
+*******************************************************/
 exports.time_series_get_property_names = function(time_series){
   var propertyNames = time_series.first().propertyNames();
   var counter = 0;
