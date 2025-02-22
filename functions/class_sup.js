@@ -9,7 +9,7 @@
  * PURPOSE OF THIS SCRIPT
  * Input: ee.Image, ee.FeatureCollection, ee.Number, ee.Number
  * Output: ee.Image
- * Description: unsupervised classification of an image
+ * Description: supervised classification of an image
 *******************************************************/
 
 exports.class_sup = function(img, points, scale_to_use, classProperty){
