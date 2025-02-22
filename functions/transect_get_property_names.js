@@ -28,11 +28,7 @@ exports.time_series_get_property_names = function(time_series){
     propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
   }
   
-  var yProperties = propertyNames.remove('date')
-  .remove('system:time_start')
-  .remove('id')
-  .remove('clock')
-  .remove('system:index');
+  var yProperties = propertyNames.remove('distance');
   
   return yProperties;
 };
