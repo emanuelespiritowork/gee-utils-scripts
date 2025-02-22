@@ -22,7 +22,8 @@ exports.class_sup = function(img, points, scale_to_use, classProperty){
 /******************************************************
  * Get property name
 *******************************************************/
-  var property_name = classProperty || points.first().propertyNames().getString(0);
+  var property_name = classProperty || points.first().propertyNames()
+  .remove("system:index").getString(0);
 /******************************************************
  * Define the classifier
 *******************************************************/
