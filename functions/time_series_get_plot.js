@@ -6,6 +6,12 @@
 *******************************************************/
 
 /******************************************************
+ * REQUIRES THE FOLLOWING FUNCTIONS:
+ * time_series_get_property_names
+*******************************************************/
+var time_series_get_property_names = require("users/emanuelespiritowork/SharedRepo:functions/time_series_get_property_names.js");
+
+/******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.FeatureCollection, ee.String
  * Output: ui.Chart
@@ -13,7 +19,6 @@
  * of a time series created by time_series_create using as y variable 
  * the input string.  
 *******************************************************/
-
 exports.time_series_get_plot = function(time_series,which_property){
 /******************************************************
  * Check variable types
@@ -25,13 +30,7 @@ exports.time_series_get_plot = function(time_series,which_property){
  * have all the properties. For this reason I check all the properties
  * among the features
 *******************************************************/
-  var propertyNames = time_series.first().propertyNames();
-  var counter = 0;
-  var counter_end = time_series.size();
-  while(counter <= counter_end){
-    feature = time_series.get(counter);
-    propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
-  }
+  var propertyNames = time_series_get_property_names.time_series_get_property_names(time_series);
 /******************************************************
  * Set x property as the date
 *******************************************************/
