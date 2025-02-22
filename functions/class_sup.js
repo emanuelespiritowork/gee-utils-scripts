@@ -22,7 +22,7 @@ exports.class_sup = function(img, samples, scale_to_use){
 /******************************************************
  * Get property name
 *******************************************************/
-  var property_name = samples.propertyNames().getString(0);
+  var property_name = samples.first().propertyNames().getString(0);
 /******************************************************
  * Define the classifier
 *******************************************************/
