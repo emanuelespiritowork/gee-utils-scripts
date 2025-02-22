@@ -7,7 +7,7 @@
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.Image, ee.FeatureCollection, ee.Number, ee.Number
+ * Input: ee.Image, ee.FeatureCollection, ee.Number, ee.String
  * Output: ee.Image
  * Description: supervised classification of an image
 *******************************************************/
