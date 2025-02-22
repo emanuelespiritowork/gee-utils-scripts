@@ -12,21 +12,26 @@
  * Description: unsupervised classification of an image
 *******************************************************/
 
-exports.class_sup = function(img, samples, scale_to_use){
+exports.class_sup = function(img, points, scale_to_use, classProperty){
 /******************************************************
  * Check variable types
 *******************************************************/
   img = ee.Image(img);
-  samples = ee.FeatureCollection(samples);
+  points = ee.FeatureCollection(points);
   scale_to_use = ee.Number(scale_to_use);
 /******************************************************
  * Get property name
 *******************************************************/
-  var property_name = samples.first().propertyNames().getString(0);
+  var property_name = classProperty || points.first().propertyNames().getString(0);
 /******************************************************
  * Define the classifier
 *******************************************************/
   var classifier = ee.Classifier.smileCart();
+  
+  var samples = img.sampleRegions({
+    collection: points,
+    scale: scale_to_use,
+  });
 
   var trained = classifier.train({
     features: samples,
