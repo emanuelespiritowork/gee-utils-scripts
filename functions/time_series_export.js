@@ -13,7 +13,7 @@
  * Use the function time_series_create.js to create the time_series
 *******************************************************/
 
-exports.time_series_export = function(time_series, property_list, export_folder){
+exports.time_series_export = function(time_series, export_folder, property_list){
 /******************************************************
  * Check variable types
 *******************************************************/
