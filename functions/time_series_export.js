@@ -14,21 +14,23 @@
 *******************************************************/
 
 exports.time_series_export = function(time_series, property_list, export_folder){
-  
+/******************************************************
+ * Check variable types
+*******************************************************/
   time_series = ee.FeatureCollection(time_series);
   export_folder = ee.String(export_folder);
   property_list = ee.List(property_list);
   
-  /*var selectors_name = ee.String(time_series.first().propertyNames()
-  .remove("system:index")
-  .remove("system:time_start")
-  .join(", "))
-  .getInfo();*/
-  
+/******************************************************
+ * Get layers name
+*******************************************************/
   var selectors_name = property_list.cat(["id"]).cat(["date"]).cat(["clock"])
   .join(", ");
   print(selectors_name);
-  
+
+/******************************************************
+ * Export to Drive
+*******************************************************/
   Export.table.toDrive({
     collection: time_series, 
     description: "export_time_series",
