@@ -75,7 +75,10 @@ var geometry =
             {
               "system:index": "5"
             })]),
-    snow = /* color: #bad610 */ee.FeatureCollection(
+    snow = 
+    /* color: #bad610 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Point([10.143162837696428, 46.12956664697402]),
             {
@@ -112,7 +115,10 @@ var geometry =
               "class": 0,
               "system:index": "5"
             })]),
-    darksnow = /* color: #98ff00 */ee.FeatureCollection(
+    darksnow = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Point([10.170103480491614, 46.1373333634546]),
             {
@@ -149,7 +155,10 @@ var geometry =
               "class": 1,
               "system:index": "5"
             })]),
-    darkveg = /* color: #0b4a8b */ee.FeatureCollection(
+    darkveg = 
+    /* color: #0b4a8b */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Point([10.18718412797118, 46.13835777280952]),
             {
@@ -192,7 +201,10 @@ var geometry =
               "class": 2,
               "system:index": "6"
             })]),
-    veg = /* color: #ffc82d */ee.FeatureCollection(
+    veg = 
+    /* color: #ffc82d */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Point([10.12120440684137, 46.135408465700394]),
             {
@@ -243,43 +255,43 @@ var geometry =
             })]),
     urb = /* color: #00ffff */ee.FeatureCollection(
         [ee.Feature(
-            ee.Geometry.Point([10.145401359970293, 46.1524335134166]),
+            ee.Geometry.Point([10.149006248886309, 46.153399706118726]),
             {
               "class": 4,
               "system:index": "0"
             }),
         ee.Feature(
-            ee.Geometry.Point([10.147933365280352, 46.15200243735427]),
+            ee.Geometry.Point([10.154992939407549, 46.15432872156684]),
             {
               "class": 4,
               "system:index": "1"
             }),
         ee.Feature(
-            ee.Geometry.Point([10.147911907608233, 46.15283485706014]),
+            ee.Geometry.Point([10.127870441848955, 46.14977267968529]),
             {
               "class": 4,
               "system:index": "2"
             }),
         ee.Feature(
-            ee.Geometry.Point([10.149692894394121, 46.153132146760996]),
+            ee.Geometry.Point([10.149113537246905, 46.152730805285444]),
             {
               "class": 4,
               "system:index": "3"
             }),
         ee.Feature(
-            ee.Geometry.Point([10.15349090235921, 46.15225513752445]),
+            ee.Geometry.Point([10.152246357376299, 46.1539050924676]),
             {
               "class": 4,
               "system:index": "4"
             }),
         ee.Feature(
-            ee.Geometry.Point([10.149821640426836, 46.15195784308615]),
+            ee.Geometry.Point([10.147075058395586, 46.15333281640121]),
             {
               "class": 4,
               "system:index": "5"
             }),
         ee.Feature(
-            ee.Geometry.Point([10.146946312362871, 46.15048621196755]),
+            ee.Geometry.Point([10.149285198623858, 46.15267134704015]),
             {
               "class": 4,
               "system:index": "6"
@@ -312,6 +324,6 @@ Map.centerObject(geometry);
 
 var samples = snow.merge(darksnow).merge(darkveg).merge(veg).merge(urb);
 
-var sup = class_sup.class_sup(mosaic.select(unsup_bands), samples, 10, "class");
+var sup = class_sup.class_sup(mosaic.select(unsup_bands), samples, 10);
 
 var null_var_3 = plot_class.plot_class(sup, 10);
