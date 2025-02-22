@@ -14,9 +14,13 @@
 *******************************************************/
 
 exports.transect_get_plot = function(transect_slice){
-  
+/******************************************************
+ * Check variable types
+*******************************************************/
   transect_slice = ee.FeatureCollection(transect_slice);
-  
+/******************************************************
+ * Get property name
+*******************************************************/
   var yProperties = transect_slice.first().propertyNames()
   .remove('distance')
   .remove('system:index');
