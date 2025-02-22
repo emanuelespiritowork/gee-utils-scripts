@@ -90,6 +90,7 @@ var time_series = time_series_create.time_series_create(evi_scl,AOI,"field_name"
 
 var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
 
+/*
 print(ee.Date("2025-01-01"));
 
 var min = ee.Date("2022-01-01");
@@ -97,15 +98,6 @@ var max = ee.Date("2025-01-01");
 
 plot = plot.setOptions({
     title: "Time series of EVI",
-    /*trendlines: {
-      0: {
-        color: 'purple',
-        opacity: 0.2,
-        lineWidth: 10,
-        visibleInLegend: 'true',
-        type: 'linear'
-      }
-    },*/
     width: 400,
     height: 240,
     vAxis: {
@@ -115,7 +107,7 @@ plot = plot.setOptions({
     pointsize: 3,
     interpolateNulls: true
   });
-
+*/
 print(plot);
 
 
