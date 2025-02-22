@@ -15,42 +15,28 @@
 *******************************************************/
 
 exports.time_series_get_plot = function(time_series,which_property){
-  
+/******************************************************
+ * Check variable types
+*******************************************************/
   time_series = ee.FeatureCollection(time_series);
   which_property = ee.String(which_property);
   
-  
+/******************************************************
+ * Get property names
+ * If it is masked the first element of the time series does not
+ * have all the properties. For this reason I check all the properties
+ * among the features
+*******************************************************/
   var propertyNames = time_series.first().propertyNames();
-  /*
-  var get_property = function(feature){
-    return ee.Feature(null,propertyNames.cat(feature.propertyNames()).distinct());
-  };
-  
-  var list_of_lists = time_series.map(get_property);
-  
-  print(list_of_lists);*/
-  
-  //se è mascherato non è detto che il primo lo contenga
-  //bisogna ordinare prendere tutte le proprietà tra tutte le feature
-  //della collezione
-  
-  //var propertyNames = time_series.first().propertyNames();
-  
   var counter = 0;
   var counter_end = time_series.size();
   while(counter <= counter_end){
     feature = time_series.get(counter);
     propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
   }
-  
-  
-  
-  
-  //var propertyNames = time_series.first().propertyNames();
-  
-  //print("senso",propertyNames);
-  
-  
+/******************************************************
+ * Set x property as the date
+*******************************************************/
   var xProperty = ee.Algorithms.If({
       condition: propertyNames.contains('system:time_start'),
       trueCase: 'system:time_start',
@@ -60,40 +46,23 @@ exports.time_series_get_plot = function(time_series,which_property){
       falseCase: null
     })
   });
-
-  var yProperties = which_property;
-  
-  /*
-  yProperties = ee.Algorithms.If({
-    condition: which_property === undefined || which_property === null,
-    trueCase: propertyNames.remove('date')
-    .remove('system:time_start')
-    .remove('id')
-    .remove('system:index')
-    .getString(0),
-    falseCase: ee.String(which_property)
-  });*/
-  
-  /*
-  if(which_property === undefined || which_property === null)
-  {
-    yProperties = propertyNames.remove('date')
-    .remove('system:time_start')
-    .remove('id')
-    .remove('system:index')
-    .getString(0);
-  
-  }else{
-    yProperties = ee.String(which_property);
-  }*/
-  
-  
-  //print("yProperties",yProperties);
-  //print("xProperty",xProperty);
-  
+/******************************************************
+ * Set y property as request
+*******************************************************/
+  var yProperties = which_property || propertyNames.remove('date')
+  .remove('system:time_start')
+  .remove('id')
+  .remove('system:index')
+  .getString(0);
+  print(yProperties);
+/******************************************************
+ * Set title
+*******************************************************/
   var p_title = 'Time series of ';
   p_title = ee.String(p_title).cat(ee.String(yProperties));
-  
+/******************************************************
+ * Plot
+*******************************************************/  
   var plot = ui.Chart.feature.groups({
     features: time_series, 
     xProperty: xProperty.getInfo(),
