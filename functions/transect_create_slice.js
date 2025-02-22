@@ -16,25 +16,34 @@
 *******************************************************/
 
 exports.transect_create_slice = function(img, transect, scale_to_use) {
-  
+/******************************************************
+ * Check variable types
+*******************************************************/
   img = ee.Image(img);
   //transect = ee.Geometry(transect); it has to be a LineString
   scale_to_use = ee.Number(scale_to_use);
-  
+/******************************************************
+ * Get length of the transect
+*******************************************************/
   var length = transect.length();
+/******************************************************
+ * Get first band name
+*******************************************************/
   var bands_names = img.bandNames();
   //print(bands_names);
   var single_band_name = ee.List([bands_names.getString(0)]);
   //print(single_band_name);
-  var step = scale_to_use;
-  //var step = img.select(single_band_name).projection().nominalScale();
-  //print(step);
+/******************************************************
+ * Compute distance list
+*******************************************************/  
   var distances = ee.List.sequence({
     start: ee.Number(0), 
     end: length,
-    step: step
+    step: scale_to_use
   });
-  
+/******************************************************
+ * Split transect into subtransects
+*******************************************************/
   var lines = transect.cutLines(distances).geometries();
   lines = lines.zip(distances).map(function(l) { 
     l = ee.List(l);
@@ -48,14 +57,17 @@ exports.transect_create_slice = function(img, transect, scale_to_use) {
   });
   
   lines = ee.FeatureCollection(lines);
-
-  // reduce image for every segment
+/******************************************************
+ * Reduce image for every segment
+*******************************************************/
   var values = img.reduceRegions( {
     collection: ee.FeatureCollection(lines), 
     reducer: ee.Reducer.mean(), 
-    scale: step
+    scale: scale_to_use
   });
-  
+/******************************************************
+ * Get image layer name
+*******************************************************/
   var property_names = values.first().propertyNames()
   .remove('distance')
   .remove('system:index')
@@ -63,6 +75,9 @@ exports.transect_create_slice = function(img, transect, scale_to_use) {
   
   //print(property_names);
   
+/******************************************************
+ * Rename image values adding distance
+*******************************************************/  
   var values_renamed = values.select({
     propertySelectors: property_names,
     newProperties: img.bandNames().cat(['distance'])
