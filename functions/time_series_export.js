@@ -6,6 +6,12 @@
 *******************************************************/
 
 /******************************************************
+ * REQUIRES THE FOLLOWING FUNCTIONS:
+ * time_series_get_property_names
+*******************************************************/
+var time_series_get_property_names = require("users/emanuelespiritowork/SharedRepo:functions/time_series_get_property_names.js");
+
+/******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.FeatureCollection
  * Output: (nothing) 
@@ -24,8 +30,15 @@ exports.time_series_export = function(time_series, export_folder, property_list)
 /******************************************************
  * Get layers name
 *******************************************************/
-  var selectors_name = property_list.cat(["id"]).cat(["date"]).cat(["clock"])
+  /*var selectors_name = property_list.cat(["id"]).cat(["date"]).cat(["clock"])
+  .join(", ");*/
+  
+  var property_names = time_series_get_property_names.time_series_get_property_names(time_series)
+  .cat(["id"]).cat(["date"]).cat(["clock"])
   .join(", ");
+  
+  var selectors_name = property_list || property_names;
+  
   print(selectors_name);
 
 /******************************************************
