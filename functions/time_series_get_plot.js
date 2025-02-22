@@ -51,7 +51,7 @@ exports.time_series_get_plot = function(time_series,which_property){
   .remove('system:time_start')
   .remove('id')
   .remove('system:index')
-  .getString(0);
+  .getString(1);
   print(yProperties);
 /******************************************************
  * Set title
