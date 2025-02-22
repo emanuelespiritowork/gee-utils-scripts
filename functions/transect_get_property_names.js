@@ -28,7 +28,8 @@ exports.time_series_get_property_names = function(time_series){
     propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
   }
   
-  var yProperties = propertyNames.remove('distance');
+  var yProperties = propertyNames.remove('distance')
+  .remove('system:index');
   
   return yProperties;
 };
