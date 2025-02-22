@@ -19,8 +19,6 @@ exports.time_series_get_plot = function(time_series,which_property){
  * Check variable types
 *******************************************************/
   time_series = ee.FeatureCollection(time_series);
-  which_property = ee.String(which_property);
-  
 /******************************************************
  * Get property names
  * If it is masked the first element of the time series does not
@@ -49,7 +47,7 @@ exports.time_series_get_plot = function(time_series,which_property){
 /******************************************************
  * Set y property as request
 *******************************************************/
-  var yProperties = which_property || propertyNames.remove('date')
+  var yProperties = ee.String(which_property) || propertyNames.remove('date')
   .remove('system:time_start')
   .remove('id')
   .remove('system:index')
