@@ -17,10 +17,16 @@ var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
+var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
+var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
 
 var clip = clip_to.clip_to(s2_coll, AOI, 10);
 
 var scale = s2_scale.s2_scale(clip);
+
+var mosaic = mosaic_recent.mosaic_recent(s2_coll, AOI, 10);
+
+var null_var = plot_stretch.plot_stretch(mosaic, ["B4","B3","B2"], 2, 10);
 
 //proprietà di un pixel di camino senza usare SCL
 
