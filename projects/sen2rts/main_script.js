@@ -42,17 +42,17 @@ var clip = clip_to.clip_to(s2_coll,AOI,scale_to_use);
 
 //print(clip);
 
-//var mask = s2_mask.s2_mask(clip);
+var mask = s2_mask.s2_mask(clip);
 
-//var pixel = pixel_percentage.pixel_percentage(mask,AOI,0.5,scale_to_use);
+var pixel = pixel_percentage.pixel_percentage(mask,AOI,0.5,scale_to_use);
 
-//var scale = s2_scale.s2_scale(pixel);
+var scale = s2_scale.s2_scale(pixel);
 
 //print("scale",scale);
 
 //Map.addLayer(scale.first().geometry());
 
-var scale = s2_scale.s2_scale(clip);
+//var scale = s2_scale.s2_scale(clip);
 
 var evi = s2_evi.s2_evi(scale);
 
@@ -84,7 +84,7 @@ var time_series = time_series_create.time_series_create(evi_scl,AOI,"field_name"
 
 //print(time_series.limit(100));
 
-var null_var = time_series_export.time_series_export(time_series, "Exports_sen2rts");
+var null_var = time_series_export.time_series_export(time_series, "Exports_sen2rts", ["evi"]);
 
 //var null_var = time_series_export.time_series_export(time_series, ["evi"], "Exports_sen2rts");
 
