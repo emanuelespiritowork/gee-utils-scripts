@@ -34,15 +34,7 @@ exports.time_series_get_plot = function(time_series,which_property){
 /******************************************************
  * Set x property as the date
 *******************************************************/
-  var xProperty = ee.Algorithms.If({
-      condition: propertyNames.contains('system:time_start'),
-      trueCase: 'system:time_start',
-      falseCase: ee.Algorithms.If({
-      condition: propertyNames.contains('date'),
-      trueCase: 'date',
-      falseCase: null
-    })
-  });
+  var xProperty = "date";
 /******************************************************
  * Set y property as request
 *******************************************************/
