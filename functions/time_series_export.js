@@ -32,11 +32,10 @@ exports.time_series_export = function(time_series, export_folder, property_list)
   /*var selectors_name = property_list.cat(["id"]).cat(["date"]).cat(["clock"])
   .join(", ");*/
   
-  var property_names = time_series_get_property_names.time_series_get_property_names(time_series)
-  .cat(["id"]).cat(["date"]).cat(["clock"])
-  .join(", ");
+  var property_names = property_list || time_series_get_property_names.time_series_get_property_names(time_series);
   
-  var selectors_name = property_list || property_names;
+  var selectors_name = ee.String(property_names).cat(["id"])
+  .cat(["date"]).cat(["clock"]).join(", ");
   
   print(selectors_name);
 
