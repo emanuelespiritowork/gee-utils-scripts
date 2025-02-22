@@ -20,8 +20,20 @@ exports.class_sup = function(img, samples, scale_to_use){
   samples = ee.FeatureCollection(samples);
   scale_to_use = ee.Number(scale_to_use);
 /******************************************************
- * Check variable types
+ * Get property name
 *******************************************************/
+  var property_name = samples.propertyNames().getString(0);
+/******************************************************
+ * Define the classifier
+*******************************************************/
+  var classifier = ee.Classifier.smileCart();
+
+  var trained = classifier.train({
+    features: samples,
+    classProperty: property_name
+  });
   
+  var classification = img.classify(trained);
   
+  return classification;
 };
