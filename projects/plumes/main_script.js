@@ -26,8 +26,8 @@ var scale = s2_scale.s2_scale(clip);
 //var mosaic = mosaic_recent.mosaic_recent(s2_coll, AOI, 10);
 
 //var null_var = plot_stretch.plot_stretch(mosaic, ["B4","B3","B2"], 2, 10);
-var null_var = plot_stretch.plot_stretch(s2_coll.first(), ["B4","B3","B2"], 2, 10);
-var null_var_2 = plot_map.plot_map(scale.first().select("B2"),2,10);
+var null_var = plot_stretch.plot_stretch(clip.first(), ["B4","B3","B2"], 2, 10);
+var null_var_2 = plot_map.plot_map(scale.first().select("B1"),2,10);
 
 //I will not use SCL mask because for small areas it is not reliable
 
@@ -45,7 +45,7 @@ var null_var_2 = plot_map.plot_map(scale.first().select("B2"),2,10);
 //which pixels have the greatest amount. This way I could consider 
 //to highlight pixels whose score is greater than 50*size(img_coll) 
 
-var b1_threshold = 0.3;
+var b1_threshold = 0.2;
 
 var give_score_to_pixel = function(image){
   return image.mask(image.select("B1").gt(b1_threshold));
