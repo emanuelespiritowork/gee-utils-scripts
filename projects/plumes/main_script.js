@@ -56,12 +56,14 @@ var give_score_to_pixel = function(image){
   
   var score = ee.Number(100).divide(ee.Number(num_pixel));
   
-  return clip_to.clip_to(ee.Image(score).mask(image.select("B1").gt(b1_threshold))
-  .unmask(0), AOI, 10);
+  return ee.Image(score).mask(image.select("B1").gt(b1_threshold))
+  .unmask(0);
 };
 
 Map.addLayer(scale.first().select("B1").gt(b1_threshold));
 
 var scored = scale.map(give_score_to_pixel);
 
-var null_var_2 = plot_map.plot_map(scored.first(), 2, 10);
+var clip_scored = clip_to.clip_to(scored, AOI, 10); 
+
+var null_var_2 = plot_map.plot_map(clip_scored.first(), 2, 10);
