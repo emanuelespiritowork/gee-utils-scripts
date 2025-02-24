@@ -57,7 +57,7 @@ var give_score_to_pixel = function(image){
   var score = ee.Number(100).divide(ee.Number(num_pixel)).float();
   
   return ee.Image(score).mask(image.select("B1").gt(b1_threshold))
-  .unmask(ee.Number(0).float()).rename("score");
+  .unmask(ee.Number(0)).rename("score").float();
 };
 
 //Map.addLayer(scale.first().select("B1").gt(b1_threshold));
@@ -73,6 +73,7 @@ var final_score = clip_scored.reduce({
 });
 
 Map.addLayer(final_score);
+Map.addLayer(final_score.geometry());
 /*
 var clip_final = clip_to.clip_to(ee.ImageCollection(final_score), AOI, 10).first();
 
