@@ -27,7 +27,7 @@ var scale = s2_scale.s2_scale(clip);
 
 //var null_var = plot_stretch.plot_stretch(mosaic, ["B4","B3","B2"], 2, 10);
 var null_var = plot_stretch.plot_stretch(s2_coll.first(), ["B4","B3","B2"], 2, 10);
-var null_var_2 = plot_map.plot_map(scale.first().select("B1"),2,10);
+var null_var_2 = plot_map.plot_map(scale.first().select("B2"),2,10);
 
 //I will not use SCL mask because for small areas it is not reliable
 
