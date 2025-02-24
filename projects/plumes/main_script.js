@@ -59,7 +59,9 @@ var give_score_to_pixel = function(image){
   var score = ee.Number(100).divide(ee.Number(num_pixel));
   
   return ee.Image(score).mask(image.select("B1").gt(b1_threshold))
-  .unmask(0).set("system:footprint",footprint);
+  .unmask(0).set({
+    "system:footprint":footprint
+  });
 };
 
 Map.addLayer(scale.first().select("B1").gt(b1_threshold));
