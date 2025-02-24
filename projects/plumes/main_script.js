@@ -49,7 +49,7 @@ var b1_threshold = 0.2;
 
 var give_score_to_pixel = function(image){
   var num_pixel = image.select("B1").gt(b1_threshold).reduceRegion({
-    reducer: "sum",
+    reducer: ee.Reducer.sum(),
     bestEffort: true,
     scale: 10
   }).getNumber("B1");
@@ -67,3 +67,11 @@ var scored = scale.map(give_score_to_pixel);
 var clip_scored = clip_to.clip_to(scored, AOI, 10); 
 
 var null_var_2 = plot_map.plot_map(clip_scored.first(), 2, 10);
+
+var final_score = clip_scored.reduce({
+  reducer: ee.Reducer.sum(),
+  bestEffort: true,
+  scale: 10
+});
+
+var null_var_3 = plot_map.plot_map(final_score,2,10);
