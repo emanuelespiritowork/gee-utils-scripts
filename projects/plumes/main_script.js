@@ -54,13 +54,13 @@ var give_score_to_pixel = function(image){
     scale: 10
   }).getNumber("B1");
   
-  var score = ee.Number(100).divide(ee.Number(num_pixel));
+  var score = ee.Number(100).divide(ee.Number(num_pixel)).float();
   
   return ee.Image(score).mask(image.select("B1").gt(b1_threshold))
-  .unmask(0).rename("score");
+  .unmask(ee.Number(0).float()).rename("score");
 };
 
-Map.addLayer(scale.first().select("B1").gt(b1_threshold));
+//Map.addLayer(scale.first().select("B1").gt(b1_threshold));
 
 var scored = scale.map(give_score_to_pixel);
 
@@ -72,6 +72,9 @@ var final_score = clip_scored.reduce({
   reducer: ee.Reducer.sum()
 });
 
+Map.addLayer(final_score);
+/*
 var clip_final = clip_to.clip_to(ee.ImageCollection(final_score), AOI, 10).first();
 
 var null_var_3 = plot_map.plot_map(clip_final,2,10);
+*/
