@@ -51,6 +51,8 @@ var give_score_to_pixel = function(image){
   return image.mask(image.select("B1").gt(b1_threshold));
 };
 
-var scored = scale.map(give_score_to_pixel);
+Map.addLayer(scale.first().select("B1").gt(b1_threshold));
 
-var null_var_2 = plot_stretch.plot_stretch(scored.first(), ["B4","B3","B2"], 2, 10);
+//var scored = scale.map(give_score_to_pixel);
+
+//var null_var_2 = plot_stretch.plot_stretch(scored.first(), ["B4","B3","B2"], 2, 10);
