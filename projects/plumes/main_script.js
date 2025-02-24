@@ -48,7 +48,7 @@ var null_var_2 = plot_map.plot_map(scale.first().select("B1"),2,10);
 var b1_threshold = 0.3;
 
 var give_score_to_pixel = function(image){
-  return image.updateMask(image.select("B1").gt(b1_threshold));
+  return image.mask(image.select("B1").gt(b1_threshold));
 };
 
 var scored = scale.map(give_score_to_pixel);
