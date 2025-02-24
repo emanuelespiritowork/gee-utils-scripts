@@ -17,7 +17,7 @@ var AOI =
           [8.798954513075982, 45.441013866824775]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-.filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",20));
+.filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",50));
 
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
