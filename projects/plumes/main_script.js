@@ -32,7 +32,19 @@ var mosaic = mosaic_recent.mosaic_recent(s2_coll, AOI, 10);
 
 var null_var = plot_stretch.plot_stretch(mosaic, ["B4","B3","B2"], 2, 10);
 
-//proprietà di un pixel di camino senza usare SCL
+//I will not use SCL mask because for small areas it is not reliable
 
-//riflettanza in tutte le bande superiore a 0.5
+//For this reason in each image I will consider a total amount of 100
+//and this will be distributed among all pixels that have in 
+//each B band a surface reflectance greater than 0.5, mimicing cloud
+
+//any little cloud pixel will receive a medium score but clouds move (except for 
+//Fantozzi) so in other image that pixel should not be covered
+
+//any big cloud pixel will receive a small score because the full score
+//is shared between many pixels
+
+//then I will reduce over the image collection the score layer to see
+//which pixels have the greatest amount. This way I could consider 
+//to highlight pixels whose score is greater than 50*size(img_coll) 
 
