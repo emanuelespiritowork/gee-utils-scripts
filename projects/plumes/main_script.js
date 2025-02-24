@@ -72,6 +72,6 @@ var final_score = clip_scored.reduce({
   reducer: ee.Reducer.sum()
 });
 
-var clip_final = clip_to.clip_to(ee.ImageCollection(final_score), AOI, 10);
+var clip_final = clip_to.clip_to(ee.ImageCollection(final_score), AOI, 10).first();
 
 var null_var_3 = plot_map.plot_map(clip_final,2,10);
