@@ -48,8 +48,6 @@ var null_var_2 = plot_map.plot_map(scale.first().select("B1"),2,10);
 var b1_threshold = 0.2;
 
 var give_score_to_pixel = function(image){
-  var candidate = image.mask();
-  
   var num_pixel = image.select("B1").gt(b1_threshold).reduceRegion({
     reducer: "sum"
   }).getNumber("B1");
