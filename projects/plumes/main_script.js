@@ -45,3 +45,12 @@ var null_var_2 = plot_map.plot_map(mosaic.select("B1"),2,10);
 //which pixels have the greatest amount. This way I could consider 
 //to highlight pixels whose score is greater than 50*size(img_coll) 
 
+var b1_threshold = 0.3;
+
+var give_score_to_pixel = function(image){
+  return image.updateMask(image.select("B1").gt(b1_threshold));
+};
+
+var scored = scale.map(give_score_to_pixel);
+
+var null_var_2 = plot_stretch.plot_stretch(scored.first(), ["B4","B3","B2"], 2, 10);
