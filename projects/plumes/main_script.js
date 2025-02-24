@@ -48,8 +48,6 @@ var null_var_2 = plot_map.plot_map(scale.first().select("B1"),2,10);
 var b1_threshold = 0.2;
 
 var give_score_to_pixel = function(image){
-  var footprint = image.get("system:footprint");
-  
   var num_pixel = image.select("B1").gt(b1_threshold).reduceRegion({
     reducer: "sum",
     bestEffort: true,
@@ -58,10 +56,8 @@ var give_score_to_pixel = function(image){
   
   var score = ee.Number(100).divide(ee.Number(num_pixel));
   
-  return ee.Image(score).mask(image.select("B1").gt(b1_threshold))
-  .unmask(0).set({
-    "system:footprint":footprint
-  });
+  return clip_to.clip_to(ee.Image(score).mask(image.select("B1").gt(b1_threshold))
+  .unmask(0), AOI, 10);
 };
 
 Map.addLayer(scale.first().select("B1").gt(b1_threshold));
