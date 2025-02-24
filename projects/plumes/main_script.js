@@ -51,7 +51,7 @@ var give_score_to_pixel = function(image){
   var num_pixel = image.select("B1").gt(b1_threshold).reduceRegion({
     reducer: "sum",
     bestEffort: true,
-    scale: scale_to_use
+    scale: 10
   }).getNumber("B1");
   
   var score = ee.Number(100).divide(ee.Number(num_pixel));
