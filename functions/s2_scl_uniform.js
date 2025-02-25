@@ -55,7 +55,8 @@ exports.s2_scl_uniform = function(img_coll, AOI){
     
     var time_start_value = image.get('system:time_start');
     var footprint = image.get('system:footprint');
-    var mosaic = ee.ImageCollection(AOI.map(set_scl_each_field)).mosaic()
+    var mosaic = ee.ImageCollection(AOI.map(set_scl_each_field))
+    .mosaic()
     .set({
       'system:time_start':time_start_value,
       'system:footprint':footprint
