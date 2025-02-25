@@ -40,7 +40,7 @@ var scale_to_use = ee.Number(10);
 
 var clip = clip_to.clip_to(s2_coll,AOI,scale_to_use);
 
-print(clip);
+//print(clip);
 
 var mask = s2_mask.s2_mask(clip);
 
