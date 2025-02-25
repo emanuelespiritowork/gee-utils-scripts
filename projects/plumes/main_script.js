@@ -95,7 +95,7 @@ print(clip_scored);
 
 var null_var_2 = plot_map.plot_map(clip_scored.first(), 2, 10);
 
-var footprint = AOI;
+var footprint = AOI.geometry();
 
 var first_time = clip_scored.sort("system:time_start",true)
 .first()
