@@ -1,8 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = 
-    /* color: #bf04c2 */
-    /* shown: false */
-    ee.FeatureCollection(
+var AOI = /* color: #bf04c2 */ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[6.230007244228104, 49.409604249394256],
@@ -13,6 +10,15 @@ var AOI =
                   [6.202112270473221, 49.41161464530498]]]),
             {
               "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[6.259618831752518, 49.421095910289594],
+                  [6.249662471889237, 49.41713164973054],
+                  [6.25781638729451, 49.4128878610378],
+                  [6.264854503749588, 49.418080868036526]]]),
+            {
+              "system:index": "1"
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
@@ -28,7 +34,6 @@ var clip = clip_to.clip_to(s2_coll, AOI, 10);
 
 var scale = s2_scale.s2_scale(clip);
 
-print(scale);
 //var mosaic = mosaic_recent.mosaic_recent(s2_coll, AOI, 10);
 
 //var null_var = plot_stretch.plot_stretch(mosaic, ["B4","B3","B2"], 2, 10);
