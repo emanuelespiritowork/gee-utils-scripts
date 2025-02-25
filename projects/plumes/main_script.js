@@ -75,11 +75,11 @@ print(scored);
 
 Map.addLayer(scored.first().geometry());
 
-var clip_scored = clip_to.clip_to(scored, AOI, 10); 
+//var clip_scored = clip_to.clip_to(scored, AOI, 10); 
 
-var null_var_2 = plot_map.plot_map(clip_scored.first(), 2, 10);
+var null_var_2 = plot_map.plot_map(scored.first(), 2, 10);
 
-var final_score = clip_scored.reduce({
+var final_score = scored.reduce({
   reducer: ee.Reducer.sum()
 });
 
