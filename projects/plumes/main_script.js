@@ -97,10 +97,12 @@ var null_var_2 = plot_map.plot_map(clip_scored.first(), 2, 10);
 
 var footprint = AOI;
 
-var first_time = clip_scored.sort("system:time_start",true);
+var first_time = clip_scored.sort("system:time_start",true)
+.get("system:time_start");
 print(first_time);
 
-var last_time = clip_scored.sort("system:time_start",true);
+var last_time = clip_scored.sort("system:time_start",false)
+.get("system:time_start");
 print(last_time);
 
 var final_score = clip_scored.reduce({
