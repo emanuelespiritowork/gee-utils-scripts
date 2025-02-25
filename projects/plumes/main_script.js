@@ -28,6 +28,7 @@ var clip = clip_to.clip_to(s2_coll, AOI, 10);
 
 var scale = s2_scale.s2_scale(clip);
 
+print(scale);
 //var mosaic = mosaic_recent.mosaic_recent(s2_coll, AOI, 10);
 
 //var null_var = plot_stretch.plot_stretch(mosaic, ["B4","B3","B2"], 2, 10);
@@ -69,7 +70,7 @@ var give_score_to_pixel = function(image){
   .set({
     "system:time_start": time_start,
     "system:footprint": footprint
-  }).clip(AOI.geometry());
+  })//.clip(AOI.geometry());
 };
 
 //Map.addLayer(scale.first().select("B1").gt(b1_threshold));
