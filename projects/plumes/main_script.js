@@ -95,8 +95,20 @@ print(clip_scored);
 
 var null_var_2 = plot_map.plot_map(clip_scored.first(), 2, 10);
 
+var footprint = AOI;
+
+var first_time = clip_scored.sort("system:time_start",true);
+print(first_time);
+
+var last_time = clip_scored.sort("system:time_start",true);
+print(last_time);
+
 var final_score = clip_scored.reduce({
   reducer: ee.Reducer.sum()
+}).set({
+  "system:footprint": footprint,
+  "system:time_start": first_time,
+  "system:time_end": last_time
 });
 
 print(final_score);
