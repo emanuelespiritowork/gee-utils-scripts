@@ -6,6 +6,13 @@
 *******************************************************/
 
 /******************************************************
+ * REQUIRES THE FOLLOWING FUNCTIONS:
+ * clip_to
+*******************************************************/
+
+var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
+
+/******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection, ee.FeatureCollection
  * Output: ee.ImageCollection
