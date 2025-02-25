@@ -73,6 +73,8 @@ var scored = scale.map(give_score_to_pixel);
 
 print(scored);
 
+Map.addLayer(scored.first().geometry());
+
 var clip_scored = clip_to.clip_to(scored, AOI, 10); 
 
 var null_var_2 = plot_map.plot_map(clip_scored.first(), 2, 10);
