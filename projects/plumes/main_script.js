@@ -2,13 +2,18 @@
 var AOI = 
     /* color: #bf04c2 */
     /* shown: false */
-    ee.Geometry.Polygon(
-        [[[6.230007244228104, 49.409604249394256],
-          [6.2312947045552525, 49.41457424501059],
-          [6.228891445277909, 49.4202137428584],
-          [6.222711635707596, 49.42551762961715],
-          [6.212326122401932, 49.42507100862785],
-          [6.202112270473221, 49.41161464530498]]]);
+    ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[6.230007244228104, 49.409604249394256],
+                  [6.2312947045552525, 49.41457424501059],
+                  [6.228891445277909, 49.4202137428584],
+                  [6.222711635707596, 49.42551762961715],
+                  [6.212326122401932, 49.42507100862785],
+                  [6.202112270473221, 49.41161464530498]]]),
+            {
+              "system:index": "0"
+            })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",30));
@@ -64,7 +69,7 @@ var give_score_to_pixel = function(image){
   .set({
     "system:time_start": time_start,
     "system:footprint": footprint
-  });
+  }).clip(AOI.geometry());
 };
 
 //Map.addLayer(scale.first().select("B1").gt(b1_threshold));
