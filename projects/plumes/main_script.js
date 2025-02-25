@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = /* color: #bf04c2 */ee.FeatureCollection(
+var AOI = 
+    /* color: #bf04c2 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[6.230007244228104, 49.409604249394256],
@@ -75,7 +78,7 @@ var give_score_to_pixel = function(image){
   .set({
     "system:time_start": time_start,
     "system:footprint": footprint
-  })//.clip(AOI.geometry());
+  });
 };
 
 //Map.addLayer(scale.first().select("B1").gt(b1_threshold));
@@ -86,13 +89,17 @@ print(scored);
 
 Map.addLayer(scored.first().geometry());
 
-//var clip_scored = clip_to.clip_to(scored, AOI, 10); 
+var clip_scored = clip_to.clip_to(scored, AOI, 10);
 
-var null_var_2 = plot_map.plot_map(scored.first(), 2, 10);
+print(clip_scored);
 
-var final_score = scored.reduce({
+var null_var_2 = plot_map.plot_map(clip_scored.first(), 2, 10);
+
+var final_score = clip_scored.reduce({
   reducer: ee.Reducer.sum()
 });
+
+print(final_score);
 
 Map.addLayer(final_score);
 Map.addLayer(final_score.geometry());
