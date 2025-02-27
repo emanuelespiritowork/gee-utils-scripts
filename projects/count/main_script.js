@@ -23,7 +23,7 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
 
 
-var select = s1_select.s1_select(s1_coll, "IW", "VH", "DESCENDING", "H");
+var select = s1_select.s1_select(s1_coll, "IW", "VH", "DESCENDING", "M");
 
 var date_filtered = select.filterDate("2024-12-20","2025-02-27");
 
