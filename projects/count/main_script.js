@@ -21,7 +21,7 @@ var s1_coll = ee.ImageCollection("COPERNICUS/S1_GRD");
 var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_select.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
-
+var s1_speckle = require("users/emanuelespiritowork/SharedRepo:functions/s1_speckle.js");
 
 var select = s1_select.s1_select(s1_coll, "IW", "VH", "DESCENDING", "H");
 
@@ -29,5 +29,7 @@ var date_filtered = select.filterDate("2024-12-20","2025-02-27");
 
 var clip = clip_to.clip_to(date_filtered,AOI,10);
 
-var null_var = plot_map.plot_map(clip.first().select("VH"),2,10);
+var speckle = s1_speckle.s1_speckle(clip, 50, "meters", "circle");
 
+var null_var = plot_map.plot_map(clip.first().select("VH"),2,10);
+var null_var_2 = plot_map.plot_map(speckle.first().select("VH"),2,10);
