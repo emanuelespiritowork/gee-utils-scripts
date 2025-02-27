@@ -11,4 +11,4 @@ print(select.filterBounds(geometry));
 
 var time_window = ["2024-12-20","2025-02-27"];
 
-print(select.filterBounds(geometry).filterDate(time_window));
+print(select.filterBounds(geometry).filterDate("2024-12-20","2025-02-27"));
