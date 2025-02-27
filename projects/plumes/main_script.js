@@ -43,6 +43,23 @@ var scale = s2_scale.s2_scale(clip);
 var null_var = plot_stretch.plot_stretch(clip.first(), ["B4","B3","B2"], 2, 10);
 var null_var_2 = plot_map.plot_map(scale.first().select("B1"),2,10);
 
+
+var int_find_plumes = require("users/emanuelespiritowork/SharedRepo:functions/int_find_plumes.js");
+
+var score = int_find_plumes.int_find_plumes(scale, AOI, 10, "B1", 0.2);
+
+Map.addLayer(score);
+
+
+
+
+
+
+
+
+
+/*
+
 //I will not use SCL mask because for small areas it is not reliable
 
 //For this reason in each image I will consider a total amount of 100
@@ -119,6 +136,7 @@ print(final_score);
 
 Map.addLayer(final_score);
 Map.addLayer(final_score.geometry());
+*/
 /*
 var clip_final = clip_to.clip_to(ee.ImageCollection(final_score), AOI, 10).first();
 
