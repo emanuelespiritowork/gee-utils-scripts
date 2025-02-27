@@ -29,6 +29,8 @@ exports.int_find_plumes = function(img_coll, AOI, scale_to_use, aerosol_band, th
   var b1_threshold = threshold || ee.Number(0.2);
   
   var give_score_to_pixel = function(image){
+    var time_start = image.get("system:time_start");
+    
     var num_pixel = image.select(aerosol_band).gt(b1_threshold).reduceRegion({
       reducer: ee.Reducer.sum(),
       bestEffort: true,
@@ -38,7 +40,10 @@ exports.int_find_plumes = function(img_coll, AOI, scale_to_use, aerosol_band, th
     var score = ee.Number(100).divide(ee.Number(num_pixel)).float();
     
     return ee.Image(score).mask(image.select(aerosol_band).gt(b1_threshold))
-    .unmask(ee.Number(0)).rename("score").float();
+    .unmask(ee.Number(0)).rename("score").float()
+    .set({
+      "system:time_start": time_start
+    });
   };
   
   var scored = img_coll.map(give_score_to_pixel);
