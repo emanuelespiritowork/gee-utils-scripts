@@ -6,13 +6,18 @@
 *******************************************************/
 
 /******************************************************
+ * REQUIRES THE FOLLOWING FUNCTIONS:
+ * clip_to
+*******************************************************/
+
+var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
+
+/******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection, ee.FeatureCollection, ee.Number, ee.String, ee.Number
  * Output: ee.Image
  * Description: find plumes in the AOI using a image collection of the past
 *******************************************************/
-
-var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 
 exports.int_find_plumes = function(img_coll, AOI, scale_to_use, aerosol_band, threshold){
 /******************************************************
@@ -68,11 +73,14 @@ exports.int_find_plumes = function(img_coll, AOI, scale_to_use, aerosol_band, th
       "system:time_start": time_start
     });
   };
-  
   var scored = img_coll.map(give_score_to_pixel);
-  
+/******************************************************
+ * Clip the score image collection
+*******************************************************/  
   var clip_scored = clip_to.clip_to(scored, AOI, scale_to_use); 
-  
+/******************************************************
+ * Set image properties for the final score image
+*******************************************************/  
   var footprint = AOI.geometry();
   
   var first_time = clip_scored.sort("system:time_start",true)
@@ -83,6 +91,9 @@ exports.int_find_plumes = function(img_coll, AOI, scale_to_use, aerosol_band, th
   .first()
   .get("system:time_start");
   
+/******************************************************
+ * Reduce over the score image collection
+*******************************************************/  
   var final_score = clip_scored.reduce({
     reducer: ee.Reducer.sum()
   }).set({
