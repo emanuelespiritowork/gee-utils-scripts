@@ -41,7 +41,7 @@ var scale = s2_scale.s2_scale(clip);
 
 //var null_var = plot_stretch.plot_stretch(mosaic, ["B4","B3","B2"], 2, 10);
 var null_var = plot_stretch.plot_stretch(clip.first(), ["B4","B3","B2"], 2, 10);
-var null_var_2 = plot_map.plot_map(scale.first().select("B1"),2,10);
+//var null_var_2 = plot_map.plot_map(scale.first().select("B1"),2,10);
 
 
 var int_find_plumes = require("users/emanuelespiritowork/SharedRepo:functions/int_find_plumes.js");
@@ -50,7 +50,7 @@ var score = int_find_plumes.int_find_plumes(scale, AOI, 10, "B1", 0.2);
 
 print(score);
 
-var null_var_3 = plot_map.plot_map(score,2,10);
+var null_var_3 = plot_map.plot_map(score,0.5,10);
 
 
 
