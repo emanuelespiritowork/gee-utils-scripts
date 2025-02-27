@@ -32,7 +32,7 @@ exports.int_find_plumes = function(img_coll, AOI, scale_to_use, aerosol_band, th
       scale: scale_to_use
     }).getNumber(aerosol_band);
     
-    var score = ee.Number(100).divide(ee.Number(num_pixel)).float() || ee.Number(0).float();
+    var score = ee.Number(100).divide(ee.Number(num_pixel)).float();
     
     return ee.Image(score).mask(image.select(aerosol_band).gt(b1_threshold))
     .unmask(ee.Number(0)).rename("score").float();
