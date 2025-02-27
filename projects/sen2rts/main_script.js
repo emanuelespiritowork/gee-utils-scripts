@@ -34,7 +34,7 @@ var time_series_export = require("users/emanuelespiritowork/SharedRepo:functions
 *******************************************************/
 
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-.filterDate("2022-01-01","2025-01-01");
+.filterDate("2020-09-01","2025-01-01");
 
 var scale_to_use = ee.Number(10);
 
@@ -78,7 +78,7 @@ print(evi_scl);
 
 //var null_var = plot_map.plot_map(evi.first(),2,scale_to_use);
 
-var time_series = time_series_create.time_series_create(evi_scl,AOI,"field_name",scale_to_use);
+var time_series = time_series_create.time_series_create(evi_scl,AOI,"fid",scale_to_use);
 
 //var time_series = time_series_create.time_series_create(evi,AOI,"fid",scale_to_use);
 
