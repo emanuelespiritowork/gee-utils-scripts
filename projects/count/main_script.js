@@ -32,4 +32,4 @@ var clip = clip_to.clip_to(date_filtered,AOI,10);
 var speckle = s1_speckle.s1_speckle(clip, 100, "meters", "circle");
 
 var null_var = plot_map.plot_map(clip.first().select("VH"),2,10);
-var null_var_2 = plot_map.plot_map(speckle.first().select("VH"),2,10);
+//var null_var_2 = plot_map.plot_map(speckle.first().select("VH"),2,10);
