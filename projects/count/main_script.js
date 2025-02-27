@@ -20,6 +20,8 @@ var s1_coll = ee.ImageCollection("COPERNICUS/S1_GRD");
 
 var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_select.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
+var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
+
 
 var select = s1_select.s1_select(s1_coll, "IW", "VV", "DESCENDING", "H");
 
@@ -27,5 +29,5 @@ var date_filtered = select.filterDate("2024-12-20","2025-02-27");
 
 var clip = clip_to.clip_to(date_filtered,AOI,10);
 
-Map.addLayer(clip.select("VV"));
+var null_var = plot_map.plot_map(clip.select("VV"),2,10);
 
