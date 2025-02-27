@@ -38,12 +38,26 @@ exports.int_find_plumes = function(img_coll, AOI, scale_to_use, aerosol_band, th
     .unmask(ee.Number(0)).rename("score").float();
   };
   
-  var scored = scale.map(give_score_to_pixel);
+  var scored = img_coll.map(give_score_to_pixel);
   
   var clip_scored = clip_to.clip_to(scored, AOI, scale_to_use); 
   
+  var footprint = AOI.geometry();
+  
+  var first_time = clip_scored.sort("system:time_start",true)
+  .first()
+  .get("system:time_start");
+  
+  var last_time = clip_scored.sort("system:time_start",false)
+  .first()
+  .get("system:time_start");
+
   var final_score = clip_scored.reduce({
     reducer: ee.Reducer.sum()
+  }).set({
+    "system:footprint": footprint,
+    "system:time_start": first_time,
+    "system:time_end": last_time
   });
   
   return final_score;
