@@ -1,3 +1,6 @@
+
+var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
+
 exports.int_find_plumes = function(img_coll, AOI, scale_to_use, aerosol_band, threshold){
   img_coll = ee.ImageCollection(img_coll);
   scale_to_use = ee.Number(scale_to_use);
