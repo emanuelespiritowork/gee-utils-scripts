@@ -48,7 +48,9 @@ var int_find_plumes = require("users/emanuelespiritowork/SharedRepo:functions/in
 
 var score = int_find_plumes.int_find_plumes(scale, AOI, 10, "B1", 0.2);
 
-Map.addLayer(score);
+print(score);
+
+var null_var_3 = plot_map.plot_map(score,2,10);
 
 
 
