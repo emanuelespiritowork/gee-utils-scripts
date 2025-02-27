@@ -8,3 +8,7 @@ var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_selec
 var select = s1_select.s1_select(s1_coll, "IW", "VV", "DESCENDING", "H");
 
 print(select.filterBounds(geometry));
+
+var time_window = ["2024-12-20","2025-02-27"];
+
+print(select.filterBounds(geometry).filterDate(time_window));
