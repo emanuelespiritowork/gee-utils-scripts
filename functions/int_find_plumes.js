@@ -50,10 +50,12 @@ exports.int_find_plumes = function(img_coll, AOI, scale_to_use, aerosol_band, th
   var first_time = clip_scored.sort("system:time_start",true)
   .first()
   .get("system:time_start");
+  print(first_time);
   
   var last_time = clip_scored.sort("system:time_start",false)
   .first()
   .get("system:time_start");
+  print(last_time);
 
   var final_score = clip_scored.reduce({
     reducer: ee.Reducer.sum()
