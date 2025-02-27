@@ -29,5 +29,5 @@ var date_filtered = select.filterDate("2024-12-20","2025-02-27");
 
 var clip = clip_to.clip_to(date_filtered,AOI,10);
 
-var null_var = plot_map.plot_map(clip.first().select("VV"),2,10);
+var null_var = plot_map.plot_map(clip.first().select("VH"),2,10);
 
