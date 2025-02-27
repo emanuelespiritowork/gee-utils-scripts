@@ -88,7 +88,7 @@ var null_var = time_series_export.time_series_export(time_series, "Exports_sen2r
 
 //var null_var = time_series_export.time_series_export(time_series, ["evi"], "Exports_sen2rts");
 
-var plot = time_series_get_plot.time_series_get_plot(time_series, "evi");
+//var plot = time_series_get_plot.time_series_get_plot(time_series, "evi");
 
 /*
 print(ee.Date("2025-01-01"));
