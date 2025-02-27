@@ -1,7 +1,8 @@
-exports.int_find_plumes = function(img_coll, AOI, scale_to_use, threshold){
+exports.int_find_plumes = function(img_coll, AOI, scale_to_use, aerosol_band, threshold){
   img_coll = ee.ImageCollection(img_coll);
   scale_to_use = ee.Number(scale_to_use);
   AOI = ee.FeatureCollection(AOI);
+  aerosol_band = ee.String(aerosol_band);
   
   //a plume should be a place where I see most of the time of the year
   //any cloud nearby 
@@ -25,15 +26,15 @@ exports.int_find_plumes = function(img_coll, AOI, scale_to_use, threshold){
   var b1_threshold = threshold || ee.Number(0.2);
   
   var give_score_to_pixel = function(image){
-    var num_pixel = image.select("B1").gt(b1_threshold).reduceRegion({
+    var num_pixel = image.select(aerosol_band).gt(b1_threshold).reduceRegion({
       reducer: ee.Reducer.sum(),
       bestEffort: true,
       scale: scale_to_use
-    }).getNumber("B1");
+    }).getNumber(aerosol_band);
     
-    var score = ee.Number(100).divide(ee.Number(num_pixel)).float();
+    var score = ee.Number(100).divide(ee.Number(num_pixel)).float() || ee.Number(0).float();
     
-    return ee.Image(score).mask(image.select("B1").gt(b1_threshold))
+    return ee.Image(score).mask(image.select(aerosol_band).gt(b1_threshold))
     .unmask(ee.Number(0)).rename("score").float();
   };
   
