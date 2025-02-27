@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = /* color: #98ff00 */ee.FeatureCollection(
+var AOI = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[14.263465994773163, 40.8443644076347],
@@ -24,5 +27,5 @@ var date_filtered = select.filterDate("2024-12-20","2025-02-27");
 
 var clip = clip_to.clip_to(date_filtered,AOI,10);
 
-Map.addLayer(clip);
+Map.addLayer(clip.select("VV"));
 
