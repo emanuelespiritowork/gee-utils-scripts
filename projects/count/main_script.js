@@ -60,10 +60,10 @@ var to_print = clip.first().select("VH");
 
 Map.addLayer(to_print);
 
-var kernel_circle = ee.Kernel.circle(2,"pixels");
+var kernel_circle = ee.Kernel.circle(10,"pixels");
 
 var high_value_filter = to_print.gt(-16).reduceNeighborhood({
-  reducer: ee.Reducer.median(),
+  reducer: ee.Reducer.mode(),
   kernel: kernel_circle
 });
 
