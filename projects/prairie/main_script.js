@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = /* color: #d63000 */ee.Geometry.Polygon(
+var AOI = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[9.905373651708755, 46.234004326257995],
           [9.820916254247818, 46.08799702441264],
           [10.385338861669693, 45.83597711424145],
@@ -67,7 +70,7 @@ var compact = slope_elev_grass_mask
 .gt(28)
 .rename("compact");
 
-Map.addLayer(compact);
+//Map.addLayer(compact);
 
 var max = slope_elev_grass_mask
 .reduceNeighborhood({
@@ -75,7 +78,7 @@ var max = slope_elev_grass_mask
   kernel: max_circle
 }).rename("over_threshold");
 
-Map.addLayer(max);
+//Map.addLayer(max);
 
 var image_to_reduce = max.addBands(compact);
     
@@ -104,16 +107,15 @@ var count_size = max.reduceRegions({
 .filter(ee.Filter.gt("count",0));
 
 print(count_size);*/
-print(vector);
-Map.addLayer(vector);
-print(compact_vector);
-Map.addLayer(compact_vector);
+//print(vector);
+//Map.addLayer(vector);
+//print(compact_vector);
+//Map.addLayer(compact_vector);
+print(wide_vector);
 Map.addLayer(wide_vector);
 
-var prairie = mosaic.updateMask(slope_mask)
-.updateMask(elevation_mask)
-.updateMask(grass_mask);
+var prairie = mosaic.clip(wide_vector);
 
-//Map.addLayer(prairie);
+Map.addLayer(prairie);
 
 
