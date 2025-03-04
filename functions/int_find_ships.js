@@ -53,11 +53,12 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
     
     var count_size = max.reduceRegions({
       collection: vector,
-      reducer: ee.Reducer.countEvery()
+      reducer: ee.Reducer.countEvery(),
+      scale: scale_to_use
     });
     
     var set_time_to_feature = function(feature){
-      return feature.select("count").set({
+      return feature.set({
         "system:time_start": time_start,
         "date": start_date
       });
