@@ -103,7 +103,15 @@ var vector = max_filter.reduceToVectors({
 
 print(vector);
 
+var compact = compact_filter.reduceRegions({
+  collection: vector,
+  reducer: ee.Reducer.max(),
+  scale: scale_to_use
+});
+
 Map.addLayer(vector);
+
+Map.addLayer(compact);
 
 /*
 var high_value = to_print.updateMask(compact_filter);
