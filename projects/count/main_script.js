@@ -101,6 +101,8 @@ var vector = image_to_reduce.reduceToVectors({
   reducer: ee.Reducer.max()
 });
 
+print(vector);
+
 Map.addLayer(vector);
 
 /*
