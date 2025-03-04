@@ -45,4 +45,10 @@ var elevation_mask = dem.gt(500);
 var ndvi = mosaic.normalizedDifference(["B4","B8"]);
 var grass_mask = ndvi.gt(0.2);
 
+var prairie = mosaic.updateMask(slope_mask)
+.updateMask(elevation_mask)
+.updateMask(grass_mask);
+
+Map.addLayer(prairie);
+
 
