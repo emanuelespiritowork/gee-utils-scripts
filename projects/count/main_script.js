@@ -58,12 +58,8 @@ var speckle = s1_speckle.s1_speckle(clip, 100, "meters", "circle");
 
 var to_print = clip.first().select("VH");
 
-var high_value = to_print.gt(-19);
+var high_value = to_print.gt(-13);
 
-var kernel = ee.Kernel.circle(2,"pixels");
-
-var connected = high_value.connectedComponents(kernel, 10);
-
-Map.addLayer(connected);
+Map.addLayer(high_value);
 
 //var null_var_2 = plot_map.plot_map(speckle.first().select("VH"),2,10);
