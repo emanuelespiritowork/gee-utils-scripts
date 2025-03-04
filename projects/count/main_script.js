@@ -76,7 +76,10 @@ var compact_filter = to_print.gt(-16)
 .reduceNeighborhood({
   reducer: ee.Reducer.sum(),
   kernel: kernel_circle,
-});
+})
+.gt(20);
+
+var add_filter = to_print.gt(-16);
 
 Map.addLayer(to_print.gt(-16));
 
