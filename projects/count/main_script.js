@@ -56,8 +56,12 @@ var clip = clip_to.clip_to(date_filtered,AOI,10);
 
 var speckle = s1_speckle.s1_speckle(clip, 100, "meters", "circle");
 
-var to_print = clip.first();
+var to_print = clip.first().select("VH");
 
-Map.addLayer(to_print.updateMask(to_print.gt(-19)).select("VH"));
+var high_value = to_print.updateMask(to_print.gt(-19));
+
+var connected = high_value.connectedPixelCount();
+
+Map.addLayer(connected);
 
 //var null_var_2 = plot_map.plot_map(speckle.first().select("VH"),2,10);
