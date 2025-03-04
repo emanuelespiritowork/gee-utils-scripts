@@ -71,7 +71,7 @@ var high_value = to_print.updateMask(high_value_filter);
 
 Map.addLayer(high_value);
 
-var count = to_print.reduceToVectors();
+var count = high_value_filter.reduceToVectors();
 
 Map.addLayer(count);
 
