@@ -1,7 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var AOI = /* color: #d63000 */ee.Geometry.Polygon(
-        [[[9.526345331396255, 46.18838895625824],
-          [9.535271722997818, 45.78620167898903],
+        [[[9.913613397802505, 46.2035982890461],
+          [9.952752191747818, 45.80535134156698],
           [11.258751947607193, 45.736381758537476],
           [11.413247186865005, 46.308522824454435]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
