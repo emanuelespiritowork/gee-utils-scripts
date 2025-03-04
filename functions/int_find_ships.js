@@ -40,10 +40,7 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
       kernel: kernel_circle
     }).rename("over_threshold");
     
-    var image_to_reduce = max.addBands(compact)
-    .set({
-      "system:time_start": start_date
-    });
+    var image_to_reduce = max.addBands(compact);
     
     var vector = image_to_reduce.reduceToVectors({
       scale: scale_to_use,
@@ -51,7 +48,10 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
       reducer: ee.Reducer.max()
     })
     .filter(ee.Filter.gt("label",0))
-    .filter(ee.Filter.gt("max",0));
+    .filter(ee.Filter.gt("max",0))
+    .set({
+      "system:time_start": start_date
+    });
     
     return vector;
   };
