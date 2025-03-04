@@ -100,7 +100,8 @@ var vector = image_to_reduce.reduceToVectors({
   bestEffort: true,
   reducer: ee.Reducer.max()
 })
-.filter(ee.Filter.gt("label",0));
+.filter(ee.Filter.gt("label",0))
+.filter(ee.Filter.gt("max",0));
 
 print(vector);
 
