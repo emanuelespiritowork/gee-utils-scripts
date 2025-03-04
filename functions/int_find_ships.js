@@ -35,17 +35,25 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
     .reduceNeighborhood({
       reducer: ee.Reducer.max(),
       kernel: kernel_circle
-    }).rename("max");
+    }).rename("over_threshold");
     
     var image_to_reduce = max.addBands(compact)
     .set({
       "system:time_start": start_date
     });
     
-    return image_to_reduce;
+    var vector = image_to_reduce.reduceToVectors({
+      scale: scale_to_use,
+      bestEffort: true,
+      reducer: ee.Reducer.max()
+    })
+    .filter(ee.Filter.gt("label",0))
+    .filter(ee.Filter.gt("max",0));
+    
+    return vector;
   };
   
-  var image_to_reduce = select.map(get_image_to_reduce);
+  var ship_vectors = select.map(get_image_to_reduce);
   
   
 };
