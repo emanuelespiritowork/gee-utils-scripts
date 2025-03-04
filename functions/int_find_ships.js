@@ -59,19 +59,19 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
   var get_vectors = function(image){
     /******************************************************
      * Get info from image 
-    *******************************************************/
+     *******************************************************/
     var time_start = image.get("system:time_start");
     var start_date = ee.Date(time_start).format('Y/M/d');
     var clock = ee.Date(time_start).format('H:m:s'); 
     
     /******************************************************
      * Get image above threshold
-    *******************************************************/
+     *******************************************************/
     var over_threshold = image.gt(threshold);
     
     /******************************************************
      * Create compactness layer
-    *******************************************************/
+     *******************************************************/
     var compact = over_threshold
     .reduceNeighborhood({
       reducer: ee.Reducer.sum(),
@@ -82,15 +82,22 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
     
     /******************************************************
      * Create maximization layer
-    *******************************************************/
+     *******************************************************/
     var max = over_threshold
     .reduceNeighborhood({
       reducer: ee.Reducer.max(),
       kernel: kernel_circle
     }).rename("over_threshold");
     
+    /******************************************************
+     * Create a two-band image to find ships
+     *******************************************************/
     var image_to_reduce = max.addBands(compact);
     
+    /******************************************************
+     * Find ships using max layer and give a value of compactness
+     * as an attribute using the max reducer over the compact layer
+     *******************************************************/
     var vector = image_to_reduce.reduceToVectors({
       scale: scale_to_use,
       bestEffort: true,
@@ -99,12 +106,18 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
     .filter(ee.Filter.gt("label",0))
     .filter(ee.Filter.gt("max",0));
     
+    /******************************************************
+     * Count pixels inside each vector
+     *******************************************************/
     var count_size = max.reduceRegions({
       collection: vector,
       reducer: ee.Reducer.count(),
       scale: scale_to_use
     });
     
+    /******************************************************
+     * Set properties to the vector
+     *******************************************************/
     var set_time_to_feature = function(feature){
       return feature.select(["count"]).set({
         "system:time_start": time_start,
