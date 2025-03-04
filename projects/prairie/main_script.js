@@ -87,8 +87,14 @@ var vector = image_to_reduce.reduceToVectors({
   bestEffort: true,
   reducer: ee.Reducer.max()
 })
-.filter(ee.Filter.gt("label",0))
-//.filter(ee.Filter.gt("max",0));
+.filter(ee.Filter.gt("label",0));
+
+var compact_vector = max.reduceRegions({
+  collection: vector,
+  reducer: ee.Reducer.max(),
+  scale: 10
+})
+.filter(ee.Filter.gt("max",0));
 
 /*    
 var count_size = max.reduceRegions({
@@ -101,6 +107,8 @@ var count_size = max.reduceRegions({
 print(count_size);*/
 print(vector);
 Map.addLayer(vector);
+print(compact_vector);
+Map.addLayer(compact_vector);
 
 var prairie = mosaic.updateMask(slope_mask)
 .updateMask(elevation_mask)
