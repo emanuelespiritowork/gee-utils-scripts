@@ -34,6 +34,8 @@ Map.addLayer(dem);
 //a prairie has to be with small slope
 var slope = ee.Terrain.slope(dem);
 
+Map.addLayer(slope);
+
 //a prairie has a great elevation
 
 //a prairie has grass
