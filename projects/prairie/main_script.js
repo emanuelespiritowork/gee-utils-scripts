@@ -18,7 +18,7 @@ var s2_ndvi = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndvi.js
 
 //var dem_clip = clip_to.clip_to(ee.ImageCollection(dem),AOI,10);
 var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,10);
-var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
+//var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
 
 //Map.addLayer(dem);
 
@@ -60,7 +60,7 @@ var max_circle = ee.Kernel.circle({
   radius: 2,
   units: "pixels",
   normalize: false
-})
+});
 
 var compact = slope_elev_grass_mask
 .reduceNeighborhood({
