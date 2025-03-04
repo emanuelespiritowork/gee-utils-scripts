@@ -77,8 +77,6 @@ var max = slope_elev_grass_mask
 
 //Map.addLayer(max);
 
-var image_to_reduce = max.addBands(compact);
-    
 var vector = max.reduceToVectors({
   scale: 10,
   bestEffort: true,
