@@ -58,6 +58,8 @@ var speckle = s1_speckle.s1_speckle(clip, 100, "meters", "circle");
 
 var to_print = clip.first().select("VH");
 
+var scale_to_use = 10;
+
 Map.addLayer(to_print);
 
 var kernel_circle = ee.Kernel.circle({
@@ -72,18 +74,33 @@ var kernel_circle = ee.Kernel.circle({
   kernel: kernel_circle
 });*/
 
+//the compact filter will be applied to the vectors
 var compact_filter = to_print.gt(-16)
 .reduceNeighborhood({
   reducer: ee.Reducer.sum(),
   kernel: kernel_circle,
 })
-.gt(20);
-
-var add_filter = to_print.gt(-16);
-
-Map.addLayer(to_print.gt(-16));
+.gt(30).rename("compact");
 
 Map.addLayer(compact_filter);
+
+//the max_filter will be applied to the radar image
+var max_filter = to_print.gt(-16)
+.reduceNeighborhood({
+  reducer: ee.Reducer.max(),
+  kernel: kernel_circle
+}).rename("max");
+
+var image_to_reduce = max_filter.addBands(compact_filter);
+
+Map.addLayer(max_filter);
+
+var vector = image_to_reduce.reduceToVectors({
+  scale: scale_to_use,
+  bestEffort: true
+});
+
+Map.addLayer(vector);
 
 /*
 var high_value = to_print.updateMask(compact_filter);
