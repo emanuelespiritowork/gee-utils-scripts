@@ -61,7 +61,7 @@ var to_print = clip.first().select("VH");
 Map.addLayer(to_print);
 
 var kernel_circle = ee.Kernel.circle({
-  radius: 5,
+  radius: 3,
   units: "pixels",
   normalize: false
 });
