@@ -80,7 +80,7 @@ var compact_filter = to_print.gt(-16)
   reducer: ee.Reducer.sum(),
   kernel: kernel_circle,
 })
-.gt(30).rename("compact");
+.gt(20).rename("compact");
 
 Map.addLayer(compact_filter);
 
@@ -108,6 +108,8 @@ var compact = compact_filter.reduceRegions({
   reducer: ee.Reducer.max(),
   scale: scale_to_use
 });
+
+print(compact);
 
 Map.addLayer(vector);
 
