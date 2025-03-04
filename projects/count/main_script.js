@@ -80,7 +80,7 @@ var compact_filter = to_print.gt(-16)
   reducer: ee.Reducer.sum(),
   kernel: kernel_circle,
 })
-.gt(20).rename("compact");
+.gt(10).rename("compact");
 
 Map.addLayer(compact_filter);
 
