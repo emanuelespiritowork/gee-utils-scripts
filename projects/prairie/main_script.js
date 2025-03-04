@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = /* color: #d63000 */ee.Geometry.MultiPolygon(
+var AOI = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.MultiPolygon(
         [[[[10.321288645606725, 46.159536816328036],
            [10.277000010352818, 46.09981577685726],
            [10.348754465919225, 46.0945781768611],
