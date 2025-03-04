@@ -47,6 +47,7 @@ var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_selec
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
 var s1_speckle = require("users/emanuelespiritowork/SharedRepo:functions/s1_speckle.js");
+var int_find_ships = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships.js");
 
 var select = s1_select.s1_select(s1_coll, "IW", "VH", "DESCENDING", "H");
 
@@ -54,8 +55,11 @@ var date_filtered = select.filterDate("2024-12-20","2025-02-27");
 
 var clip = clip_to.clip_to(date_filtered,AOI,10);
 
-var speckle = s1_speckle.s1_speckle(clip, 100, "meters", "circle");
+var vector = int_find_ships.int_find_ships(clip, AOI, 10, -16, 10, 3);
 
+print(vector);
+
+/*
 var to_print = clip.first().select("VH");
 
 var scale_to_use = 10;
@@ -67,12 +71,6 @@ var kernel_circle = ee.Kernel.circle({
   units: "pixels",
   normalize: false
 });
-
-/*var high_value_filter = to_print.gt(-16)
-.reduceNeighborhood({
-  reducer: ee.Reducer.max(),
-  kernel: kernel_circle
-});*/
 
 //the compact filter will be applied to the vectors
 var compact_filter = to_print.gt(-16)
@@ -105,15 +103,6 @@ var vector = image_to_reduce.reduceToVectors({
 
 print(vector);
 
-/*
-var compact = compact_filter.reduceRegions({
-  collection: vector,
-  reducer: ee.Reducer.max(),
-  scale: scale_to_use
-});
-
-print(compact);
-*/
 Map.addLayer(vector);
 
 /*
