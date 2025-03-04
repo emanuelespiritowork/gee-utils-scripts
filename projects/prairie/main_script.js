@@ -96,7 +96,7 @@ var compact_vector = compact.reduceRegions({
 })
 .filter(ee.Filter.gt("max",0));
 
-var wide_vector = compact_vector.filter(ee.Filter.gt("count",400));
+var wide_vector = compact_vector.filter(ee.Filter.gt("count",200));
 
 /*    
 var count_size = max.reduceRegions({
