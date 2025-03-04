@@ -97,7 +97,8 @@ Map.addLayer(max_filter);
 
 var vector = image_to_reduce.reduceToVectors({
   scale: scale_to_use,
-  bestEffort: true
+  bestEffort: true,
+  reducer: ee.Reducer.max()
 });
 
 Map.addLayer(vector);
