@@ -20,7 +20,7 @@ var dem = ee.Image("CGIAR/SRTM90_V4").clip(AOI);
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
 var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
-
+var s2_ndvi = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndvi.js");
 
 //var dem_clip = clip_to.clip_to(ee.ImageCollection(dem),AOI,10);
 var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,10);
@@ -36,9 +36,13 @@ var slope = ee.Terrain.slope(dem);
 
 Map.addLayer(slope);
 
+var slope_mask = slope.lt(1);
+
 //a prairie has a great elevation
+var elevation_mask = dem.gt(500);
 
 //a prairie has grass
-
+var ndvi = mosaic.normalizedDifference(["B4","B8"]);
+var grass_mask = ndvi.gt(0.2);
 
 
