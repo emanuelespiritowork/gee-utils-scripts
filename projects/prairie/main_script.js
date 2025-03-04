@@ -24,9 +24,9 @@ var s2_ndvi = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndvi.js
 
 //var dem_clip = clip_to.clip_to(ee.ImageCollection(dem),AOI,10);
 var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,10);
-//var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
+var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
 
-Map.addLayer(dem);
+//Map.addLayer(dem);
 
 
 //Map.addLayer(mosaic);
@@ -34,23 +34,23 @@ Map.addLayer(dem);
 //a prairie has to be with small slope
 var slope = ee.Terrain.slope(dem);
 
-Map.addLayer(slope);
+//Map.addLayer(slope);
 
 var slope_mask = slope.lt(5);
-Map.addLayer(slope_mask);
+//Map.addLayer(slope_mask);
 
 //a prairie has a great elevation
 var elevation_mask = dem.gt(300);
-Map.addLayer(elevation_mask);
+//Map.addLayer(elevation_mask);
 
 //a prairie has grass
 var ndvi = mosaic.normalizedDifference(["B8","B4"])
 .rename("ndvi");
 
-Map.addLayer(ndvi);
+//Map.addLayer(ndvi);
 
 var grass_mask = ndvi.gt(0.2);
-Map.addLayer(grass_mask);
+//Map.addLayer(grass_mask);
 
 var prairie = mosaic.updateMask(slope_mask)
 .updateMask(elevation_mask)
