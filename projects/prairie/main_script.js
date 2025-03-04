@@ -51,13 +51,13 @@ var slope_elev_grass_mask = slope_mask.and(elevation_mask)
 .and(grass_mask);
 
 var compact_circle = ee.Kernel.circle({
-  radius: 3,
+  radius: 5,
   units: "pixels",
   normalize: false
 });
 
 var max_circle = ee.Kernel.circle({
-  radius: 5,
+  radius: 2,
   units: "pixels",
   normalize: false
 })
