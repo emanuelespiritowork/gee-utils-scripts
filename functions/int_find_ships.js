@@ -13,6 +13,8 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
   
   var select = clip.select("VH") || clip.select("VV") || clip.select("HH") || clip.select("HV");
   
+  print(select);
+  
   var kernel_circle = ee.Kernel.circle({
     radius: size,
     units: "pixels",
