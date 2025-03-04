@@ -98,7 +98,7 @@ var count_size = max.reduceRegions({
 .filter(ee.Filter.gt("count",20));
 
 print(count_size);
-//Map.addLayer(count_size);
+Map.addLayer(count_size);
 
 var prairie = mosaic.updateMask(slope_mask)
 .updateMask(elevation_mask)
