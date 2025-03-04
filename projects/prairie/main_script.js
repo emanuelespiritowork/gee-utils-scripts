@@ -56,6 +56,20 @@ var grass_mask = ndvi.gt(0.2);
 var slope_elev_grass_mask = slope_mask.and(elevation_mask)
 .and(grass_mask);
 
+var kernel_circle = ee.Kernel.circle({
+  radius: 3,
+  units: "pixels",
+  normalize: false
+});
+
+var compact = slope_elev_grass_mask
+.reduceNeighborhood({
+  reducer: ee.Reducer.sum(),
+  kernel: kernel_circle,
+})
+.gt(10)
+.rename("compact");
+
 Map.addLayer(slope_elev_grass_mask);
 
 var prairie = mosaic.updateMask(slope_mask)
