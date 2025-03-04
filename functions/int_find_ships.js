@@ -1,3 +1,4 @@
+var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connectedness, radius){
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
