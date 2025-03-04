@@ -18,7 +18,7 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
     normalize: false
   });
   
-  var get_image_to_reduce = function(image){
+  var get_vectors = function(image){
     var start_date = image.get("system:time_start");
     
     var over_threshold = image.gt(threshold);
@@ -53,7 +53,7 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
     return vector;
   };
   
-  var ship_vectors = select.map(get_image_to_reduce);
+  var ship_vectors = select.map(get_vectors);
   
   
 };
