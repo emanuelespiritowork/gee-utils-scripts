@@ -62,7 +62,7 @@ var high_value = to_print.gt(-19);
 
 var kernel = ee.Kernel.circle(2,"pixels");
 
-var connected = high_value.connectedComponents(kernel);
+var connected = high_value.connectedComponents(kernel, 10);
 
 Map.addLayer(connected);
 
