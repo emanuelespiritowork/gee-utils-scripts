@@ -71,6 +71,7 @@ var compact = slope_elev_grass_mask
 .rename("compact");
 
 Map.addLayer(slope_elev_grass_mask);
+Map.addLayer(compact);
 
 var prairie = mosaic.updateMask(slope_mask)
 .updateMask(elevation_mask)
