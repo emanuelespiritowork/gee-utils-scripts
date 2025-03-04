@@ -13,8 +13,11 @@ var dem = ee.Image("CGIAR/SRTM90_V4");
 
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
+var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
+
 
 var dem_clip = clip_to.clip_to(dem,AOI,10);
 var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,10);
+var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
 
 Map.addLayer(mosaic);
