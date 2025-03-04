@@ -58,5 +58,6 @@ var speckle = s1_speckle.s1_speckle(clip, 100, "meters", "circle");
 
 var to_print = clip.first();
 
-var null_var = plot_map.plot_map(to_print.updateMask(to_print.gt(-19)).select("VH"),2,10);
+Map.addLayer(to_print.updateMask(to_print.gt(-19)).select("VH"));
+
 //var null_var_2 = plot_map.plot_map(speckle.first().select("VH"),2,10);
