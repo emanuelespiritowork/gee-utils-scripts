@@ -67,7 +67,7 @@ var compact = slope_elev_grass_mask
   reducer: ee.Reducer.sum(),
   kernel: kernel_circle,
 })
-.gt(100)
+.gt(30)
 .rename("compact");
 
 var max = slope_elev_grass_mask
