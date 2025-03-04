@@ -72,13 +72,13 @@ var compact_filter = to_print.gt(-16)
 .reduceNeighborhood({
   reducer: ee.Reducer.sum(),
   kernel: kernel_circle
-}).gt(5);
+}).gt(3);
 
-var high_value = to_print.updateMask(high_value_filter);
+var high_value = to_print.updateMask(compact_filter);
 
 Map.addLayer(high_value);
 
-var count = high_value_filter.reduceToVectors();
+var count = compact_filter.reduceToVectors();
 
 Map.addLayer(count);
 
