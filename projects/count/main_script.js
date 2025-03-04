@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = /* color: #98ff00 */ee.FeatureCollection(
+var AOI = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[14.26730253807869, 40.55783366252705],
@@ -53,5 +56,5 @@ var clip = clip_to.clip_to(date_filtered,AOI,10);
 
 var speckle = s1_speckle.s1_speckle(clip, 100, "meters", "circle");
 
-var null_var = plot_map.plot_map(clip.first().select("VH"),2,10);
+var null_var = plot_map.plot_map(clip.updateMask(clip.gt(-19)).first().select("VH"),2,10);
 //var null_var_2 = plot_map.plot_map(speckle.first().select("VH"),2,10);
