@@ -59,7 +59,7 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
     });
     
     var set_time_to_feature = function(feature){
-      return feature.select("count").set({
+      return feature.set({
         "system:time_start": time_start,
         "date": start_date
       });
