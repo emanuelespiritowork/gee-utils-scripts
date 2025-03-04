@@ -62,7 +62,7 @@ Map.addLayer(to_print);
 
 var kernel_circle = ee.Kernel.circle(2,"pixels");
 
-var high_value_filter = to_print.gt(-13).reduceNeighborhood({
+var high_value_filter = to_print.gt(-16).reduceNeighborhood({
   reducer: ee.Reducer.max(),
   kernel: kernel_circle
 });
