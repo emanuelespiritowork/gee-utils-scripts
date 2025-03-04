@@ -60,7 +60,9 @@ var to_print = clip.first().select("VH");
 
 var high_value = to_print.gt(-19);
 
-var connected = high_value.connectedComponents();
+var kernel = ee.Kernel.circle(2,"pixels");
+
+var connected = high_value.connectedComponents(kernel);
 
 Map.addLayer(connected);
 
