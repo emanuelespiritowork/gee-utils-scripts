@@ -48,12 +48,15 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
       reducer: ee.Reducer.max()
     })
     .filter(ee.Filter.gt("label",0))
-    .filter(ee.Filter.gt("max",0))
-    .set({
-      "system:time_start": start_date
-    });
+    .filter(ee.Filter.gt("max",0));
     
-    return vector;
+    var set_time_to_feature = function(feature){
+      return feature.set({
+        "system:time_start": start_date
+      });
+    };
+    
+    return vector.map(set_time_to_feature);
   };
   
   var ship_vectors = select.map(get_vectors).flatten();
