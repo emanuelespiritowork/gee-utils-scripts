@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = /* color: #d63000 */ee.Geometry.Polygon(
+var AOI = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[9.905373651708755, 46.234004326257995],
           [9.820916254247818, 46.08799702441264],
           [10.504815180029068, 46.08323456995071],
@@ -47,18 +50,24 @@ var grass_mask = ndvi.gt(0.2);
 var slope_elev_grass_mask = slope_mask.and(elevation_mask)
 .and(grass_mask);
 
-var kernel_circle = ee.Kernel.circle({
+var compact_circle = ee.Kernel.circle({
   radius: 3,
   units: "pixels",
   normalize: false
 });
 
+var max_circle = ee.Kernel.circle({
+  radius: 5,
+  units: "pixels",
+  normalize: false
+})
+
 var compact = slope_elev_grass_mask
 .reduceNeighborhood({
   reducer: ee.Reducer.sum(),
-  kernel: kernel_circle,
+  kernel: compact_circle,
 })
-.gt(25)
+.gt(22)
 .rename("compact");
 
 Map.addLayer(compact);
@@ -66,7 +75,7 @@ Map.addLayer(compact);
 var max = slope_elev_grass_mask
 .reduceNeighborhood({
   reducer: ee.Reducer.max(),
-  kernel: kernel_circle
+  kernel: max_circle
 }).rename("over_threshold");
 
 Map.addLayer(max);
