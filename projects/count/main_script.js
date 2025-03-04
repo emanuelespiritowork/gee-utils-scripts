@@ -99,7 +99,8 @@ var vector = image_to_reduce.reduceToVectors({
   scale: scale_to_use,
   bestEffort: true,
   reducer: ee.Reducer.max()
-});
+})
+.filter(ee.Filter.gt("label",0));
 
 print(vector);
 
