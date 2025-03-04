@@ -58,7 +58,7 @@ var speckle = s1_speckle.s1_speckle(clip, 100, "meters", "circle");
 
 var to_print = clip.first().select("VH");
 
-var kernel_circle = ee.Kernel.circle(5,"pixels");
+var kernel_circle = ee.Kernel.circle(2,"pixels");
 
 var high_value_filter = to_print.gt(-13).reduceNeighborhood({
   reducer: ee.Reducer.max(),
