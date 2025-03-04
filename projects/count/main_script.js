@@ -63,7 +63,7 @@ Map.addLayer(to_print);
 var kernel_circle = ee.Kernel.circle(5,"pixels");
 
 var high_value_filter = to_print.gt(-16)
-.connectedPixelCount()
+.connectedPixelCount(100,true)
 .gt(3)
 .reduceNeighborhood({
   reducer: ee.Reducer.max(),
