@@ -58,5 +58,5 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
   
   var ship_vectors = select.map(get_vectors);
   
-  
+  return ship_vectors;
 };
