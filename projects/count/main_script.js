@@ -95,14 +95,16 @@ var image_to_reduce = max_filter.addBands(compact_filter);
 
 Map.addLayer(max_filter);
 
-var vector = max_filter.reduceToVectors({
+var vector = image_to_reduce.reduceToVectors({
   scale: scale_to_use,
-  bestEffort: true
+  bestEffort: true,
+  reducer: ee.Reducer.max()
 })
 .filter(ee.Filter.gt("label",0));
 
 print(vector);
 
+/*
 var compact = compact_filter.reduceRegions({
   collection: vector,
   reducer: ee.Reducer.max(),
@@ -110,10 +112,8 @@ var compact = compact_filter.reduceRegions({
 });
 
 print(compact);
-
+*/
 Map.addLayer(vector);
-
-Map.addLayer(compact);
 
 /*
 var high_value = to_print.updateMask(compact_filter);
