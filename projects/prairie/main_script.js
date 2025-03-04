@@ -52,7 +52,11 @@ var ndvi = mosaic.normalizedDifference(["B8","B4"])
 var grass_mask = ndvi.gt(0.2);
 //Map.addLayer(grass_mask);
 
-//a prairie is wide
+//a prairie is wide: create a compact layer
+var slope_elev_grass_mask = slope_mask.and(elevation_mask)
+.and(grass_mask);
+
+Map.addLayer(slope_elev_grass_mask);
 
 var prairie = mosaic.updateMask(slope_mask)
 .updateMask(elevation_mask)
