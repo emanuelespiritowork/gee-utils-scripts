@@ -70,11 +70,15 @@ var compact = slope_elev_grass_mask
 .gt(30)
 .rename("compact");
 
+Map.addLayer(compact);
+
 var max = slope_elev_grass_mask
 .reduceNeighborhood({
   reducer: ee.Reducer.max(),
   kernel: kernel_circle
 }).rename("over_threshold");
+
+Map.addLayer(max);
 
 var image_to_reduce = max.addBands(compact);
     
@@ -94,12 +98,12 @@ var count_size = max.reduceRegions({
 .filter(ee.Filter.gt("count",200));
 
 print(count_size);
-Map.addLayer(count_size);
+//Map.addLayer(count_size);
 
 var prairie = mosaic.updateMask(slope_mask)
 .updateMask(elevation_mask)
 .updateMask(grass_mask);
 
-Map.addLayer(prairie);
+//Map.addLayer(prairie);
 
 
