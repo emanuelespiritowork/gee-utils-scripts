@@ -12,8 +12,9 @@ var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 var dem = ee.Image("CGIAR/SRTM90_V4");
 
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
+var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
 
-var s2_clip = clip_to.clip_to(s2_coll,AOI,10);
 var dem_clip = clip_to.clip_to(dem,AOI,10);
+var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,10);
 
-Map.addLayer(s2_coll.first());
+Map.addLayer(mosaic);
