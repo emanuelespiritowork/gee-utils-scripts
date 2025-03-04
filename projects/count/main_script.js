@@ -58,7 +58,7 @@ var speckle = s1_speckle.s1_speckle(clip, 100, "meters", "circle");
 
 var to_print = clip.first().select("VH");
 
-var high_value = to_print.gt(-13);
+var high_value = to_print.updateMask(to_print.gt(-13));
 
 Map.addLayer(high_value);
 
