@@ -70,7 +70,7 @@ var kernel_circle = ee.Kernel.circle(10,"pixels");
 
 var compact_filter = to_print.gt(-16)
 .reduceNeighborhood({
-  reducer: ee.Reducer.sum(),
+  reducer: ee.Reducer.count(),
   kernel: kernel_circle
 });
 
