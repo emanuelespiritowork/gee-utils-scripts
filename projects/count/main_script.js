@@ -74,6 +74,8 @@ var compact_filter = to_print.gt(-16)
   kernel: kernel_circle
 });
 
+Map.addLayer(to_print.gt(-16));
+
 Map.addLayer(compact_filter);
 
 /*
