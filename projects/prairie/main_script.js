@@ -79,7 +79,7 @@ var max = slope_elev_grass_mask
 var image_to_reduce = max.addBands(compact);
     
 var vector = image_to_reduce.reduceToVectors({
-  scale: scale_to_use,
+  scale: 10,
   bestEffort: true,
   reducer: ee.Reducer.max()
 })
@@ -93,6 +93,7 @@ var count_size = max.reduceRegions({
 })
 .gt(100);
 
+print(count_size);
 Map.addLayer(count_size);
 
 var prairie = mosaic.updateMask(slope_mask)
