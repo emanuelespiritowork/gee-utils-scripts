@@ -85,7 +85,7 @@ var image_to_reduce = max.addBands(compact);
 var vector = max.reduceToVectors({
   scale: 10,
   bestEffort: true,
-  reducer: null
+  reducer: ee.Reducer.max()
 })
 .filter(ee.Filter.gt("label",0));
 
