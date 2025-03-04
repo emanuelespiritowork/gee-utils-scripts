@@ -60,7 +60,11 @@ var to_print = clip.first().select("VH");
 
 Map.addLayer(to_print);
 
-var kernel_circle = ee.Kernel.square(10,"pixels");
+var kernel_circle = ee.Kernel.circle({
+  radius: 10,
+  units: "pixels",
+  normalize: false
+});
 
 /*var high_value_filter = to_print.gt(-16)
 .reduceNeighborhood({
@@ -72,7 +76,6 @@ var compact_filter = to_print.gt(-16)
 .reduceNeighborhood({
   reducer: ee.Reducer.sum(),
   kernel: kernel_circle,
-  optimization: "boxcar"
 });
 
 Map.addLayer(to_print.gt(-16));
