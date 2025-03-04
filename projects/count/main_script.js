@@ -95,10 +95,9 @@ var image_to_reduce = max_filter.addBands(compact_filter);
 
 Map.addLayer(max_filter);
 
-var vector = image_to_reduce.reduceToVectors({
+var vector = max_filter.reduceToVectors({
   scale: scale_to_use,
-  bestEffort: true,
-  reducer: ee.Reducer.max()
+  bestEffort: true
 })
 .filter(ee.Filter.gt("label",0));
 
