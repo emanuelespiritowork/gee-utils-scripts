@@ -44,7 +44,8 @@ var elevation_mask = dem.gt(400);
 Map.addLayer(elevation_mask);
 
 //a prairie has grass
-var ndvi = mosaic.normalizedDifference(["B8","B4"]);
+var ndvi = mosaic.normalizedDifference(["B8","B4"])
+.rename("ndvi");
 
 Map.addLayer(ndvi);
 
