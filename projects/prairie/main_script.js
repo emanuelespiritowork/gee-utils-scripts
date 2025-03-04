@@ -67,7 +67,7 @@ var compact = slope_elev_grass_mask
   reducer: ee.Reducer.sum(),
   kernel: kernel_circle,
 })
-.gt(30)
+.gt(15)
 .rename("compact");
 
 Map.addLayer(compact);
