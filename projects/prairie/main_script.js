@@ -52,6 +52,8 @@ var ndvi = mosaic.normalizedDifference(["B8","B4"])
 var grass_mask = ndvi.gt(0.2);
 //Map.addLayer(grass_mask);
 
+//a prairie is wide
+
 var prairie = mosaic.updateMask(slope_mask)
 .updateMask(elevation_mask)
 .updateMask(grass_mask);
