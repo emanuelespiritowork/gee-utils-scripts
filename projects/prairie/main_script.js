@@ -67,7 +67,7 @@ var compact = slope_elev_grass_mask
   reducer: ee.Reducer.sum(),
   kernel: compact_circle,
 })
-.gt(20)
+.gt(28)
 .rename("compact");
 
 Map.addLayer(compact);
@@ -96,6 +96,8 @@ var compact_vector = compact.reduceRegions({
 })
 .filter(ee.Filter.gt("max",0));
 
+var wide_vector = compact_vector.filter(ee.Filter.gt("count",100));
+
 /*    
 var count_size = max.reduceRegions({
   collection: vector,
@@ -109,6 +111,7 @@ print(vector);
 Map.addLayer(vector);
 print(compact_vector);
 Map.addLayer(compact_vector);
+Map.addLayer(wide_vector);
 
 var prairie = mosaic.updateMask(slope_mask)
 .updateMask(elevation_mask)
