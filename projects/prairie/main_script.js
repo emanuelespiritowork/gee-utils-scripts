@@ -2,7 +2,7 @@
 var AOI = /* color: #d63000 */ee.Geometry.Polygon(
         [[[9.913613397802505, 46.2035982890461],
           [9.952752191747818, 45.80535134156698],
-          [11.258751947607193, 45.736381758537476],
+          [10.808312494482193, 46.017470710463634],
           [11.413247186865005, 46.308522824454435]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
