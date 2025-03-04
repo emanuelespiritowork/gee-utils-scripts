@@ -109,8 +109,4 @@ print(count_size);*/
 print(wide_vector);
 Map.addLayer(wide_vector);
 
-var prairie = mosaic.clip(wide_vector);
-
-Map.addLayer(prairie);
-
 
