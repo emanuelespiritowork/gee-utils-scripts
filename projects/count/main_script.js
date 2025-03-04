@@ -71,4 +71,8 @@ var high_value = to_print.updateMask(high_value_filter);
 
 Map.addLayer(high_value);
 
+var count = high_value.reduceToVectors();
+
+Map.addLayer(count);
+
 //var null_var_2 = plot_map.plot_map(speckle.first().select("VH"),2,10);
