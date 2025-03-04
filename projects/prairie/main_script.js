@@ -15,7 +15,7 @@ var AOI =
            [10.076540566990513, 46.182009044416944]]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
-var dem = ee.Image("CGIAR/SRTM90_V4");
+var dem = ee.Image("CGIAR/SRTM90_V4").clip(AOI);
 
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
@@ -26,12 +26,13 @@ var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_
 var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,10);
 var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
 
-Map.addLayer(dem.clip(AOI));
+Map.addLayer(dem);
 
 
 //Map.addLayer(mosaic);
 
 //a prairie has to be with small slope
+var slope = ee.Terrain.slope(dem);
 
 //a prairie has a great elevation
 
