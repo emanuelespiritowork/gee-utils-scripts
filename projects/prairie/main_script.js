@@ -16,11 +16,11 @@ var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosa
 var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
 
 
-var dem_clip = clip_to.clip_to(ee.ImageCollection(dem),AOI,10);
+//var dem_clip = clip_to.clip_to(ee.ImageCollection(dem),AOI,10);
 var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,10);
 var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
 
-Map.addLayer(dem_clip);
+Map.addLayer(dem.clip(AOI));
 //Map.addLayer(mosaic);
 
 //a prairie has to be with small slope
