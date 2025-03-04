@@ -1,4 +1,24 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * REQUIRES THE FOLLOWING FUNCTIONS:
+ * clip_to
+*******************************************************/
+
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.ImageCollection, ee.FeatureCollection, ee.Number, ee.String, ee.Number
+ * Output: ee.Image
+ * Description: find plumes in the AOI using a image collection of the past
+*******************************************************/
+
 exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connectedness, radius){
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
