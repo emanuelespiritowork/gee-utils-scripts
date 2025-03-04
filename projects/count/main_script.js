@@ -77,7 +77,7 @@ var compact_filter = to_print.gt(-16)
   reducer: ee.Reducer.sum(),
   kernel: kernel_circle,
 })
-.gt(20);
+.gt(100);
 
 var add_filter = to_print.gt(-16);
 
