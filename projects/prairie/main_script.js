@@ -36,11 +36,11 @@ var slope = ee.Terrain.slope(dem);
 
 Map.addLayer(slope);
 
-var slope_mask = slope.lt(1);
+var slope_mask = slope.lt(5);
 Map.addLayer(slope_mask);
 
 //a prairie has a great elevation
-var elevation_mask = dem.gt(300);
+var elevation_mask = dem.gt(400);
 Map.addLayer(elevation_mask);
 
 //a prairie has grass
