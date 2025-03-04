@@ -57,6 +57,8 @@ var vector = int_find_ships.int_find_ships(date_filtered, AOI, 10, -16, 10, 3);
 
 print(vector);
 
+Map.addLayer(vector);
+
 /*
 var to_print = clip.first().select("VH");
 
