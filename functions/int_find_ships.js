@@ -23,7 +23,8 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
   
   var get_vectors = function(image){
     var time_start = image.get("system:time_start");
-    var start_date = ee.Date(time_start);
+    var start_date = ee.Date(time_start)
+    .format('Y/M/d');
     
     var over_threshold = image.gt(threshold);
     
