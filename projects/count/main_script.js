@@ -60,7 +60,7 @@ var to_print = clip.first().select("VH");
 
 var high_value = to_print.gt(-19);
 
-var connected = high_value.connectedPixelCount();
+var connected = high_value.connectedComponents();
 
 Map.addLayer(connected);
 
