@@ -18,37 +18,34 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
     normalize: false
   });
   
-  var get_compact_filter = function(image){
+  var get_image_to_reduce = function(image){
     var start_date = image.get("system:time_start");
     
-    var compact = image.gt(threshold)
+    var over_threshold = image.gt(threshold);
+    
+    var compact = over_threshold
     .reduceNeighborhood({
       reducer: ee.Reducer.sum(),
       kernel: kernel_circle,
     })
-    .gt(compactness).rename("compact")
-    .set({
-      "system:time_start": start_date
-    });
+    .gt(compactness)
+    .rename("compact");
     
-    return compact;
-  };
-  
-  var compact_filter = select.map(get_compact_filter);
-  
-  var get_max_filter = function(image){
-    var start_date = image.get("system:time_start");
-    
-    var max = image.gt(threshold)
+    var max = over_threshold
     .reduceNeighborhood({
       reducer: ee.Reducer.max(),
       kernel: kernel_circle
-    }).rename("max")
+    }).rename("max");
+    
+    var image_to_reduce = max.addBands(compact)
     .set({
       "system:time_start": start_date
     });
     
-    return max;
+    return image_to_reduce;
   };
+  
+  var image_to_reduce = select.map(get_image_to_reduce);
+  
   
 };
