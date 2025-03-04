@@ -51,6 +51,11 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
     .filter(ee.Filter.gt("label",0))
     .filter(ee.Filter.gt("max",0));
     
+    var count_size = max.reduceRegions({
+      collection: vector,
+      reducer: ee.Reducer.countEvery()
+    });
+    
     var set_time_to_feature = function(feature){
       return feature.set({
         "system:time_start": time_start,
@@ -58,7 +63,7 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
       });
     };
     
-    return vector.map(set_time_to_feature);
+    return count_size.map(set_time_to_feature);
   };
   
   var ship_vectors = select.map(get_vectors).flatten();
