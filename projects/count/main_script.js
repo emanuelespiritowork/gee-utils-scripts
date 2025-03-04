@@ -53,9 +53,7 @@ var select = s1_select.s1_select(s1_coll, "IW", "VH", "DESCENDING", "H");
 
 var date_filtered = select.filterDate("2024-12-20","2025-02-27");
 
-var clip = clip_to.clip_to(date_filtered,AOI,10);
-
-var vector = int_find_ships.int_find_ships(clip, AOI, 10, -16, 10, 3);
+var vector = int_find_ships.int_find_ships(date_filtered, AOI, 10, -16, 10, 3);
 
 print(vector);
 
