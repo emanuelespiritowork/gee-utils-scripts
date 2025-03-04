@@ -72,8 +72,11 @@ var compact_filter = to_print.gt(-16)
 .reduceNeighborhood({
   reducer: ee.Reducer.sum(),
   kernel: kernel_circle
-}).gt(3);
+});
 
+Map.addLayer(compact_filter);
+
+/*
 var high_value = to_print.updateMask(compact_filter);
 
 Map.addLayer(high_value);
@@ -81,5 +84,5 @@ Map.addLayer(high_value);
 var count = compact_filter.reduceToVectors();
 
 Map.addLayer(count);
-
+*/
 //var null_var_2 = plot_map.plot_map(speckle.first().select("VH"),2,10);
