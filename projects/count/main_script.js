@@ -70,6 +70,10 @@ var high_value_filter = to_print.gt(-16)
   kernel: kernel_circle
 });
 
+Map.addLayer(to_print.gt(-16)
+.connectedPixelCount(100,true)
+.gt(3));
+
 var high_value = to_print.updateMask(high_value_filter);
 
 Map.addLayer(high_value);
