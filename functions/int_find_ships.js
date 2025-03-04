@@ -20,6 +20,9 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
 *******************************************************/
 
 exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connectedness, radius){
+/******************************************************
+ * Check variable types
+*******************************************************/
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
   threshold = ee.Number(threshold);
@@ -28,26 +31,47 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
   var compactness = connectedness || ee.Number(10);
   
   var size = radius || 3;
-  
+
+/******************************************************
+ * Clip image collection
+*******************************************************/
   var clip = clip_to.clip_to(img_coll,AOI,scale_to_use);
   
+/******************************************************
+ * Select polarization
+*******************************************************/
   var select = clip.select("VH") || clip.select("VV") || clip.select("HH") || clip.select("HV");
   
-  print(select);
+  //print(select);
   
+/******************************************************
+ * Define the kernel for compactness and maximization
+*******************************************************/
   var kernel_circle = ee.Kernel.circle({
     radius: size,
     units: "pixels",
     normalize: false
   });
-  
+
+/******************************************************
+ * Get vectors of ships
+*******************************************************/
   var get_vectors = function(image){
+    /******************************************************
+     * Get info from image 
+    *******************************************************/
     var time_start = image.get("system:time_start");
     var start_date = ee.Date(time_start).format('Y/M/d');
     var clock = ee.Date(time_start).format('H:m:s'); 
     
+    /******************************************************
+     * Get image above threshold
+    *******************************************************/
     var over_threshold = image.gt(threshold);
     
+    /******************************************************
+     * Create compactness layer
+    *******************************************************/
     var compact = over_threshold
     .reduceNeighborhood({
       reducer: ee.Reducer.sum(),
@@ -56,6 +80,9 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
     .gt(compactness)
     .rename("compact");
     
+    /******************************************************
+     * Create maximization layer
+    *******************************************************/
     var max = over_threshold
     .reduceNeighborhood({
       reducer: ee.Reducer.max(),
