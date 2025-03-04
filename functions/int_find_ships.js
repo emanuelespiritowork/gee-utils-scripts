@@ -53,7 +53,7 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
     
     var count_size = max.reduceRegions({
       collection: vector,
-      reducer: ee.Reducer.countEvery(),
+      reducer: ee.Reducer.count(),
       scale: scale_to_use
     });
     
