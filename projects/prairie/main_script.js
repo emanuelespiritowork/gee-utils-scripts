@@ -89,7 +89,7 @@ var vector = max.reduceToVectors({
 })
 .filter(ee.Filter.gt("label",0));
 
-var compact_vector = max.reduceRegions({
+var compact_vector = compact.reduceRegions({
   collection: vector,
   reducer: ee.Reducer.max(),
   scale: 10
