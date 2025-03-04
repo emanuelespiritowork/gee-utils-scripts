@@ -37,13 +37,16 @@ var slope = ee.Terrain.slope(dem);
 Map.addLayer(slope);
 
 var slope_mask = slope.lt(1);
+Map.addLayer(slope_mask);
 
 //a prairie has a great elevation
 var elevation_mask = dem.gt(500);
+Map.addLayer(elevation_mask);
 
 //a prairie has grass
 var ndvi = mosaic.normalizedDifference(["B4","B8"]);
 var grass_mask = ndvi.gt(0.2);
+Map.addLayer(grass_mask);
 
 var prairie = mosaic.updateMask(slope_mask)
 .updateMask(elevation_mask)
