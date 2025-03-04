@@ -95,7 +95,7 @@ var count_size = max.reduceRegions({
   reducer: ee.Reducer.count(),
   scale: 10
 })
-.filter(ee.Filter.gt("count",20));
+.filter(ee.Filter.gt("count",0));
 
 print(count_size);
 Map.addLayer(count_size);
