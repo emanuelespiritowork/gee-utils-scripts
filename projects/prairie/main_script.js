@@ -87,7 +87,7 @@ var vector = image_to_reduce.reduceToVectors({
   bestEffort: true,
   reducer: ee.Reducer.max()
 })
-//.filter(ee.Filter.gt("label",0))
+.filter(ee.Filter.gt("label",0))
 //.filter(ee.Filter.gt("max",0));
 
 /*    
@@ -99,6 +99,7 @@ var count_size = max.reduceRegions({
 .filter(ee.Filter.gt("count",0));
 
 print(count_size);*/
+print(vector);
 Map.addLayer(vector);
 
 var prairie = mosaic.updateMask(slope_mask)
