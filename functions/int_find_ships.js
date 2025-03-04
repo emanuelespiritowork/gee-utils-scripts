@@ -23,8 +23,8 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
   
   var get_vectors = function(image){
     var time_start = image.get("system:time_start");
-    var start_date = ee.Date(time_start)
-    .format('Y/M/d');
+    var start_date = ee.Date(time_start).format('Y/M/d');
+    var clock = ee.Date(time_start).format('H:m:s'); 
     
     var over_threshold = image.gt(threshold);
     
@@ -61,7 +61,8 @@ exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connec
     var set_time_to_feature = function(feature){
       return feature.select(["count"]).set({
         "system:time_start": time_start,
-        "date": start_date
+        "date": start_date,
+        "clock": clock
       });
     };
     
