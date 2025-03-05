@@ -1,4 +1,24 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * REQUIRES THE FOLLOWING FUNCTIONS:
+ * mosaic_recent
+*******************************************************/
+
 var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.FeatureCollection
+ * Output: ee.Image
+ * Description: find prairies in the AOI using Sentinel-2 collection
+*******************************************************/
+
 exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_grass, max_slope, min_compactness){
   AOI = ee.FeatureCollection(AOI);
   
