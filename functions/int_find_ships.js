@@ -16,7 +16,7 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
  * PURPOSE OF THIS SCRIPT
  * Input: ee.ImageCollection, ee.FeatureCollection, ee.Number, ee.String, ee.Number
  * Output: ee.Image
- * Description: find plumes in the AOI using a image collection of the past
+ * Description: find ships in the AOI using a image collection of the past
 *******************************************************/
 
 exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connectedness, radius){
