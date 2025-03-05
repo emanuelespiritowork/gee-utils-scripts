@@ -17,17 +17,17 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   //a prairie has to be with small slope
   
   var dem_slope = ee.Terrain.slope(dem);
-  var slope_mask = dem_slope.lt(slope);
+  var slope_mask = dem_slope.lt(0.5);
   
   //a prairie has a great panorama 
-  var elevation_mask = dem.gt(height);
+  var elevation_mask = dem.gt(300);
   
   //a prairie has grass
-  var ndvi = mosaic_recent.mosaic_recent(s2_coll,AOI,scale_to_use)
+  var ndvi = mosaic_recent.mosaic_recent(s2_coll,AOI,10)
   .normalizedDifference(["B8","B4"])
   .rename("ndvi");
   
-  var grass_mask = ndvi.gt(grass);
+  var grass_mask = ndvi.gt(0.2);
   
   //a prairie is wide: create a compact layer
   var slope_elev_grass_mask = slope_mask.and(elevation_mask)
@@ -49,7 +49,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
     reducer: ee.Reducer.sum(),
     kernel: compact_circle
   })
-  .gt(compactness)
+  .gt(28)
   .rename("compact");
   
   Map.addLayer(compact,undefined,"compact");
@@ -74,14 +74,14 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var compact_vector = compact.reduceRegions({
     collection: vector,
     reducer: ee.Reducer.max(),
-    scale: scale_to_use
+    scale: 10
   })
   .filter(ee.Filter.gt("max",0));
   
   //Map.addLayer(compact_vector);
   //print(compact_vector);
   
-  var wide_vector = compact_vector.filter(ee.Filter.gt("count",wide));
+  var wide_vector = compact_vector.filter(ee.Filter.gt("count",200));
   
   //Map.addLayer(wide_vector);
   //print(wide_vector);
