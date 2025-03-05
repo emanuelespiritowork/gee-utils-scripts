@@ -82,7 +82,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   Map.addLayer(compact_vector);
   print(compact_vector);
   
-  var wide_vector = compact_vector.filter(ee.Filter.gt("count",200));
+  var wide_vector = compact_vector.filter(ee.Filter.gt("count",compactness));
   
   Map.addLayer(wide_vector);
   print(wide_vector);
