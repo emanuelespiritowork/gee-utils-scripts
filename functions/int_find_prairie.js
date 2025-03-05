@@ -27,5 +27,20 @@ exports.int_find_prairie = function(AOI, scale_to_use, min_wide, min_height, min
   
   var grass_mask = ndvi.gt(grass);
   
+  //a prairie is wide: create a compact layer
+  var slope_elev_grass_mask = slope_mask.and(elevation_mask)
+  .and(grass_mask);
+  
+  var compact_circle = ee.Kernel.circle({
+    radius: scale_to_use.multiply(ee.Number(3).divide(ee.Number(10))),
+    units: "pixels",
+    normalize: false
+  });
+  
+  var max_circle = ee.Kernel.circle({
+    radius: scale_to_use.multiply(ee.Number(2).divide(ee.Number(10))),
+    units: "pixels",
+    normalize: false
+  });
 
 };
