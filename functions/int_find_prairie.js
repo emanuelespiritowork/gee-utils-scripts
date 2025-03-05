@@ -37,13 +37,13 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   Map.addLayer(slope_elev_grass_mask,undefined,"slope_elev_grass_mask");
   
   var compact_circle = ee.Kernel.circle({
-    radius: 3,
+    radius: scale_to_use.divide(10).multiply(3),
     units: "pixels",
     normalize: false
   });
   
   var max_circle = ee.Kernel.circle({
-    radius: 2,
+    radius: scale_to_use.divide(10).multiply(2),
     units: "pixels",
     normalize: false
   });
