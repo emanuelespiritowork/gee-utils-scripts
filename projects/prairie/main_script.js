@@ -6,7 +6,9 @@ var AOI = /* color: #d63000 */ee.Geometry.Polygon(
           [11.075417597021255, 46.27625973462985]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var int_find_prairie = require("users/emanuelespiritowork/SharedRepo:functions/int_find_prairie.js");
+var wide_vector = int_find_prairie.int_find_prairie(AOI);
 
+/*
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 var dem = ee.Image("CGIAR/SRTM90_V4").clip(AOI);
 
@@ -94,6 +96,8 @@ var compact_vector = compact.reduceRegions({
 .filter(ee.Filter.gt("max",0));
 
 var wide_vector = compact_vector.filter(ee.Filter.gt("count",200));
+*/
+
 
 /*    
 var count_size = max.reduceRegions({
