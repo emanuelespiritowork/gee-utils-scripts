@@ -21,7 +21,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var elevation_mask = dem.gt(height);
   
   //a prairie has grass
-  var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,10);
+  var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,scale_to_use);
   
   var ndvi = mosaic.normalizedDifference(["B8","B4"])
   .rename("ndvi");
