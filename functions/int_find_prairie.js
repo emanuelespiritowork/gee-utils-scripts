@@ -68,7 +68,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   })
   .filter(ee.Filter.gt("label",0));
   
-  //Map.addLayer(vector);
+  Map.addLayer(vector);
   //print(vector);
   
   var compact_vector = compact.reduceRegions({
