@@ -52,14 +52,14 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   .gt(compactness)
   .rename("compact");
   
-  Map.addLayer(compact);
+  Map.addLayer(compact,undefined,"compact");
   
   var max = slope_elev_grass_mask.reduceNeighborhood({
     reducer: ee.Reducer.max(),
     kernel: max_circle
   }).rename("over_threshold");
   
-  Map.addLayer(max);
+  Map.addLayer(max,undefined,"max");
   
   var vector = max.reduceToVectors({
     scale: scale_to_use,
