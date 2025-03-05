@@ -13,8 +13,6 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
   var dem = ee.Image("CGIAR/SRTM90_V4").clip(AOI);
   
-  var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,scale_to_use);
-  
   //a prairie has to be with small slope
   
   var dem_slope = ee.Terrain.slope(dem);
@@ -24,7 +22,8 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var elevation_mask = dem.gt(height);
   
   //a prairie has grass
-  var ndvi = mosaic.normalizedDifference(["B8","B4"])
+  var ndvi = mosaic_recent.mosaic_recent(s2_coll,AOI,scale_to_use)
+  .normalizedDifference(["B8","B4"])
   .rename("ndvi");
   
   var grass_mask = ndvi.gt(grass);
