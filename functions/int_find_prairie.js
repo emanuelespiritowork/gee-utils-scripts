@@ -12,7 +12,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   //print(scale_to_use,wide,height,slope,grass,compactness);
   
   var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
-  var dem = ee.Image("CGIAR/SRTM90_V4").clip(AOI);
+  var dem = ee.Image("CGIAR/SRTM90_V4").clip(AOI.geometry());
   
   //a prairie has to be with small slope
   
