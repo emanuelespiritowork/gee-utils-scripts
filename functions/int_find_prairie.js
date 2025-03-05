@@ -59,6 +59,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   
   var vector = max.reduceToVectors({
     scale: scale_to_use,
+    bestEffort: true,
     reducer: null
   })
   .filter(ee.Filter.gt("label",0));
