@@ -109,6 +109,6 @@ print(count_size);*/
 //print(compact_vector);
 //Map.addLayer(compact_vector);
 print(wide_vector);
-Map.addLayer(wide_vector);
+//Map.addLayer(wide_vector);
 
 
