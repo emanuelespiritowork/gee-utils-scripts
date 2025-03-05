@@ -2,8 +2,8 @@
 var AOI = /* color: #d63000 */ee.Geometry.Polygon(
         [[[9.913613397802505, 46.2035982890461],
           [9.922539789404068, 46.02700655643601],
-          [10.808312494482193, 46.017470710463634],
-          [11.075417597021255, 46.27625973462985]]]);
+          [10.506188471044693, 46.02128524622097],
+          [10.405251581396255, 46.29239365527874]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var int_find_prairie = require("users/emanuelespiritowork/SharedRepo:functions/int_find_prairie.js");
 var wide_vector = int_find_prairie.int_find_prairie(AOI);
