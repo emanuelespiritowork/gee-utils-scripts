@@ -34,13 +34,13 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   .and(grass_mask);
   
   var compact_circle = ee.Kernel.circle({
-    radius: scale_to_use.multiply(ee.Number(3).divide(ee.Number(10))),
+    radius: 3,
     units: "pixels",
     normalize: false
   });
   
   var max_circle = ee.Kernel.circle({
-    radius: scale_to_use.multiply(ee.Number(2).divide(ee.Number(10))),
+    radius: 2,
     units: "pixels",
     normalize: false
   });
