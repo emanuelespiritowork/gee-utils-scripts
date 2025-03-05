@@ -64,6 +64,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   })
   .filter(ee.Filter.gt("label",0));
   
+  Map.addLayer(vector);
   print(vector);
   
   var compact_vector = compact.reduceRegions({
@@ -73,6 +74,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   })
   .filter(ee.Filter.gt("max",0));
   
+  Map.addLayer(compact_vector);
   print(compact_vector);
   
   return compact_vector.filter(ee.Filter.gt("count",wide));
