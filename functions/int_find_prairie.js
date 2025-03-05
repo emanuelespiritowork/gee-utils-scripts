@@ -15,7 +15,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   //a prairie has to be with small slope
   
   var dem_slope = ee.Terrain.slope(dem);
-  var slope_mask = dem_slope.lt(0.5);
+  var slope_mask = dem_slope.lt(5);
   
   //a prairie has a great panorama 
   var elevation_mask = dem.gt(300);
@@ -41,7 +41,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   });
   
   var max_circle = ee.Kernel.circle({
-    radius: 3,
+    radius: 2,
     units: "pixels",
     normalize: false
   });
