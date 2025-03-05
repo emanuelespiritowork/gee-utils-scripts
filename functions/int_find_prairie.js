@@ -63,7 +63,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   Map.addLayer(max,undefined,"max");
   
   var vector = max.reduceToVectors({
-    scale: 10,
+    scale: scale_to_use,
     bestEffort: true,
     reducer: null
   })
