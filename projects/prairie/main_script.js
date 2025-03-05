@@ -99,15 +99,7 @@ var wide_vector = compact_vector.filter(ee.Filter.gt("count",200));
 */
 
 
-/*    
-var count_size = max.reduceRegions({
-  collection: vector,
-  reducer: ee.Reducer.count(),
-  scale: 10
-})
-.filter(ee.Filter.gt("count",0));
 
-print(count_size);*/
 //print(vector);
 //Map.addLayer(vector);
 //print(compact_vector);
