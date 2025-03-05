@@ -93,7 +93,7 @@ var compact_vector = compact.reduceRegions({
 })
 .filter(ee.Filter.gt("max",0));
 */
-var wide_vector = int_find_prairie.int_find_prairie(AOI,10);
+var wide_vector = int_find_prairie.int_find_prairie(AOI,20);
 
 /*    
 var count_size = max.reduceRegions({
