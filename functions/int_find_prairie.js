@@ -75,7 +75,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var compact_vector = compact.reduceRegions({
     collection: vector,
     reducer: ee.Reducer.max(),
-    scale: 10
+    scale: scale_to_use
   })
   .filter(ee.Filter.gt("max",0));
   
