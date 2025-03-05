@@ -9,7 +9,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var slope = max_slope || ee.Number(5);
   var grass = min_grass || ee.Number(0.2);
   var compactness = min_compactness || ee.Number(28);
-  print(wide,height,slope,grass,compactness);
+  print(scale_to_use,wide,height,slope,grass,compactness);
   
   var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
   var dem = ee.Image("CGIAR/SRTM90_V4").clip(AOI);
