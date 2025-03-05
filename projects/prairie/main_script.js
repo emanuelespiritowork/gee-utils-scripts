@@ -104,7 +104,7 @@ var wide_vector = compact_vector.filter(ee.Filter.gt("count",200));
 //Map.addLayer(vector);
 //print(compact_vector);
 //Map.addLayer(compact_vector);
-print(wide_vector);
-Map.addLayer(wide_vector);
+//print(wide_vector);
+//Map.addLayer(wide_vector);
 
 
