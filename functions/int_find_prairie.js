@@ -48,7 +48,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
     reducer: ee.Reducer.sum(),
     kernel: compact_circle
   })
-  .gt(28)
+  .gt(25)
   .rename("compact");
   
   Map.addLayer(compact,undefined,"compact");
