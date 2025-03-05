@@ -96,15 +96,11 @@ var compact_vector = compact.reduceRegions({
 .filter(ee.Filter.gt("max",0));
 
 var wide_vector = compact_vector.filter(ee.Filter.gt("count",200));
+print(wide_vector);
+Map.addLayer(wide_vector);
 */
 
 
 
-//print(vector);
-//Map.addLayer(vector);
-//print(compact_vector);
-//Map.addLayer(compact_vector);
-//print(wide_vector);
-//Map.addLayer(wide_vector);
 
 
