@@ -81,6 +81,7 @@ var max = slope_elev_grass_mask
 
 var vector = max.reduceToVectors({
   scale: 10,
+  bestEffort: true,
   reducer: null
 })
 .filter(ee.Filter.gt("label",0));
