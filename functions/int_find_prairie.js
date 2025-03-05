@@ -54,7 +54,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var slope_elev_grass_mask = slope_mask.and(elevation_mask)
   .and(grass_mask);
   
-  Map.addLayer(slope_elev_grass_mask,undefined,"slope_elev_grass_mask");
+  //Map.addLayer(slope_elev_grass_mask,undefined,"slope_elev_grass_mask");
   
   var compact_circle = ee.Kernel.circle({
     radius: scale_to_use.divide(10).multiply(3),
@@ -75,14 +75,14 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   .gt(compactness)
   .rename("compact");
   
-  Map.addLayer(compact,undefined,"compact");
+  //Map.addLayer(compact,undefined,"compact");
   
   var max = slope_elev_grass_mask.reduceNeighborhood({
     reducer: ee.Reducer.max(),
     kernel: max_circle
   }).rename("over_threshold");
   
-  Map.addLayer(max,undefined,"max");
+  //Map.addLayer(max,undefined,"max");
   
   var vector = max.reduceToVectors({
     scale: scale_to_use,
@@ -91,8 +91,8 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   })
   .filter(ee.Filter.gt("label",0));
   
-  Map.addLayer(vector);
-  print(vector);
+  //Map.addLayer(vector);
+  //print(vector);
   
   var compact_vector = compact.reduceRegions({
     collection: vector,
@@ -101,13 +101,13 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   })
   .filter(ee.Filter.gt("max",0));
   
-  Map.addLayer(compact_vector);
-  print(compact_vector);
+  //Map.addLayer(compact_vector);
+  //print(compact_vector);
   
   var wide_vector = compact_vector.filter(ee.Filter.gt("count",wide));
   
-  Map.addLayer(wide_vector);
-  print(wide_vector);
+  //Map.addLayer(wide_vector);
+  //print(wide_vector);
   
   return wide_vector;
 };
