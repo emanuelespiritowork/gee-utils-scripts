@@ -26,7 +26,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var ndvi = mosaic.normalizedDifference(["B8","B4"])
   .rename("ndvi");
   
-  var grass_mask = ndvi.gt(0.2);
+  var grass_mask = ndvi.gt(grass);
   
   //a prairie is wide: create a compact layer
   var slope_elev_grass_mask = slope_mask.and(elevation_mask)
