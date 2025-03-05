@@ -1,7 +1,8 @@
 var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
-exports.int_find_prairie = function(AOI, scale_to_use, min_wide, min_height, min_grass, max_slope, min_compactness){
+exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_grass, max_slope, min_compactness){
   AOI = ee.FeatureCollection(AOI);
-  scale_to_use = ee.Number(scale_to_use);
+ 
+  var scale_to_use = min_scale || ee.Number(10);
   
   var wide = min_wide || ee.Number(200);
   var height = min_height || ee.Number(300);
