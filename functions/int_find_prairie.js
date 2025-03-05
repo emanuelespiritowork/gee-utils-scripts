@@ -41,7 +41,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   });
   
   var max_circle = ee.Kernel.circle({
-    radius: 2,
+    radius: 3,
     units: "pixels",
     normalize: false
   });
