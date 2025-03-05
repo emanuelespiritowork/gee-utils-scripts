@@ -71,7 +71,5 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   })
   .filter(ee.Filter.gt("max",0));
   
-  var wide_vector = compact_vector.filter(ee.Filter.gt("count",wide));
-  
-  return wide_vector;
+  return compact_vector.filter(ee.Filter.gt("count",wide));
 };
