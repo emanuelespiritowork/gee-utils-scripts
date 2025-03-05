@@ -18,7 +18,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var slope_mask = dem_slope.lt(5);
   
   //a prairie has a great panorama 
-  var elevation_mask = dem.gt(300);
+  var elevation_mask = dem.gt(height);
   
   //a prairie has grass
   var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,10);
