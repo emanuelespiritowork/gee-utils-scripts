@@ -10,7 +10,7 @@ var wide_vector = int_find_prairie.int_find_prairie(AOI);
 
 /*
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
-var dem = ee.Image("CGIAR/SRTM90_V4").clip(AOI);
+var dem = ee.Image("CGIAR/SRTM90_V4").clip(AOI.geometry()));
 
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
@@ -99,8 +99,6 @@ var wide_vector = compact_vector.filter(ee.Filter.gt("count",200));
 print(wide_vector);
 Map.addLayer(wide_vector);
 */
-
-
 
 
 
