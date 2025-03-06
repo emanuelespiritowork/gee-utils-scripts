@@ -1,5 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/Lomellina");
+var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/sen2rts/Lomellina");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /******************************************************
  * Author: Emanuele Spirito
