@@ -1,5 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/sen2rts/Lomellina");
+var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/sen2rts/Jolanda");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /******************************************************
  * Author: Emanuele Spirito
@@ -78,7 +78,7 @@ print(evi_scl);
 
 //var null_var = plot_map.plot_map(evi.first(),2,scale_to_use);
 
-var time_series = time_series_create.time_series_create(evi_scl,AOI,"field_name",scale_to_use);
+var time_series = time_series_create.time_series_create(evi_scl,AOI,"id_geom",scale_to_use);
 
 //var time_series = time_series_create.time_series_create(evi,AOI,"fid",scale_to_use);
 
