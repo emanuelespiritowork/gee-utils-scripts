@@ -1,5 +1,6 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/sen2rts/Lomellina");
+var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/sen2rts/Lomellina"),
+    geometry = /* color: #d63000 */ee.Geometry.Point([8.559971074299169, 45.247780994502996]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /******************************************************
  * Author: Emanuele Spirito
@@ -36,7 +37,7 @@ var time_series_export = require("users/emanuelespiritowork/SharedRepo:functions
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate("2020-09-01","2025-01-01");
 
-Map.addLayer(s2_coll.filterBounds(AOI),undefined,undefined,false);
+Map.addLayer(s2_coll.filterBounds(geometry),undefined,undefined,false);
 Map.addLayer(AOI);
 
 var scale_to_use = ee.Number(10);
