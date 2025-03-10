@@ -36,6 +36,8 @@ var time_series_export = require("users/emanuelespiritowork/SharedRepo:functions
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate("2020-09-01","2025-01-01");
 
+Map.addLayer(s2_coll.filterBounds(AOI));
+
 var scale_to_use = ee.Number(10);
 
 var clip = clip_to.clip_to(s2_coll,AOI,scale_to_use);
@@ -74,7 +76,7 @@ var evi_scl = scl_weights.combine(evi);
 
 print(evi_scl);
 
-Map.addLayer(evi_scl);
+//Map.addLayer(evi_scl);
 
 //print(evi);
 
