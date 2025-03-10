@@ -74,6 +74,8 @@ var evi_scl = scl_weights.combine(evi);
 
 print(evi_scl);
 
+Map.addLayer(evi_scl);
+
 //print(evi);
 
 //var null_var = plot_map.plot_map(evi.first(),2,scale_to_use);
@@ -82,7 +84,7 @@ var time_series = time_series_create.time_series_create(evi_scl,AOI,"field_name"
 
 //var time_series = time_series_create.time_series_create(evi,AOI,"fid",scale_to_use);
 
-print(time_series.limit(100));
+//print(time_series.limit(100));
 
 var null_var = time_series_export.time_series_export(time_series, "Exports_sen2rts", ["evi","qa"]);
 
