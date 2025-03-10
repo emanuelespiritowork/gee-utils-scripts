@@ -38,6 +38,7 @@ var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate("2020-09-01","2025-01-01");
 
 Map.addLayer(s2_coll.filterBounds(geometry),undefined,undefined,false);
+print(s2_coll.filterBounds(geometry));
 Map.addLayer(AOI);
 
 var scale_to_use = ee.Number(10);
