@@ -66,7 +66,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   
   var filter_for_date = s2_coll.filterDate(start_date.format('Y/M/d'),latest_date.format('Y/M/d'));
 
-  var s2_no_cloud = s2_mask.s2_mask(s2_coll);
+  var s2_no_cloud = s2_mask.s2_mask(filter_for_date);
   
   var give_attribute_of_percentage_of_null_pixels = function(image){
     var non_null_pixels = image.reduce({
