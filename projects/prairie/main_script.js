@@ -19,7 +19,7 @@ Map.centerObject(AOI);
 
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 print(ee.Date(Date.now()).format('YYYY-MM-dd'));
-//print(s2_coll.filterDate("2024-12-01",ee.Date(Date.now()).format('YYYY-MM-dd')));
+print(s2_coll.filterDate("2024-12-01","2025-03-11"));
 var latest_date = ee.Date(s2_coll.filterDate("2024-12-01").sort({
   property: "system:time_start", 
   ascending: false
