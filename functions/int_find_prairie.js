@@ -92,6 +92,8 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var ndvi = mosaic.normalizedDifference(["B8","B4"])
   .rename("ndvi");
   
+  Map.addLayer(mosaic);
+  
   var grass_mask = ndvi.gt(grass);
   
 /******************************************************
