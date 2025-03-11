@@ -83,7 +83,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var sort = s2_no_cloud.map(give_attribute_of_percentage_of_null_pixels)
   .sort("non_null_pixels",false);
 
-  var mosaic = mosaic_to.mosaic_to(sort,AOI,scale_to_use);
+  var mosaic = mosaic_to.mosaic_to(sort);
   
   var ndvi = mosaic.normalizedDifference(["B8","B4"])
   .rename("ndvi");
