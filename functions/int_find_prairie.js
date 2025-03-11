@@ -8,6 +8,8 @@
 /******************************************************
  * REQUIRES THE FOLLOWING FUNCTIONS:
  * mosaic_to
+ * s2_mask
+ * clip_to
 *******************************************************/
 
 var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_to.js");
