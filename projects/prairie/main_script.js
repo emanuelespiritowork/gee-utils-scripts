@@ -18,6 +18,7 @@ var int_find_prairie = require("users/emanuelespiritowork/SharedRepo:functions/i
 Map.centerObject(AOI);
 
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
+print(s2_coll.filterDate("2024-12-01"));
 var latest_date = ee.Date(s2_coll.filterDate("2024-12-01").sort({
   property: "system:time_start", 
   ascending: false
