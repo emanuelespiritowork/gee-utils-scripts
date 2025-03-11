@@ -68,7 +68,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
     unit: "month"
   });
   
-  var sort = s2_coll.filterDate(start_date.format('Y/M/d'),latest_date.format('Y/M/d'))
+  var sort = s2_coll.filterDate(start_date.format('YYYY-MM-dd'),latest_date.format('YYYY-MM-dd'))
   .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",10));
   
   print(sort);
