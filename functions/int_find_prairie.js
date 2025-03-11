@@ -58,10 +58,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
  * Third requirement: a prairie has grass. We need to use not clouded s2_coll
 *******************************************************/
 
-  var latest_date = ee.Date(s2_coll.sort({
-    property: "system:time_start", 
-    ascending: false
-  }).first().get("system:time_start"));
+  var latest_date = ee.Date(Date.now());
   
   var start_date = latest_date.advance({
     delta: -3,
