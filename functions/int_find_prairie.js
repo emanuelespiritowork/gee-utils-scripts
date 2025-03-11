@@ -75,7 +75,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var sort = s2_coll.filterDate(start_date.format('Y/M/d'),latest_date.format('Y/M/d'))
   .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",10));
   
-  var mosaic = mosaic_recent.mosaic_recent(sort,AOI,scale_to_use);
+  var mosaic = mosaic_date.mosaic_date(sort,AOI,start_date,latest_date,scale_to_use);
   
   var ndvi = mosaic.normalizedDifference(["B8","B4"])
   .rename("ndvi");
