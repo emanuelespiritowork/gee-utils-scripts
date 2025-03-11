@@ -14,9 +14,26 @@ var AOI =
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var int_find_prairie = require("users/emanuelespiritowork/SharedRepo:functions/int_find_prairie.js");
-var wide_vector = int_find_prairie.int_find_prairie(AOI);
+//var wide_vector = int_find_prairie.int_find_prairie(AOI);
 Map.centerObject(AOI);
 
+var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
+var latest_date = ee.Date(s2_coll.sort({
+  property: "system:time_start", 
+  ascending: false
+}).first().get("system:time_start"));
+  
+var start_date = latest_date.advance({
+  delta: -3,
+  unit: "month"
+});
+  
+var sort = s2_coll.filterDate(start_date.format('Y/M/d'),latest_date.format('Y/M/d'))
+.filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",10));
+  
+print(sort);
+  
+  //Map.addLayer(grass_mask);
 /*
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 var dem = ee.Image("CGIAR/SRTM90_V4").clip(AOI.geometry()));
