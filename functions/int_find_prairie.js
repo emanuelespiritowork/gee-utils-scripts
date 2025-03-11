@@ -45,12 +45,15 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var dem_slope = ee.Terrain.slope(dem);
   var slope_mask = dem_slope.lt(slope);
 
+  Map.addLayer(slope_mask);
+  
 /******************************************************
  * Second requirement: a prairie has a great panorama 
 *******************************************************/
 
   var elevation_mask = dem.gt(height);
-
+  
+  Map.addLayer(elevation_mask);
 /******************************************************
  * Third requirement: a prairie has grass
 *******************************************************/
@@ -61,6 +64,8 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   .rename("ndvi");
   
   var grass_mask = ndvi.gt(grass);
+  
+  Map.addLayer(grass_mask);
 
 /******************************************************
  * Fourth requirement: a prairie is wide
