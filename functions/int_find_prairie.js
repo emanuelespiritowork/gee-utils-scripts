@@ -55,20 +55,39 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   
   Map.addLayer(elevation_mask);
 /******************************************************
- * Third requirement: a prairie has grass
+ * Third requirement: a prairie has grass. We need to use not clouded s2_coll
 *******************************************************/
-
-  var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,scale_to_use);
+  var latest_date = ee.Date(s2_coll.first().get("system:time_start"));
   
-  Map.addLayer(mosaic);
+  var start_date = latest_date.advance({
+    delta: -1,
+    unit: "month"
+  });
+  
+  var filter_for_date = s2_coll.filterDate(start_date.format('Y/M/d'),latest_date.format('Y/M/d'));
+
+  var s2_no_cloud = s2_mask.s2_mask(s2_coll);
+  
+  var give_attribute_of_percentage_of_null_pixels = function(image){
+    var non_null_pixels = image.reduce({
+      reducer: ee.Reducer.count()
+    });
+    
+    return image.set({
+      "non_null_pixels": non_null_pixels
+    });
+  };
+  
+  var sort = s2_no_cloud.map(give_attribute_of_percentage_of_null_pixels)
+  .sort("non_null_pixels",false);
+
+  var mosaic = mosaic_to.mosaic_to(sort,AOI,scale_to_use);
   
   var ndvi = mosaic.normalizedDifference(["B8","B4"])
   .rename("ndvi");
   
   var grass_mask = ndvi.gt(grass);
   
-  Map.addLayer(grass_mask);
-
 /******************************************************
  * Fourth requirement: a prairie is wide
 *******************************************************/
