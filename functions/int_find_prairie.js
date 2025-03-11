@@ -64,8 +64,8 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   }).first().get("system:time_start"));
   
   var start_date = latest_date.advance({
-    delta: -2,
-    unit: "year"
+    delta: -3,
+    unit: "month"
   });
   
   var sort = s2_coll.filterDate(start_date.format('Y/M/d'),latest_date.format('Y/M/d'))
