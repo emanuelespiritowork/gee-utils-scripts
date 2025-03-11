@@ -7,10 +7,12 @@
 
 /******************************************************
  * REQUIRES THE FOLLOWING FUNCTIONS:
- * mosaic_recent
+ * mosaic_to
 *******************************************************/
 
-var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
+var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_to.js");
+var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
+var s2_mask = require("users/emanuelespiritowork/SharedRepo:functions/s2_mask.js");
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
