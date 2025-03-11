@@ -22,11 +22,13 @@ var latest_date = ee.Date(s2_coll.sort({
   property: "system:time_start", 
   ascending: false
 }).first().get("system:time_start"));
+print(latest_date);
   
 var start_date = latest_date.advance({
   delta: -3,
   unit: "month"
 });
+print(start_date);
   
 var sort = s2_coll.filterDate(start_date.format('Y/M/d'),latest_date.format('Y/M/d'))
 .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",10));
