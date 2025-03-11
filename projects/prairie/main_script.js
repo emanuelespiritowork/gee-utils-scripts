@@ -30,11 +30,7 @@ var start_date = latest_date.advance({
 });
 print(start_date);
   
-var sort = s2_coll.filterDate(start_date.format('Y/M/d'),latest_date.format('Y/M/d'))
-.filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",10));
-  
-print(sort);
-  
+
   //Map.addLayer(grass_mask);
 /*
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
