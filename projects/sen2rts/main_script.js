@@ -1,7 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/sen2rts/Lomellina"),
-    geometry = /* color: #d63000 */ee.Geometry.Point([8.559971074299169, 45.247780994502996]),
-    geometry2 = /* color: #98ff00 */ee.Geometry.Point([8.636188725666356, 45.18925615611129]);
+var geometry = /* color: #d63000 */ee.Geometry.Point([8.559971074299169, 45.247780994502996]),
+    geometry2 = /* color: #98ff00 */ee.Geometry.Point([8.636188725666356, 45.18925615611129]),
+    AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/sen2rts/Lomellina");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /******************************************************
  * Author: Emanuele Spirito
