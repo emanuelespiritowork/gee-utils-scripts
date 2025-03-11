@@ -64,9 +64,11 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
     unit: "month"
   });
   
-  var filter_for_date = s2_coll.filterDate(start_date.format('Y/M/d'),latest_date.format('Y/M/d'));
+  var s2_date = s2_coll.filterDate(start_date.format('Y/M/d'),latest_date.format('Y/M/d'));
+  
+  var s2_clip = clip_to.clip_to(s2_date,AOI,scale_to_use);
 
-  var s2_no_cloud = s2_mask.s2_mask(filter_for_date);
+  var s2_no_cloud = s2_mask.s2_mask(s2_clip);
   
   var give_attribute_of_percentage_of_null_pixels = function(image){
     var non_null_pixels = image.reduce({
