@@ -1,8 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.FeatureCollection(
+var AOI = /* color: #d63000 */ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[9.913613397802505, 46.2035982890461],
@@ -11,17 +8,6 @@ var AOI =
                   [10.405251581396255, 46.29239365527874]]]),
             {
               "system:index": "0"
-            }),
-        ee.Feature(
-            ee.Geometry.Polygon(
-                [[[8.267669059543529, 46.344602910758574],
-                  [8.194197990207591, 46.28864174060637],
-                  [8.138579704074779, 46.24022240841259],
-                  [8.223624292157883, 46.14737953369329],
-                  [8.531241479657883, 46.196831344266336],
-                  [8.573813501142258, 46.337335452969036]]]),
-            {
-              "system:index": "1"
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var int_find_prairie = require("users/emanuelespiritowork/SharedRepo:functions/int_find_prairie.js");
