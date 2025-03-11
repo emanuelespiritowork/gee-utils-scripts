@@ -15,6 +15,7 @@ var AOI =
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var int_find_prairie = require("users/emanuelespiritowork/SharedRepo:functions/int_find_prairie.js");
 var wide_vector = int_find_prairie.int_find_prairie(AOI);
+Map.centerObject(AOI);
 
 /*
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
