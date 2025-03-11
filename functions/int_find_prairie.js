@@ -7,14 +7,10 @@
 
 /******************************************************
  * REQUIRES THE FOLLOWING FUNCTIONS:
- * mosaic_to
- * s2_mask
- * clip_to
+ * mosaic_date
 *******************************************************/
 
-var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_to.js");
-var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
-var s2_mask = require("users/emanuelespiritowork/SharedRepo:functions/s2_mask.js");
+var mosaic_date = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_date.js");
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
