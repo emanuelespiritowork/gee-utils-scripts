@@ -18,18 +18,7 @@ var int_find_prairie = require("users/emanuelespiritowork/SharedRepo:functions/i
 Map.centerObject(AOI);
 
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
-var latest_date = ee.Date(s2_coll.sort({
-  property: "system:time_start", 
-  ascending: false
-}).first().get("system:time_start"));
-print(latest_date);
-  
-var start_date = latest_date.advance({
-  delta: -3,
-  unit: "month"
-});
-print(start_date);
-  
+print(s2_coll.first());
 
   //Map.addLayer(grass_mask);
 /*
