@@ -49,11 +49,11 @@ exports.mosaic_recent = function(img_coll, AOI, cloud_property_name, scale_to_us
  * Get date of one month earlier
  *******************************************************/  
   var start_date = latest_date.advance({
-    delta: -3,
+    delta: -5,
     unit: "month"
   });
 /******************************************************
- * Generate collection from three months earlier to the latest date and
+ * Generate collection from five months earlier to the latest date and
  * without clouds
  *******************************************************/  
   var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date)
