@@ -28,7 +28,7 @@ var mosaic_date = require("users/emanuelespiritowork/SharedRepo:functions/mosaic
 var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
 var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
 var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,100);
-
+Map.addLayer(mosaic);
 
 //var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 //var clipped = clip_to.clip_to(s2_coll,AOI,100);
@@ -36,4 +36,4 @@ var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,100);
 //Map.addLayer(clipped);
 
 //var mosaic = mosaic_date.mosaic_date(s2_coll,AOI,"2024-12-10","2024-12-31",100);
-var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
+//var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
