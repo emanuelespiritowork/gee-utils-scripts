@@ -60,7 +60,8 @@ exports.mosaic_recent_without_clouds = function(img_coll, AOI, cloud_property_na
  * without clouds
  *******************************************************/  
   var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date)
-  .filter(ee.Filter.lt(cloud_property_name,highest_cloud_value));
+  .filter(ee.Filter.lt(cloud_property_name,highest_cloud_value))
+  .sort(cloud_property_name,false);
 
 /******************************************************
  * Get mosaic
