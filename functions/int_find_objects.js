@@ -12,7 +12,7 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   });
   
   var clusterer = ee.Clusterer.wekaXMeans(2,10);
-  var sample = img.sample({
+  var sample = seg_alg.sample({
     region: sample_regions.geometry(),
     scale: scale_to_use
   });
