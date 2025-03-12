@@ -23,13 +23,15 @@ var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_t
  * cloudy images
 *******************************************************/
 
-exports.mosaic_recent_without_clouds = function(img_coll, AOI, cloud_property_name, scale_to_use){
+exports.mosaic_recent_without_clouds = function(img_coll, AOI, cloud_property_name, highest_cloud_value, scale_to_use){
 /******************************************************
  * Check variable types
  *******************************************************/
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
   scale_to_use = ee.Number(scale_to_use);
+  cloud_property_name = ee.String(cloud_property_name);
+  highest_cloud_value = ee.Number(highest_cloud_value);
 
 /******************************************************
  * Clip image collection
@@ -58,7 +60,7 @@ exports.mosaic_recent_without_clouds = function(img_coll, AOI, cloud_property_na
  * without clouds
  *******************************************************/  
   var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date)
-  .filter(ee.Filter.lt(cloud_property_name,10));
+  .filter(ee.Filter.lt(cloud_property_name,highest_cloud_value));
 
 /******************************************************
  * Get mosaic
