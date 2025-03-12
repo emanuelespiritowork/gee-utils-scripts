@@ -19,7 +19,8 @@ var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_t
  * Input: ee.ImageCollection
  * Output: ee.Image 
  * Description: this script is a function that makes a mosaic of an
- * ee.ImageCollection and clip it into AOI at a specific scale
+ * ee.ImageCollection and clip it into AOI at a specific scale removing
+ * cloudy images
 *******************************************************/
 
 exports.mosaic_recent_without_clouds = function(img_coll, AOI, cloud_property_name, scale_to_use){
@@ -49,11 +50,11 @@ exports.mosaic_recent_without_clouds = function(img_coll, AOI, cloud_property_na
  * Get date of one month earlier
  *******************************************************/  
   var start_date = latest_date.advance({
-    delta: -5,
+    delta: -2,
     unit: "month"
   });
 /******************************************************
- * Generate collection from five months earlier to the latest date and
+ * Generate collection from two months earlier to the latest date and
  * without clouds
  *******************************************************/  
   var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date)
