@@ -10,5 +10,6 @@ var AOI =
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 
-Map.addLayer(s2_coll.filterBounds(AOI).sort("system:time_start",false)
-.filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",10)).first());
+var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
+
+var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,10);
