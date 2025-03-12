@@ -35,4 +35,4 @@ var mosaic = mosaic_recent_without_clouds.mosaic_recent_without_clouds(s2_coll,A
 //Map.addLayer(clipped);
 
 //var mosaic = mosaic_date.mosaic_date(s2_coll,AOI,"2024-12-10","2024-12-31",100);
-var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,100);
+var null_var = plot_stretch.plot_stretch(mosaic,null,2,100);
