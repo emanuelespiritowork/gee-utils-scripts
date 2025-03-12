@@ -26,8 +26,8 @@ var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 
 var mosaic_date = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_date.js");
 var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
-var mosaic_recent_without_clouds = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent_without_clouds.js");
-var mosaic = mosaic_recent_without_clouds.mosaic_recent_without_clouds(s2_coll,AOI,"CLOUDY_PIXEL_PERCENTAGE",100);
+var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
+var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,100);
 
 
 //var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
