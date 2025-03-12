@@ -22,7 +22,7 @@ var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_t
  * ee.ImageCollection and clip it into AOI at a specific scale
 *******************************************************/
 
-exports.mosaic_recent = function(img_coll, AOI, scale_to_use){
+exports.mosaic_recent = function(img_coll, AOI, cloud_property_name, scale_to_use){
 /******************************************************
  * Check variable types
  *******************************************************/
@@ -49,13 +49,15 @@ exports.mosaic_recent = function(img_coll, AOI, scale_to_use){
  * Get date of one month earlier
  *******************************************************/  
   var start_date = latest_date.advance({
-    delta: -1,
+    delta: -3,
     unit: "month"
   });
 /******************************************************
- * Generate collection from a month earlier to the latest date
+ * Generate collection from three months earlier to the latest date and
+ * without clouds
  *******************************************************/  
-  var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date);
+  var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date)
+  .filter(ee.Filter.lt(cloud_property_name,10));
 
 /******************************************************
  * Get mosaic
