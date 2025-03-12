@@ -15,7 +15,8 @@
  * https://www.mdpi.com/2072-4292/12/11/1867
  * MIT License Copyright (c) 2020 ESA-PhiLab
  * Full license can be found at https://github.com/ESA-PhiLab/radiometric-slope-correction/blob/master/LICENSE
- * There is a possible error in this script. Might be better to check
+ * From the licensed code I made a correction due to a possible error in this script. 
+ * Might be better to check
  * https://github.com/ESA-PhiLab/radiometric-slope-correction/issues/3
 *******************************************************/
 // correction function for radiometric slope correction on a
