@@ -13,6 +13,9 @@
  * this script creates the scl_weight layer based on the default sen2rts
  * weights
  * See https://rdrr.io/github/ranghetti/sen2rts/man/scl_weights.html
+ * Copyright (C) 2021 Luigi Ranghetti
+ * GNU GPL-3
+ * Full license at https://rdrr.io/github/ranghetti/sen2rts/f/LICENSE.md
 *******************************************************/
 
 exports.s2_scl_weights = function(img_coll, AOI){
