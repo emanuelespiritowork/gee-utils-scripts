@@ -11,8 +11,15 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
     size: object_linear_dimension.divide(scale_to_use).divide(2)
   });
   
+  var clusters = seg_alg.reduceToVectors({
+    reducer: ee.Reducer.mean(),
+    bestEffort: true,
+    scale: object_linear_dimension.divide(scale_to_use).divide(2)
+  });
+  
   var clusterer = ee.Clusterer.wekaXMeans(2,10);
-  var sample = seg_alg.sample({
+  var sample = seg_alg.sampleRegions({
+    collection: clusters
     scale: scale_to_use
   });
   
