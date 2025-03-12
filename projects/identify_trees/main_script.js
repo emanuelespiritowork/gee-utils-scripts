@@ -11,5 +11,8 @@ var AOI =
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 
 var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js");
+var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
 
 var mosaic = mosaic_recent.mosaic_recent(s2_coll,AOI,10);
+
+var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
