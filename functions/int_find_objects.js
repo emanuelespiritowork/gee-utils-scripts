@@ -18,7 +18,7 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   
   var trained = clusterer.train(sample);
   
-  var classification = seg_alg.cluster(trained, "unsup");
+  var classification = image.cluster(trained, "unsup");
   
   return classification;
 };
