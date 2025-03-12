@@ -13,6 +13,6 @@ var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 var mosaic_recent_without_clouds = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent_without_clouds.js");
 var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
 
-var mosaic = mosaic_recent_without_clouds.mosaic_recent_without_clouds(s2_coll,AOI,10);
+var mosaic = mosaic_recent_without_clouds.mosaic_recent_without_clouds(s2_coll,AOI,"CLOUDY_PIXEL_PERCENTAGE",10);
 
 var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
