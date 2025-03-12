@@ -22,7 +22,7 @@ var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_t
  * ee.ImageCollection and clip it into AOI at a specific scale
 *******************************************************/
 
-exports.mosaic_recent = function(img_coll, AOI, cloud_property_name, scale_to_use){
+exports.mosaic_recent_without_clouds = function(img_coll, AOI, cloud_property_name, scale_to_use){
 /******************************************************
  * Check variable types
  *******************************************************/
