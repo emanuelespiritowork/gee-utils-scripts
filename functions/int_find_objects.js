@@ -33,12 +33,11 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   
   var classification = seg_alg.rename(ee.List(["clusters"])
   .cat(band_name)).cluster(trained,"classification")
-  .addBands(seg_alg.select("clusters"))
-  .set({
+  .addBands(seg_alg.select("clusters"));
+  
+  return classification.set({
     "system:time_start": image.get("system:time_start"),
     "min_class": classification.select("classification").reduceRegion({reducer: ee.Reducer.min()}),
     "max_class": classification.select("classification").reduceRegion({reducer: ee.Reducer.max()})
   });
-  
-  return classification;
 };
