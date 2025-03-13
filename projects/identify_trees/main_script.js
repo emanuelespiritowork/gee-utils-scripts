@@ -23,5 +23,5 @@ var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
 var fields = int_find_objects.int_find_objects(mosaic,1000,10);
 
 print(fields.select("classification"));
-Map.addLayer(fields.select("classification"),{min: fields.get("min_class"), max:fields.get("max_class"), palette: ["green","blue"]});
+Map.addLayer(fields.select("classification"),{min: fields.get("min_class").getInfo(), max: fields.get("max_class").getInfo(), palette: ["green","blue"]});
 Map.addLayer(fields.select("clusters"));
