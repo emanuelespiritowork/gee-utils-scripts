@@ -17,20 +17,26 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
     size: object_linear_dimension.divide(scale_to_use).divide(2)
   });
   
-  var clusters = seg_alg.reduceToVectors({
-    reducer: ee.Reducer.mean(),
+  Map.addLayer(clusters);
+  
+  var clusters_vectors = seg_alg.select("cluster").reduceToVectors({
     bestEffort: true,
     scale: object_linear_dimension.divide(scale_to_use).divide(2)
   });
   
-  Map.addLayer(clusters);
+  Map.addLayer(clusters_vectors);
+  
+  var class_image = image.reduceRegions({
+    collection: clusters_vectors,
+    reducer: ee.Reducer.mean(),
+    scale: object_linear_dimension.divide(scale_to_use).divide(2)
+  });
+  
+  Map.addLayer(class_image);
+  
+  var classification = class_image.cluster(trained);
   
   
   
-  
-  
-  
-  var classification = seg_alg.cluster(trained, "unsup");
-  
-  return seg_alg;
+  return classification;
 };
