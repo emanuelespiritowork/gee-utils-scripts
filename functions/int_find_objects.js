@@ -11,7 +11,7 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   var sample = image.sample({
     scale: object_linear_dimension.divide(scale_to_use).divide(2),
     region: image.geometry(),
-    numPixels: image.area().sqrt().divide(object_linear_dimension).multiply(13),
+    numPixels: image.pixelArea().sqrt().divide(object_linear_dimension).multiply(13),
     dropNulls: false
   });
   
