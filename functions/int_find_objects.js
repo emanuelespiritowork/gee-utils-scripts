@@ -12,7 +12,7 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   .clip(image.geometry())
   .reduceRegion({
     reducer: ee.Reducer.sum(),
-    region: image.geometry()
+    geometry: image.geometry()
   }).getNumber(area);
   
   print(area);
