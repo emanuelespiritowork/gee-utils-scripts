@@ -10,6 +10,8 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
     scale: scale_to_use
   });
   
+  print(sample);
+  
   var trained = clusterer.train(sample);
   
   var seg_alg = ee.Algorithms.Image.Segmentation.SNIC({
