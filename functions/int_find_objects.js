@@ -17,8 +17,9 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   
   Map.addLayer(clusters);
   
-  /*
+  
   var clusterer = ee.Clusterer.wekaXMeans(2,10);
+  
   var sample = seg_alg.sampleRegions({
     collection: clusters,
     scale: scale_to_use
@@ -27,6 +28,6 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   var trained = clusterer.train(sample);
   
   var classification = seg_alg.cluster(trained, "unsup");
-  */
+  
   return seg_alg;
 };
