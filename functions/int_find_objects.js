@@ -37,7 +37,7 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   
   return classification.set({
     "system:time_start": image.get("system:time_start"),
-    "min_class": classification.select("classification").reduceRegion({reducer: ee.Reducer.min()}),
-    "max_class": classification.select("classification").reduceRegion({reducer: ee.Reducer.max()})
+    "min_class": classification.select("classification").reduceRegion({reducer: ee.Reducer.min()}).getNumber("classification"),
+    "max_class": classification.select("classification").reduceRegion({reducer: ee.Reducer.max()}).getNumber("classification")
   });
 };
