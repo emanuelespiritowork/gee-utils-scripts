@@ -24,4 +24,4 @@ var sample = mosaic.sample();
 
 Map.addLayer(sample);
 
-Map.addLayer(fields);
+//Map.addLayer(fields);
