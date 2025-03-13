@@ -32,6 +32,8 @@ var sample = mosaic.sample({
   
 print(sample);
 
+Map.addLayer(sample);
+
 //var fields = int_find_objects.int_find_objects(mosaic,1000,10);
 
 //Map.addLayer(fields);
