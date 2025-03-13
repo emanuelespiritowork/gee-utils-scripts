@@ -8,12 +8,14 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   
   Map.addLayer(image.geometry());
   
-  var area = ee.Image(image.projection().nominalScale())
-  .reduceRegion({
+  var pixelArea = ee.Image.pixelArea();
+  var area = pixelArea.clip(image.geometry());
+  var flooded_area = area.reduceRegion({
     reducer: ee.Reducer.sum(),
     geometry: image.geometry(),
-    scale: image.projection().nominalScale()
-  });
+    scale: scale_to_use,
+    bestEffort: true
+  }).getNumber("area");
   
   print(area);
   
