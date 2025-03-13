@@ -1,5 +1,3 @@
-var class_unsup = require("users/emanuelespiritowork/SharedRepo:functions/class_unsup.js");
-
 exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   
   image = ee.Image(image);
