@@ -10,6 +10,8 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
     scale: scale_to_use
   });
   
+  var trained = clusterer.train(sample);
+  
   var seg_alg = ee.Algorithms.Image.Segmentation.SNIC({
     image: image,
     size: object_linear_dimension.divide(scale_to_use).divide(2)
@@ -26,7 +28,7 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   
   
   
-  var trained = clusterer.train(sample);
+  
   
   var classification = seg_alg.cluster(trained, "unsup");
   
