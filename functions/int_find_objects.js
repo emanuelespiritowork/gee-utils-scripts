@@ -39,7 +39,8 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   
   Map.addLayer(seg_alg);
   
-  var classification = seg_alg.cluster(trained);
+  var classification = seg_alg.rename(ee.List(["clusters"])
+  .merge(band_name)).cluster(trained);
   
   return classification;
 };
