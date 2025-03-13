@@ -21,7 +21,8 @@ var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
 var sample = mosaic.sample({
     scale: 5,
     region: mosaic.geometry(),
-    numPixels: 100
+    numPixels: 100,
+    seed: 15
   });
   
 print(sample);
