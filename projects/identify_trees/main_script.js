@@ -24,10 +24,11 @@ var sample = mosaic.sample({
     numPixels: 100,
     seed: 15,
     geometries: true,
-    projection: mosaic.projection()
+    projection: mosaic.projection(),
+    dropNulls: false
   });
   
-  print(mosaic.projection())
+  print(mosaic.projection());
   
 print(sample);
 
