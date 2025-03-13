@@ -18,22 +18,6 @@ var mosaic = mosaic_recent_without_clouds.mosaic_recent_without_clouds(s2_coll,A
 
 var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
 
-var sample = mosaic.sample({
-    scale: 5,
-    region: mosaic.geometry(),
-    numPixels: 100,
-    seed: 15,
-    geometries: true,
-    projection: mosaic.projection(),
-    dropNulls: false
-  });
-  
-  print(mosaic.projection());
-  
-print(sample);
+var fields = int_find_objects.int_find_objects(mosaic,1000,10);
 
-Map.addLayer(sample);
-
-//var fields = int_find_objects.int_find_objects(mosaic,1000,10);
-
-//Map.addLayer(fields);
+Map.addLayer(fields);
