@@ -11,8 +11,9 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   var area = ee.Image.pixelArea()
   .clip(image.geometry())
   .reduceRegion({
-    reducer: ee.Reducer.sum()
-  });
+    reducer: ee.Reducer.sum(),
+    region: image.geometry()
+  }).getNumber(area);
   
   print(area);
   
