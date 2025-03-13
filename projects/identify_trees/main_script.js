@@ -20,8 +20,4 @@ var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
 
 var fields = int_find_objects.int_find_objects(mosaic,1000,10);
 
-Map.addLayer(sample);
-
-print(sample);
-
-//Map.addLayer(fields);
+Map.addLayer(fields);
