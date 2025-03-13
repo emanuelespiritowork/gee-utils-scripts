@@ -27,6 +27,8 @@ var sample = mosaic.sample({
     projection: mosaic.projection()
   });
   
+  print(mosaic.projection())
+  
 print(sample);
 
 //var fields = int_find_objects.int_find_objects(mosaic,1000,10);
