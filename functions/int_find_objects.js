@@ -8,7 +8,9 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   
   Map.addLayer(image.geometry());
   
-  var sample = image.sample();
+  var sample = image.sample({
+    numPixels: 100
+  });
   
   print(sample);
   
