@@ -7,6 +7,7 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   var clusterer = ee.Clusterer.wekaXMeans(2,10);
   
   var sample = image.sample({
+    region: image.geometry(),
     scale: object_linear_dimension.divide(scale_to_use).divide(2)
   });
   
