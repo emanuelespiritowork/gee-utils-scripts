@@ -22,7 +22,8 @@ var sample = mosaic.sample({
     scale: 5,
     region: mosaic.geometry(),
     numPixels: 100,
-    seed: 15
+    seed: 15,
+    geometries: true
   });
   
 print(sample);
