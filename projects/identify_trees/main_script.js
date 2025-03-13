@@ -18,9 +18,7 @@ var mosaic = mosaic_recent_without_clouds.mosaic_recent_without_clouds(s2_coll,A
 
 var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
 
-//var fields = int_find_objects.int_find_objects(mosaic,1000,10);
-
-var sample = mosaic.sample();
+var fields = int_find_objects.int_find_objects(mosaic,1000,10);
 
 Map.addLayer(sample);
 
