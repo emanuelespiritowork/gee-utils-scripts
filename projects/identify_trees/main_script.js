@@ -22,4 +22,5 @@ var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
 
 var fields = int_find_objects.int_find_objects(mosaic,1000,10);
 
-Map.addLayer(fields);
+Map.addLayer(fields.select("classification"));
+Map.addLayer(fields.select("clusters"));
