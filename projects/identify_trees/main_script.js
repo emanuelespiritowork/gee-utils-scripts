@@ -14,7 +14,8 @@ var mosaic_recent_without_clouds = require("users/emanuelespiritowork/SharedRepo
 var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
 var int_find_objects = require("users/emanuelespiritowork/SharedRepo:functions/int_find_objects.js");
 
-var mosaic = mosaic_recent_without_clouds.mosaic_recent_without_clouds(s2_coll,AOI,"CLOUDY_PIXEL_PERCENTAGE",20,10);
+var mosaic = mosaic_recent_without_clouds.mosaic_recent_without_clouds(s2_coll,AOI,"CLOUDY_PIXEL_PERCENTAGE",20,10)
+.select(["B.*"]);
 
 var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
 
