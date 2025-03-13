@@ -48,6 +48,18 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
       reducer: ee.Reducer.max(), 
       geometry: classification.geometry(),
       scale: object_linear_dimension.divide(scale_to_use).divide(2)
-    }).getNumber("classification")
+    }).getNumber("classification"),
+    "min_clust": classification.select("clusters")
+    .reduceRegion({
+      reducer: ee.Reducer.min(), 
+      geometry: classification.geometry(),
+      scale: object_linear_dimension.divide(scale_to_use).divide(2)
+    }).getNumber("clusters"),
+    "max_clust": classification.select("clusters")
+    .reduceRegion({
+      reducer: ee.Reducer.max(), 
+      geometry: classification.geometry(),
+      scale: object_linear_dimension.divide(scale_to_use).divide(2)
+    }).getNumber("clusters")
   });
 };
