@@ -17,7 +17,7 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
     size: object_linear_dimension.divide(scale_to_use).divide(2)
   });
   
-  Map.addLayer(clusters);
+  Map.addLayer(seg_alg);
   
   var clusters_vectors = seg_alg.select("cluster").reduceToVectors({
     bestEffort: true,
@@ -35,8 +35,6 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   Map.addLayer(class_image);
   
   var classification = class_image.cluster(trained);
-  
-  
   
   return classification;
 };
