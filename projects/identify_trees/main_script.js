@@ -23,7 +23,8 @@ var sample = mosaic.sample({
     region: mosaic.geometry(),
     numPixels: 100,
     seed: 15,
-    geometries: true
+    geometries: true,
+    projection: mosaic.projection()
   });
   
 print(sample);
