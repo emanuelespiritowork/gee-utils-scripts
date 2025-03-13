@@ -43,6 +43,11 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
       geometry: classification.geometry(),
       scale: object_linear_dimension.divide(scale_to_use).divide(2)
     }).getNumber("classification"),
-    "max_class": classification.select("classification").reduceRegion({reducer: ee.Reducer.max()}).get("classification")
+    "max_class": classification.select("classification")
+    .reduceRegion({
+      reducer: ee.Reducer.max(), 
+      geometry: classification.geometry(),
+      scale: object_linear_dimension.divide(scale_to_use).divide(2)
+    }).getNumber("classification")
   });
 };
