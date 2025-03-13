@@ -43,7 +43,7 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   
   var classification = seg_alg.rename(ee.List(["clusters"])
   .cat(band_name)).cluster(trained,"classification")
-  .add(seg_alg.select("clusters"));
+  .addBands(seg_alg.select("clusters"));
   
   return classification;
 };
