@@ -19,8 +19,8 @@ var mosaic = mosaic_recent_without_clouds.mosaic_recent_without_clouds(s2_coll,A
 var null_var = plot_stretch.plot_stretch(mosaic,undefined,2,10);
 
 var sample = mosaic.sample({
-    scale: object_linear_dimension.divide(scale_to_use).divide(2),
-    region: image.geometry(),
+    scale: 5,
+    region: mosaic.geometry(),
     numPixels: 100
   });
   
