@@ -4,6 +4,12 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   object_linear_dimension = ee.Number(object_linear_dimension);
   scale_to_use = ee.Number(scale_to_use);
   
+  var clusterer = ee.Clusterer.wekaXMeans(2,10);
+  
+  var sample = image.sample({
+    scale: scale_to_use
+  });
+  
   var seg_alg = ee.Algorithms.Image.Segmentation.SNIC({
     image: image,
     size: object_linear_dimension.divide(scale_to_use).divide(2)
@@ -17,12 +23,8 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   
   Map.addLayer(clusters);
   
-  var clusterer = ee.Clusterer.wekaXMeans(2,10);
   
-  var sample = seg_alg.sampleRegions({
-    collection: clusters,
-    scale: scale_to_use
-  });
+  
   
   var trained = clusterer.train(sample);
   
