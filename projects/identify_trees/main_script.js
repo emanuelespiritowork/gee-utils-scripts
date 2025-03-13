@@ -24,4 +24,4 @@ var fields = int_find_objects.int_find_objects(mosaic,1000,10);
 
 print(fields.select("classification"));
 Map.addLayer(fields.select("classification"),{min: fields.get("min_class").getInfo(), max: fields.get("max_class").getInfo(), palette: ["green","blue"]});
-Map.addLayer(fields.select("clusters"));
+Map.addLayer(fields.select("clusters"),{min: fields.get("min_clust").getInfo(), max: fields.get("max_clust").getInfo(), palette: ["green","blue"]});
