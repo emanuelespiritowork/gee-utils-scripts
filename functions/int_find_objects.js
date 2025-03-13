@@ -8,8 +8,7 @@ exports.int_find_objects = function(image,object_linear_dimension,scale_to_use){
   
   Map.addLayer(image.geometry());
   
-  var area = ee.Image.pixelArea()
-  .clip(image.geometry())
+  var area = ee.Image(image.projection().nominalScale())
   .reduceRegion({
     reducer: ee.Reducer.sum(),
     geometry: image.geometry()
