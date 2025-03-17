@@ -81,6 +81,9 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var grass_mask = ndvi.gt(grass);
   
   //Map.addLayer(grass_mask);
+  
+  //grass differs from trees because of height. We could use difference between the DSM and the DTM
+  var global_dsm;
 /******************************************************
  * Fourth requirement: a prairie is wide
 *******************************************************/
