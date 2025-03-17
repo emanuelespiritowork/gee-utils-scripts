@@ -32,7 +32,7 @@ Map.centerObject(AOI);
 var dsm = ee.ImageCollection("JAXA/ALOS/AW3D30/V3_2")
 .filterBounds(AOI);
 Map.addLayer(dsm);
-Map.addLayer(image3);
+Map.addLayer(image3.geometry());
 
   //Map.addLayer(grass_mask);
 /*
