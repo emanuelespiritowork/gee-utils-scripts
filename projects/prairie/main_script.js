@@ -24,8 +24,11 @@ var AOI =
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var int_find_prairie = require("users/emanuelespiritowork/SharedRepo:functions/int_find_prairie.js");
-var wide_vector = int_find_prairie.int_find_prairie(AOI);
+//var wide_vector = int_find_prairie.int_find_prairie(AOI);
 Map.centerObject(AOI);
+var dsm = ee.ImageCollection("JAXA/ALOS/AW3D30/V3_2")
+.filterBounds(AOI);
+Map.addLayer(dsm);
 
   //Map.addLayer(grass_mask);
 /*
@@ -117,8 +120,8 @@ var compact_vector = compact.reduceRegions({
 
 var wide_vector = compact_vector.filter(ee.Filter.gt("count",200));
 */
-print(wide_vector);
-Map.addLayer(wide_vector);
+//print(wide_vector);
+//Map.addLayer(wide_vector);
 
 
 
