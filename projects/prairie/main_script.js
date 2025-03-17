@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = /* color: #d63000 */ee.FeatureCollection(
+var AOI = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[9.913613397802505, 46.2035982890461],
@@ -19,7 +22,10 @@ var AOI = /* color: #d63000 */ee.FeatureCollection(
             {
               "system:index": "1"
             })]),
-    DSM_1 = ee.Image("projects/ee-emanuelespiritowork/assets/DSM_w51060_s10");
+    DTM1 = ee.Image("projects/ee-emanuelespiritowork/assets/DSM_w51060_s10"),
+    DTM2 = ee.Image("projects/ee-emanuelespiritowork/assets/DSM_w51055_s10"),
+    DTM3 = ee.Image("projects/ee-emanuelespiritowork/assets/DSM_w51045_s10"),
+    DTM4 = ee.Image("projects/ee-emanuelespiritowork/assets/DSM_w51040_s10");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var int_find_prairie = require("users/emanuelespiritowork/SharedRepo:functions/int_find_prairie.js");
 //var wide_vector = int_find_prairie.int_find_prairie(AOI);
@@ -27,7 +33,10 @@ Map.centerObject(AOI);
 var dsm = ee.ImageCollection("JAXA/ALOS/AW3D30/V3_2")
 .filterBounds(AOI);
 Map.addLayer(dsm);
-Map.addLayer(DSM_1);
+Map.addLayer(DTM2);
+Map.addLayer(DTM1);
+Map.addLayer(DTM3);
+Map.addLayer(DTM4);
 
   //Map.addLayer(grass_mask);
 /*
