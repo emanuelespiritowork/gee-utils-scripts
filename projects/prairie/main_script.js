@@ -18,7 +18,8 @@ var AOI = /* color: #d63000 */ee.FeatureCollection(
                   [8.521374115430742, 46.29446805619842]]]),
             {
               "system:index": "1"
-            })]);
+            })]),
+    DSM_1 = ee.Image("projects/ee-emanuelespiritowork/assets/DSM_w51060_s10");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var int_find_prairie = require("users/emanuelespiritowork/SharedRepo:functions/int_find_prairie.js");
 //var wide_vector = int_find_prairie.int_find_prairie(AOI);
@@ -26,6 +27,7 @@ Map.centerObject(AOI);
 var dsm = ee.ImageCollection("JAXA/ALOS/AW3D30/V3_2")
 .filterBounds(AOI);
 Map.addLayer(dsm);
+Map.addLayer(DSM_1);
 
   //Map.addLayer(grass_mask);
 /*
