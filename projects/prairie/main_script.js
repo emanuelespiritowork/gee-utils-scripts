@@ -22,10 +22,7 @@ var AOI =
             {
               "system:index": "1"
             })]),
-    DTM1 = ee.Image("projects/ee-emanuelespiritowork/assets/DSM_w51060_s10"),
-    DTM2 = ee.Image("projects/ee-emanuelespiritowork/assets/DSM_w51055_s10"),
-    DTM3 = ee.Image("projects/ee-emanuelespiritowork/assets/DSM_w51045_s10"),
-    DTM4 = ee.Image("projects/ee-emanuelespiritowork/assets/DSM_w51040_s10");
+    image = ee.Image("projects/ee-emanuelespiritowork/assets/Italia_tinitaly");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var int_find_prairie = require("users/emanuelespiritowork/SharedRepo:functions/int_find_prairie.js");
 //var wide_vector = int_find_prairie.int_find_prairie(AOI);
@@ -33,10 +30,7 @@ Map.centerObject(AOI);
 var dsm = ee.ImageCollection("JAXA/ALOS/AW3D30/V3_2")
 .filterBounds(AOI);
 Map.addLayer(dsm);
-Map.addLayer(DTM2);
-Map.addLayer(DTM1);
-Map.addLayer(DTM3);
-Map.addLayer(DTM4);
+Map.addLayer(image);
 
   //Map.addLayer(grass_mask);
 /*
