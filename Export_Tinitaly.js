@@ -356,6 +356,6 @@ ee.data.createAsset({
       "type": "IMAGE",
       "updateTime": "2025-03-18T14:31:34.834726Z"
     }
-  ], "type": "ImageCollection"
+  ], "type": "ImageCollection", "asset_name": "image_coll_prova"
 }
 );
