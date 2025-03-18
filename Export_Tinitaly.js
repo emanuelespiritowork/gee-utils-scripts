@@ -357,4 +357,4 @@ ee.data.createAsset({
       "updateTime": "2025-03-18T14:31:34.834726Z"
     }
   ], "type": "ImageCollection"},
-  path: "projects/ee-emanuelespiritowork/assets/DTM/"});
+  path: "projects/ee-emanuelespiritowork/assets/EV/"});
