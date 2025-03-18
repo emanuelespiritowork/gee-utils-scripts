@@ -1,0 +1,1 @@
+ee.data.listAssets("projects/ee-emanuelespiritowork/assets/Tinitaly_DTM");
