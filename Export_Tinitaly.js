@@ -356,6 +356,5 @@ ee.data.createAsset({
       "type": "IMAGE",
       "updateTime": "2025-03-18T14:31:34.834726Z"
     }
-  ], "type": "ImageCollection", "asset_name": "image_coll_prova"
-}
+  ], "type": "ImageCollection"}, "projects/ee-emanuelespiritowork/assets/DTM/"
 );
