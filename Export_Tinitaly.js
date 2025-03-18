@@ -1,7 +1,7 @@
 var list = ee.data.listAssets("projects/ee-emanuelespiritowork/assets/DTM");
 print(list);
 ee.data.createAsset({
-  "assets": [
+  value: {"assets": [
     {
       "id": "projects/ee-emanuelespiritowork/assets/DTM/w39080_s10",
       "name": "projects/ee-emanuelespiritowork/assets/DTM/w39080_s10",
@@ -356,5 +356,6 @@ ee.data.createAsset({
       "type": "IMAGE",
       "updateTime": "2025-03-18T14:31:34.834726Z"
     }
-  ], "type": "ImageCollection"}, "projects/ee-emanuelespiritowork/assets/DTM/"
+  ], "type": "ImageCollection"}},
+  path: "projects/ee-emanuelespiritowork/assets/DTM/"}
 );
