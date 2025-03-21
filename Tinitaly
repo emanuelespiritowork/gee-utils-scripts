@@ -25,6 +25,5 @@ Map.addLayer(filled.geometry());
 var CopernicusItaly_DSM = ee.ImageCollection("COPERNICUS/DEM/GLO30")
 .filterBounds(mosaic);
 
-Map.addLayer(mosaic);
 
 Map.addLayer(CopernicusItaly_DSM);
