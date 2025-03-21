@@ -11,7 +11,8 @@ var mosaic = imageCollection.union();
 
 var filled = imageCollection.mosaic()
 .clip(mosaic)
-.not();
+.not()
+.reduceToVectors();
 
 Map.addLayer(filled);
 Map.addLayer(filled.geometry());
