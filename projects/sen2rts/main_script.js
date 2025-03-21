@@ -7,7 +7,7 @@ var geometry =
     /* color: #98ff00 */
     /* shown: false */
     ee.Geometry.Point([8.636188725666356, 45.18925615611129]),
-    AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/sen2rts/Lomellina");
+    AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/sen2rts/Jolanda");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 /******************************************************
  * Author: Emanuele Spirito
