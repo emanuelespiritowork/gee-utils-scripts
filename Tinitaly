@@ -10,7 +10,8 @@ var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_t
 var mosaic = imageCollection.union();
 
 var filled = imageCollection.mosaic()
-.clipToCollection(imageCollection);
+.clip(mosaic)
+.not();
 
 Map.addLayer(filled);
 Map.addLayer(filled.geometry());
