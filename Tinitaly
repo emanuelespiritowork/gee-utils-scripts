@@ -9,4 +9,9 @@ var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_t
 
 var mosaic = imageCollection.union();
 
+var CopernicusItaly_DSM;
+
+var NEON = ee.ImageCollection("projects/neon-prod-earthengine/assets/DEM/001");
+
 Map.addLayer(mosaic);
+Map.addLayer(NEON.select("DTM"));
