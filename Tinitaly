@@ -9,6 +9,11 @@ var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_t
 
 var mosaic = imageCollection.union();
 
+var filled = imageCollection.mosaic()
+.clip(mosaic);
+
+Map.addLayer(filled);
+
 var CopernicusItaly_DSM = ee.ImageCollection("COPERNICUS/DEM/GLO30")
 .filterBounds(mosaic);
 
