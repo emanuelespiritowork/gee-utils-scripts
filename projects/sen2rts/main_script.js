@@ -42,7 +42,7 @@ var time_series_export = require("users/emanuelespiritowork/SharedRepo:functions
 *******************************************************/
 
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-.filterDate("2020-09-01","2025-01-01");
+.filterDate("2016-09-01","2025-01-01");
 
 //Map.addLayer(s2_coll.filterBounds(geometry2),undefined,undefined,false);
 //print(s2_coll.filterBounds(geometry2));
