@@ -7,6 +7,10 @@ var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_t
 
 //var mosaic = mosaic_to.mosaic_to(imageCollection);
 
+var filled = imageCollection.mosaic();
+
+Map.addLayer(filled);
+
 var mosaic = imageCollection.union();
 
 var CopernicusItaly_DSM = ee.ImageCollection("COPERNICUS/DEM/GLO30")
