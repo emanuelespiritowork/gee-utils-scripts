@@ -13,6 +13,7 @@ print(mosaic);
 Map.addLayer(mosaic.geometry())
 
 var filled = imageCollection.mosaic()
+.not()
 .clip(mosaic.geometry());
 
 Map.addLayer(filled);
