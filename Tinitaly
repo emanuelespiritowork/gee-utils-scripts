@@ -5,6 +5,8 @@ Map.addLayer(imageCollection);
 
 var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_to.js");
 
-var mosaic = mosaic_to.mosaic_to(imageCollection);
+//var mosaic = mosaic_to.mosaic_to(imageCollection);
+
+var mosaic = imageCollection.union();
 
 Map.addLayer(mosaic);
