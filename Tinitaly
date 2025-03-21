@@ -11,6 +11,10 @@ var filled = imageCollection.mosaic();
 
 Map.addLayer(filled);
 
+var beach_geometry = filled.geometry();
+
+Map.addLayer(beach_geometry);
+
 var mosaic = imageCollection.union();
 
 var CopernicusItaly_DSM = ee.ImageCollection("COPERNICUS/DEM/GLO30")
