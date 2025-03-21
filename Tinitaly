@@ -3,3 +3,8 @@ var imageCollection = ee.ImageCollection("projects/ee-emanuelespiritowork/assets
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 Map.addLayer(imageCollection);
 
+var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_to.js");
+
+var mosaic = mosaic_to.mosaic_to(imageCollection);
+
+Map.addLayer(mosaic);
