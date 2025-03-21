@@ -9,9 +9,14 @@ var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_t
 
 var mosaic = imageCollection.union();
 
+Map.addLayer(mosaic);
+
 var filled = imageCollection.mosaic()
 .clip(mosaic)
-.not();
+.not()
+.set({
+  "system:footprint": mosaic
+});
 
 Map.addLayer(filled);
 Map.addLayer(filled.geometry());
