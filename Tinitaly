@@ -16,7 +16,7 @@ var filled = imageCollection.mosaic()
 .not()
 .clip(mosaic.geometry());
 
-print(filled);
+var beach = filled.reduceToVectors();
 
 Map.addLayer(filled);
 Map.addLayer(filled.geometry());
