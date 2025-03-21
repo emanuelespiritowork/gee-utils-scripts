@@ -10,14 +10,10 @@ var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_t
 var mosaic = imageCollection.union().first();
 
 print(mosaic);
+Map.addLayer(mosaic.geometry())
 
 var filled = imageCollection.mosaic()
-.clip(mosaic)
-.not()
-.set({
-  "system:footprint": mosaic
-})
-.clip(mosaic);
+.clip(mosaic.geometry());
 
 Map.addLayer(filled);
 Map.addLayer(filled.geometry());
