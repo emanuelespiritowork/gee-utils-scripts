@@ -24,6 +24,7 @@ var beach = filled.reduceToVectors({
 Map.addLayer(beach);
 
 var CopernicusItaly_DSM = ee.ImageCollection("COPERNICUS/DEM/GLO30")
-.filterBounds(beach);
+.filterBounds(beach)
+.clip(beach);
 
 Map.addLayer(CopernicusItaly_DSM);
