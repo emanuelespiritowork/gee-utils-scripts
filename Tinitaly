@@ -1,0 +1,4 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var imageCollection = ee.ImageCollection("projects/ee-emanuelespiritowork/assets/Tinitaly_DTM");
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+Map.addLayer(imageCollection);
