@@ -22,6 +22,7 @@ var beach = filled.reduceToVectors({
 });
 
 Map.addLayer(beach);
+print(beach);
 
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_to.js");
 
