@@ -23,6 +23,11 @@ var beach = filled.reduceToVectors({
 
 Map.addLayer(beach);
 print(beach);
+Export.table.toDrive({
+  collection: beach,
+  description: "Italy shapefile",
+  fileFormat: "SHP"
+})
 
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_to.js");
 
