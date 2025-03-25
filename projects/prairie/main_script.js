@@ -21,18 +21,11 @@ var AOI =
                   [8.521374115430742, 46.29446805619842]]]),
             {
               "system:index": "1"
-            })]),
-    image = ee.Image("projects/ee-emanuelespiritowork/assets/Italia_tinitaly"),
-    image2 = ee.Image("projects/ee-emanuelespiritowork/assets/DTM/DSM_w51060_s10"),
-    image3 = ee.Image("projects/ee-emanuelespiritowork/assets/w39580_s10");
+            })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var int_find_prairie = require("users/emanuelespiritowork/SharedRepo:functions/int_find_prairie.js");
 //var wide_vector = int_find_prairie.int_find_prairie(AOI);
 Map.centerObject(AOI);
-var dsm = ee.ImageCollection("JAXA/ALOS/AW3D30/V3_2")
-.filterBounds(AOI);
-Map.addLayer(dsm);
-Map.addLayer(image3.geometry());
 
   //Map.addLayer(grass_mask);
 /*
