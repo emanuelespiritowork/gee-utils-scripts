@@ -101,6 +101,8 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
     falseCase: mosaic_to.mosaic_to(clip_to.clip_to(global_dtm,AOI,scale_to_use))
   }));
   var clip_dsm = mosaic_to.mosaic_to(clip_to.clip_to(global_dsm,AOI,scale_to_use));
+  var dsm_delta_dtm = clip_dsm.subtract(clip_dtm);
+  var tall_mask = dsm_delta_dtm.lt(10);
   
 /******************************************************
  * Fourth requirement: a prairie is wide
