@@ -111,7 +111,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
  * Fourth requirement: a prairie is wide
 *******************************************************/
   
-  var slope_elev_grass_tall_mask = slope_mask.and(elevation_mask)
+  var slope_elev_grass_mask = slope_mask.and(elevation_mask)
   .and(grass_mask).and(tall_mask);
   
   var compact_circle = ee.Kernel.circle({
