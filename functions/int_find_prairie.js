@@ -100,14 +100,13 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   .merge(ee.ImageCollection(ee.Image("UK/EA/ENGLAND_1M_TERRAIN/2022").select("dtm")));
   //at the moment there is not a global dtm but italy and uk provide a dtm of their country
   var check_intersection = global_dtm.filterBounds(AOI);
-  
+  var clip_dsm = mosaic_to.mosaic_to(clip_to.clip_to(global_dsm,AOI,scale_to_use));
   var clip_dtm = ee.Image(ee.Algorithms.If({
     condition: ee.Number(check_intersection.size()).eq(ee.Number(0)),
-    trueCase: ee.Image(0).mask(ee.Image(0)),
+    trueCase: clip_dsm,
     falseCase: mosaic_to.mosaic_to(clip_to.clip_to(global_dtm,AOI,scale_to_use))
   }));
   Map.addLayer(clip_dtm,{},"clip_dtm");
-  var clip_dsm = mosaic_to.mosaic_to(clip_to.clip_to(global_dsm,AOI,scale_to_use));
   Map.addLayer(clip_dsm,{},"clip_dsm");
   var dsm_delta_dtm = clip_dsm.subtract(clip_dtm);
   var tall_mask = dsm_delta_dtm.lt(20);
