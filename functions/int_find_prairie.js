@@ -111,7 +111,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var clip_dsm = mosaic_to.mosaic_to(clip_to.clip_to(global_dsm,AOI,scale_to_use));
   Map.addLayer(clip_dsm,{},"clip_dsm");
   var dsm_delta_dtm = clip_dsm.subtract(clip_dtm);
-  var tall_mask = dsm_delta_dtm.lt(10);
+  var tall_mask = dsm_delta_dtm.lt(15);
   Map.addLayer(tall_mask,{},"tall_mask");
   
 /******************************************************
