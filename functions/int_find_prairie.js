@@ -1,3 +1,6 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var Tinitaly_DTM = ee.ImageCollection("projects/ee-emanuelespiritowork/assets/Tinitaly_DTM");
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /******************************************************
  * Author: Emanuele Spirito
  * Copyright: 2025
@@ -83,7 +86,8 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   //Map.addLayer(grass_mask);
   
   //grass differs from trees because of height. We could use difference between the DSM and the DTM
-  var global_dsm;
+  var global_dsm = ee.ImageCollection("COPERNICUS/DEM/GLO30");
+  
 /******************************************************
  * Fourth requirement: a prairie is wide
 *******************************************************/
