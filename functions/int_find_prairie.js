@@ -52,7 +52,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var dem_slope = ee.Terrain.slope(dem);
   var slope_mask = dem_slope.lt(slope);
 
-  Map.addLayer(slope_mask);
+  Map.addLayer(slope_mask,{},"slope_mask");
   
 /******************************************************
  * Second requirement: a prairie has a great panorama 
@@ -60,7 +60,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
 
   var elevation_mask = dem.gt(height);
   
-  Map.addLayer(elevation_mask);
+  Map.addLayer(elevation_mask,{},"elevation_mask");
 /******************************************************
  * Third requirement: a prairie has grass. We need to use not clouded s2_coll
 *******************************************************/
@@ -83,9 +83,8 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var ndvi = mosaic.normalizedDifference(["B8","B4"])
   .rename("ndvi");
   
-  Map.addLayer(mosaic);
-  
   var grass_mask = ndvi.gt(grass);
+  Map.addLayer(grass_mask,{},"grass_mask");
   
   //Map.addLayer(grass_mask);
   
