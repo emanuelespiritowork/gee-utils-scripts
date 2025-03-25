@@ -95,7 +95,8 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
     condition: ee.Number(check_intersection.size()).eq(ee.Number(0)),
     trueCase: null,
     falseCase: clip_to.clip_to(global_dtm,AOI,scale_to_use)
-  })
+  });
+  var clip_dsm = clip_to.clip_to(global_dsm,AOI,scale_to_use);
   
 /******************************************************
  * Fourth requirement: a prairie is wide
