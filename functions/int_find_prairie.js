@@ -11,9 +11,13 @@ var Tinitaly_DTM = ee.ImageCollection("projects/ee-emanuelespiritowork/assets/Ti
 /******************************************************
  * REQUIRES THE FOLLOWING FUNCTIONS:
  * mosaic_date
+ * clip_to
+ * mosaic_to
 *******************************************************/
 
 var mosaic_date = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_date.js");
+var mosaic_to = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_to.js");
+var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
@@ -94,9 +98,9 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   var clip_dtm = ee.Image(ee.Algorithms.If({
     condition: ee.Number(check_intersection.size()).eq(ee.Number(0)),
     trueCase: ee.Image(0).mask(),
-    falseCase: clip_to.clip_to(global_dtm,AOI,scale_to_use)
+    falseCase: mosaic_to.mosaic_to(clip_to.clip_to(global_dtm,AOI,scale_to_use))
   }));
-  var clip_dsm = clip_to.clip_to(global_dsm,AOI,scale_to_use);
+  var clip_dsm = mosaic_to.mosaic_to(clip_to.clip_to(global_dsm,AOI,scale_to_use));
   
 /******************************************************
  * Fourth requirement: a prairie is wide
