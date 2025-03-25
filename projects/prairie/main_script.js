@@ -1,14 +1,12 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.FeatureCollection(
+var AOI = /* color: #d63000 */ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[9.913613397802505, 46.2035982890461],
                   [9.922539789404068, 46.02700655643601],
                   [10.506188471044693, 46.02128524622097],
-                  [10.405251581396255, 46.29239365527874]]]),
+                  [10.405251581396255, 46.29239365527874],
+                  [10.1537403584167, 46.20455676405687]]]),
             {
               "system:index": "0"
             }),
@@ -18,13 +16,13 @@ var AOI =
                   [8.140972504102617, 46.26267140205124],
                   [8.195217499219805, 46.198547469778774],
                   [8.41357077070418, 46.196646358632066],
-                  [8.521374115430742, 46.29446805619842]]]),
+                  [8.425243744336992, 46.284978449509765]]]),
             {
               "system:index": "1"
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var int_find_prairie = require("users/emanuelespiritowork/SharedRepo:functions/int_find_prairie.js");
-//var wide_vector = int_find_prairie.int_find_prairie(AOI);
+var wide_vector = int_find_prairie.int_find_prairie(AOI);
 Map.centerObject(AOI);
 
   //Map.addLayer(grass_mask);
