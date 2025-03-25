@@ -90,7 +90,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   //Map.addLayer(grass_mask);
   
   //grass differs from trees because of height. We could use difference between the DSM and the DTM
-  var global_dsm = ee.ImageCollection("COPERNICUS/DEM/GLO30").select("DEM").rename("dsm");
+  var global_dsm = ee.ImageCollection("COPERNICUS/DEM/GLO30").select("DEM");
   var give_time = function(image){
     return image.set({
       "system:time_start": ee.Date.fromYMD(2023,01,01).millis()
