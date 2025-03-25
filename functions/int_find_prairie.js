@@ -103,7 +103,7 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   
   var clip_dtm = ee.Image(ee.Algorithms.If({
     condition: ee.Number(check_intersection.size()).eq(ee.Number(0)),
-    trueCase: ee.Image(0).mask(),
+    trueCase: ee.Image(0).mask(ee.Image(0)),
     falseCase: mosaic_to.mosaic_to(clip_to.clip_to(global_dtm,AOI,scale_to_use))
   }));
   Map.addLayer(clip_dtm,{},"clip_dtm");
