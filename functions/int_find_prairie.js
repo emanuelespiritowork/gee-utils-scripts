@@ -87,6 +87,9 @@ exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_gr
   
   //grass differs from trees because of height. We could use difference between the DSM and the DTM
   var global_dsm = ee.ImageCollection("COPERNICUS/DEM/GLO30");
+  var global_dtm = Tinitaly_DTM.merge(ee.ImageCollection(ee.Image("UK/EA/ENGLAND_1M_TERRAIN/2022").select("dtm")));
+  var check_intersection = global_dtm.filterBounds(AOI);
+  var clip_dtm = 
   
 /******************************************************
  * Fourth requirement: a prairie is wide
