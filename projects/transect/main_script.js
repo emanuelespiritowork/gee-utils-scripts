@@ -21,7 +21,8 @@ var image_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 
 var mosaic_recent = require('users/emanuelespiritowork/SharedRepo:functions/mosaic_recent.js');
 
-var img = mosaic_recent.mosaic_recent(image_coll.select(bands),polygon,100);
+//var img = mosaic_recent.mosaic_recent(image_coll.select(bands),polygon,100);
+var img = mosaic_recent.mosaic_recent(image_coll.select(['[^QA10].*']),polygon,100);
 //var img = ee.Image("CGIAR/SRTM90_V4")
 Map.centerObject(polygon);
 
