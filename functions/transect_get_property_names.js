@@ -9,14 +9,14 @@
  * PURPOSE OF THIS SCRIPT
  * Input: ee.FeatureCollection
  * Output: ee.List 
- * Description: find the list of property layer names of a time
- * series
+ * Description: find the list of property layer names of a transect
+ * slice
 *******************************************************/
-exports.time_series_get_property_names = function(time_series){
+exports.transect_get_property_names = function(transect_slice){
 /******************************************************
  * Check variable types
 *******************************************************/
-  time_series = ee.FeatureCollection(time_series);
+  transect_slice = ee.FeatureCollection(transect_slice);
 /******************************************************
  * Get property names
 *******************************************************/
