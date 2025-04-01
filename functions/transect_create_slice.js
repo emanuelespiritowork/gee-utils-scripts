@@ -80,7 +80,7 @@ exports.transect_create_slice = function(img, transect, scale_to_use) {
   var property_names = transect_get_property_names.transect_get_property_names(values)
   .cat(['distance']);
   
-  //print(property_names);
+  print(property_names);
   
 /******************************************************
  * Rename image values adding distance
