@@ -31,7 +31,7 @@ exports.transect_create_slice = function(img, transect, scale_to_use) {
 *******************************************************/
   var bands_names = img.bandNames();
   //print(bands_names);
-  var single_band_name = ee.List([bands_names.getString(0)]);
+  //var single_band_name = ee.List([bands_names.getString(0)]);
   //print(single_band_name);
 /******************************************************
  * Compute distance list
@@ -68,10 +68,12 @@ exports.transect_create_slice = function(img, transect, scale_to_use) {
 /******************************************************
  * Get image layer name
 *******************************************************/
-  var property_names = values.first().propertyNames()
-  .remove('distance')
-  .remove('system:index')
-  .cat(['distance']);
+  var property_names = bands_names.cat(['distance']);
+  
+  //var property_names = values.first().propertyNames()
+  //.remove('distance')
+  //.remove('system:index')
+  //.cat(['distance']);
   
   //print(property_names);
   
