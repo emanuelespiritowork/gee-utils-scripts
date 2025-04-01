@@ -6,6 +6,13 @@
 *******************************************************/
 
 /******************************************************
+ * REQUIRES THE FOLLOWING FUNCTIONS:
+ * transect_get_property_names
+*******************************************************/
+var transect_get_property_names = require("users/emanuelespiritowork/SharedRepo:functions/transect_get_property_names.js");
+
+
+/******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.Image
  * Output: ee.FeatureCollection
@@ -70,9 +77,7 @@ exports.transect_create_slice = function(img, transect, scale_to_use) {
 *******************************************************/
   print(values.first().propertyNames());
   
-  var property_names = values.first().propertyNames()
-  .remove('distance')
-  .remove('system:index')
+  var property_names = transect_get_property_names.transect_get_property_names(values)
   .cat(['distance']);
   
   //print(property_names);
