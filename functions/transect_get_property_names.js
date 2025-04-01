@@ -20,11 +20,11 @@ exports.transect_get_property_names = function(transect_slice){
 /******************************************************
  * Get property names
 *******************************************************/
-  var propertyNames = time_series.first().propertyNames();
+  var propertyNames = transect_slice.first().propertyNames();
   var counter = 0;
-  var counter_end = time_series.size();
+  var counter_end = transect_slice.size();
   while(counter <= counter_end){
-    feature = time_series.get(counter);
+    feature = transect_slice.get(counter);
     propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
   }
   
