@@ -9,8 +9,8 @@
  * REQUIRES THE FOLLOWING FUNCTIONS:
  * transect_get_property_names
 *******************************************************/
-var transect_get_property_names = require("users/emanuelespiritowork/SharedRepo:functions/transect_get_property_names.js");
 
+var transect_get_property_names = require("users/emanuelespiritowork/SharedRepo:functions/transect_get_property_names.js");
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
