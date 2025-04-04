@@ -2,7 +2,7 @@ var zonal_statistics = require("users/emanuelespiritowork/SharedRepo:functions/z
 
 exports.zonal_statistics_with_buffer = function(img, points, distance, reducer, scale_to_use){
   img = ee.Image(img);
-  points = ee.Geometry.MultiPoint(points);
+  points = ee.FeatureCollection(points);
   distance = ee.Number(distance);
   scale_to_use = ee.Number(scale_to_use);
   
@@ -11,7 +11,7 @@ exports.zonal_statistics_with_buffer = function(img, points, distance, reducer, 
     return point.buffer(distance);
   };
   
-  var collection_of_buffers = ee.FeatureCollection(points.map(create_buffer));
+  var collection_of_buffers = points.map(create_buffer);
   
   Map.addLayer(collection_of_buffers);
   
