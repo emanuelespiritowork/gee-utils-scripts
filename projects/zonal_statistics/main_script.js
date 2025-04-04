@@ -27,5 +27,7 @@ var AOI = /* color: #d63000 */ee.Geometry.MultiPolygon(
 var zonal_statistics = require("users/emanuelespiritowork/SharedRepo:functions/zonal_statistics.js");
 var zonal_statistics_with_buffer = require("users/emanuelespiritowork/SharedRepo:functions/zonal_statistics_with_buffer.js");
 
+print(zonal_statistics.zonal_statistics(image,AOI,ee.Reducer.mean(),30));
+
 Map.addLayer(image);
 Map.centerObject(image);
