@@ -21,9 +21,11 @@ var AOI = /* color: #d63000 */ee.Geometry.MultiPolygon(
          [11.924047915011776, 44.86040432629084],
          [11.95391699460162, 44.8788964574381],
          [11.953573671847714, 44.86235114619167],
-         [11.970053164035214, 44.83849806627663]]);
+         [11.970053164035214, 44.83849806627663]]),
+    image = ee.Image("projects/ee-emanuelespiritowork/assets/PRISMA/zonal_statistics");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-
+var zonal_statistics = require("users/emanuelespiritowork/SharedRepo:functions/zonal_statistics.js");
+var zonal_statistics_with_buffer = require("users/emanuelespiritowork/SharedRepo:functions/zonal_statistics_with_buffer.js");
 
 Map.addLayer(image);
 Map.centerObject(image);
