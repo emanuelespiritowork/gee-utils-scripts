@@ -36,18 +36,39 @@ var AOI = /* color: #d63000 */ee.FeatureCollection(
             {
               "system:index": "3"
             })]),
-    points = /* color: #98ff00 */ee.Geometry.MultiPoint(
-        [[11.941557375460995, 44.84239312143234],
-         [11.924047915011776, 44.86040432629084],
-         [11.95391699460162, 44.8788964574381],
-         [11.953573671847714, 44.86235114619167],
-         [11.970053164035214, 44.83849806627663]]),
+    points = /* color: #98ff00 */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Point([11.941557375460995, 44.84239312143234]),
+            {
+              "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([11.924047915011776, 44.86040432629084]),
+            {
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([11.95391699460162, 44.8788964574381]),
+            {
+              "system:index": "2"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([11.953573671847714, 44.86235114619167]),
+            {
+              "system:index": "3"
+            }),
+        ee.Feature(
+            ee.Geometry.Point([11.970053164035214, 44.83849806627663]),
+            {
+              "system:index": "4"
+            })]),
     image = ee.Image("projects/ee-emanuelespiritowork/assets/PRISMA/zonal_statistics");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var zonal_statistics = require("users/emanuelespiritowork/SharedRepo:functions/zonal_statistics.js");
 var zonal_statistics_with_buffer = require("users/emanuelespiritowork/SharedRepo:functions/zonal_statistics_with_buffer.js");
 
 print(zonal_statistics.zonal_statistics(image,AOI,ee.Reducer.mean(),30));
+print(zonal_statistics_with_buffer.zonal_statistics_with_buffer(image,points,100,ee.Reducer.mean(),30));
 
 Map.addLayer(image);
 Map.centerObject(image);
