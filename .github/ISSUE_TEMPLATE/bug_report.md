@@ -1,14 +1,19 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: ''
+title: "[BUG]"
 labels: ''
-assignees: ''
+assignees: emanuelespiritowork
 
 ---
 
 **Describe the bug**
 A clear and concise description of what the bug is.
+
+**Attach the code you used to call gee-utils-scripts code**
+(optional) 
+
+**Fill in the date you last tried**
 
 **To Reproduce**
 Steps to reproduce the behavior:
