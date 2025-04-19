@@ -64,6 +64,14 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   
   print(collection_of_collection_of);
   
+  var collection_of_collection_of_sorted = collection_of_collection_of
+  .sort('size',false);
+  
+  var longest_image_collection = ee.ImageCollection(collection_of_collection_of_sorted
+  .first());
+  
+  print(longest_image_collection);
+  
   var using_img_coll = select_IW_HV_D_H_filtered || select_IW_VH_D_H_filtered ||  select_IW_VH_A_H_filtered ||  select_IW_HV_A_H_filtered;
   print(using_img_coll);
   
