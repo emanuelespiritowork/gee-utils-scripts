@@ -19,7 +19,7 @@
  * https://sentinel.esa.int/web/sentinel/copernicus/sentinel-1/acquisition-plans-archive
 *******************************************************/
 
-exports.s1_select = function(img_coll, instrument, orbit, spatial_resolution){
+exports.s1_select_all_pol = function(img_coll, instrument, orbit, spatial_resolution){
 /******************************************************
  * Check variable types
 *******************************************************/
