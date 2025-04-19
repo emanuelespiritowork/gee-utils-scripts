@@ -24,8 +24,8 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   last_date = ee.Date(last_date);//"YYYY-MM-DD"
   AOI = ee.FeatureCollection(AOI);
   //optional inputs
-  var threshold = min_value || ee.Number(-16);
   var scale_to_use = min_scale || ee.Number(10);
+  var threshold = min_value || ee.Number(-16);
   var compactness = connectedness || ee.Number(10);
   var size = radius || ee.Number(3);
   
@@ -72,15 +72,6 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   
   print(longest_image_collection);
   
-  var using_img_coll = select_IW_HV_D_H_filtered || select_IW_VH_D_H_filtered ||  select_IW_VH_A_H_filtered ||  select_IW_HV_A_H_filtered;
-  print(using_img_coll);
-  
-  //var select_IW_A_H = s1_select_all_pol.s1_select_all_pol(s1_coll, "IW", "ASCENDING", "H");
-  //var select_IW_D_H = s1_select_all_pol.s1_select_all_pol(s1_coll, "IW", "DESCENDING", "H");
-  //print(select_IW_A_H.filterBounds(AOI));
-  //print(select_IW_D_H.filterBounds(AOI));
-
-  
-  
-  return 0;
+  return int_find_ships_any.int_find_ships_any(longest_image_collection,AOI,
+  scale_to_use, threshold, compactness, size);
 };
