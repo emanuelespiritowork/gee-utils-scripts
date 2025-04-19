@@ -72,19 +72,23 @@ var s1_speckle = require("users/emanuelespiritowork/SharedRepo:functions/s1_spec
 var int_find_ships_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships_any.js");
 var int_find_ships = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships.js");
 
-var select = s1_select.s1_select(s1_coll, "IW", "VH", "DESCENDING", "H");
+//var select = s1_select.s1_select(s1_coll, "IW", "VH", "DESCENDING", "H");
 
-var date_filtered = select.filterDate("2024-12-20","2025-02-27");
+//var date_filtered = select.filterDate("2024-12-20","2025-02-27");
 
-print(date_filtered.filterBounds(AOI2));
+//print(date_filtered.filterBounds(AOI2));
 
-var vector = int_find_ships_any.int_find_ships_any(date_filtered, AOI2, 10, -16, 10, 3);
+//var vector = int_find_ships_any.int_find_ships_any(date_filtered, AOI2, 10, -16, 10, 3);
 
-print(vector);
+//print(vector);
 
-Map.addLayer(vector);
+//Map.addLayer(vector);
 
 var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI2);
+
+print(an_vec);
+
+Map.addLayer(an_vec);
 
 /*
 var to_print = clip.first().select("VH");
