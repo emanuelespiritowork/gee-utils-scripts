@@ -70,6 +70,7 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
 var s1_speckle = require("users/emanuelespiritowork/SharedRepo:functions/s1_speckle.js");
 var int_find_ships_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships_any.js");
+var int_find_ships = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships.js");
 
 var select = s1_select.s1_select(s1_coll, "IW", "VH", "DESCENDING", "H");
 
@@ -82,6 +83,8 @@ var vector = int_find_ships_any.int_find_ships_any(date_filtered, AOI2, 10, -16,
 print(vector);
 
 Map.addLayer(vector);
+
+var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI2);
 
 /*
 var to_print = clip.first().select("VH");
