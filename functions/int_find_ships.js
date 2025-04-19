@@ -46,16 +46,20 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   
   
   var select_IW_VH_D_H_filtered = select_IW_VH_D_H.filterBounds(AOI)
-  .set({'size': select_IW_VH_D_H.filterBounds(AOI).size()});
+  .set({'size': select_IW_VH_D_H.filterBounds(AOI).size()})
+  .select('VH');
   
   var select_IW_HV_D_H_filtered = select_IW_HV_D_H.filterBounds(AOI)
-  .set({'size':select_IW_HV_D_H.filterBounds(AOI).size()});
+  .set({'size':select_IW_HV_D_H.filterBounds(AOI).size()})
+  .select('HV');
   
   var select_IW_VH_A_H_filtered = select_IW_VH_A_H.filterBounds(AOI)
-  .set({'size':select_IW_VH_A_H.filterBounds(AOI).size()});
+  .set({'size':select_IW_VH_A_H.filterBounds(AOI).size()})
+  .select('VH');
   
   var select_IW_HV_A_H_filtered = select_IW_HV_A_H.filterBounds(AOI)
-  .set({'size':select_IW_HV_A_H.filterBounds(AOI).size()});
+  .set({'size':select_IW_HV_A_H.filterBounds(AOI).size()})
+  .select('HV');
   
   var list_of_image_collections = ee.List([select_IW_VH_D_H_filtered,
   select_IW_HV_D_H_filtered,select_IW_VH_A_H_filtered,select_IW_HV_A_H_filtered]);
