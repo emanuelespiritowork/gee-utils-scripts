@@ -1,8 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = 
-    /* color: #bf04c2 */
-    /* shown: false */
-    ee.FeatureCollection(
+var AOI = /* color: #bf04c2 */ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[6.230007244228104, 49.409604249394256],
@@ -26,6 +23,7 @@ var AOI =
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",30));
+Map.centerObject(AOI);
 
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
