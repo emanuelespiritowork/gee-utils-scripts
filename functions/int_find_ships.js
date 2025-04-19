@@ -19,7 +19,7 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
  * Description: find ships in the AOI using a image collection of the past
 *******************************************************/
 
-exports.int_find_ships_s1 = function(img_coll, AOI, scale_to_use, threshold, connectedness, radius){
+exports.int_find_ships = function(img_coll, AOI, scale_to_use, threshold, connectedness, radius){
 /******************************************************
  * Check variable types
 *******************************************************/
