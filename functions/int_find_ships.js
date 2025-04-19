@@ -15,7 +15,7 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
  *        ee.String (optional), 
  *        ee.Number (optional)
  * Output: ee.FeatureCollection
- * Description: find ships in the AOI using a image collection of the past
+ * Description: find ships in the AOI in a period of time
 *******************************************************/
 
 exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_value, connectedness, radius){
