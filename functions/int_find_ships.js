@@ -11,7 +11,7 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
  *        ee.Number (optional), 
  *        ee.String (optional), 
  *        ee.Number (optional)
- * Output: ee.Image
+ * Output: ee.FeatureCollection
  * Description: find ships in the AOI using a image collection of the past
 *******************************************************/
 
