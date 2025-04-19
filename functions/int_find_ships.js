@@ -4,6 +4,8 @@
 *******************************************************/
 
 var int_find_ships_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships_any.js");
+var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_select.js");
+var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
@@ -27,7 +29,12 @@ exports.int_find_ships = function(start_date, end_date, AOI, min_scale, min_valu
   var size = radius || ee.Number(3);
   
   //create the img_coll to call the int_find_ships_any function
-  
+  var s1_coll = ee.ImageCollection("COPERNICUS/S1_GRD");
+  var select_IW_VH_D_H = s1_select.s1_select(s1_coll, "IW", "VH", "DESCENDING", "H");
+  var select_IW_HV_D_H = s1_select.s1_select(s1_coll, "IW", "HV", "DESCENDING", "H");
+  var select_IW_VH_A_H = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H");
+  var select_IW_HV_A_H = s1_select.s1_select(s1_coll, "IW", "HV", "ASCENDING", "H");
+
   
   
 };
