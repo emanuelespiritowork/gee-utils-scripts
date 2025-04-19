@@ -15,13 +15,14 @@ var int_find_ships_any = require("users/emanuelespiritowork/SharedRepo:functions
  * Description: find ships in the AOI using a image collection of the past
 *******************************************************/
 
-exports.int_find_ships = function(start_date, end_date, AOI, scale_to_use, threshold, connectedness, radius){
-  
+exports.int_find_ships = function(start_date, end_date, AOI, min_scale, min_value, connectedness, radius){
+  //mandatory inputs
   start_date = ee.Date(start_date);//"YYYY-MM-DD"
   last_date = ee.Date(last_date);//"YYYY-MM-DD"
   AOI = ee.FeatureCollection(AOI);
-  threshold = ee.Number(threshold);
-  scale_to_use = ee.Number(scale_to_use);
+  //optional inputs
+  var threshold = min_value || ee.Number(-16);
+  var scale_to_use = min_scale || ee.Number(10);
   
   var compactness = connectedness || ee.Number(10);
   
