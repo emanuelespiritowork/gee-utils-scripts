@@ -38,14 +38,16 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   
   
   if(select_IW_VH_D_H.filterBounds(AOI).size() === 0){
+    print("casoA");
     var select_IW_VH_D_H_filtered = null;
   }else{
-    var select_IW_VH_D_H_filtered = select_IW_VH_D_H.filterBounds(AOI)
+    var select_IW_VH_D_H_filtered = select_IW_VH_D_H.filterBounds(AOI);
   }
   print(select_IW_VH_D_H_filtered);
   
   if(select_IW_HV_D_H.filterBounds(AOI).size() === 0)
   {
+    print("casoA");
     var select_IW_HV_D_H_filtered = null;
   }else{
     var select_IW_HV_D_H_filtered = select_IW_HV_D_H.filterBounds(AOI);
@@ -53,6 +55,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   print(select_IW_HV_D_H_filtered);
   
   if(select_IW_VH_A_H.filterBounds(AOI).size() === 0){
+    print("casoA");
     var select_IW_VH_A_H_filtered = null;
   }else{
     var select_IW_VH_A_H_filtered = select_IW_VH_A_H.filterBounds(AOI);
@@ -60,6 +63,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   print(select_IW_VH_A_H_filtered);
   
   if(select_IW_HV_A_H.filterBounds(AOI).size() === 0){
+    print("casoA");
     var select_IW_HV_A_H_filtered = null;
   }else{
     var select_IW_HV_A_H_filtered = select_IW_HV_A_H.filterBounds(AOI);
