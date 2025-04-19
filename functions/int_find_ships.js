@@ -35,10 +35,10 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   var select_IW_VH_A_H = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H");
   var select_IW_HV_A_H = s1_select.s1_select(s1_coll, "IW", "HV", "ASCENDING", "H");
 
-  print(select_IW_VH_D_H);
-  print(select_IW_HV_D_H);
-  print(select_IW_VH_A_H);
-  print(select_IW_HV_A_H);
+  print(select_IW_VH_D_H.filterBounds(AOI));
+  print(select_IW_HV_D_H.filterBounds(AOI));
+  print(select_IW_VH_A_H.filterBounds(AOI));
+  print(select_IW_HV_A_H.filterBounds(AOI));
   
   return 0;
 };
