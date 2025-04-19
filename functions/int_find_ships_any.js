@@ -19,7 +19,7 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
  * Description: find ships in the AOI using a image collection of the past
 *******************************************************/
 
-exports.int_find_ships_any = function(img_coll, AOI, scale_to_use, threshold, connectedness, radius){
+exports.int_find_ships_any = function(img_coll, AOI, scale_to_use, threshold, compactness, size){
 /******************************************************
  * Check variable types
 *******************************************************/
@@ -27,23 +27,13 @@ exports.int_find_ships_any = function(img_coll, AOI, scale_to_use, threshold, co
   AOI = ee.FeatureCollection(AOI);
   threshold = ee.Number(threshold);
   scale_to_use = ee.Number(scale_to_use);
-  
-  var compactness = connectedness || ee.Number(10);
-  
-  var size = radius || 3;
+  compactness = ee.Number(compactness);
+  size = ee.Number(size);
 
 /******************************************************
  * Clip image collection
 *******************************************************/
   var clip = clip_to.clip_to(img_coll,AOI,scale_to_use);
-  
-/******************************************************
- * Select polarization
-*******************************************************/
-  var select = clip.select("VH") || clip.select("VV") || clip.select("HH") || clip.select("HV");
-  
-  //print(select);
-  
 /******************************************************
  * Define the kernel for compactness and maximization
 *******************************************************/
