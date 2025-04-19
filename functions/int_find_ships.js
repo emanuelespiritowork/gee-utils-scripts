@@ -53,7 +53,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   }
   print(select_IW_HV_D_H_filtered);
   
-  if(select_IW_VH_A_H.filterBounds(AOI).size() === 0){
+  if(select_IW_VH_A_H.filterBounds(AOI).size().eq(0)){
     print("casoA");
     var select_IW_VH_A_H_filtered = null;
   }else{
@@ -61,7 +61,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   }
   print(select_IW_VH_A_H_filtered);
   
-  if(select_IW_HV_A_H.filterBounds(AOI).size() === 0){
+  if(select_IW_HV_A_H.filterBounds(AOI).size().eq(0)){
     print("casoA");
     var select_IW_HV_A_H_filtered = null;
   }else{
