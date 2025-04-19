@@ -40,7 +40,10 @@ var AOI =
             {
               "system:index": "0"
             })]),
-    AOI2 = /* color: #98ff00 */ee.FeatureCollection(
+    AOI2 = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[49.857441252728115, 40.368903824977764],
