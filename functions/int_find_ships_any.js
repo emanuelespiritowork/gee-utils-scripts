@@ -33,7 +33,7 @@ exports.int_find_ships_any = function(img_coll, AOI, scale_to_use, threshold, co
 /******************************************************
  * Clip image collection
 *******************************************************/
-  var clip = clip_to.clip_to(img_coll,AOI,scale_to_use);
+  var select = clip_to.clip_to(img_coll,AOI,scale_to_use);
 /******************************************************
  * Define the kernel for compactness and maximization
 *******************************************************/
