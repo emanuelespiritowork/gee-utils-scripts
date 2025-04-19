@@ -26,12 +26,17 @@ var AOI =
     AOI2 = 
     /* color: #d63000 */
     /* shown: false */
-    ee.Geometry.Polygon(
-        [[[54.199830615772676, 38.53412006327752],
-          [54.16858824516721, 38.518810522372895],
-          [54.1818061711926, 38.49355609544011],
-          [54.25115736748166, 38.49355609544011],
-          [54.2561355474133, 38.52109373071671]]]);
+    ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[54.199830615772676, 38.53412006327752],
+                  [54.16858824516721, 38.518810522372895],
+                  [54.1818061711926, 38.49355609544011],
+                  [54.25115736748166, 38.49355609544011],
+                  [54.2561355474133, 38.52109373071671]]]),
+            {
+              "system:index": "0"
+            })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",30));
