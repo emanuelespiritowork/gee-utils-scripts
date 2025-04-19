@@ -31,23 +31,6 @@ exports.s1_select_all_pol = function(img_coll, instrument, orbit, spatial_resolu
    * Extra Wide Swath mode (EW)
    * Wave Mode (WV) not available for Ground Range Detected.
    *******/
-  polarization = ee.String(polarization); 
-  /*****
-   * SM: HH+HV, VV+VH, HH, VV
-   * IW: HH+HV, VV+VH, HH, VV
-   * EW: HH+HV, VV+VH, HH, VV
-   * WV:	HH, VV
-   * 
-   * It can be found an unique code for polarization:
-   * SH:	HH	
-   * SV:	VV	
-   * DH:	HH+HV	Typical for EW acquisitions
-   * DV:	VV+VH	Typical for IW acquisitions
-   * HH:	Partial Dual, HH only	HH+HV was acquired, only HH is available in this product
-   * HV:	Partial Dual, HV only	HH+HV was acquired, only HV is available in this product
-   * VV:	Partial Dual, VV only	VV+VH was acquired, only VV is available in this product
-   * VH:	Partial Dual, VH only	VV+VH was acquired, only VH is available in this product
-   *******/
   orbit = ee.String(orbit) || "DESCENDING"; 
   /******
    * ASCENDING	Data acquired when the satellite was traveling approx. 
