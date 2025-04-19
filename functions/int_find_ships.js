@@ -5,7 +5,7 @@
 
 var int_find_ships_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships_any.js");
 var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_select.js");
-var s1_select_all_pol = require("users/emanuelespiritowork/SharedRepo:functions/s1_select_all_pol.js");
+//var s1_select_all_pol = require("users/emanuelespiritowork/SharedRepo:functions/s1_select_all_pol.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 
 /******************************************************
@@ -35,16 +35,17 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   var select_IW_HV_D_H = s1_select.s1_select(s1_coll, "IW", "HV", "DESCENDING", "H");
   var select_IW_VH_A_H = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H");
   var select_IW_HV_A_H = s1_select.s1_select(s1_coll, "IW", "HV", "ASCENDING", "H");
-  
-  var select_IW_A_H = s1_select_all_pol.s1_select_all_pol(s1_coll, "IW", "ASCENDING", "H");
-  var select_IW_D_H = s1_select_all_pol.s1_select_all_pol(s1_coll, "IW", "DESCENDING", "H");
-
   print(select_IW_VH_D_H.filterBounds(AOI));
   print(select_IW_HV_D_H.filterBounds(AOI));
   print(select_IW_VH_A_H.filterBounds(AOI));
   print(select_IW_HV_A_H.filterBounds(AOI));
   
-  print(select_IW_A_H.filterBounds(AOI));
-  print(select_IW_D_H.filterBounds(AOI));
+  //var select_IW_A_H = s1_select_all_pol.s1_select_all_pol(s1_coll, "IW", "ASCENDING", "H");
+  //var select_IW_D_H = s1_select_all_pol.s1_select_all_pol(s1_coll, "IW", "DESCENDING", "H");
+  //print(select_IW_A_H.filterBounds(AOI));
+  //print(select_IW_D_H.filterBounds(AOI));
+
+  
+  
   return 0;
 };
