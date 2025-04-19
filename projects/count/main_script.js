@@ -74,11 +74,11 @@ var date_filtered = select.filterDate("2024-12-20","2025-02-27");
 
 print(date_filtered.filterBounds(AOI2));
 
-//var vector = int_find_ships.int_find_ships(date_filtered, AOI, 10, -16, 10, 3);
+var vector = int_find_ships.int_find_ships(date_filtered, AOI, 10, -16, 10, 3);
 
-//print(vector);
+print(vector);
 
-//Map.addLayer(vector);
+Map.addLayer(vector);
 
 /*
 var to_print = clip.first().select("VH");
