@@ -23,9 +23,7 @@ exports.int_find_ships = function(start_date, end_date, AOI, min_scale, min_valu
   //optional inputs
   var threshold = min_value || ee.Number(-16);
   var scale_to_use = min_scale || ee.Number(10);
-  
   var compactness = connectedness || ee.Number(10);
-  
   var size = radius || 3;
   
   //create the img_coll to call the int_find_ships_any function
