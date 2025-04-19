@@ -36,38 +36,33 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   var select_IW_VH_A_H = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H");
   var select_IW_HV_A_H = s1_select.s1_select(s1_coll, "IW", "HV", "ASCENDING", "H");
   
-  var select_IW_VH_D_H_filtered = select_IW_VH_D_H.filterBounds(AOI)
-  .set({'size': select_IW_VH_D_H.filterBounds(AOI).size()});
-  
-  print(select_IW_VH_D_H_filtered);
-  
+  /*
   var select_IW_VH_D_H_filtered = ee.Algorithms.If({
     condition: select_IW_VH_D_H.filterBounds(AOI).size().eq(0),
     trueCase: undefined,
     falseCase: select_IW_VH_D_H.filterBounds(AOI)
-  });
+  });*/
   //print(select_IW_VH_D_H_filtered);
   
-  var select_IW_HV_D_H_filtered = ee.Algorithms.If({
-    condition: select_IW_HV_D_H.filterBounds(AOI).size().eq(0),
-    trueCase: undefined,
-    falseCase: select_IW_HV_D_H.filterBounds(AOI)
-  });
-  //print(select_IW_HV_D_H_filtered);
   
-  var select_IW_VH_A_H_filtered = ee.Algorithms.If({
-    condition: select_IW_VH_A_H.filterBounds(AOI).size().eq(0),
-    trueCase: undefined,
-    falseCase: select_IW_VH_A_H.filterBounds(AOI)
-  });
-  //print(select_IW_VH_A_H_filtered);
+  var select_IW_VH_D_H_filtered = select_IW_VH_D_H.filterBounds(AOI)
+  .set({'size': select_IW_VH_D_H.filterBounds(AOI).size()});
   
-  var select_IW_HV_A_H_filtered = ee.Algorithms.If({
-    condition: select_IW_HV_A_H.filterBounds(AOI).size().eq(0),
-    trueCase: undefined,
-    falseCase: select_IW_HV_A_H.filterBounds(AOI)
-  });
-  //print(select_IW_HV_A_H_filtered);
+  var select_IW_HV_D_H_filtered = select_IW_HV_D_H.filterBounds(AOI)
+  .set({'size':select_IW_HV_D_H.filterBounds(AOI).size()});
+  
+  var select_IW_VH_A_H_filtered = select_IW_VH_A_H.filterBounds(AOI)
+  .set({'size':select_IW_VH_A_H.filterBounds(AOI).size()});
+  
+  var select_IW_HV_A_H_filtered = select_IW_HV_A_H.filterBounds(AOI)
+  .set({'size':select_IW_HV_A_H.filterBounds(AOI).size()});
+  
+  var list_of_image_collections = ee.List([select_IW_VH_D_H_filtered,
+  select_IW_HV_D_H_filtered,select_IW_VH_A_H_filtered,select_IW_HV_A_H_filtered]);
+  
+  var collection_of_collection_of = ee.FeatureCollection(list_of_image_collections);
+  
+  print(collection_of_collection_of);
   
   var using_img_coll = select_IW_HV_D_H_filtered || select_IW_VH_D_H_filtered ||  select_IW_VH_A_H_filtered ||  select_IW_HV_A_H_filtered;
   print(using_img_coll);
