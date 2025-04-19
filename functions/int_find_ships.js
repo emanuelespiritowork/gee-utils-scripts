@@ -14,7 +14,8 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
  *        ee.String(mandatory),
  *        ee.FeatureCollection (mandatory), 
  *        ee.Number (optional), 
- *        ee.String (optional), 
+ *        ee.Number (optional), 
+ *        ee.Number (optional),
  *        ee.Number (optional)
  * Output: ee.FeatureCollection
  * Description: find ships in the AOI in a period of time
