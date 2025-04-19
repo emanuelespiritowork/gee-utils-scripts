@@ -1,9 +1,9 @@
 /******************************************************
  * REQUIRES THE FOLLOWING FUNCTIONS:
- * clip_to
+ * int_find_ships_any
 *******************************************************/
 
-var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
+var int_find_ships_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships_any.js");
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
@@ -15,8 +15,10 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
  * Description: find ships in the AOI using a image collection of the past
 *******************************************************/
 
-exports.int_find_ships = function(AOI, scale_to_use, threshold, connectedness, radius){
+exports.int_find_ships = function(start_date, end_date, AOI, scale_to_use, threshold, connectedness, radius){
   
+  start_date = ee.Date(start_date);//"YYYY-MM-DD"
+  last_date = ee.Date(last_date);//"YYYY-MM-DD"
   AOI = ee.FeatureCollection(AOI);
   threshold = ee.Number(threshold);
   scale_to_use = ee.Number(scale_to_use);
@@ -24,5 +26,9 @@ exports.int_find_ships = function(AOI, scale_to_use, threshold, connectedness, r
   var compactness = connectedness || ee.Number(10);
   
   var size = radius || 3;
+  
+  //create the img_coll to call the int_find_ships_any function
+  
+  
   
 };
