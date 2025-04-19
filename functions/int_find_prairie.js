@@ -28,10 +28,12 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
 
 exports.int_find_prairie = function(AOI, min_scale, min_wide, min_height, min_grass, max_slope, min_compactness){
 /******************************************************
- * Check variable types
+ * Mandatory inputs
 *******************************************************/
   AOI = ee.FeatureCollection(AOI);
-
+/******************************************************
+ * Optional inputs
+*******************************************************/
   var scale_to_use = min_scale || ee.Number(10);
   var wide = min_wide || ee.Number(200);
   var height = min_height || ee.Number(300);
