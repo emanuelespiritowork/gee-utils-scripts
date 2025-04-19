@@ -39,28 +39,28 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   
   var select_IW_VH_D_H_filtered = ee.Algorithms.If({
     condition: select_IW_VH_D_H.filterBounds(AOI).size().eq(0),
-    trueCase: null,
+    trueCase: undefined,
     falseCase: select_IW_VH_D_H.filterBounds(AOI)
   });
   print(select_IW_VH_D_H_filtered);
   
   var select_IW_HV_D_H_filtered = ee.Algorithms.If({
     condition: select_IW_HV_D_H.filterBounds(AOI).size().eq(0),
-    trueCase: null,
+    trueCase: undefined,
     falseCase: select_IW_HV_D_H.filterBounds(AOI)
   });
   print(select_IW_HV_D_H_filtered);
   
   var select_IW_VH_A_H_filtered = ee.Algorithms.If({
     condition: select_IW_VH_A_H.filterBounds(AOI).size().eq(0),
-    trueCase: null,
+    trueCase: undefined,
     falseCase: select_IW_VH_A_H.filterBounds(AOI)
   });
   print(select_IW_VH_A_H_filtered);
   
   var select_IW_HV_A_H_filtered = ee.Algorithms.If({
     condition: select_IW_HV_A_H.filterBounds(AOI).size().eq(0),
-    trueCase: null,
+    trueCase: undefined,
     falseCase: select_IW_HV_A_H.filterBounds(AOI)
   });
   print(select_IW_HV_A_H_filtered);
