@@ -17,7 +17,7 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
  * Description: find ships in the AOI using a image collection of the past
 *******************************************************/
 
-exports.int_find_ships = function(start_date, end_date, AOI, min_scale, min_value, connectedness, radius){
+exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_value, connectedness, radius){
   //mandatory inputs
   start_date = ee.Date(start_date);//"YYYY-MM-DD"
   last_date = ee.Date(last_date);//"YYYY-MM-DD"
@@ -35,6 +35,10 @@ exports.int_find_ships = function(start_date, end_date, AOI, min_scale, min_valu
   var select_IW_VH_A_H = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H");
   var select_IW_HV_A_H = s1_select.s1_select(s1_coll, "IW", "HV", "ASCENDING", "H");
 
+  print(select_IW_VH_D_H);
+  print(select_IW_HV_D_H);
+  print(select_IW_VH_A_H);
+  print(select_IW_HV_A_H);
   
-  
+  return 0;
 };
