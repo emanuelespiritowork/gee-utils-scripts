@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = /* color: #bf04c2 */ee.FeatureCollection(
+var AOI = 
+    /* color: #bf04c2 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[6.230007244228104, 49.409604249394256],
@@ -19,11 +22,17 @@ var AOI = /* color: #bf04c2 */ee.FeatureCollection(
                   [6.264854503749588, 49.418080868036526]]]),
             {
               "system:index": "1"
-            })]);
+            })]),
+    AOI2 = /* color: #d63000 */ee.Geometry.Polygon(
+        [[[54.199830615772676, 38.53412006327752],
+          [54.16858824516721, 38.518810522372895],
+          [54.1818061711926, 38.49355609544011],
+          [54.25115736748166, 38.49355609544011],
+          [54.2561355474133, 38.52109373071671]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",30));
-Map.centerObject(AOI);
+Map.centerObject(AOI2);
 
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
@@ -31,7 +40,7 @@ var mosaic_recent = require("users/emanuelespiritowork/SharedRepo:functions/mosa
 var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
 
-var clip = clip_to.clip_to(s2_coll, AOI, 10);
+var clip = clip_to.clip_to(s2_coll, AOI2, 10);
 
 var scale = s2_scale.s2_scale(clip);
 
@@ -44,7 +53,7 @@ var null_var = plot_stretch.plot_stretch(clip.first(), ["B4","B3","B2"], 2, 10);
 
 var int_find_plumes = require("users/emanuelespiritowork/SharedRepo:functions/int_find_plumes.js");
 
-var score = int_find_plumes.int_find_plumes(scale, AOI, 10, "B1", 0.2);
+var score = int_find_plumes.int_find_plumes(scale, AOI2, 10, "B1", 0.2);
 
 print(score);
 
