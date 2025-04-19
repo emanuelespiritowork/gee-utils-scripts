@@ -31,7 +31,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   
   //create the img_coll to call the int_find_ships_any function
   var s1_coll = ee.ImageCollection("COPERNICUS/S1_GRD")
-  .filterDate(start_date,end_date);
+  .filterDate(start_date,last_date);
   var select_IW_VH_D_H = s1_select.s1_select(s1_coll, "IW", "VH", "DESCENDING", "H");
   var select_IW_HV_D_H = s1_select.s1_select(s1_coll, "IW", "HV", "DESCENDING", "H");
   var select_IW_VH_A_H = s1_select.s1_select(s1_coll, "IW", "VH", "ASCENDING", "H");
