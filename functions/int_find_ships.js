@@ -10,7 +10,9 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.FeatureCollection (mandatory), 
+ * Input: ee.String(mandatory),
+ *        ee.String(mandatory),
+ *        ee.FeatureCollection (mandatory), 
  *        ee.Number (optional), 
  *        ee.String (optional), 
  *        ee.Number (optional)
