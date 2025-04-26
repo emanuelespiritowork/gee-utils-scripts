@@ -10,5 +10,5 @@ exports.int_find_plumes = function(AOI, scale_to_use, aerosol_band, threshold){
   var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
   .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",30));
   
-  var clip = clip_to.clip_to(s2_coll, AOI2, 10);
+  var clip = clip_to.clip_to(s2_coll, AOI2, scale_to_use);
 }
