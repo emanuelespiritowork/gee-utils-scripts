@@ -19,7 +19,7 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
  * Description: find plumes in the AOI using a image collection of the past
 *******************************************************/
 
-exports.int_find_plumes_any = function(img_coll, AOI, scale_to_use, aerosol_band, threshold){
+exports.int_find_plumes_any = function(img_coll, AOI, scale_to_use, threshold, , aerosol_band){
 /******************************************************
  * Check variable types
 *******************************************************/
@@ -30,7 +30,8 @@ exports.int_find_plumes_any = function(img_coll, AOI, scale_to_use, aerosol_band
 
 /******************************************************
  * Set the threshold for the aerosol band
-*******************************************************/  
+*******************************************************/
+  var cloud_coverage = max_cloud || ee.Number(30);
   var b1_threshold = threshold || ee.Number(0.2);
   
 /******************************************************
