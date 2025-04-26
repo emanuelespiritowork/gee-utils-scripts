@@ -62,9 +62,9 @@ var null_var = plot_stretch.plot_stretch(clip.first(), ["B4","B3","B2"], 2, 10);
 var int_find_plumes_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_plumes_any.js");
 var int_find_plumes = require("users/emanuelespiritowork/SharedRepo:functions/int_find_plumes.js");
 
-var score = int_find_plumes_any.int_find_plumes_any(scale, AOI2, 10, 0.2, "B1");
+//var score = int_find_plumes_any.int_find_plumes_any(scale, AOI2, 10, 0.2, "B1");
 
-//var score = int_find_plumes.int_find_plumes(AOI2);
+var score = int_find_plumes.int_find_plumes(AOI2);
 
 print(score);
 
