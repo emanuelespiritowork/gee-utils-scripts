@@ -19,7 +19,7 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
  * Description: find plumes in the AOI using a image collection of the past
 *******************************************************/
 
-exports.int_find_plumes_any = function(img_coll, AOI, scale_to_use, threshold, , aerosol_band){
+exports.int_find_plumes_any = function(img_coll, AOI, scale_to_use, threshold, aerosol_band){
 /******************************************************
  * Check variable types
 *******************************************************/
