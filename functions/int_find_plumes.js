@@ -28,5 +28,5 @@ exports.int_find_plumes = function(AOI, min_scale, min_value, max_cloud, band){
   
   var scale = s2_scale.s2_scale(clip);
   
-  return int_find_plumes_any.int_find_plumes_any(scale, AOI, scale_to_use, aerosol_band, threshold);
+  return int_find_plumes_any.int_find_plumes_any(scale, AOI, scale_to_use, threshold, aerosol_band);
 }
