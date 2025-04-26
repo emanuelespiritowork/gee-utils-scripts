@@ -31,7 +31,6 @@ exports.int_find_plumes_any = function(img_coll, AOI, scale_to_use, threshold, a
 /******************************************************
  * Set the threshold for the aerosol band
 *******************************************************/
-  var cloud_coverage = max_cloud || ee.Number(30);
   var b1_threshold = threshold || ee.Number(0.2);
   
 /******************************************************
