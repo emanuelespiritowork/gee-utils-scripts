@@ -7,7 +7,7 @@ var int_find_plumes_any = require("users/emanuelespiritowork/SharedRepo:function
 //var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
 
 
-exports.int_find_plumes = function(AOI, min_scale, min_value, band){
+exports.int_find_plumes = function(AOI, min_scale, min_value, max_cloud, band){
   /******************************************************
   * Mandatory inputs
   *******************************************************/
@@ -17,11 +17,12 @@ exports.int_find_plumes = function(AOI, min_scale, min_value, band){
   *******************************************************/
   scale_to_use = min_scale || ee.Number(10);
   threshold = min_value || ee.Number(0.2);
+  cloud_coverage = max_cloud || ee.Number(30);
   aerosol_band = band || ee.String("B1");
   
   
   var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-  .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",30));
+  .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",cloud_coverage));
   
   var clip = clip_to.clip_to(s2_coll, AOI, scale_to_use);
   
