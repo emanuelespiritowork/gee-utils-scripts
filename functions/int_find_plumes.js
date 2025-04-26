@@ -15,10 +15,10 @@ exports.int_find_plumes = function(AOI, min_scale, min_value, max_cloud, band){
   /******************************************************
   * Optional inputs
   *******************************************************/
-  scale_to_use = min_scale || ee.Number(10);
-  threshold = min_value || ee.Number(0.2);
-  cloud_coverage = max_cloud || ee.Number(30);
-  aerosol_band = band || ee.String("B1");
+  var scale_to_use = min_scale || ee.Number(10);
+  var threshold = min_value || ee.Number(0.2);
+  var cloud_coverage = max_cloud || ee.Number(30);
+  var aerosol_band = band || ee.String("B1");
   
   
   var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
