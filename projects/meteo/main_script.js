@@ -1,0 +1,12 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var AOI = /* color: #d63000 */ee.Geometry.Polygon(
+        [[[8.168755633607997, 43.97628891605554],
+          [8.122063739076747, 43.96640551782097],
+          [8.124810321107997, 43.94527423906807],
+          [8.1771670410787, 43.94119540799434],
+          [8.22437391974081, 43.9630694996992]]]);
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
+var s1_longest_series = require("users/emanuelespiritowork/SharedRepo:functions/s1_longest_series.js");
+
+var s1_coll = s1_longest_series.s1_longest_series("2015-06-13","2025-04-01",AOI);
+
