@@ -8,14 +8,10 @@
 /******************************************************
  * REQUIRES THE FOLLOWING FUNCTIONS:
  * int_find_ships_any
- * s1_select
- * clip_to
  * s1_longest_series
 *******************************************************/
 
 var int_find_ships_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships_any.js");
-var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_select.js");
-var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var s1_longest_series = require("users/emanuelespiritowork/SharedRepo:functions/s1_longest_series.js");
 
 /******************************************************
