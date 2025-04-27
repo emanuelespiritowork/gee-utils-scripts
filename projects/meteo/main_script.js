@@ -18,6 +18,6 @@ Map.centerObject(AOI);
 
 Map.addLayer(s1_coll.first());
 
-var radar = int_find_radar_any.int_find_radar_any(s1_coll,AOI);
+var radar = int_find_radar_any.int_find_radar_any(s1_coll,AOI,1);
 
 Map.addLayer(radar);
