@@ -32,7 +32,7 @@ exports.int_find_radar = function(start_date, last_date, AOI, min_value, min_sca
   AOI = ee.FeatureCollection(AOI);
   //optional inputs
   var scale_to_use = min_scale || ee.Number(10);
-  var threshold = min_valuesh || ee.Number(0);
+  var threshold = min_value || ee.Number(0);
   
   var s1_series = s1_longest_series.s1_longest_series(start_date,last_date,AOI);
   
