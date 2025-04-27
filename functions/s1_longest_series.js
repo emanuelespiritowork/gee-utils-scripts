@@ -1,3 +1,5 @@
+var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_select.js");
+
 exports.s1_longest_series = function(start_date,last_date,AOI){
   //mandatory inputs
   start_date = ee.Date(start_date);//"YYYY-MM-DD"
