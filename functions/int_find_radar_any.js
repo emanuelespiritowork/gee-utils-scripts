@@ -14,5 +14,5 @@ exports.int_find_radar_any = function(img_coll, AOI, min_value, min_scale){
   
   var radar_location = max_value_pixel.gt(threshold);
   
-  return clip_to.clip_to(radar_location,AOI);
+  return clip_to.clip_to(radar_location,AOI,scale_to_use);
 };
