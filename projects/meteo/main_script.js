@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = /* color: #d63000 */ee.Geometry.Polygon(
+var AOI = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Geometry.Polygon(
         [[[8.168755633607997, 43.97628891605554],
           [8.122063739076747, 43.96640551782097],
           [8.124810321107997, 43.94527423906807],
@@ -10,6 +13,8 @@ var s1_longest_series = require("users/emanuelespiritowork/SharedRepo:functions/
 var int_find_radar_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_radar_any.js");
 
 var s1_coll = s1_longest_series.s1_longest_series("2015-06-13","2025-04-01",AOI);
+
+Map.addLayer(s1_coll.first());
 
 var radar = int_find_radar_any.int_find_radar_any(s1_coll,AOI);
 
