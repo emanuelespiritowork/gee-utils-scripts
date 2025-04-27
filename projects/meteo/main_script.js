@@ -14,6 +14,8 @@ var int_find_radar_any = require("users/emanuelespiritowork/SharedRepo:functions
 
 var s1_coll = s1_longest_series.s1_longest_series("2015-06-13","2020-12-21",AOI);
 
+Map.centerObject(AOI);
+
 Map.addLayer(s1_coll.first());
 
 var radar = int_find_radar_any.int_find_radar_any(s1_coll,AOI);
