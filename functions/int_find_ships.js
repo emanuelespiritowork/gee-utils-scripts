@@ -10,6 +10,7 @@
  * int_find_ships_any
  * s1_select
  * clip_to
+ * s1_longest_series
 *******************************************************/
 
 var int_find_ships_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships_any.js");
