@@ -41,8 +41,8 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, min_val
   var compactness = connectedness || ee.Number(10);
   var size = radius || ee.Number(3);
   
-  var s1_longest_series = s1_longest_series.s1_longest_series(start_date,last_date,AOI);
+  var s1_series = s1_longest_series.s1_longest_series(start_date,last_date,AOI);
   
-  return int_find_ships_any.int_find_ships_any(s1_longest_series,AOI,
+  return int_find_ships_any.int_find_ships_any(s1_series,AOI,
   scale_to_use, threshold, compactness, size);
 };
