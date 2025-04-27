@@ -7,6 +7,10 @@ var AOI = /* color: #d63000 */ee.Geometry.Polygon(
           [8.22437391974081, 43.9630694996992]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s1_longest_series = require("users/emanuelespiritowork/SharedRepo:functions/s1_longest_series.js");
+var int_find_radar_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_radar_any.js");
 
 var s1_coll = s1_longest_series.s1_longest_series("2015-06-13","2025-04-01",AOI);
 
+var radar = int_find_radar_any.int_find_radar_any(s1_coll,AOI);
+
+Map.addLayer(radar);
