@@ -12,7 +12,7 @@ var AOI =
 var s1_longest_series = require("users/emanuelespiritowork/SharedRepo:functions/s1_longest_series.js");
 var int_find_radar_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_radar_any.js");
 
-var s1_coll = s1_longest_series.s1_longest_series("2015-06-13","2025-04-01",AOI);
+var s1_coll = s1_longest_series.s1_longest_series("2024-12-21","2025-04-01",AOI);
 
 Map.addLayer(s1_coll.first());
 
