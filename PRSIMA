@@ -12,4 +12,4 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
 
 var date = s2_coll.filterDate("2025-04-21","2025-04-23");
 
-
+print(clip_to.clip_to(date,AOI,10));
