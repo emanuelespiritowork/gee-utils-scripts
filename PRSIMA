@@ -24,12 +24,13 @@ var date = s2_coll.filterDate("2025-04-22","2025-04-23")
 .filterBounds(AOI)
 .select("B8")
 .first()
+.clipToBoundsAndScale(AOI)
 .clip(AOI);
 
 print(date);
 
-Export.image.toDrive(date.first());
+Export.image.toDrive(date);
 
 print(clip_to.clip_to(date,AOI,10));
-print(date.first().projection().crs());
+print(date.projection().crs());
 //Map.addLayer()
