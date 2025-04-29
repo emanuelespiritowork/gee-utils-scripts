@@ -1,22 +1,14 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED"),
-    AOI = 
-    /* color: #d63000 */
-    /* displayProperties: [
-      {
-        "type": "rectangle"
-      }
-    ] */
-    ee.FeatureCollection(
-        [ee.Feature(
-            ee.Geometry.Polygon(
-                [[[11.786573436389606, 44.98354796953169],
-                  [11.786573436389606, 44.73434508498566],
-                  [12.179334666858356, 44.73434508498566],
-                  [12.179334666858356, 44.98354796953169]]], null, false),
-            {
-              "system:index": "0"
-            })]);
+    AOI = /* color: #d63000 */ee.Feature(
+        ee.Geometry.Polygon(
+            [[[11.814039256702106, 44.74117356904423],
+              [12.171094920764606, 44.7314183449608],
+              [12.172468211780231, 44.98354796953169],
+              [11.826398875842731, 44.989375726387856]]]),
+        {
+          "system:index": "0"
+        });
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js")
 
@@ -29,7 +21,7 @@ var clip = clip_to.clip_to(date,AOI,10);
 
 print(clip);
 Map.addLayer(clip);
-Map.centerObject(clip);
+Map.centerObject(AOI);
 
 Export.image.toDrive(clip);
 
