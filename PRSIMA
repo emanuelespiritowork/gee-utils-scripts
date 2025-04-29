@@ -1,15 +1,24 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED"),
-    AOI = /* color: #d63000 */ee.Geometry.Polygon(
-        [[[11.978725544759365, 44.9390026118444],
-          [11.807750813314053, 44.90156469399895],
-          [11.84826289827499, 44.7978755877028],
-          [12.00207149202499, 44.76570868779677],
-          [12.155098021468396, 44.80248309630743],
-          [12.15313350374374, 44.91129117373492]]]);
+    AOI = /* color: #d63000 */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[11.796186473498981, 44.737271676896455],
+                  [12.168348338733356, 44.73629616271664],
+                  [12.165601756702106, 44.99326056846873],
+                  [11.790693309436481, 44.99520289076221]]]),
+            {
+              "system:index": "0"
+            })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js")
 
-var date = s2_coll.filterDate("2025-04-21","2025-04-23");
+var date = s2_coll.filterDate("2025-04-22","2025-04-23")
+.filterBounds(AOI)
+.select("B8");
+
+Export.image.toDrive(date.first());
 
 print(clip_to.clip_to(date,AOI,10));
+print(date.first().projection().crs());
+//Map.addLayer()
