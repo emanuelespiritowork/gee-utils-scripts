@@ -1,12 +1,19 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED"),
-    AOI = /* color: #d63000 */ee.FeatureCollection(
+    AOI = 
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
-                [[[11.796186473498981, 44.737271676896455],
-                  [12.168348338733356, 44.73629616271664],
-                  [12.165601756702106, 44.99326056846873],
-                  [11.790693309436481, 44.99520289076221]]]),
+                [[[11.786573436389606, 44.98354796953169],
+                  [11.786573436389606, 44.73434508498566],
+                  [12.179334666858356, 44.73434508498566],
+                  [12.179334666858356, 44.98354796953169]]], null, false),
             {
               "system:index": "0"
             })]);
@@ -15,7 +22,10 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
 
 var date = s2_coll.filterDate("2025-04-22","2025-04-23")
 .filterBounds(AOI)
-.select("B8");
+.select("B8")
+.clip(AOI);
+
+print(date);
 
 Export.image.toDrive(date.first());
 
