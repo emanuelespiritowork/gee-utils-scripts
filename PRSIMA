@@ -23,6 +23,7 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
 var date = s2_coll.filterDate("2025-04-22","2025-04-23")
 .filterBounds(AOI)
 .select("B8")
+.first()
 .clip(AOI);
 
 print(date);
