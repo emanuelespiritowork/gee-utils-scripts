@@ -21,28 +21,12 @@ var time_series_get_property_names = require("users/emanuelespiritowork/SharedRe
  * Use the function time_series_create.js to create the time_series
 *******************************************************/
 
-exports.time_series_export = function(time_series, export_folder, property_list){
+exports.time_series_export = function(time_series, export_folder){
 /******************************************************
  * Check variable types (mandatory inputs)
 *******************************************************/
   time_series = ee.FeatureCollection(time_series);
   export_folder = ee.String(export_folder);
-/******************************************************
- * Check variable types (optional inputs)
-*******************************************************/
-  var property_names = property_list || time_series_get_property_names.time_series_get_property_names(time_series);
-  
-/******************************************************
- * Get layers name
-*******************************************************/
-  /*var selectors_name = property_list.cat(["id"]).cat(["date"]).cat(["clock"])
-  .join(", ");*/
-  
-  var selectors_name = ee.List(property_names).cat(["id"])
-  .cat(["date"]).cat(["clock"]).join(", ");
-  
-  //print(selectors_name);
-
 /******************************************************
  * Export to Drive
 *******************************************************/
