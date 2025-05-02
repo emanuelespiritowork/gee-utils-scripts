@@ -41,7 +41,7 @@ exports.time_series_export = function(time_series, export_folder, property_list)
   var selectors_name = ee.List(property_names).cat(["id"])
   .cat(["date"]).cat(["clock"]).join(", ");
   
-  print(selectors_name);
+  //print(selectors_name);
 
 /******************************************************
  * Export to Drive
