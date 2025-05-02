@@ -7,7 +7,10 @@
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.ImageCollection
+ * Input: ee.ImageCollection (mandatory),
+ *        ee.FeatureCollection (mandatory),
+ *        ee.String (mandatory),
+ *        ee.Number (mandatory)
  * Output: ee.FeatureCollection
  * Description: create a time series of an image collection for all the 
  * cropfields contained in the AOI. The table generated contains the 
