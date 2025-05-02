@@ -23,7 +23,7 @@ exports.s2_ndsi = function(img_coll){
  * Create ndsi layer
 *******************************************************/
   var s2_ndsi_img = function(image){
-    var ndsi = image.normalizedDifference(["B8","B4"]).rename('ndsi');
+    var ndsi = image.normalizedDifference(["B3","B11"]).rename('ndsi');
     var time_start_value = image.get('system:time_start');
     var footprint = image.get('system:footprint');
     ndsi = ndsi.set({
