@@ -21,7 +21,7 @@ var time_series_get_property_names = require("users/emanuelespiritowork/SharedRe
  * Use the function time_series_create.js to create the time_series
 *******************************************************/
 
-exports.time_series_export = function(time_series, export_folder){
+exports.time_series_export_asy = function(time_series, export_folder){
 /******************************************************
  * Check variable types (mandatory inputs)
 *******************************************************/
