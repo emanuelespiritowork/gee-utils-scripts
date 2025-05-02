@@ -13,7 +13,9 @@ var time_series_get_property_names = require("users/emanuelespiritowork/SharedRe
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.FeatureCollection
+ * Input: ee.FeatureCollection (mandatory),
+ *        ee.String (mandatory),
+ *        ee.List (optional)
  * Output: (nothing) 
  * Description: exports the time series as a csv on your Google Drive. 
  * Use the function time_series_create.js to create the time_series
