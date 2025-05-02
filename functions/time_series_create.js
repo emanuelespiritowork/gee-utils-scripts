@@ -33,7 +33,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
  * Get layer name
 *******************************************************/
   var layer_names = img_coll.first().bandNames().sort();
-  print(layer_names);
+  //print(layer_names);
 
 /******************************************************
  * Create time series for each feature
