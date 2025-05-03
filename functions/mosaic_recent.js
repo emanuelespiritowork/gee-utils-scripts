@@ -39,7 +39,7 @@ exports.mosaic_recent = function(img_coll, AOI, scale_to_use){
  *******************************************************/
   var sorted_img_coll = clip.sort({
     property: "system:time_start", 
-    ascending: true
+    ascending: false
   });
   print(sorted_img_coll);
 /******************************************************
