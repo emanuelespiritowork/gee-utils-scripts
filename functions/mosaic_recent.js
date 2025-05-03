@@ -58,7 +58,7 @@ exports.mosaic_recent = function(img_coll, AOI, scale_to_use){
  *******************************************************/  
   var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date).sort({
     property: "system:time_start", 
-    ascending: false
+    ascending: true
   });
   //print(latest_img_coll);
 /******************************************************
