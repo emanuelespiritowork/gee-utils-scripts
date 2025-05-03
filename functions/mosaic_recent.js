@@ -60,7 +60,7 @@ exports.mosaic_recent = function(img_coll, AOI, scale_to_use){
     property: "system:time_start", 
     ascending: true
   });
-  //print(latest_img_coll);
+  print(latest_img_coll);
 /******************************************************
  * Get mosaic
  *******************************************************/  
