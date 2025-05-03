@@ -41,6 +41,7 @@ exports.mosaic_recent = function(img_coll, AOI, scale_to_use){
     property: "system:time_start", 
     ascending: false
   });
+  print(sorted_img_coll);
 /******************************************************
  * Get latest date
  *******************************************************/
