@@ -56,7 +56,10 @@ exports.mosaic_recent = function(img_coll, AOI, scale_to_use){
 /******************************************************
  * Generate collection from a month earlier to the latest date
  *******************************************************/  
-  var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date);
+  var latest_img_coll = sorted_img_coll.filterDate(start_date,latest_date).sort({
+    property: "system:time_start", 
+    ascending: true
+  });
   print(latest_img_coll);
 /******************************************************
  * Get mosaic
