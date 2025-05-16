@@ -35,15 +35,15 @@ exports.coreg = function(img_ref, img_tar, band_ref, band_tar, export_folder){
   // Choose to register using only the 'R' band.
   img_refRedBand = img_refOrig.select(band_ref);
   img_tarRedBand = img_tarOrig.select(band_tar);
-
-// Determine the displacement by matching only the 'R' bands.
-displacement = img_tarRedBand.displacement({
-  referenceImage: img_refRedBand,
-  maxOffset: 300.0,
-  patchWidth: 128.0
-});
-
-registered = img_tarOrig.displace(displacement);
+  
+  // Determine the displacement by matching only the 'R' bands.
+  displacement = img_tarRedBand.displacement({
+    referenceImage: img_refRedBand,
+    maxOffset: 300.0,
+    patchWidth: 128.0
+  });
+  
+  registered = img_tarOrig.displace(displacement);
 
   return registered;
 };
