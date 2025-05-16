@@ -1,8 +1,3 @@
-// Load the two images to be registered.
-//var img_ref = ee.Image('SKYSAT/GEN-A/PUBLIC/ORTHO/MULTISPECTRAL/s01_20150502T082736Z');
-//var img_tar = ee.Image('SKYSAT/GEN-A/PUBLIC/ORTHO/MULTISPECTRAL/s01_20150305T081019Z');
-var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
-
 exports.coreg = function(img_ref, img_tar, band_ref, band_tar, export_folder){
   img_ref = ee.Image(img_ref);
   img_tar = ee.Image(img_tar);
