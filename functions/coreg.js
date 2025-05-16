@@ -4,10 +4,12 @@
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
 
 exports.coreg = function(img_ref, img_tar, export_folder){
+  img_ref = ee.Image(img_ref);
+  img_tar = ee.Image(img_tar);
   
-};
-
-// Use bicubic resampling during registration.
+  var folder = export_folder || ee.String("GEE_Export");
+  
+  // Use bilinear resampling during registration.
 var image1Orig = image1.resample('bilinear');
 var image2Orig = image2.resample('bilinear');
 
@@ -59,3 +61,6 @@ Export.image.toDrive({
   scale: 30,
   fileFormat: "GeoTiff"
 });
+  return registered;
+};
+
