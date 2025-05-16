@@ -1,52 +1,49 @@
 // Load the two images to be registered.
-//var image1 = ee.Image('SKYSAT/GEN-A/PUBLIC/ORTHO/MULTISPECTRAL/s01_20150502T082736Z');
-//var image2 = ee.Image('SKYSAT/GEN-A/PUBLIC/ORTHO/MULTISPECTRAL/s01_20150305T081019Z');
+//var img_ref = ee.Image('SKYSAT/GEN-A/PUBLIC/ORTHO/MULTISPECTRAL/s01_20150502T082736Z');
+//var img_tar = ee.Image('SKYSAT/GEN-A/PUBLIC/ORTHO/MULTISPECTRAL/s01_20150305T081019Z');
 var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
 
-exports.coreg = function(img_ref, img_tar, export_folder){
+exports.coreg = function(img_ref, img_tar, band_ref, band_tar, export_folder){
   img_ref = ee.Image(img_ref);
   img_tar = ee.Image(img_tar);
+  band_ref = ee.String(band_ref);
+  band_tar = ee.String(band_tar);
   
   var folder = export_folder || ee.String("GEE_Export");
   
   // Use bilinear resampling during registration.
-  var image1Orig = img_ref.resample('bilinear');
-  var image2Orig = img_tar.resample('bilinear');
+  var img_refOrig = img_ref.resample('bilinear');
+  var img_tarOrig = img_tar.resample('bilinear');
 
-// Choose to register using only the 'R' band.
-var image1RedBand = image1Orig.select('b1');
-var image2RedBand = image2Orig.select('b52');
+  // Choose to register using only the 'R' band.
+  var img_refRedBand = img_refOrig.select(band_ref);
+  var img_tarRedBand = img_tarOrig.select(band_tar);
+
+  // Determine the displacement by matching only the 'R' bands.
+  var displacement = img_tarRedBand.displacement({
+    referenceImage: img_refRedBand,
+    maxOffset: 300.0,
+    patchWidth: 128.0
+  });
+
+  // Use the computed displacement to register all original bands.
+  var registered = img_tarOrig.displace(displacement);
+  
+  //register again
+  img_tarOrig = registered;
+  
+  // Choose to register using only the 'R' band.
+  img_refRedBand = img_refOrig.select(band_ref);
+  img_tarRedBand = img_tarOrig.select(band_tar);
 
 // Determine the displacement by matching only the 'R' bands.
-var displacement = image2RedBand.displacement({
-  referenceImage: image1RedBand,
+displacement = img_tarRedBand.displacement({
+  referenceImage: img_refRedBand,
   maxOffset: 300.0,
   patchWidth: 128.0
 });
 
-Map.centerObject(image1.geometry());
-
-// Use the computed displacement to register all original bands.
-var registered = image2Orig.displace(displacement);
-
-// Show the results of co-registering the images.
-var null_var_2 = plot_map.plot_map(registered.select("b52"), 2, 30);
-
-//register again
-image2Orig = registered;
-
-// Choose to register using only the 'R' band.
-image1RedBand = image1Orig.select('b1');
-image2RedBand = image2Orig.select('b52');
-
-// Determine the displacement by matching only the 'R' bands.
-displacement = image2RedBand.displacement({
-  referenceImage: image1RedBand,
-  maxOffset: 300.0,
-  patchWidth: 128.0
-});
-
-registered = image2Orig.displace(displacement);
+registered = img_tarOrig.displace(displacement);
 
   return registered;
 };
