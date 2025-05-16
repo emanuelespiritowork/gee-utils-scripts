@@ -51,16 +51,6 @@ displacement = image2RedBand.displacement({
 
 registered = image2Orig.displace(displacement);
 
-// Show the results of co-registering the images.
-var null_var_3 = plot_map.plot_map(registered.select("b52"), 2, 30);
-
-Export.image.toDrive({
-  image: registered,
-  folder: "GEE_Export",
-  description: "coreg",
-  scale: 30,
-  fileFormat: "GeoTiff"
-});
   return registered;
 };
 
