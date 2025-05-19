@@ -44,22 +44,31 @@ export_folder, coreg_type){
     condition: ee.String(type).equals("nearest_neighbor"),
     trueCase: img_ref,
     falseCase: ee.Algorithms.If({
-      condition: ee.String(type).equals("bilinear") || ee.String(type).equals("bicubic"),
+      condition: ee.String(type).equals("bilinear"),
       trueCase: img_ref.resample(ee.String(type)),
-      falseCase: null
+      falseCase: ee.Algorithms.If({
+        condition: ee.String(type).equals("bicubic"),
+        trueCase: img_ref.resample(ee.String(type)),
+        falseCase: null
+      })
     })
   }));
   
   print(ee.String(type).equals("nearest_neighbor"));
-  print(ee.String(type).equals("bilinear") | ee.String(type).equals("bicubic"));
+  print(ee.String(type).equals("bilinear"));
+  print(ee.String(type).equals("bicubic"));
   
   var img_tarOrig = ee.Image(ee.Algorithms.If({
     condition: ee.String(type).equals("nearest_neighbor"),
     trueCase: img_tar,
     falseCase: ee.Algorithms.If({
-      condition: ee.String(type).equals("bilinear") || ee.String(type).equals("bicubic"),
+      condition: ee.String(type).equals("bilinear"),
       trueCase: img_tar.resample(ee.String(type)),
-      falseCase: null
+      falseCase: ee.Algorithms.If({
+        condition: ee.String(type).equals("bicubic"),
+        trueCase: img_tar.resample(ee.String(type)),
+        falseCase: null
+      })
     })
   }));
   //var img_refOrig = img_ref//.resample('bilinear');
