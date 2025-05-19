@@ -50,6 +50,9 @@ export_folder, coreg_type){
     })
   }));
   
+  print(ee.String(type).equals("nearest_neighbor"));
+  print(ee.String(type).equals("bilinear") || ee.String(type).equals("bicubic"));
+  
   var img_tarOrig = ee.Image(ee.Algorithms.If({
     condition: ee.String(type).equals("nearest_neighbor"),
     trueCase: img_tar,
