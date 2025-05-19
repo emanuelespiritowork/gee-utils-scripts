@@ -89,7 +89,7 @@ export_folder, coreg_type){
     maxOffset: 300.0,//these parameters comes from trial&error bests
     patchWidth: 128.0//these parameters comes from trial&error bests
   });
-print(displacement.projection().crs());
+
 /******************************************************
  * Use the computed displacement to register all original bands.
 *******************************************************/
@@ -98,7 +98,7 @@ print(displacement.projection().crs());
     mode: ee.String(type)//"nearest_neighbor",
     //maxOffset: 300.0
   });
-print(registered.projection().crs());  
+
 /******************************************************
  * Register again using same parameters
 *******************************************************/
