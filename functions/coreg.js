@@ -86,7 +86,7 @@ export_folder, coreg_type){
 print(img_refOrig.projection());
   var displacement = img_tarRedBand.displacement({
     referenceImage: img_refRedBand,
-    projection: img_refOrig.projection(),
+    projection: img_refOrig.projection().crs(),
     maxOffset: 300.0,//these parameters comes from trial&error bests
     patchWidth: 128.0//these parameters comes from trial&error bests
   });
