@@ -16,7 +16,8 @@
  * Description: coregister two multi(hyper)-spectral images 
 *******************************************************/
 
-exports.coreg = function(img_ref, img_tar, band_ref, band_tar, export_folder){
+exports.coreg = function(img_ref, img_tar, band_ref, band_tar, 
+export_folder, coreg_type){
   
 /******************************************************
  * Mandatory variables
