@@ -50,28 +50,6 @@ exports.coreg = function(img_ref, img_tar, band_ref, band_tar, export_folder){
     mode: "nearest_neighbor",
     //maxOffset: 300.0
   });
-  
-  //register again (third time)
-  img_tarOrig = registered;
-  
-  // Choose to register using only the 'R' band.
-  img_refRedBand = img_refOrig.select(band_ref);
-  img_tarRedBand = img_tarOrig.select(band_tar);
-  
-  // Determine the displacement by matching only the 'R' bands.
-  displacement = img_tarRedBand.displacement({
-    referenceImage: img_refRedBand,
-    projection: img_refOrig.projection(),
-    maxOffset: 300.0,
-    patchWidth: 128.0
-  });
-
-  // Use the computed displacement to register all original bands.
-  registered = img_tarOrig.displace({
-    displacement: displacement,
-    mode: "nearest_neighbor",
-    //maxOffset: 300.0
-  });
 
   return registered;
 };
