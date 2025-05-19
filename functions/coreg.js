@@ -83,7 +83,7 @@ export_folder, coreg_type){
 /******************************************************
  * Determine the displacement by matching only the 'R' bands
 *******************************************************/
-print(img_refOrig.projection());
+print(img_refOrig.projection().crs());
   var displacement = img_tarRedBand.displacement({
     referenceImage: img_refRedBand,
     projection: img_refOrig.projection().crs(),
@@ -110,7 +110,7 @@ print(img_refOrig.projection());
   
   displacement = img_tarRedBand.displacement({
     referenceImage: img_refRedBand,
-    projection: img_refOrig.projection(),
+    projection: img_refOrig.projection().crs(),
     maxOffset: 300.0,
     patchWidth: 128.0
   });
