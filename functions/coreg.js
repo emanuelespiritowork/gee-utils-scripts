@@ -31,6 +31,7 @@ export_folder, coreg_type){
  * Optional variables
 *******************************************************/
   var folder = export_folder || ee.String("GEE_Export");
+  var type = coreg_type || ee.String("nearest_neighbor")
   
 /******************************************************
  * Resample
