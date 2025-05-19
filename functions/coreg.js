@@ -120,6 +120,6 @@ print(registered.projection().crs());
     //maxOffset: 300.0
   });
 
-  return registered;
+  return registered.reproject(img_refOrig.projection());
 };
 
