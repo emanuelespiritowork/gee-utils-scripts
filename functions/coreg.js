@@ -17,12 +17,17 @@ exports.coreg = function(img_ref, img_tar, band_ref, band_tar, export_folder){
   // Determine the displacement by matching only the 'R' bands.
   var displacement = img_tarRedBand.displacement({
     referenceImage: img_refRedBand,
+    projection: img_tarOrig.projection(),
     maxOffset: 300.0,
     patchWidth: 128.0
   });
 
   // Use the computed displacement to register all original bands.
-  var registered = img_tarOrig.displace(displacement);
+  var registered = img_tarOrig.displace({
+    displacement: displacement,
+    mode: "nearest_neighbor",
+    maxOffset: 300.0
+  });
   
   //register again
   img_tarOrig = registered;
@@ -34,11 +39,16 @@ exports.coreg = function(img_ref, img_tar, band_ref, band_tar, export_folder){
   // Determine the displacement by matching only the 'R' bands.
   displacement = img_tarRedBand.displacement({
     referenceImage: img_refRedBand,
+    projection: img_tarOrig.projection(),
     maxOffset: 300.0,
     patchWidth: 128.0
   });
   
-  registered = img_tarOrig.displace(displacement);
+  registered = img_tarOrig.displace({
+    displacement: displacement,
+    mode: "nearest_neighbor",
+    maxOffset: 300.0
+  });
 
   return registered;
 };
