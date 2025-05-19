@@ -1,4 +1,26 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.Image (mandatory),
+ *        ee.Image (mandatory),
+ *        ee.String (mandatory),
+ *        ee.String (mandatory),
+ *        ee.String (optional),
+ * Output: ee.ImageCollection or ee.Image
+ * Description: coregister two multi(hyper)-spectral images 
+*******************************************************/
+
 exports.coreg = function(img_ref, img_tar, band_ref, band_tar, export_folder){
+  
+/******************************************************
+ * Mandatory variables 
+*******************************************************/
   img_ref = ee.Image(img_ref);
   img_tar = ee.Image(img_tar);
   band_ref = ee.String(band_ref);
