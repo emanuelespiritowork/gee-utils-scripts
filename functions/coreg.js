@@ -40,7 +40,7 @@ export_folder, coreg_type){
 //resampled into the CRS of the other (the reference). This resample is
 //by default done using nearest_neighbour but it can be chosen other 
 //resample function (bilinear o bicubic)
-  var img_refOrig = ee.Algorithms.If({
+  var img_refOrig = ee.Image(ee.Algorithms.If({
     condition: ee.String(type).equals("nearest_neighbor"),
     trueCase: img_ref,
     falseCase: ee.Algorithms.If({
@@ -48,9 +48,9 @@ export_folder, coreg_type){
       trueCase: img_ref.resample(ee.String(type)),
       falseCase: null
     })
-  });
+  }));
   
-  var img_tarOrig = ee.Algorithms.If({
+  var img_tarOrig = ee.Image(ee.Algorithms.If({
     condition: ee.String(type).equals("nearest_neighbor"),
     trueCase: img_tar,
     falseCase: ee.Algorithms.If({
@@ -58,7 +58,7 @@ export_folder, coreg_type){
       trueCase: img_tar.resample(ee.String(type)),
       falseCase: null
     })
-  });
+  }));
   //var img_refOrig = img_ref//.resample('bilinear');
   //var img_tarOrig = img_tar//.resample('bilinear');
 
