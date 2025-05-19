@@ -7,8 +7,8 @@ exports.coreg = function(img_ref, img_tar, band_ref, band_tar, export_folder){
   var folder = export_folder || ee.String("GEE_Export");
   
   // Use bilinear resampling during registration.
-  var img_refOrig = img_ref.resample('bilinear');
-  var img_tarOrig = img_tar.resample('bilinear');
+  var img_refOrig = img_ref//.resample('bilinear');
+  var img_tarOrig = img_tar//.resample('bilinear');
 
   // Choose to register using only the 'R' band.
   var img_refRedBand = img_refOrig.select(band_ref);
