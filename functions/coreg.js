@@ -17,7 +17,7 @@ exports.coreg = function(img_ref, img_tar, band_ref, band_tar, export_folder){
   // Determine the displacement by matching only the 'R' bands.
   var displacement = img_tarRedBand.displacement({
     referenceImage: img_refRedBand,
-    projection: img_tarOrig.projection(),
+    projection: img_refOrig.projection(),
     maxOffset: 300.0,
     patchWidth: 128.0
   });
@@ -39,7 +39,7 @@ exports.coreg = function(img_ref, img_tar, band_ref, band_tar, export_folder){
   // Determine the displacement by matching only the 'R' bands.
   displacement = img_tarRedBand.displacement({
     referenceImage: img_refRedBand,
-    projection: img_tarOrig.projection(),
+    projection: img_refOrig.projection(),
     maxOffset: 300.0,
     patchWidth: 128.0
   });
