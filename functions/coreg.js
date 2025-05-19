@@ -83,7 +83,7 @@ export_folder, coreg_type){
 *******************************************************/
   var registered = img_tarOrig.displace({
     displacement: displacement,
-    mode: "nearest_neighbor",
+    mode: ee.String(type)//"nearest_neighbor",
     //maxOffset: 300.0
   });
   
@@ -104,7 +104,7 @@ export_folder, coreg_type){
 
   registered = img_tarOrig.displace({
     displacement: displacement,
-    mode: "nearest_neighbor",
+    mode: ee.String(type)//"nearest_neighbor",
     //maxOffset: 300.0
   });
 
