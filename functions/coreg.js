@@ -41,21 +41,21 @@ export_folder, coreg_type){
 //by default done using nearest_neighbour but it can be chosen other 
 //resample function (bilinear o bicubic)
   var img_refOrig = ee.Algorithms.If({
-    condition: type.equals("nearest_neighbor"),
+    condition: ee.String(type).equals("nearest_neighbor"),
     trueCase: img_ref,
     falseCase: ee.Algorithms.If({
-      condition: type.equals("bilinear").or(type.equals("bicubic")),
-      trueCase: img_ref.resample(type),
+      condition: ee.String(type).equals("bilinear").or(ee.String(type).equals("bicubic")),
+      trueCase: img_ref.resample(ee.String(type)),
       falseCase: null
     })
   });
   
   var img_tarOrig = ee.Algorithms.If({
-    condition: type.equals("nearest_neighbor"),
+    condition: ee.String(type).equals("nearest_neighbor"),
     trueCase: img_tar,
     falseCase: ee.Algorithms.If({
-      condition: type.equals("bilinear").or(type.equals("bicubic")),
-      trueCase: img_tar.resample(type),
+      condition: ee.String(type).equals("bilinear").or(ee.String(type).equals("bicubic")),
+      trueCase: img_tar.resample(ee.String(type)),
       falseCase: null
     })
   });
