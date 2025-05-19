@@ -98,7 +98,7 @@ print(displacement.projection().crs());
     mode: ee.String(type)//"nearest_neighbor",
     //maxOffset: 300.0
   });
-  
+print(registered.projection().crs());  
 /******************************************************
  * Register again using same parameters
 *******************************************************/
