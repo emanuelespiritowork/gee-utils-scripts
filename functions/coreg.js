@@ -71,6 +71,10 @@ export_folder, coreg_type){
       })
     })
   }));
+  
+  img_tarOrig = img_tarOrig.reproject(img_refOrig.projection());
+  print(img_tarOrig.projection());
+  print(img_refOrig.projection());
   //var img_refOrig = img_ref//.resample('bilinear');
   //var img_tarOrig = img_tar//.resample('bilinear');
 
@@ -90,7 +94,7 @@ export_folder, coreg_type){
     patchWidth: 128.0//these parameters comes from trial&error bests
   });
   
-  print(displacement);
+  //print(displacement);
 
 /******************************************************
  * Use the computed displacement to register all original bands.
@@ -122,6 +126,6 @@ export_folder, coreg_type){
     //maxOffset: 300.0
   });
 
-  return registered.reproject(img_refOrig.projection());
+  return registered;
 };
 
