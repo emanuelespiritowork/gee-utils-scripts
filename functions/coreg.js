@@ -89,6 +89,8 @@ export_folder, coreg_type){
     maxOffset: 300.0,//these parameters comes from trial&error bests
     patchWidth: 128.0//these parameters comes from trial&error bests
   });
+  
+  print(displacement);
 
 /******************************************************
  * Use the computed displacement to register all original bands.
