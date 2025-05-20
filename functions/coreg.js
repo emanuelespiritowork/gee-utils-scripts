@@ -73,8 +73,8 @@ export_folder, coreg_type){
   }));
   
   img_tarOrig = img_tarOrig.reproject(img_refOrig.projection());
-  print(img_tarOrig.projection());
-  print(img_refOrig.projection());
+  //print(img_tarOrig.projection());
+  //print(img_refOrig.projection());
   //var img_refOrig = img_ref//.resample('bilinear');
   //var img_tarOrig = img_tar//.resample('bilinear');
 
@@ -89,7 +89,6 @@ export_folder, coreg_type){
 *******************************************************/
   var displacement = img_tarRedBand.displacement({
     referenceImage: img_refRedBand,
-    projection: img_refOrig.projection().crs(),
     maxOffset: 300.0,//these parameters comes from trial&error bests
     patchWidth: 128.0//these parameters comes from trial&error bests
   });
@@ -115,7 +114,6 @@ export_folder, coreg_type){
   
   displacement = img_tarRedBand.displacement({
     referenceImage: img_refRedBand,
-    projection: img_refOrig.projection().crs(),
     maxOffset: 300.0,
     patchWidth: 128.0
   });
