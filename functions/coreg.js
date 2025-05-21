@@ -98,7 +98,7 @@ export_folder, coreg_type){
     displacement: displacement,
     mode: ee.String(type)//"nearest_neighbor",
     //maxOffset: 300.0
-  });
+  }).reproject(img_refOrig.projection());
 
 /******************************************************
  * Register again using same parameters
