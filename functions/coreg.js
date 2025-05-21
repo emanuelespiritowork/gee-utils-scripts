@@ -86,7 +86,7 @@ export_folder, coreg_type){
 *******************************************************/
   var displacement = img_tarRedBand.displacement({
     referenceImage: img_refRedBand,
-    //maxOffset: 300.0,//these parameters comes from trial&error bests
+    maxOffset: 300.0,//these parameters comes from trial&error bests
     //patchWidth: 128.0//these parameters comes from trial&error bests
   });
   
@@ -110,7 +110,7 @@ export_folder, coreg_type){
   
   displacement = img_tarRedBand.displacement({
     referenceImage: img_refRedBand,
-    //maxOffset: 300.0,
+    maxOffset: 300.0,
     //patchWidth: 128.0
   });
 
