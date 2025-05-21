@@ -72,12 +72,8 @@ export_folder, coreg_type){
     })
   }));
   
-  img_tarOrig = img_tarOrig.reproject(img_refOrig.projection());
-  //print(img_tarOrig.projection());
-  //print(img_refOrig.projection());
-  //var img_refOrig = img_ref//.resample('bilinear');
-  //var img_tarOrig = img_tar//.resample('bilinear');
-
+  //img_tarOrig = img_tarOrig.reproject(img_refOrig.projection());
+  
 /******************************************************
  * Choose the band used to coregister called R band
 *******************************************************/
