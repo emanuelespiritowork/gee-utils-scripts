@@ -73,7 +73,7 @@ export_folder, coreg_type){
   }));
   
   //print(img_tarOrig.projection());
-  img_tarOrig = img_tarOrig.reproject(img_refOrig.projection());
+  //img_tarOrig = img_tarOrig.reproject(img_refOrig.projection());
   //print(img_tarOrig.projection());
 /******************************************************
  * Choose the band used to coregister called R band
