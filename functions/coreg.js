@@ -11,13 +11,15 @@
  *        ee.Image (mandatory),
  *        ee.String (mandatory),
  *        ee.String (mandatory),
- *        ee.String (optional),
+ *        ee.Number (optional),
+ *        ee.Number (optional),
+ *        ee.String (optional)
  * Output: ee.ImageCollection or ee.Image
  * Description: coregister two multi(hyper)-spectral images 
 *******************************************************/
 
 exports.coreg = function(img_ref, img_tar, band_ref, band_tar, max_Offset,
-patch_Width, export_folder, coreg_type){
+patch_Width, coreg_type){
   
 /******************************************************
  * Mandatory variables
@@ -32,7 +34,6 @@ patch_Width, export_folder, coreg_type){
 *******************************************************/
   var maxOffset = max_Offset || ee.Number(300.0);
   var patchWidth = patch_Width || ee.Number(128.0);
-  var folder = export_folder || ee.String("GEE_Export");
   var type = coreg_type || ee.String("nearest_neighbor");
   
 /******************************************************
