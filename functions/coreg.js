@@ -89,7 +89,7 @@ patch_Width, coreg_type){
 *******************************************************/
   var displacement = img_tarRedBand.displacement({
     referenceImage: img_refRedBand,
-    maxOffset: 300.0,//these parameters comes from trial&error bests
+    maxOffset: maxOffset,//these parameters comes from trial&error bests
     //patchWidth: 128.0//these parameters comes from trial&error bests
   });
   
@@ -99,25 +99,6 @@ patch_Width, coreg_type){
  * Use the computed displacement to register all original bands.
 *******************************************************/
   var registered = img_tarOrig.displace({
-    displacement: displacement,
-    mode: ee.String(type)//"nearest_neighbor",
-  });
-
-/******************************************************
- * Register again using same parameters
-*******************************************************/
-  img_tarOrig = registered;
-  
-  img_refRedBand = img_refOrig.select(band_ref);
-  img_tarRedBand = img_tarOrig.select(band_tar);
-  
-  displacement = img_tarRedBand.displacement({
-    referenceImage: img_refRedBand,
-    maxOffset: 300.0,
-    //patchWidth: 128.0
-  });
-
-  registered = img_tarOrig.displace({
     displacement: displacement,
     mode: ee.String(type)//"nearest_neighbor",
   });
