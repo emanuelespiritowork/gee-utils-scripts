@@ -89,8 +89,8 @@ patch_Width, coreg_type){
 *******************************************************/
   var displacement = img_tarRedBand.displacement({
     referenceImage: img_refRedBand,
-    maxOffset: maxOffset,//these parameters comes from trial&error bests
-    //patchWidth: 128.0//these parameters comes from trial&error bests
+    maxOffset: maxOffset,
+    patchWidth: patchWidth
   });
   
   //print(displacement);
@@ -100,7 +100,7 @@ patch_Width, coreg_type){
 *******************************************************/
   var registered = img_tarOrig.displace({
     displacement: displacement,
-    mode: ee.String(type)//"nearest_neighbor",
+    mode: ee.String(type)
   });
 
   return registered;
