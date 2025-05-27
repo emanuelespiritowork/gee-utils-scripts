@@ -33,7 +33,7 @@ patch_Width, coreg_type){
  * Optional variables
 *******************************************************/
   var maxOffset = max_Offset || ee.Number(300.0);
-  var patchWidth = patch_Width || ee.Number(128.0);
+  var patchWidth = patch_Width || null;
   var type = coreg_type || ee.String("nearest_neighbor");
   
 /******************************************************
