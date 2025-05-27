@@ -19,7 +19,7 @@
 *******************************************************/
 
 exports.coreg = function(img_ref, img_tar, band_ref, band_tar, max_Offset,
-patch_Width, coreg_type){
+coreg_type, patch_Width){
   
 /******************************************************
  * Mandatory variables
@@ -33,8 +33,8 @@ patch_Width, coreg_type){
  * Optional variables
 *******************************************************/
   var maxOffset = max_Offset || ee.Number(300.0);
-  var patchWidth = patch_Width || null;
   var type = coreg_type || ee.String("nearest_neighbor");
+  var patchWidth = patch_Width || null;
   
 /******************************************************
  * Resample
