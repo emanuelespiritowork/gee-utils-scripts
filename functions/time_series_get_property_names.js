@@ -23,14 +23,24 @@ exports.time_series_get_property_names = function(time_series){
   var propertyNames = time_series.first().propertyNames();
   print("propertyNames:1");
   print(propertyNames);
+  var time_series_list = time_series.toList(time_series.size());
   var counter = 0;
+  var counter_end = time_series.size();
+  //print(counter_end);
+  while(counter <= counter_end){
+    propertyNames = propertyNames.cat(ee.Feature(time_series_list.get(counter)).propertyNames()).distinct();
+    counter = counter + 1;
+  }
+  print(propertyNames);
+  
+  /*var counter = 0;
   var counter_end = time_series.size();
   print(counter_end);
   while(counter <= counter_end){
     feature = time_series.get(counter);
     propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
     counter = counter + 1;
-  }
+  }*/
   
   var yProperties = propertyNames.remove('date')
   .remove('system:time_start')
