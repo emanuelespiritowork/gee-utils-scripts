@@ -25,6 +25,7 @@ exports.time_series_get_property_names = function(time_series){
   print(propertyNames);
   var counter = 0;
   var counter_end = time_series.size();
+  print(counter_end);
   while(counter <= counter_end){
     feature = time_series.get(counter);
     propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
