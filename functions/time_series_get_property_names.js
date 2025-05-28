@@ -21,11 +21,14 @@ exports.time_series_get_property_names = function(time_series){
  * Get property names
 *******************************************************/
   var propertyNames = time_series.first().propertyNames();
+  print("propertyNames:1");
+  print(propertyNames);
   var counter = 0;
   var counter_end = time_series.size();
   while(counter <= counter_end){
     feature = time_series.get(counter);
     propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
+    counter = counter + 1;
   }
   
   var yProperties = propertyNames.remove('date')
