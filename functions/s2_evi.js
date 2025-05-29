@@ -32,9 +32,11 @@ exports.s2_evi = function(img_coll){
     }).rename('evi');
     var time_start_value = image.get('system:time_start');
     var footprint = image.get("system:footprint");
+    var system_id = image.get('system:id');
     evi = evi.set({
       'system:time_start':time_start_value,
-      "system:footprint": footprint
+      "system:footprint": footprint,
+      'system:id': system_id
     });
     return evi;
   };
