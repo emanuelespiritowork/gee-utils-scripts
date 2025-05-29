@@ -44,10 +44,11 @@ exports.s2_scale = function(img_coll){
     
     var time_start_value = image.get('system:time_start');
     var footprint = image.get('system:footprint');
-    var product_id = image.get('product_id');
+    var system_id = image.get('system:id');
     fullImage = fullImage.set({
       'system:time_start':time_start_value,
-      'system:footprint': footprint
+      'system:footprint': footprint,
+      'system:id': system_id
     });
     
     return fullImage;
