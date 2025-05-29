@@ -89,11 +89,13 @@ exports.pixel_percentage = function(img_coll,AOI,threshold_percentage,scale_to_u
     *******************************************************/
     var footprint = image.get('system:footprint');
     var time_start_value = image.get('system:time_start');
+    var system_id = image.get('system:id');
     
     imageMosaic = imageMosaic
     .set({
       'system:time_start':time_start_value,
-      'system:footprint': footprint
+      'system:footprint': footprint,
+      'system:id': system_id
     });
     
     return imageMosaic;
