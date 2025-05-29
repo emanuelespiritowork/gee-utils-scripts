@@ -62,7 +62,7 @@ exports.s2_mask = function(img_coll){
   var mask = opposite_mask.eq(0);
 
 /******************************************************
- * Get time_start and footprint  
+ * Get time_start and footprint and index 
 *******************************************************/
   var time_start_value = image.get('system:time_start');
   var footprint = image.get('system:footprint');
