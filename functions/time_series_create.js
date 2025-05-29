@@ -40,6 +40,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
 *******************************************************/
   var space_series_img = function(img){
     var date = img.get('system:time_start');
+    var index_tile = img.get('system:index');
     
     /******************************************************
     * Cast to number the values of the time series
@@ -61,11 +62,11 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
         
       values = values.map(make_number);
         
-      var keys_list = ['system:time_start','date','clock','id'];
+      var keys_list = ['index_tile','system:time_start','date','clock','id'];
       keys_list = ee.List(keys_list).cat(layer_names);
         
         
-      var values_list = [date,ee.Date(date).format('Y/M/d'), ee.Date(date).format('H:m:s'), ee.String(feature_of_cycle.get(id_name))];
+      var values_list = [ee.String(index_tile),date,ee.Date(date).format('Y/M/d'),ee.Date(date).format('H:m:s'), ee.String(feature_of_cycle.get(id_name))];
       values_list = ee.List(values_list).cat(values);
         
         
