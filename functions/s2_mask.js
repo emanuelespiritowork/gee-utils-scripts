@@ -66,13 +66,15 @@ exports.s2_mask = function(img_coll){
 *******************************************************/
   var time_start_value = image.get('system:time_start');
   var footprint = image.get('system:footprint');
+  var index = image.get('PRODUCT_ID');
 
 /******************************************************
  * Apply mask
 *******************************************************/
   return image.updateMask(mask).set({
     'system:time_start': time_start_value,
-    'system:footprint': footprint
+    'system:footprint': footprint,
+    'system:index': index
   });
 };
   
