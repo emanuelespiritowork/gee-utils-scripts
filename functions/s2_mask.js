@@ -74,7 +74,7 @@ exports.s2_mask = function(img_coll){
   return image.updateMask(mask).set({
     'system:time_start': time_start_value,
     'system:footprint': footprint,
-    'system:index': index
+    'system:product_id': index
   });
 };
   
