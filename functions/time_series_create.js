@@ -40,7 +40,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
 *******************************************************/
   var space_series_img = function(img){
     var date = img.get('system:time_start');
-    var index_tile = img.get('system:index');
+    var system_id = img.get('system:id');
     
     /******************************************************
     * Cast to number the values of the time series
