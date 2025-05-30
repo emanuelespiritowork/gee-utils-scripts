@@ -62,7 +62,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
         
       values = values.map(make_number);
         
-      var keys_list = ['system:index','system:time_start','date','clock','id'];
+      var keys_list = ['index','system:time_start','date','clock','id'];
       keys_list = ee.List(keys_list).cat(layer_names);
         
         
