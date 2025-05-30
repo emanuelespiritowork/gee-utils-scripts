@@ -8,7 +8,7 @@ exports.s2_modify_system_index = function(img_coll){
   
   var change_system_index = function(img){
     var product_id = ee.Image(img).get("PRODUCT_ID");
-    return img.set({
+    return ee.Image(img).set({
       "system:index": product_id
     });
   };
