@@ -7,9 +7,7 @@
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
- * Input: ee.FeatureCollection (mandatory),
- *        ee.String (mandatory),
- *        ee.List (optional)
+ * Input: ee.FeatureCollection (mandatory)
  * Output: (nothing) 
  * Description: exports the time series as a csv on your Google Drive. 
  * Use the function time_series_create.js to create the time_series
