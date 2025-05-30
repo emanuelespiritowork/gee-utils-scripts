@@ -6,12 +6,6 @@
 *******************************************************/
 
 /******************************************************
- * REQUIRES THE FOLLOWING FUNCTIONS:
- * time_series_get_property_names
-*******************************************************/
-var time_series_get_property_names = require("users/emanuelespiritowork/SharedRepo:functions/time_series_get_property_names.js");
-
-/******************************************************
  * PURPOSE OF THIS SCRIPT
  * Input: ee.FeatureCollection (mandatory),
  *        ee.String (mandatory),
