@@ -20,33 +20,25 @@ exports.time_series_get_property_names = function(time_series){
 /******************************************************
  * Get property names
 *******************************************************/
-  var propertyNames = time_series.first().propertyNames();
-  print("propertyNames:1");
-  print(propertyNames);
-  var time_series_list = time_series.toList(time_series.size());
-  var counter = 0;
-  var counter_end = time_series.size();
-  //print(counter_end);
-  while(counter <= counter_end){
-    propertyNames = propertyNames.cat(ee.Feature(time_series_list.get(counter)).propertyNames()).distinct();
-    counter = counter + 1;
-  }
-  print(propertyNames);
-  
-  /*var counter = 0;
-  var counter_end = time_series.size();
-  print(counter_end);
-  while(counter <= counter_end){
-    feature = time_series.get(counter);
-    propertyNames = propertyNames.cat(feature.propertyNames()).distinct();
-    counter = counter + 1;
-  }*/
+  var size = time_series.size();
+  var time_series_list = time_series.toList({
+    count: size
+  });
+
+  var get_property_names_list = function(feature){
+    return ee.Feature(feature).propertyNames();
+  };
+
+  var property_list = ee.List(time_series_list.map(get_property_names_list)).flatten().distinct();
+
+  //print(property_list);
   
   var yProperties = propertyNames.remove('date')
-  .remove('image:time_start')
-  .remove('id')
-  .remove('clock')
-  .remove('image:index');
+    .remove('image:time_start')
+    .remove('id')
+    .remove('clock')
+    .remove('image:index')
+    .remove('system:index');
   
   return yProperties;
 };
