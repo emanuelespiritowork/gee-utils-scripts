@@ -15,7 +15,7 @@
  * Use the function time_series_create.js to create the time_series
 *******************************************************/
 
-exports.time_series_export_asy = function(time_series, export_folder){
+exports.time_series_export_asy = function(time_series){
 /******************************************************
  * Check variable types (mandatory inputs)
 *******************************************************/
