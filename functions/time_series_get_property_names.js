@@ -33,7 +33,7 @@ exports.time_series_get_property_names = function(time_series){
 
   //print(property_list);
   
-  var yProperties = propertyNames.remove('date')
+  var yProperties = property_list.remove('date')
     .remove('image:time_start')
     .remove('id')
     .remove('clock')
