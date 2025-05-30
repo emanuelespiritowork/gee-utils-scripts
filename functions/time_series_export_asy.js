@@ -20,7 +20,6 @@ exports.time_series_export_asy = function(time_series, export_folder){
  * Check variable types (mandatory inputs)
 *******************************************************/
   time_series = ee.FeatureCollection(time_series);
-  export_folder = ee.String(export_folder);
 /******************************************************
  * Export to Drive
 *******************************************************/
