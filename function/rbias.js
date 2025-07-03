@@ -29,7 +29,7 @@ var mean = ndre.reduceRegion({
   scale: 10
 }).getNumber("ndre");
 print(mean);
-var rbias = ndre.substract(ee.Image(mean)).divide(ee.Image(mean));
+var rbias = ndre.subtract(ee.Image(mean)).divide(ee.Image(mean));
 
 Export.image.toDrive({
   image: rbias,
