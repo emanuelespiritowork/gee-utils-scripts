@@ -14,8 +14,9 @@
 s2 = s2coll.filterDate("","").first();
 
 mean = s2.reduce(ee.Reducer.mean());
+clip
   
-rbias = s2.subtract(mean);
+rbias = s2.subtract(mean).divide(mean);
 
 Map.addLayer(rbias);
 Map.centerObject(rbias);
