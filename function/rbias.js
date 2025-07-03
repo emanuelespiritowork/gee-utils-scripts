@@ -15,7 +15,7 @@ var s2coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED"),
  * Output: ee.Image
  * Description: unsupervised classification of an image
 *******************************************************/
-var s2 = s2coll.filterDate("2023-06-25","2023-04-27").first();
+var s2 = s2coll.filterDate("2023-04-25","2023-04-27").first();
 var clip = s2.clip(AOI);
 
 var mean = clip.reduce(ee.Reducer.mean());
