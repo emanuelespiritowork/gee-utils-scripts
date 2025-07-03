@@ -23,7 +23,7 @@ var ndre = s2_ndre.s2_ndre(clip).first();
 Map.addLayer(ndre);
 var mean = ndre.reduceRegion(ee.Reducer.mean()).get("ndre");
 print(mean);
-var rbias = ndre.subtract(mean).divide(mean);
+var rbias = ndre.subtract(ee.Image(mean)).divide(mean);
 
 Map.addLayer(rbias);
 Map.centerObject(AOI);
