@@ -17,9 +17,9 @@ var s2coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED"),
 *******************************************************/
 var s2_ndre = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndre.js");
 var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
-var id = "d";
+var id = "e";
 AOI = AOI.filter(ee.Filter.eq("id",id));
-var date = ee.Date("2023-06-25");
+var date = ee.Date("2025-04-30");
 var start_date = date.advance(-1,"day");
 var end_date = date.advance(1,"day");
 var s2 = s2coll.filterDate(start_date,end_date).filterBounds(AOI).first();
