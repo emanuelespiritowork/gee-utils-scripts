@@ -31,7 +31,7 @@ var mean = ndre.reduceRegion({
 var rbias = ndre.substract(ee.Image(mean)).divide(ee.Image(mean));
 
 Export.image.toDrive({
-  image: ndre,
+  image: rbias,
   folder: "GEE_Export",
   scale: 10
 });
