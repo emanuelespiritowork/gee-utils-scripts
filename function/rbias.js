@@ -16,3 +16,5 @@ s2 = s2coll.filterDate("","").first();
 mean = s2.reduce(ee.Reducer.mean());
   
 rbias = s2.subtract(mean);
+
+Map.addLayer(rbias);
