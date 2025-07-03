@@ -15,15 +15,19 @@ var s2coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED"),
  * Output: ee.Image
  * Description: unsupervised classification of an image
 *******************************************************/
+var s2_ndre = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndre.js");
 var id = "a";
 AOI = AOI.filter(ee.Filter.eq("id",id));
+var date = "2025-04-25";
+var start_date = date.advance(-1,"day");
+var end_date = date.advance(1,"day");
+var s2 = s2coll.filterDate(start_date,end_date).filterBounds(AOI).first();
 print(AOI);
-var s2_ndre = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndre.js");
-var s2 = s2coll.filterDate("2023-04-25","2023-04-27").filterBounds(AOI).first();
 //Map.addLayer(s2);
 var clip = s2.clip(AOI.geometry());
+Map.addLayer(clip);
 var ndre = s2_ndre.s2_ndre(clip).first();
-Map.addLayer(ndre);
+//Map.addLayer(ndre);
 var mean = ndre.reduceRegion({
   reducer: ee.Reducer.mean(),
   scale: 10
