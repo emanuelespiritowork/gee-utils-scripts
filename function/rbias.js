@@ -27,7 +27,7 @@ Map.addLayer(ndre);
 var mean = ndre.reduceRegion({
   reducer: ee.Reducer.mean(),
   scale: 10
-}).getNumber(mean);
+});
 var rbias = ndre.substract(ee.Image(mean)).divide(ee.Image(mean));
 
 Export.image.toDrive({
