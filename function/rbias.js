@@ -11,12 +11,8 @@
  * Output: ee.Image
  * Description: unsupervised classification of an image
 *******************************************************/
+s2 = s2coll.filterDate("","").first();
 
-exports.rbias = function(img){
+mean = s2.reduce(ee.Reducer.mean());
   
-  img = ee.Image(img);
-  
-  mean = img.reduce(ee.Reducer.mean());
-  
-  return img.subtract(mean);
-};
+rbias = s2.subtract(mean);
