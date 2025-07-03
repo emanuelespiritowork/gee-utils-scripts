@@ -25,7 +25,7 @@ var mean = ndre.reduceRegions({
   collection: AOI,
   reducer: ee.Reducer.mean(),
   scale: 10
-}).getNumber("ndre");
+});
 print(mean);
 var rbias = ndre.subtract(ee.Image(mean)).divide(ee.Image(mean));
 
