@@ -18,3 +18,4 @@ mean = s2.reduce(ee.Reducer.mean());
 rbias = s2.subtract(mean);
 
 Map.addLayer(rbias);
+Map.centerObject(rbias);
