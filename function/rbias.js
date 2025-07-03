@@ -17,7 +17,7 @@ var s2coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED"),
 *******************************************************/
 var s2_ndre = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndre.js");
 var s2 = s2coll.filterDate("2023-04-25","2023-04-27").filterBounds(AOI).first();
-Map.addLayer(s2);
+//Map.addLayer(s2);
 var clip = s2.clip(AOI.geometry());
 var ndre = s2_ndre.s2_ndre(clip).first();
 Map.addLayer(ndre);
