@@ -21,8 +21,7 @@ var s2 = s2coll.filterDate("2023-04-25","2023-04-27").filterBounds(AOI).first();
 var clip = s2.clip(AOI.geometry());
 var ndre = s2_ndre.s2_ndre(clip).first();
 Map.addLayer(ndre);
-var mean = ndre.reduceRegions({
-  collection: AOI,
+var mean = ndre.reduceRegion({
   reducer: ee.Reducer.mean(),
   scale: 10
 });
