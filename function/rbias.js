@@ -25,8 +25,8 @@ var end_date = date.advance(1,"day");
 var s2 = s2coll.filterDate(start_date,end_date).filterBounds(AOI).first();
 print(AOI);
 //Map.addLayer(s2);
+var null_var = plot_stretch.plot_stretch(s2,["B8","B4","B3"],2,10);
 var clip = s2.clip(AOI.geometry());
-Map.addLayer(s2, {bands: ["B8","B4","B3"]},"rgb");
 var ndre = s2_ndre.s2_ndre(clip).first();
 //Map.addLayer(ndre);
 var mean = ndre.reduceRegion({
