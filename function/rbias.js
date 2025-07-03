@@ -16,6 +16,7 @@ var s2coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED"),
  * Description: unsupervised classification of an image
 *******************************************************/
 var s2_ndre = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndre.js");
+var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
 var id = "a";
 AOI = AOI.filter(ee.Filter.eq("id",id));
 var date = ee.Date("2025-04-30");
