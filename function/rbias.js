@@ -25,7 +25,7 @@ var s2 = s2coll.filterDate(start_date,end_date).filterBounds(AOI).first();
 print(AOI);
 //Map.addLayer(s2);
 var clip = s2.clip(AOI.geometry());
-Map.addLayer(clip);
+Map.addLayer(clip, {bands: ["B4","B3","B2"]},"rgb");
 var ndre = s2_ndre.s2_ndre(clip).first();
 //Map.addLayer(ndre);
 var mean = ndre.reduceRegion({
