@@ -12,6 +12,7 @@
  * Description: unsupervised classification of an image
 *******************************************************/
 s2 = s2coll.filterDate("","").first();
+clip = s2.clip(AOI);
 
 mean = s2.reduce(ee.Reducer.mean());
 clip
