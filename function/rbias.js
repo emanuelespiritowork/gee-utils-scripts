@@ -26,8 +26,8 @@ var mean = ndre.reduceRegions({
   reducer: ee.Reducer.mean(),
   scale: 10
 });
-print(mean);
-var rbias = ndre.subtract(ee.Image(mean)).divide(ee.Image(mean));
+
+Export.image.toDrive(mean);
 
 Map.addLayer(rbias);
 Map.centerObject(AOI);
