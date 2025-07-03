@@ -20,9 +20,9 @@ var s2 = s2coll.filterDate("2023-04-25","2023-04-27").first();
 var clip = s2.clip(AOI);
 var ndre = s2_ndre.s2_ndre(clip);
 
-var mean = clip.reduce(ee.Reducer.mean());
+var mean = ndre.reduce(ee.Reducer.mean());
 print(mean);
-var rbias = clip.subtract(mean).divide(mean);
+var rbias = ndre.subtract(mean).divide(mean);
 
 Map.addLayer(rbias);
 Map.centerObject(AOI);
