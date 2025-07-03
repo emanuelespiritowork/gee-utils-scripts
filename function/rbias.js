@@ -18,7 +18,7 @@ var s2coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED"),
 var s2_ndre = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndre.js");
 var s2 = s2coll.filterDate("2023-04-25","2023-04-27").first();
 var clip = s2.clip(AOI);
-var ndre = s2_ndre.
+var ndre = s2_ndre.s2_ndre(clip);
 
 var mean = clip.reduce(ee.Reducer.mean());
 print(mean);
