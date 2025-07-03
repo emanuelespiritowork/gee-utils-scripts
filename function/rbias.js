@@ -15,12 +15,12 @@ var s2coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED"),
  * Output: ee.Image
  * Description: unsupervised classification of an image
 *******************************************************/
-s2 = s2coll.filterDate("2023-06-25","2023-04-27").first();
-clip = s2.clip(AOI);
+var s2 = s2coll.filterDate("2023-06-25","2023-04-27").first();
+var clip = s2.clip(AOI);
 
-mean = clip.reduce(ee.Reducer.mean());
+var mean = clip.reduce(ee.Reducer.mean());
   
-rbias = clip.subtract(mean).divide(mean);
+var rbias = clip.subtract(mean).divide(mean);
 
 Map.addLayer(rbias);
 Map.centerObject(rbias);
