@@ -27,7 +27,11 @@ var mean = ndre.reduceRegions({
   scale: 10
 });
 
-Export.image.toDrive(mean);
+Export.image.toDrive({
+  image: ndre,
+  folder: "GEE_Export",
+  scale: 10
+});
 
 //Map.addLayer(rbias);
 Map.centerObject(AOI);
