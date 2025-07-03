@@ -29,5 +29,5 @@ var mean = ndre.reduceRegions({
 
 Export.image.toDrive(mean);
 
-Map.addLayer(rbias);
+//Map.addLayer(rbias);
 Map.centerObject(AOI);
