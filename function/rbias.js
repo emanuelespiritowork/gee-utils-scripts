@@ -1,3 +1,7 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var s2coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED"),
+    AOI = ee.FeatureCollection("projects/ee-emanuelespiritowork/assets/ESU_aggiuntive_20250703");
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 /******************************************************
  * Author: Emanuele Spirito
  * Copyright: 2025
