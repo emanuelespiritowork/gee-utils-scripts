@@ -23,4 +23,4 @@ var mean = clip.reduce(ee.Reducer.mean());
 var rbias = clip.subtract(mean).divide(mean);
 
 Map.addLayer(rbias);
-Map.centerObject(rbias);
+Map.centerObject(AOI);
