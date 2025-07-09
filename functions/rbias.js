@@ -1,4 +1,4 @@
-exports.rbias = function(image){
+exports.rbias = function(image, AOI){
   
   image = ee.Image(image);//with 1 band
   
