@@ -7,7 +7,7 @@ exports.rbias = function(multi_image, features){
   var band_names = multi_image.bandNames();
   
   var conversion = function(band){
-    return multi_image.select(band);
+    return multi_image.select(ee.List([band]));
   };
   
   var img_coll = band_names.map(conversion); 
