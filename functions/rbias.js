@@ -12,6 +12,8 @@ exports.rbias = function(multi_image, features){
   
   var img_coll = band_names.map(conversion); 
   
+  print(img_coll);
+  
   var apply_to_image = function(image){
     image = ee.Image(image);
     var divide_features = function(feature){
