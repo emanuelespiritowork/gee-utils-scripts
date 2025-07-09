@@ -22,6 +22,6 @@ print(s2image.bandNames().get(0));
 
 print(mean);
 
-Map.addLayer(ee.Image(mean));
+//Map.addLayer(ee.Image(mean));
 
-//Map.addLayer(result);
+Map.addLayer(result);
