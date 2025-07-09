@@ -8,9 +8,9 @@ exports.rbias = function(multi_image, features){
   
   var conversion = function(band){
     return multi_image.select(band);
-  }
+  };
   
-  var img_coll = 
+  var img_coll = band_names.map(conversion); 
   
   var apply_to_image = function(band){
     var divide_features = function(feature){
