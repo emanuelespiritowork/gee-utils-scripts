@@ -16,7 +16,7 @@ print(result);
 var mean = s2image.select("B1").reduceRegion({
       reducer: ee.Reducer.mean(),
       geometry: AOI.first()
-}).getNumber("mean");
+});
 
 print(mean);
 
