@@ -11,7 +11,7 @@ exports.rbias = function(image, features){
     
     var new_value = image.subtract(ee.Image(mean))
     .divide(ee.Image(mean))
-    .clip(feature);
+    .clip(feature.geometry());
     
     return new_value;
   };
