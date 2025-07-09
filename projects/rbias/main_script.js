@@ -18,8 +18,10 @@ var mean = s2image.reduceRegion({
       geometry: AOI.first().geometry()
 });
 
+print(s2image.bandNames());
+
 print(mean);
 
-Map.addLayer(mean);
+Map.addLayer(ee.Image(mean));
 
 //Map.addLayer(result);
