@@ -5,7 +5,7 @@ exports.rbias = function(image, features){
   var AOI = ee.FeatureCollection(features) || ee.FeatureCollection(image.geometry());
   
   var divide_features = function(feature){
-    var band_name = image.bandNames();
+    var band_name = image.bandNames().get(0);
     
     var mean = image.reduceRegion({
       reducer: ee.Reducer.mean(),
