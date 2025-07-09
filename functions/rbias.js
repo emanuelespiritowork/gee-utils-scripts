@@ -16,7 +16,7 @@ exports.rbias = function(image, features){
     .divide(ee.Image(mean))
     .clip(feature.geometry());
     
-    return new_value;
+    return new_value.toFloat();
   };
   
   var collection_of_new_image = ee.ImageCollection(AOI.map(divide_features));
