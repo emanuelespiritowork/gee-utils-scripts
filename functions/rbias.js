@@ -10,7 +10,7 @@ exports.rbias = function(image, features){
     var mean = image.reduceRegion({
       reducer: ee.Reducer.mean(),
       geometry: feature.geometry()
-    }).getNumber("mean");
+    }).getNumber(band_name);
     
     var new_value = image.subtract(ee.Image(mean))
     .divide(ee.Image(mean))
