@@ -13,12 +13,16 @@ var result = rbias.rbias(s2image.select("B1"),AOI);
 
 print(result);
 
-var mean = image.select("B1").reduceRegion({
+var mean = s2image.select("B1").reduceRegion({
       reducer: ee.Reducer.mean(),
       geometry: feature.geometry()
 }).getNumber("mean");
 
 print(mean);
+
+var new_value = s2image.subtract(ee.Image(mean))
+    .divide(ee.Image(mean))
+    .clip(feature.geometry());
 
 Map.addLayer(mean);
 
