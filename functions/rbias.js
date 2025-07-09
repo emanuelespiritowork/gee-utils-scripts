@@ -1,16 +1,19 @@
-exports.rbias = function(image, AOI){
+exports.rbias = function(image, features){
   
   image = ee.Image(image);//with 1 band
   
-  AOI = ee.FeatureCollection(AOI) || ee.FeatureCollection(image.geometry());
+  AOI = ee.FeatureCollection(features) || ee.FeatureCollection(image.geometry());
   
+  var divide_features = function(feature){
+    var mean = image.clip(feature).reduce({
+      reducer: ee.Reducer.mean()
+    }).getNumber(0);
+    
+    var new_value = image.subtract(ee.Image(mean)).divide(ee.Image(mean));
+    
+    return new_value;
+  };
   
+  var collection_of_new_image = AOI.map(divide_features);
   
-  mean = image.reduce({
-    reducer: ee.Reducer.mean()
-  }).getNumber(0);
-  
-  new_value = image.subtract(ee.Image(mean)).divide(ee.Image(mean));
-  
-  return new_value;
 };
