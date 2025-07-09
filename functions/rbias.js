@@ -12,7 +12,7 @@ exports.rbias = function(multi_image, features){
   
   var img_coll = band_names.map(conversion); 
   
-  var apply_to_image = function(band){
+  var apply_to_image = function(image){
     var divide_features = function(feature){
     var band_name = image.bandNames().get(0);
     
