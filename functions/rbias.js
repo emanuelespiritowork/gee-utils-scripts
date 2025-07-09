@@ -1,10 +1,19 @@
-exports.rbias = function(image, features){
+exports.rbias = function(multi_image, features){
   
-  image = ee.Image(image);//with 1 band
+  multi_image = ee.Image(multi_image);//with 1 band
   
   var AOI = ee.FeatureCollection(features) || ee.FeatureCollection(image.geometry());
   
-  var divide_features = function(feature){
+  var band_names = image.bandNames();
+  
+  var conversion = function(band){
+    return multi_image.select(band);
+  }
+  
+  var img_coll = 
+  
+  var apply_to_image = function(band){
+    var divide_features = function(feature){
     var band_name = image.bandNames().get(0);
     
     var mean = image.reduceRegion({
@@ -26,4 +35,7 @@ exports.rbias = function(image, features){
   var mosaic = collection_of_new_image.mosaic();
   
   return mosaic;
+}
+  
+  
 };
