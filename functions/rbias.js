@@ -35,7 +35,7 @@ exports.rbias = function(multi_image, features){
   var mosaic = collection_of_new_image.mosaic();
   
   return mosaic;
-}
+};
   
   return img_coll.map(apply_to_image);
 };
