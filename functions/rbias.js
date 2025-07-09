@@ -9,7 +9,7 @@ exports.rbias = function(image, features){
       reducer: ee.Reducer.mean()
     }).getNumber("mean");
     
-    var new_value = image.subtract(ee.Image(mean)).divide(ee.Image(mean));
+    var new_value = image.subtract(ee.Image(mean)).divide(ee.Image(mean)).clip(feature);
     
     return new_value;
   };
