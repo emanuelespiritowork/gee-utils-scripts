@@ -10,12 +10,11 @@ exports.rbias = function(multi_image, features){
     return multi_image.select(ee.List([band]));
   };
   
-  var img_coll = band_names.map(conversion); 
+  var img_coll = ee.ImageCollection(band_names.map(conversion)); 
   
   print(img_coll);
   
   var apply_to_image = function(image){
-    image = ee.Image(image);
     var divide_features = function(feature){
     var band_name = image.bandNames().get(0);
     
