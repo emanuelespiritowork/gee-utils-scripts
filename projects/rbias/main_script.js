@@ -11,4 +11,6 @@ var rbias = require("users/emanuelespiritowork/SharedRepo:functions/rbias.js");
 
 var result = rbias.rbias(s2image,AOI);
 
+print(result);
+
 //Map.addLayer(result);
