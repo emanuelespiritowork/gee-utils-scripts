@@ -15,7 +15,7 @@ var rbias = require("users/emanuelespiritowork/SharedRepo:functions/rbias.js");
 
 var mean = s2image.select("B1").reduceRegion({
       reducer: ee.Reducer.mean(),
-      geometry: AOI.first()
+      geometry: AOI.first().geometry()
 });
 
 print(mean);
