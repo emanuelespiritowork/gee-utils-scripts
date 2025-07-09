@@ -6,3 +6,4 @@ var s2image = s2coll.filterBounds(AOI).first();
 Map.addLayer(s2image);
 Map.addLayer(AOI);
 Map.centerObject(AOI);
+
