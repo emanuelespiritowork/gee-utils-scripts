@@ -9,9 +9,9 @@ Map.centerObject(AOI);
 
 var rbias = require("users/emanuelespiritowork/SharedRepo:functions/rbias.js");
 
-var result = rbias.rbias(s2image.select("B1"),AOI);
+//var result = rbias.rbias(s2image.select("B1"),AOI);
 
-print(result);
+//print(result);
 
 var mean = s2image.select("B1").reduceRegion({
       reducer: ee.Reducer.mean(),
