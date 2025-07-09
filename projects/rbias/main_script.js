@@ -13,4 +13,8 @@ var result = rbias.rbias(s2image.select("B1"),AOI);
 
 print(result);
 
+var mean = s2image.select("B1").reduce(ee.Reducer.mean());
+
+print(mean);
+
 //Map.addLayer(result);
