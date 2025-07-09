@@ -5,7 +5,7 @@ exports.rbias = function(image, features){
   var AOI = ee.FeatureCollection(features) || ee.FeatureCollection(image.geometry());
   
   var divide_features = function(feature){
-    var mean = image.clip(feature).reduce({
+    var mean = image.clip(feature.geometry()).reduce({
       reducer: ee.Reducer.mean()
     }).getNumber("mean");
     
