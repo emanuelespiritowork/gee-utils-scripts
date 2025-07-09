@@ -14,7 +14,7 @@ exports.rbias = function(image, features){
     return new_value;
   };
   
-  var collection_of_new_image = AOI.map(divide_features);
+  var collection_of_new_image = ee.ImageCollection(AOI.map(divide_features));
   
   var mosaic = collection_of_new_image.mosaic();
   
