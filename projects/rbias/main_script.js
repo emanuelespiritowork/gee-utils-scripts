@@ -16,7 +16,8 @@ print(result);
 var mean = image.select("B1").reduceRegion({
       reducer: ee.Reducer.mean(),
       geometry: feature.geometry()
-    }).getNumber("mean");
+}).getNumber("mean");
+
 print(mean);
 
 Map.addLayer(mean);
