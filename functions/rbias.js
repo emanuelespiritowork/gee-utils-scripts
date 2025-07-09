@@ -2,7 +2,7 @@ exports.rbias = function(image, features){
   
   image = ee.Image(image);//with 1 band
   
-  AOI = ee.FeatureCollection(features) || ee.FeatureCollection(image.geometry());
+  var AOI = ee.FeatureCollection(features) || ee.FeatureCollection(image.geometry());
   
   var divide_features = function(feature){
     var mean = image.clip(feature).reduce({
