@@ -8,4 +8,5 @@ exports.rbias = function(image){
   
   new_value = image.subtract(ee.Image(mean)).divide(ee.Image(mean));
   
+  return new_value;
 };
