@@ -20,10 +20,6 @@ var mean = s2image.select("B1").reduceRegion({
 
 print(mean);
 
-var new_value = s2image.subtract(ee.Image(mean))
-    .divide(ee.Image(mean))
-    .clip(feature.geometry());
-
 Map.addLayer(mean);
 
 //Map.addLayer(result);
