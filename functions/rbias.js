@@ -13,8 +13,9 @@ exports.rbias = function(multi_image, features){
   var img_coll = band_names.map(conversion); 
   
   var apply_to_image = function(image){
+    image = ee.Image(image);
     var divide_features = function(feature){
-    var band_name = ee.Image(image).bandNames().get(0);
+    var band_name = image.bandNames().get(0);
     
     var mean = image.reduceRegion({
       reducer: ee.Reducer.mean(),
