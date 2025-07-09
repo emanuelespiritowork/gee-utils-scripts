@@ -18,7 +18,7 @@ var mean = s2image.reduceRegion({
       geometry: AOI.first().geometry()
 });
 
-print(s2image.bandNames());
+print(s2image.bandNames().get(0));
 
 print(mean);
 
