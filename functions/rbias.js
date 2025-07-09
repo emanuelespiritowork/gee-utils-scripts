@@ -6,6 +6,6 @@ exports.rbias = function(image){
     reducer: ee.Reducer.mean()
   }).getNumber(0);
   
-  
+  new_value = image.subtract(ee.Image(mean)).divide(ee.Image(mean));
   
 };
