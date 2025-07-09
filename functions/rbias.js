@@ -7,7 +7,7 @@ exports.rbias = function(image, features){
   var divide_features = function(feature){
     var mean = image.clip(feature).reduce({
       reducer: ee.Reducer.mean()
-    }).getNumber(0);
+    }).getNumber("mean");
     
     var new_value = image.subtract(ee.Image(mean)).divide(ee.Image(mean));
     
