@@ -9,7 +9,7 @@ Map.centerObject(AOI);
 
 var rbias = require("users/emanuelespiritowork/SharedRepo:functions/rbias.js");
 
-var result = rbias.rbias(s2image.select("B.*"));
+var result = rbias.rbias(s2image.select("B.*"),AOI);
 
 print(result);
 
