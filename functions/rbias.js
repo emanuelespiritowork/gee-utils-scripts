@@ -4,6 +4,8 @@ exports.rbias = function(multi_image, features){
   
   var AOI = ee.FeatureCollection(features) || ee.FeatureCollection(multi_image.geometry());
   
+  print(AOI);
+  
   var band_names = multi_image.bandNames();
   
   print(band_names);
