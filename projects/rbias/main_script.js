@@ -13,15 +13,4 @@ var result = rbias.rbias(s2image.select("B.*"),AOI);
 
 print(result);
 
-var mean = s2image.reduceRegion({
-      reducer: ee.Reducer.mean(),
-      geometry: AOI.first().geometry()
-});
-
-print(s2image.bandNames().get(0));
-
-print(mean);
-
-//Map.addLayer(ee.Image(mean));
-
 Map.addLayer(result);
