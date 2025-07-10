@@ -1,3 +1,18 @@
+/******************************************************
+ * Author: Emanuele Spirito
+ * Copyright: 2025
+ * See latest stable version on my GitHub at 
+ * https://github.com/emanuelespiritowork/gee-utils-scripts
+*******************************************************/
+
+/******************************************************
+ * PURPOSE OF THIS SCRIPT
+ * Input: ee.Image (mandatory),
+ *        ee.FeatureCollection (optional)
+ * Output: ee.Image
+ * Description: create an rbias of a multiband image
+*******************************************************/
+
 exports.rbias = function(multi_image, features){
   
   multi_image = ee.Image(multi_image);//with 1 band
