@@ -21,6 +21,9 @@ var data = modis.filterDate(start_date,end_date).filterBounds(AOI);
 
 //here we need a cloud mask
 
+//then we need a threshold based on:
+// absolute value
+
 print(data);
 
 var n_data = data.size();
