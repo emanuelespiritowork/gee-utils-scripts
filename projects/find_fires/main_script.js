@@ -19,6 +19,8 @@ var end_date = ee.Date("2012-09-5");
 
 var data = modis.filterDate(start_date,end_date).filterBounds(AOI);
 
+//here we need a cloud mask
+
 print(data);
 
 var n_data = data.size();
