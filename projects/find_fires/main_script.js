@@ -20,6 +20,11 @@ var end_date = ee.Date("2012-09-05");
 var data = modis.filterDate(start_date,end_date).filterBounds(AOI);
 
 //here we need a cloud mask
+var clipping = function(image){
+  return image.clip(AOI);
+};
+
+var clipper = data.map(clipping);
 
 var masking = function(image){
   var cloudBit = 1 << 0;
