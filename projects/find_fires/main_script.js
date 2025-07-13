@@ -15,7 +15,7 @@ var AOI =
 var modis = ee.ImageCollection("MODIS/061/MOD09CMG");
 
 var start_date = ee.Date("2012-08-04");
-var end_date = ee.Date("2012-09-5");
+var end_date = ee.Date("2012-09-05");
 
 var data = modis.filterDate(start_date,end_date).filterBounds(AOI);
 
