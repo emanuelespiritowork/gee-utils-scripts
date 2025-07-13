@@ -15,4 +15,12 @@ var goes_16 = ee.ImageCollection("NOAA/GOES/16/FDCF")
 var goes_17 = ee.ImageCollection("NOAA/GOES/17/FDCF")
 .filterDate(start_date,end_date)
 .filterBounds(AOI);
-var modis = ee.ImageCollection("MODIS/061/MOD14A1");
+var modis = ee.ImageCollection("MODIS/061/MOD14A1")
+.filterDate(start_date,end_date)
+.filterBounds(AOI);
+
+var fire_mask_codes = ["10","11","12","13","14","15",
+"30","31","32","33","34","35"];
+
+var fire_probability = ["1.0","0.9","0.8","0.5","0.3","0.1",
+"1.0","0.9","0.8","0.5","0.3","0.1"];
