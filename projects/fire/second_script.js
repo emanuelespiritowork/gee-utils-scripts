@@ -8,3 +8,11 @@ var AOI = /* color: #d63000 */ee.Geometry.Polygon(
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var start_date = ee.Date("2019-10-25");
 var end_date = ee.Date("2019-10-28");
+
+var goes_16 = ee.ImageCollection("NOAA/GOES/16/FDCF")
+.filterDate(start_date,end_date)
+.filterBounds(AOI); 
+var goes_17 = ee.ImageCollection("NOAA/GOES/17/FDCF")
+.filterDate(start_date,end_date)
+.filterBounds(AOI);
+var modis = ee.ImageCollection("MODIS/061/MOD14A1");
