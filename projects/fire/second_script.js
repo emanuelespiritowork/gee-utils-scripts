@@ -32,16 +32,16 @@ var datetimes = ee.List(goes_16.aggregate_array("system:time_start")).map(toDate
 //print(datetimes.filter(ee.Filter.gt("item",start_date.advance(,"day"))));
 
 var circleIncrease = function(end_date){
-    var goes_16 = ee.ImageCollection("NOAA/GOES/16/FDCF")
-    .filterDate(start_date,end_date)
-    .filterBounds(AOI); 
+  var goes_16 = ee.ImageCollection("NOAA/GOES/16/FDCF")
+  .filterDate(start_date,end_date)
+  .filterBounds(AOI); 
+
+  var goes_17 = ee.ImageCollection("NOAA/GOES/17/FDCF")
+  .filterDate(start_date,end_date)
+  .filterBounds(AOI);
   
-    var goes_17 = ee.ImageCollection("NOAA/GOES/17/FDCF")
-    .filterDate(start_date,end_date)
-    .filterBounds(AOI);
-    
-    //var fire_mask_codes = ee.List([10,11,12,13,14,15,30,31,32,33,34,35]);
-  
+  //var fire_mask_codes = ee.List([10,11,12,13,14,15,30,31,32,33,34,35]);
+
   //var fire_probability = ee.List([1.0,0.9,0.8,0.5,0.3,0.1,1.0,0.9,0.8,0.5,0.3,0.1]);
   
   var fire_mask_codes = [10, 30, 11, 31, 12, 32, 13, 33, 14, 34, 15, 35];
