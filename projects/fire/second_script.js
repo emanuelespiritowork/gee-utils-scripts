@@ -87,6 +87,10 @@ var smoothed = linked_collection_goes.reduceNeighborhood({
 
 Map.addLayer(smoothed,{palette:['white', 'yellow', 'orange', 'red', 'purple']});
 
-var fire_outline = smoothed.gt(0.6).reduceToVectors();
+var fire_outline = smoothed.gt(0.6).reduceToVectors({
+  scale: 200,
+  bestEffort: true,
+  geometry: AOI
+});
 
 Map.addLayer(fire_outline);
