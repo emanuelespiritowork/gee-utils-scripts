@@ -15,8 +15,8 @@ var AOI =
               "system:index": "0"
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-var start_date = ee.Date("2019-10-23");
-var true_end_date = ee.Date("2019-10-29");
+var start_date = ee.Date("2019-10-24");
+var true_end_date = ee.Date("2019-10-26");
 
 var clipping = function(image){
   return image.clip(AOI);
