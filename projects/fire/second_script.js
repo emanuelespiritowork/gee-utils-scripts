@@ -35,5 +35,7 @@ var remap_mask_to_probability = function(image){
   return image.remap(fire_mask_codes,
   fire_probability,
   default_value,
-  "Mask");
+  "Mask")
+  .select(["Mask"])
+  .rename(["Fire_probability"]);
 };
