@@ -76,7 +76,7 @@ Map.addLayer(ee.Image(list_not_masked.get(number)).clip(AOI),
 "Coarse_Resolution_Surface_Reflectance_Band_4",
 "Coarse_Resolution_Surface_Reflectance_Band_3"]}, "image")
 Map.addLayer(ee.Image(list_not_masked.get(number)).clip(AOI).select(["Coarse_Resolution_Brightness_Temperature_Band_21"]),
-{min: 330, max: 340}, "image");
+{min: 330, max: 331}, "image");
 
 
 var modis2 = ee.ImageCollection("MODIS/061/MOD14A1");
