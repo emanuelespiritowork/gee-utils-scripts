@@ -21,6 +21,9 @@ var data = modis.filterDate(start_date,end_date).filterBounds(AOI);
 
 //here we need a cloud mask
 
+var cloudBit = 1 << 0;
+print(cloudBit);
+
 //then we need a threshold based on:
 // absolute value
 
