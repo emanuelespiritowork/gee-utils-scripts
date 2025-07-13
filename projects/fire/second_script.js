@@ -93,8 +93,8 @@ var circleIncrease = function(end_date){
   
   //Map.addLayer(fire_outline);
   
-  //return ee.Feature(fire_outline.geometry(),{date: end_date});
-  return fire_outline.geometry();
+  return ee.Feature(fire_outline.geometry(),{date: end_date});
+  //return fire_outline.geometry();
 };
 
 var fire_outlines = datetimes.map(circleIncrease);
