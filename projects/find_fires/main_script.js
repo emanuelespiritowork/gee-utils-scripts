@@ -27,18 +27,30 @@ var clipping = function(image){
 var clipper = data.map(clipping);
 
 var masking = function(image){
-  var cloudBit = 1 << 0;
-  var shadowBit = 1 << 8;
+  //var cloudBit = 1 << 0;
+  //var shadowBit = 1 << 8;
   
-  var cloudMask = image.select(["Coarse_Resolution_Internal_CM"])
-  .bitwiseAnd(ee.Image(cloudBit))
+  //var cloudMask = image.select(["Coarse_Resolution_Internal_CM"])
+  //.bitwiseAnd(cloudBit)
+  //.neq(0);
+  
+  //var shadowMask = image.select(["Coarse_Resolution_Internal_CM"])
+  //.bitwiseAnd(shadowBit)
+  //.neq(0); 
+  
+  //var oppositeMask = cloudMask.or(shadowMask);
+  
+  //var fullMask = oppositeMask.eq(0);
+  
+  var clearBit = 1 << 1;
+  
+  var clearMask = image.select(["Coarse_Resolution_Internal_CM"])
+  .bitwiseAnd(clearBit)
   .neq(0);
   
-  var shadowMask = image.select(["Coarse_Resolution_Internal_CM"])
-  .bitwiseAnd(ee.Image(shadowBit))
-  .neq(0); 
+  var oppositeMask = clearMask;
   
-  var fullMask = cloudMask.or(shadowMask.eq(0));
+  var fullMask = oppositeMask.eq(0);
   
   return image.updateMask(fullMask);
 };
