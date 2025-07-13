@@ -11,7 +11,7 @@ var AOI =
           [-122.3205279329427, 38.65361625904314]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var start_date = ee.Date("2019-10-23");
-var end_date = ee.Date("2019-11-01");
+var end_date = ee.Date("2019-10-27");
 
 var goes_16 = ee.ImageCollection("NOAA/GOES/16/FDCF")
 .filterDate(start_date,end_date)
