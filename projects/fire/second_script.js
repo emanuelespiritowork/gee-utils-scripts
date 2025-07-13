@@ -64,7 +64,7 @@ Map.addLayer(fire_footprint_from_goes_17,{palette:['white', 'yellow', 'orange', 
 var linked_collection_goes = ee.ImageCollection([fire_footprint_from_goes_16,fire_footprint_from_goes_17])
 .reduce(ee.Reducer.min());
 
-Map.addLayer(linked_collection_goes,{palette:['white', 'yellow', 'orange', 'red', 'purple']});
+Map.addLayer(linked_collection_goes,{palette:['white', 'yellow', 'orange', 'red', 'purple']},{},"linked_collection_goes",false);
 
 
 var smoothed = linked_collection_goes.reduceNeighborhood({
