@@ -12,4 +12,5 @@ var AOI =
           [-119.95866613910269, 42.00304411817351],
           [-124.44108801410269, 42.06832293264994]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-
+var start_date = ee.Date("2019-10-25");
+var end_date = ee.Date("2019-10-28");
