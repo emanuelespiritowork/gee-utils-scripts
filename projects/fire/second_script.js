@@ -19,11 +19,11 @@ var modis = ee.ImageCollection("MODIS/061/MOD14A1")
 .filterDate(start_date,end_date)
 .filterBounds(AOI);
 
-var fire_mask_codes = ["10","11","12","13","14","15",
-"30","31","32","33","34","35"];
+var fire_mask_codes = ee.List(["10","11","12","13","14","15",
+"30","31","32","33","34","35"]);
 
-var fire_probability = ["1.0","0.9","0.8","0.5","0.3","0.1",
-"1.0","0.9","0.8","0.5","0.3","0.1"];
+var fire_probability = ee.List(["1.0","0.9","0.8","0.5","0.3","0.1",
+"1.0","0.9","0.8","0.5","0.3","0.1"]);
 
 var default_value = 0;
 
@@ -39,3 +39,8 @@ var remap_mask_to_probability = function(image){
   .select(["Mask"])
   .rename(["Fire_probability"]);
 };
+
+var fire_from_goes_16 = goes_16.map(clipping)
+.map(remap_mask_to_probability);
+
+Map.addLayer(fire_from_goes_16);
