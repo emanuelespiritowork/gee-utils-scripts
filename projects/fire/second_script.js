@@ -100,5 +100,3 @@ var circleIncrease = function(end_date){
 var fire_outlines = datetimes.map(circleIncrease);
 
 print(fire_outlines);
-
-//Map.addLayer(fire_outlines)
