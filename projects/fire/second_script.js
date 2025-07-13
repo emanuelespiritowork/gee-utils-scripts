@@ -19,9 +19,6 @@ var goes_16 = ee.ImageCollection("NOAA/GOES/16/FDCF")
 var goes_17 = ee.ImageCollection("NOAA/GOES/17/FDCF")
 .filterDate(start_date,end_date)
 .filterBounds(AOI);
-var modis = ee.ImageCollection("MODIS/061/MOD14A1")
-.filterDate(start_date,end_date)
-.filterBounds(AOI);
 
 print(goes_16);
 print(goes_16.aggregate_array("system:time_start"));
@@ -90,7 +87,7 @@ Map.addLayer(smoothed,{palette:['white', 'yellow', 'orange', 'red', 'purple']});
 var fire_outline = smoothed.gt(0.6).reduceToVectors({
   scale: 200,
   bestEffort: true,
-  geometry: AOI
-});
+  geometry: AOI.geometry()
+}).filter(ee.Filter.eq("label",1));
 
 Map.addLayer(fire_outline);
