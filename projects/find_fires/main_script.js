@@ -52,7 +52,7 @@ var masking = function(image){
   
   var fullMask = oppositeMask.eq(0);
   
-  return image.updateMask(fullMask);
+  return image.updateMask(oppositeMask);
 };
 
 var masked = clipper.map(masking);
@@ -67,16 +67,16 @@ print(masked);
 var n_data = masked.size();
 var list = masked.toList(n_data);
 print(list.get(1))
-var number = 6;
-//Map.addLayer(masked.select(["Coarse_Resolution_Brightness_Temperature_Band_21"]))
-Map.addLayer(ee.Image(list.get(number)).clip(AOI).select(["Coarse_Resolution_Brightness_Temperature_Band_21"]),
-{min: 330, max: 340}, "image");
+var number = 13;
+Map.addLayer(clipper.select(["Coarse_Resolution_Brightness_Temperature_Band_21"]))
 
 var list_not_masked = clipper.toList(clipper.size());
 Map.addLayer(ee.Image(list_not_masked.get(number)).clip(AOI),
 {bands: ["Coarse_Resolution_Surface_Reflectance_Band_1",
 "Coarse_Resolution_Surface_Reflectance_Band_4",
 "Coarse_Resolution_Surface_Reflectance_Band_3"]}, "image")
+Map.addLayer(ee.Image(list.get(number)).clip(AOI).select(["Coarse_Resolution_Brightness_Temperature_Band_21"]),
+{min: 330, max: 340}, "image");
 
 
 var modis2 = ee.ImageCollection("MODIS/061/MOD14A1");
