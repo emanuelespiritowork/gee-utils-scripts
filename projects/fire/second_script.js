@@ -97,6 +97,6 @@ var circleIncrease = function(end_date){
   //return fire_outline.geometry();
 };
 
-var fire_outlines = datetimes.map(circleIncrease);
+var fire_outlines = ee.FeatureCollection(datetimes.map(circleIncrease));
 
 print(fire_outlines);
