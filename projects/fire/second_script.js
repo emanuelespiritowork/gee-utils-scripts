@@ -18,13 +18,19 @@ var AOI =
 var start_date = ee.Date("2019-10-23");
 var true_end_date = ee.Date("2019-10-29");
 
+var clipping = function(image){
+  return image.clip(AOI);
+};
+  
 var goes_16 = ee.ImageCollection("NOAA/GOES/16/FDCF")
 .filterDate(start_date,true_end_date)
-.filterBounds(AOI); 
+.filterBounds(AOI)
+.map(clipping); 
 
 var goes_17 = ee.ImageCollection("NOAA/GOES/17/FDCF")
-  .filterDate(start_date,end_date)
-  .filterBounds(AOI);
+.filterDate(start_date,true_end_date)
+.filterBounds(AOI)
+.map(clipping);
 
 var toDate = function(element){
   return ee.Date(element);
@@ -46,9 +52,6 @@ var circleIncrease = function(end_date){
   
   var default_value = 0;
   
-  var clipping = function(image){
-    return image.clip(AOI);
-  };
   
   var remap_mask_to_probability = function(image){
     return image.remap(fire_mask_codes,
@@ -62,10 +65,8 @@ var circleIncrease = function(end_date){
   //print(goes_16);
   
   var fire_from_goes_16 = goes_16.filterDate(start_date,end_date)
-  .map(clipping)
   .map(remap_mask_to_probability);
   var fire_from_goes_17 = goes_17.filterDate(start_date,end_date)
-  .map(clipping)
   .map(remap_mask_to_probability);
   
   var fire_footprint_from_goes_16 = fire_from_goes_16
