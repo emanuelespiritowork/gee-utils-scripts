@@ -99,7 +99,7 @@ var circleIncrease = function(end_date){
   
   //Map.addLayer(fire_outline);
   
-  return fire_outline.geometry();
+  return ee.Feature(fire_outline.geometry(),{date: end_date});
   
 };
   var goes_16 = ee.ImageCollection("NOAA/GOES/16/FDCF")
