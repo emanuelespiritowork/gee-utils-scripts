@@ -57,7 +57,7 @@ var masking = function(image){
 
 var masked = clipper.map(masking);
 
-
+//is masking helpful for 4micron and 11micron bands?
 
 //then we need a threshold based on:
 // absolute value
