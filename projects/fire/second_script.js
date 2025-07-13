@@ -23,6 +23,19 @@ var modis = ee.ImageCollection("MODIS/061/MOD14A1")
 .filterDate(start_date,end_date)
 .filterBounds(AOI);
 
+print(goes_16);
+print(goes_16.aggregate_array("system:time_start"));
+
+var toDate = function(element){
+  return ee.Date(element);
+};
+
+print(ee.List(goes_16.aggregate_array("system:time_start")).map(toDate));
+
+var circleIncrease = function(end_date){
+  
+};
+
 //var fire_mask_codes = ee.List([10,11,12,13,14,15,30,31,32,33,34,35]);
 
 //var fire_probability = ee.List([1.0,0.9,0.8,0.5,0.3,0.1,1.0,0.9,0.8,0.5,0.3,0.1]);
@@ -73,3 +86,7 @@ var smoothed = linked_collection_goes.reduceNeighborhood({
 });
 
 Map.addLayer(smoothed,{palette:['white', 'yellow', 'orange', 'red', 'purple']});
+
+var fire_outline = smoothed.gt(0.6).reduceToVectors();
+
+Map.addLayer(fire_outline);
