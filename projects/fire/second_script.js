@@ -173,7 +173,7 @@ var fire_outline = smoothed.gt(ee.Image(0.6)).reduceToVectors({
 print(fire_outline);
 
 
-var fire_outlines = ee.FeatureCollection(datetimes.map(circleIncrease));
+var fire_outlines = datetimes.map(circleIncrease);
 
 print(fire_outlines);
 
