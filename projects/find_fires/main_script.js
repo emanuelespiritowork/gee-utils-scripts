@@ -28,18 +28,20 @@ var masking = function(image){
   .eq(0));
 };
 
+var masked = data.map(masking);
+
 
 
 //then we need a threshold based on:
 // absolute value
 
-print(data);
+print(masked);
 
-var n_data = data.size();
-var list = data.toList(n_data);
+var n_data = masked.size();
+var list = masked.toList(n_data);
 print(list.get(1))
 var number = 12;
-Map.addLayer(data.select(["Coarse_Resolution_Brightness_Temperature_Band_21"]))
+Map.addLayer(masked.select(["Coarse_Resolution_Brightness_Temperature_Band_21"]))
 Map.addLayer(ee.Image(list.get(number)).clip(AOI).select(["Coarse_Resolution_Brightness_Temperature_Band_21"]),
 {min: 330, max: 340}, "image");
 
