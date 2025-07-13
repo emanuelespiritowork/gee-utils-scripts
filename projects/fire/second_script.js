@@ -22,6 +22,10 @@ var goes_16 = ee.ImageCollection("NOAA/GOES/16/FDCF")
 .filterDate(start_date,true_end_date)
 .filterBounds(AOI); 
 
+var goes_17 = ee.ImageCollection("NOAA/GOES/17/FDCF")
+  .filterDate(start_date,end_date)
+  .filterBounds(AOI);
+
 var toDate = function(element){
   return ee.Date(element);
 };
@@ -32,13 +36,6 @@ var datetimes = ee.List(goes_16.aggregate_array("system:time_start")).map(toDate
 //print(datetimes.filter(ee.Filter.gt("item",start_date.advance(,"day"))));
 
 var circleIncrease = function(end_date){
-  var goes_16 = ee.ImageCollection("NOAA/GOES/16/FDCF")
-  .filterDate(start_date,end_date)
-  .filterBounds(AOI); 
-
-  var goes_17 = ee.ImageCollection("NOAA/GOES/17/FDCF")
-  .filterDate(start_date,end_date)
-  .filterBounds(AOI);
   
   //var fire_mask_codes = ee.List([10,11,12,13,14,15,30,31,32,33,34,35]);
 
@@ -64,9 +61,11 @@ var circleIncrease = function(end_date){
   
   //print(goes_16);
   
-  var fire_from_goes_16 = goes_16.map(clipping)
+  var fire_from_goes_16 = goes_16.filterDate(start_date,end_date)
+  .map(clipping)
   .map(remap_mask_to_probability);
-  var fire_from_goes_17 = goes_17.map(clipping)
+  var fire_from_goes_17 = goes_17.filterDate(start_date,end_date)
+  .map(clipping)
   .map(remap_mask_to_probability);
   
   var fire_footprint_from_goes_16 = fire_from_goes_16
