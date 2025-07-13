@@ -40,27 +40,21 @@ var datetimes = ee.List(goes_16.aggregate_array("system:time_start")).map(toDate
 .slice(1);
 
 //print(datetimes.filter(ee.Filter.gt("item",start_date.advance(,"day"))));
-
+var fire_mask_codes = [10, 30, 11, 31, 12, 32, 13, 33, 14, 34, 15, 35];
+var fire_probability = [1.0, 1.0, 0.9, 0.9, 0.8, 0.8, 0.5, 0.5, 0.3, 0.3, 0.1, 0.1];
+  
+var default_value = 0;
+  
+var remap_mask_to_probability = function(image){
+  return image.remap(fire_mask_codes,
+  fire_probability,
+  default_value,
+  "Mask")
+  .select(["remapped"])
+  .rename(["Fire_probability"]);
+};
+  
 var circleIncrease = function(end_date){
-  
-  //var fire_mask_codes = ee.List([10,11,12,13,14,15,30,31,32,33,34,35]);
-
-  //var fire_probability = ee.List([1.0,0.9,0.8,0.5,0.3,0.1,1.0,0.9,0.8,0.5,0.3,0.1]);
-  
-  var fire_mask_codes = [10, 30, 11, 31, 12, 32, 13, 33, 14, 34, 15, 35];
-  var fire_probability = [1.0, 1.0, 0.9, 0.9, 0.8, 0.8, 0.5, 0.5, 0.3, 0.3, 0.1, 0.1];
-  
-  var default_value = 0;
-  
-  
-  var remap_mask_to_probability = function(image){
-    return image.remap(fire_mask_codes,
-    fire_probability,
-    default_value,
-    "Mask")
-    .select(["remapped"])
-    .rename(["Fire_probability"]);
-  };
   
   //print(goes_16);
   
