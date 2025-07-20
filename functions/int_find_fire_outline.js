@@ -6,7 +6,7 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
   true_end_date = ee.Date(true_end_date);
   
   var buffer_value = buffer || ee.Number(40000);
-  var delay = time_delay || ee.Number(14400);//minutes. Put -1 to get all images
+  var delay = time_delay || ee.Number(1440);//minutes. Put -1 to get all images
   print(delay);
   var AOI = ee.FeatureCollection(fire_point.buffer(buffer_value));
   print(AOI);
@@ -37,6 +37,7 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
     print(true_end_date_toNumber);
     print(delay.multiply(60).multiply(1000));
     var datetimes = ee.List.sequence(start_date_toNumber,true_end_date_toNumber,delay.multiply(60).multiply(1000))
+    .map(toDate)
     .slice(1);
     print(datetimes);
   }
