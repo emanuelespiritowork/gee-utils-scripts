@@ -64,4 +64,3 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
   return fire_centers;
 };
 
-//second part: compute fire outline
