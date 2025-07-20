@@ -35,6 +35,7 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
     var true_end_date_toNumber = true_end_date.millis();
     print(start_date_toNumber);
     print(true_end_date_toNumber);
+    print(delay.multiply(60).multiply(1000));
     var datetimes = ee.List.sequence(start_date_toNumber,true_end_date_toNumber,delay.multiply(60).multiply(1000))
     .map(toDate)
     .slice(1);
