@@ -49,9 +49,17 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
 
   var masked = masked_21.or(masked_31);
   
-  Map.addLayer(masked,{},"masked");
+  var find_centroids = function(feature){
+    return feature.centroid();
+  };
   
-  return masked;
+  var fire_centers = masked.reduceToVectors()
+  .filter(ee.Filter.eq("label",1))
+  .map(find_centroids);
+  
+  Map.addLayer(fire_centers,{},"fire_centers");
+  
+  return fire_centers;
 };
 
 //second part: compute fire outline
