@@ -55,7 +55,7 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
   
   var fire_centers = masked.clipToBoundsAndScale(AOI).reduceToVectors()
   .filter(ee.Filter.eq("label",1))
-  .map(find_centroids);
+  //.map(find_centroids);
   
   Map.addLayer(fire_centers,{},"fire_centers");
   
