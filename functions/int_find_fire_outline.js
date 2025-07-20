@@ -37,7 +37,7 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
     .slice(1)
   }));
   
-  print(datetimes);
+  //print(datetimes);
   
   //print(datetimes.filter(ee.Filter.gt("item",start_date.advance(,"day"))));
   var fire_mask_codes = [10, 30, 11, 31, 12, 32, 13, 33, 14, 34, 15, 35];
