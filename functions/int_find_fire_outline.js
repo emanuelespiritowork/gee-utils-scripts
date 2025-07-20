@@ -6,7 +6,7 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
   true_end_date = ee.Date(true_end_date);
   
   var buffer_value = buffer || ee.Number(10000);
-  var delay = time_delay || ee.Number(1440);//minutes
+  var delay = time_delay || ee.Number(1440);//minutes. Put 0 to get all images
   
   var AOI = fire_point.buffer(buffer_value);
   
@@ -24,8 +24,13 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
     return ee.Date(element);
   };
   
-  var datetimes = ee.List(goes_16.aggregate_array("system:time_start")).map(toDate)
-  .slice(1);
+  if(delay === 0){
+    var datetimes = ee.List(goes_16.aggregate_array("system:time_start"))
+    .map(toDate)
+    .slice(1);
+  }else{
+    print("else");
+  }
   
   //print(datetimes.filter(ee.Filter.gt("item",start_date.advance(,"day"))));
   var fire_mask_codes = [10, 30, 11, 31, 12, 32, 13, 33, 14, 34, 15, 35];
