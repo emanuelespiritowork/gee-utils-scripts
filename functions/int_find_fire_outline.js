@@ -35,7 +35,8 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
     var true_end_date_toNumber = true_end_date.millis();
     print(start_date_toNumber);
     print(true_end_date_toNumber);
-    //var datetimes = ee.List.sequence()
+    var datetimes = ee.List.sequence(start_date_toNumber,true_end_date_toNumber,delay*60*1000);
+    print(datetimes);
   }
   
   //print(datetimes.filter(ee.Filter.gt("item",start_date.advance(,"day"))));
