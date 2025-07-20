@@ -47,7 +47,7 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
   
   Map.addLayer(masked_31,{},"masked_31");
 
-  var masked = masked_21.and(masked_31);
+  var masked = masked_21.or(masked_31);
   
   Map.addLayer(masked,{},"masked");
   
