@@ -15,14 +15,14 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
   var start_date = date.advance(-1,"day");
   var end_date = date.advance(1,"day");
   
-  print(start_date);
-  print(end_date);
+  //print(start_date);
+  //print(end_date);
 
   var coll = modis.filterDate(start_date,end_date).filterBounds(AOI);
 
   var clipper = clip_to.clip_to(coll,AOI,5600);
   
-  Map.addLayer(clipper.first().select(["Coarse_Resolution_Brightness_Temperature_Band_21"]),{},"clipper")
+  //Map.addLayer(clipper.first().select(["Coarse_Resolution_Brightness_Temperature_Band_21"]),{},"clipper")
   
   var mask_21 = function(img){
     return img.select(["Coarse_Resolution_Brightness_Temperature_Band_21"])
@@ -37,15 +37,15 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
   var masked_21 = clipper.map(mask_21)
   .reduce(ee.Reducer.max());
   
-  Map.addLayer(mask_21(clipper.first()),{},"mask_21.first");
+  //Map.addLayer(mask_21(clipper.first()),{},"mask_21.first");
   
-  Map.addLayer(masked_21,{},"masked_21");
+  //Map.addLayer(masked_21,{},"masked_21");
 
   
   var masked_31 = clipper.map(mask_31)
   .reduce(ee.Reducer.max());
   
-  Map.addLayer(masked_31,{},"masked_31");
+  //Map.addLayer(masked_31,{},"masked_31");
 
   var masked = masked_21.or(masked_31);
   
@@ -59,7 +59,7 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
   .filter(ee.Filter.eq("label",1))
   .map(find_centroids);
   
-  Map.addLayer(fire_centers,{},"fire_centers");
+  //Map.addLayer(fire_centers,{},"fire_centers");
   
   return fire_centers;
 };
