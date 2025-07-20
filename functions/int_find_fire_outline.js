@@ -27,7 +27,7 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
     return ee.Date(element);
   };
   
-  var datetimes = ee.Algorithms.If({
+  var datetimes = ee.List(ee.Algorithms.If({
     condition: delay === -1,
     trueCase: ee.List(goes_16.aggregate_array("system:time_start"))
     .map(toDate)
@@ -35,7 +35,7 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
     falseCase: ee.List.sequence(start_date.millis(),true_end_date.millis(),delay.multiply(60).multiply(1000))
     .map(toDate)
     .slice(1)
-  });
+  }));
   
   //print(datetimes.filter(ee.Filter.gt("item",start_date.advance(,"day"))));
   var fire_mask_codes = [10, 30, 11, 31, 12, 32, 13, 33, 14, 34, 15, 35];
