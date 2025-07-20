@@ -24,7 +24,7 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
     return ee.Date(element);
   };
   
-  if(delay === 0){
+  if(delay === -1){
     print("caso 0");
     var datetimes = ee.List(goes_16.aggregate_array("system:time_start"))
     .map(toDate)
