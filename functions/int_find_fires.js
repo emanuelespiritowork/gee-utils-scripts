@@ -12,12 +12,14 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
   
   var modis = ee.ImageCollection("MODIS/061/MOD09CMG");
 
-  var start_date = date;
+  var start_date = date.advance(-1,"day");
   var end_date = date.advance(1,"day");
 
   var coll = modis.filterDate(start_date,end_date).filterBounds(AOI);
 
   var clipper = clip_to.clip_to(coll,AOI,5600);
+  
+  Map.addLayer(clipper.first().select(["Coarse_Resolution_Brightness_Temperature_Band_21"]),{},"clipper")
   
   var mask_21 = function(img){
     return img.select(["Coarse_Resolution_Brightness_Temperature_Band_21"])
