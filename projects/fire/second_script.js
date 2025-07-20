@@ -14,10 +14,17 @@ var AOI =
             {
               "system:index": "0"
             })]),
-    geometry = /* color: #d63000 */ee.Geometry.Point([-122.79568662434895, 38.697144801961485]);
+    geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.Feature(
+        ee.Geometry.Point([-122.79568662434895, 38.697144801961485]),
+        {
+          "system:index": "0"
+        });
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var start_date = ee.Date("2019-10-24");
-var true_end_date = ee.Date("2019-10-26");
+var true_end_date = ee.Date("2019-11-10");
 
 /*
 var clipping = function(image){
@@ -110,4 +117,6 @@ print(fire_outlines);
 
 var int_find_fire_outline = require("users/emanuelespiritowork/SharedRepo:functions/int_find_fire_outline.js");
 
+var fire_outlines = int_find_fire_outline.int_find_fire_outline(geometry, start_date, true_end_date);
 
+Map.addLayer(fire_outlines);
