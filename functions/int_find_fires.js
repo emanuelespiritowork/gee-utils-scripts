@@ -55,7 +55,7 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
   
   masked = clip_to.clip_to(masked,AOI,5600);
   
-  var fire_centers = masked.reduceToVectors()
+  var fire_centers = masked.first().reduceToVectors()
   .filter(ee.Filter.eq("label",1))
   //.map(find_centroids);
   
