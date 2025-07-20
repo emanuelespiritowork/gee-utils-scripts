@@ -9,6 +9,8 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
   
   var AOI = fire_point.buffer(buffer_value);
   
+  Map.addLayer(AOI);
+  
   var goes_16 = clip_to.clip_to(ee.ImageCollection("NOAA/GOES/16/FDCF")
   .filterDate(start_date,true_end_date)
   .filterBounds(AOI)); 
@@ -85,4 +87,6 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
   var fire_outlines = ee.FeatureCollection(datetimes.map(circleIncrease));
   
   print(fire_outlines);
+  
+  return fire_outlines;
 };
