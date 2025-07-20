@@ -119,7 +119,9 @@ var int_find_fire_outline = require("users/emanuelespiritowork/SharedRepo:functi
 
 var fire_outlines = int_find_fire_outline.int_find_fire_outline(geometry, start_date, true_end_date);
 
-Map.addLayer(ee.Feature(ee.FeatureCollection(fire_outlines).toList(ee.FeatureCollection(fire_outlines).size()).get(1)));
-Map.addLayer(ee.Feature(ee.FeatureCollection(fire_outlines).toList(ee.FeatureCollection(fire_outlines).size()).get(2)));
-Map.addLayer(ee.Feature(ee.FeatureCollection(fire_outlines).toList(ee.FeatureCollection(fire_outlines).size()).get(3)));
-Map.addLayer(ee.Feature(ee.FeatureCollection(fire_outlines).toList(ee.FeatureCollection(fire_outlines).size()).get(4)));
+var list_of_fire_outlines = ee.FeatureCollection(fire_outlines).toList(ee.FeatureCollection(fire_outlines).size());
+
+Map.addLayer(ee.Feature(list_of_fire_outlines.get(1)));
+Map.addLayer(ee.Feature(list_of_fire_outlines.get(2)));
+Map.addLayer(ee.Feature(list_of_fire_outlines.get(3)));
+Map.addLayer(ee.Feature(list_of_fire_outlines.get(4)));
