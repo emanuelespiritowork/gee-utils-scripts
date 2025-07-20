@@ -10,12 +10,13 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
   //optional
   var threshold = temp_threshold || ee.Number(334);
   
-  print(threshold);
-  
   var modis = ee.ImageCollection("MODIS/061/MOD09CMG");
 
   var start_date = date.advance(-1,"day");
   var end_date = date.advance(1,"day");
+  
+  print(start_date);
+  print(end_date);
 
   var coll = modis.filterDate(start_date,end_date).filterBounds(AOI);
 
