@@ -13,7 +13,7 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
   var start_date = date.advance(-1,"day");
   var end_date = date.advance(1,"day");
 
-var data = modis.filterDate(start_date,end_date).filterBounds(AOI);
+  var coll = modis.filterDate(start_date,end_date).filterBounds(AOI);
 
   
 };
