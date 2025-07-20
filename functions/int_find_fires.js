@@ -53,7 +53,9 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
     return feature.centroid();
   };
   
-  var fire_centers = masked.clipToBoundsAndScale(AOI).reduceToVectors()
+  masked = clip_to.clip_to(masked);
+  
+  var fire_centers = masked.reduceToVectors()
   .filter(ee.Filter.eq("label",1))
   //.map(find_centroids);
   
