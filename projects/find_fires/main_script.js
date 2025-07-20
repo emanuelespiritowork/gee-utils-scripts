@@ -70,11 +70,11 @@ print(list.get(1))
 var number = 10;
 
 var list_not_masked = clipper.toList(clipper.size());
-Map.addLayer(clipper.select(["Coarse_Resolution_Brightness_Temperature_Band_21"]))
+Map.addLayer(clipper.select(["Coarse_Resolution_Brightness_Temperature_Band_21"]),{},"coarse",false)
 Map.addLayer(ee.Image(list_not_masked.get(number)).clip(AOI),
 {bands: ["Coarse_Resolution_Surface_Reflectance_Band_1",
 "Coarse_Resolution_Surface_Reflectance_Band_4",
-"Coarse_Resolution_Surface_Reflectance_Band_3"]}, "image")
+"Coarse_Resolution_Surface_Reflectance_Band_3"]}, "image", false)
 Map.addLayer(ee.Image(list_not_masked.get(number)).clip(AOI).select(["Coarse_Resolution_Brightness_Temperature_Band_21"]),
 {min: 330, max: 331}, "image");
 
@@ -88,6 +88,10 @@ var points = ee.Image(list_not_masked.get(number))
 print(points);
 
 Map.addLayer(points,{},"points");
+
+var int_find_fires = require("users/emanuelespiritowork/SharedRepo:functions/int_find_fires.js");
+
+var masked = int_find_fires.int_find_fires("2012-08-05",AOI);
 
 
 
