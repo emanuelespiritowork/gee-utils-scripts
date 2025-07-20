@@ -14,11 +14,11 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
   
   var goes_16 = clip_to.clip_to(ee.ImageCollection("NOAA/GOES/16/FDCF")
   .filterDate(start_date,true_end_date)
-  .filterBounds(AOI)); 
+  .filterBounds(AOI), AOI, 2000); 
 
   var goes_17 = clip_to.clip_to(ee.ImageCollection("NOAA/GOES/17/FDCF")
   .filterDate(start_date,true_end_date)
-  .filterBounds(AOI));
+  .filterBounds(AOI), AOI, 2000);
 
   var toDate = function(element){
     return ee.Date(element);
