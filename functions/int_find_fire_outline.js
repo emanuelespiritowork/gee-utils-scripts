@@ -27,23 +27,15 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
     return ee.Date(element);
   };
   
-  if(delay === -1){
-    //print("caso 0");
-    var datetimes = ee.List(goes_16.aggregate_array("system:time_start"))
+  var datetimes = ee.Algorithms.If({
+    condition: delay === -1,
+    trueCase: ee.List(goes_16.aggregate_array("system:time_start"))
     .map(toDate)
-    .slice(1);
-  }else{
-    //print("else");
-    var start_date_toNumber = start_date.millis();
-    var true_end_date_toNumber = true_end_date.millis();
-    //print(start_date_toNumber);
-    //print(true_end_date_toNumber);
-    //print(delay.multiply(60).multiply(1000));
-    var datetimes = ee.List.sequence(start_date_toNumber,true_end_date_toNumber,delay.multiply(60).multiply(1000))
+    .slice(1),
+    falseCase: ee.List.sequence(start_date.millis(),true_end_date.millis(),delay.multiply(60).multiply(1000))
     .map(toDate)
-    .slice(1);
-    //print(datetimes);
-  }
+    .slice(1)
+  });
   
   //print(datetimes.filter(ee.Filter.gt("item",start_date.advance(,"day"))));
   var fire_mask_codes = [10, 30, 11, 31, 12, 32, 13, 33, 14, 34, 15, 35];
