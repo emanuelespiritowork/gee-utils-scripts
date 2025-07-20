@@ -67,7 +67,7 @@ print(masked);
 var n_data = masked.size();
 var list = masked.toList(n_data);
 print(list.get(1))
-var number = 13;
+var number = 10;
 
 var list_not_masked = clipper.toList(clipper.size());
 Map.addLayer(clipper.select(["Coarse_Resolution_Brightness_Temperature_Band_21"]))
@@ -81,8 +81,11 @@ Map.addLayer(ee.Image(list_not_masked.get(number)).clip(AOI).select(["Coarse_Res
 var points = ee.Image(list_not_masked.get(number))
 .clip(AOI)
 .select(["Coarse_Resolution_Brightness_Temperature_Band_21"])
-.gt(330)
-.reduceToVectors();
+.gt(334)
+.reduceToVectors()
+.filter(ee.Filter.eq("label",1));
+
+print(points);
 
 Map.addLayer(points,{},"points");
 
