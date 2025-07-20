@@ -32,9 +32,14 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
   var masked_21 = clipper.map(mask_21)
   .reduce(ee.Reducer.max());
   
+  Map.addLayer(masked_21,{},"masked_21");
+
+  
   var masked_31 = clipper.map(mask_31)
   .reduce(ee.Reducer.max());
   
+  Map.addLayer(masked_31,{},"masked_31");
+
   var masked = masked_21.or(masked_31);
   
   Map.addLayer(masked,{},"masked");
