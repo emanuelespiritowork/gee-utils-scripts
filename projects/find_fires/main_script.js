@@ -78,6 +78,15 @@ Map.addLayer(ee.Image(list_not_masked.get(number)).clip(AOI),
 Map.addLayer(ee.Image(list_not_masked.get(number)).clip(AOI).select(["Coarse_Resolution_Brightness_Temperature_Band_21"]),
 {min: 330, max: 331}, "image");
 
+var points = ee.Image(list_not_masked.get(number))
+.clip(AOI)
+.select(["Coarse_Resolution_Brightness_Temperature_Band_21"])
+.gt(330)
+.reduceToVectors();
+
+Map.addLayer(points,{},"points");
+
+
 
 var modis2 = ee.ImageCollection("MODIS/061/MOD14A1");
 var fires = modis2.filterDate(start_date,end_date).filterBounds(AOI);
