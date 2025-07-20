@@ -1,4 +1,7 @@
 //second part: compute fire outline
+
+//credits to https://medium.com/google-earth/how-to-generate-wildfire-boundary-maps-with-earth-engine-b38eadc97a38
+
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 
 exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, buffer, time_delay){
