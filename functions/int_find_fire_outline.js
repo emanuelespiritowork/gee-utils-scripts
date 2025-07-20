@@ -8,7 +8,7 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
   fire_point = ee.Feature(fire_point);
   true_end_date = ee.Date(true_end_date);
   
-  var buffer_value = buffer || ee.Number(40000);
+  var buffer_value = ee.Number(buffer || 40000);
   var delay = ee.Number(time_delay || 1440);//minutes. Put -1 to get all images
   //print(delay);
   var AOI = ee.FeatureCollection(fire_point.buffer(buffer_value));
