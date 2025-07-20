@@ -7,10 +7,10 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
   
   var buffer_value = buffer || ee.Number(40000);
   var delay = time_delay || ee.Number(1440);//minutes. Put -1 to get all images
-  print(delay);
+  //print(delay);
   var AOI = ee.FeatureCollection(fire_point.buffer(buffer_value));
-  print(AOI);
-  Map.addLayer(AOI);
+  //print(AOI);
+  //Map.addLayer(AOI);
   
   var goes_16 = clip_to.clip_to(ee.ImageCollection("NOAA/GOES/16/FDCF")
   .filterDate(start_date,true_end_date)
@@ -25,21 +25,21 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
   };
   
   if(delay === -1){
-    print("caso 0");
+    //print("caso 0");
     var datetimes = ee.List(goes_16.aggregate_array("system:time_start"))
     .map(toDate)
     .slice(1);
   }else{
-    print("else");
+    //print("else");
     var start_date_toNumber = start_date.millis();
     var true_end_date_toNumber = true_end_date.millis();
-    print(start_date_toNumber);
-    print(true_end_date_toNumber);
-    print(delay.multiply(60).multiply(1000));
+    //print(start_date_toNumber);
+    //print(true_end_date_toNumber);
+    //print(delay.multiply(60).multiply(1000));
     var datetimes = ee.List.sequence(start_date_toNumber,true_end_date_toNumber,delay.multiply(60).multiply(1000))
     .map(toDate)
     .slice(1);
-    print(datetimes);
+    //print(datetimes);
   }
   
   //print(datetimes.filter(ee.Filter.gt("item",start_date.advance(,"day"))));
@@ -102,7 +102,7 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
   
   var fire_outlines = ee.FeatureCollection(datetimes.map(circleIncrease));
   
-  print(fire_outlines);
+  //print(fire_outlines);
   
   return fire_outlines;
 };
