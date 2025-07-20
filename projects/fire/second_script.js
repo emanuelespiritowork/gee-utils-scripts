@@ -119,4 +119,4 @@ var int_find_fire_outline = require("users/emanuelespiritowork/SharedRepo:functi
 
 var fire_outlines = int_find_fire_outline.int_find_fire_outline(geometry, start_date, true_end_date);
 
-Map.addLayer(fire_outlines,{opacity: 0.1});
+Map.addLayer(fire_outlines,{opacity: 0.05});
