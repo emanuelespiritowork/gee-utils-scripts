@@ -1,11 +1,12 @@
 //second part: compute fire outline
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 
-exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, buffer){
+exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, buffer, time_delay){
   fire_point = ee.Feature(fire_point);
   true_end_date = ee.Date(true_end_date);
   
   var buffer_value = buffer || ee.Number(10000);
+  var delay = time_delay || ee.Number(1440);//minutes
   
   var AOI = fire_point.buffer(buffer_value);
   
