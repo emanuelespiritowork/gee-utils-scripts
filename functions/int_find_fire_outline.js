@@ -9,7 +9,7 @@ exports.int_find_fire_outline = function(fire_point, start_date, true_end_date, 
   var delay = time_delay || ee.Number(1440);//minutes. Put 0 to get all images
   print(delay);
   var AOI = fire_point.buffer(buffer_value);
-  
+  print(AOI);
   Map.addLayer(AOI);
   
   var goes_16 = clip_to.clip_to(ee.ImageCollection("NOAA/GOES/16/FDCF")
