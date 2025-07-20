@@ -13,14 +13,19 @@ var AOI =
                   [-122.3205279329427, 38.65361625904314]]]),
             {
               "system:index": "0"
-            })]);
+            })]),
+    geometry = /* color: #d63000 */ee.Geometry.Point([-122.79568662434895, 38.697144801961485]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var start_date = ee.Date("2019-10-24");
 var true_end_date = ee.Date("2019-10-26");
 
+/*
 var clipping = function(image){
   return image.clip(AOI);
 };
+
+Map.centerObject(AOI);
+Map.addLayer(AOI);
   
 var goes_16 = ee.ImageCollection("NOAA/GOES/16/FDCF")
 .filterDate(start_date,true_end_date)
@@ -100,3 +105,9 @@ var circleIncrease = function(end_date){
 var fire_outlines = ee.FeatureCollection(datetimes.map(circleIncrease));
 
 print(fire_outlines);
+
+*/
+
+var int_find_fire_outline = require("users/emanuelespiritowork/SharedRepo:functions/int_find_fire_outline.js");
+
+
