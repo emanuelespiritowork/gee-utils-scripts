@@ -8,7 +8,7 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
   AOI = ee.FeatureCollection(AOI);
   
   //optional
-  var threshold = temp_threshold | ee.Number(334);
+  var threshold = temp_threshold || ee.Number(334);
   
   print(threshold);
   
