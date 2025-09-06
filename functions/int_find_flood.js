@@ -35,8 +35,8 @@ exports.int_find_flood = function(start_date, last_date, AOI, min_scale, min_val
   
   var ten_days_before_start_date = start_date.advance(-10,"day");
   var one_day_before_start_date = start_date.advance(-1,"day");
-  var ten_days_after_end_date = end_date.advance(10,"day");
-  var one_day_after_end_date = end_date.advance(1,"day");
+  var ten_days_after_end_date = last_date.advance(10,"day");
+  var one_day_after_end_date = last_date.advance(1,"day");
   
   var mosaic_before = mosaic_date.mosaic_date(s1_series,AOI,ten_days_before_start_date,one_day_before_start_date,scale_to_use);
   var mosaic_after = mosaic_date.mosaic_date(s1_series,AOI,one_day_after_end_date,ten_days_after_end_date,scale_to_use);
