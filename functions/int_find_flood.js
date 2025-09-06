@@ -44,6 +44,8 @@ exports.int_find_flood = function(start_date, last_date, AOI, min_scale, min_val
   var flatten_before = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_before,scale_to_use,undefined).first();
   var flatten_after = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_after,scale_to_use,undefined).first();
   
+  print(flatten_before);
+  
   //TO CONTINUE
 
 };
