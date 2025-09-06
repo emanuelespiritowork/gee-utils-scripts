@@ -38,8 +38,12 @@ exports.int_find_flood = function(start_date, last_date, AOI, min_scale, min_val
   var ten_days_after_end_date = end_date.advance(10,"day");
   var one_day_after_end_date = end_date.advance(1,"day");
   
-  var mosaic_before = mosaic_date.mosaic_date(s1_series,AOI,"2016-05-17","2016-05-27",scale_to_use);
-  var mosaic_after = mosaic_date.mosaic_date(s1_series,AOI,"2016-05-28","2016-05-31",scale_to_use);
+  var mosaic_before = mosaic_date.mosaic_date(s1_series,AOI,ten_days_before_start_date,one_day_before_start_date,scale_to_use);
+  var mosaic_after = mosaic_date.mosaic_date(s1_series,AOI,one_day_after_end_date,ten_days_after_end_date,scale_to_use);
 
+  var flatten_before = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_before,scale_to_use,undefined).first();
+  var flatten_after = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_after,scale_to_use,undefined).first();
+  
+  //TO CONTINUE
 
 };
