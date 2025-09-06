@@ -83,6 +83,7 @@ flatten_before = flatten_before.select("VH").updateMask(flatten_before.select("n
 flatten_after = flatten_after.select("VH").updateMask(flatten_after.select("no_data_mask"));
 subset_flatten = subset_flatten.select("VH").updateMask(subset_flatten.select("no_data_mask"));
 
+
 //print(flatten_before);
 //print(flatten_after);
 
