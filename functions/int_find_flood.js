@@ -29,12 +29,10 @@ exports.int_find_flood = function(flood_date, AOI, min_scale, min_value){
   print(one_day_before_flood_date);
   print(ten_days_after_flood_date);
   print(one_day_after_flood_date);
-  //var s1_series_before = s1_longest_series.s1_longest_series(ten_days_before_flood_date,one_day_before_flood_date,AOI);
+  var s1_series_before = s1_longest_series.s1_longest_series(ten_days_before_flood_date,one_day_before_flood_date,AOI);
   var s1_series_after = s1_longest_series.s1_longest_series(one_day_after_flood_date,ten_days_after_flood_date,AOI);
   
-  //print(s1_series_before);
-  //print(s1_series_after);
-  /*
+  
   var surface_water = ee.Image("JRC/GSW1_4/GlobalSurfaceWater");
   var elevation = ee.Image("WWF/HydroSHEDS/03CONDEM");
   
