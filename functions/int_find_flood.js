@@ -47,8 +47,8 @@ exports.int_find_flood = function(flood_date, AOI, min_scale, min_value){
   var mosaic_before = mosaic_date.mosaic_date(s1_series_before,AOI,ten_days_before_flood_date,one_day_before_flood_date,scale_to_use);
   var mosaic_after = mosaic_date.mosaic_date(s1_series_after,AOI,one_day_after_flood_date,ten_days_after_flood_date,scale_to_use);
 
-  Map.addLayer(mosaic_before);
-  Map.addLayer(mosaic_after);
+  Map.addLayer(mosaic_before,{},"mosaic_before");
+  Map.addLayer(mosaic_after,{},"mosaic_after");
 /*
   var flatten_before = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_before,scale_to_use,undefined).first();
   var flatten_after = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_after,scale_to_use,undefined).first();
