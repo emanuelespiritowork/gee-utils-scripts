@@ -22,6 +22,7 @@ exports.int_find_flood = function(start_date, last_date, AOI, min_scale, min_val
   var threshold = min_value || ee.Number(-16);
   
   var s1_series = s1_longest_series.s1_longest_series(start_date,last_date,AOI);
+  print(s1_series);
   
   var surface_water = ee.Image("JRC/GSW1_4/GlobalSurfaceWater");
   var elevation = ee.Image("WWF/HydroSHEDS/03CONDEM");
