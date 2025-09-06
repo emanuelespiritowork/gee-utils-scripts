@@ -93,7 +93,7 @@ var int_find_fires = require("users/emanuelespiritowork/SharedRepo:functions/int
 
 var masked = int_find_fires.int_find_fires("2012-08-14",AOI,337);
 
-
+Map.addLayer(masked);
 
 var modis2 = ee.ImageCollection("MODIS/061/MOD14A1");
 var fires = modis2.filterDate(start_date,end_date).filterBounds(AOI);
