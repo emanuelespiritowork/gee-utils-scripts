@@ -1,6 +1,18 @@
+//refers to https://www.sciencedirect.com/science/article/pii/S1569843222001911?via%3Dihub#b0245
+
+
+/*****************************
+ *        FUNCTIONS
+ ***************************/
+var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_select.js");
+var s1_speckle = require("users/emanuelespiritowork/SharedRepo:functions/s1_speckle.js");
+var plot_map = require("users/emanuelespiritowork/SharedRepo:functions/plot_map.js");
+var mosaic_date = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_date.js");
+var get_plot_histogram = require("users/emanuelespiritowork/SharedRepo:functions/get_plot_histogram.js");
+var s1_rad_terr_flatten = require("users/emanuelespiritowork/SharedRepo:functions/s1_rad_terr_flatten.js");
 var s1_longest_series = require("users/emanuelespiritowork/SharedRepo:functions/s1_longest_series.js");
 
-exports.int_find_flood = function(start_date, last_date, AOI, min_scale, min_value, connectedness, radius){
+exports.int_find_flood = function(start_date, last_date, AOI, min_scale, min_value){
   //mandatory inputs
   start_date = ee.Date(start_date);//"YYYY-MM-DD"
   last_date = ee.Date(last_date);//"YYYY-MM-DD"
@@ -11,6 +23,18 @@ exports.int_find_flood = function(start_date, last_date, AOI, min_scale, min_val
   
   var s1_series = s1_longest_series.s1_longest_series(start_date,last_date,AOI);
   
-  return int_find_ships_any.int_find_ships_any(s1_series,AOI,
-  scale_to_use, threshold, compactness, size);
+  var surface_water = ee.Image("JRC/GSW1_4/GlobalSurfaceWater");
+  var elevation = ee.Image("WWF/HydroSHEDS/03CONDEM");
+  
+  var visualization = {
+    bands: ['occurrence'],
+    min: 0.0,
+    max: 100.0,
+    palette: ['ffffff', 'ffbbbb', '0000ff']
+  };
+  
+  var mosaic_before = mosaic_date.mosaic_date(s1_series,AOI,"2016-05-17","2016-05-27",scale_to_use);
+  var mosaic_after = mosaic_date.mosaic_date(s1_series,AOI,"2016-05-28","2016-05-31",scale_to_use);
+
+
 };
