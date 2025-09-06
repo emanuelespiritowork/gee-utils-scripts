@@ -24,6 +24,11 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
   
   //Map.addLayer(clipper.first().select(["Coarse_Resolution_Brightness_Temperature_Band_21"]),{},"clipper")
   
+  var mask_20 = function(img){
+    return img.select(["Coarse_Resolution_Brightness_Temperature_Band_20"])
+    .gt(threshold);
+  };
+  
   var mask_21 = function(img){
     return img.select(["Coarse_Resolution_Brightness_Temperature_Band_21"])
     .gt(threshold);
@@ -34,20 +39,34 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
     .gt(threshold);
   };
   
+  var mask_32 = function(img){
+    return img.select(["Coarse_Resolution_Brightness_Temperature_Band_32"])
+    .gt(threshold);
+  };
+  
   var masked_21 = clipper.map(mask_21)
   .reduce(ee.Reducer.max());
   
-  //Map.addLayer(mask_21(clipper.first()),{},"mask_21.first");
-  
   Map.addLayer(masked_21,{},"masked_21");
-
+  
+  var masked_20 = clipper.map(mask_20)
+  .reduce(ee.Reducer.max());
+  
+  Map.addLayer(masked_20,{},"masked_20");
   
   var masked_31 = clipper.map(mask_31)
   .reduce(ee.Reducer.max());
   
   Map.addLayer(masked_31,{},"masked_31");
 
-  var masked = masked_21.or(masked_31);
+  var masked_32 = clipper.map(mask_32)
+  .reduce(ee.Reducer.max());
+  
+  Map.addLayer(masked_32,{},"masked_32");
+
+  var masked = masked_21.or(masked_31)
+  .or(masked_20)
+  .or(masked_32);
   
   var find_centroids = function(feature){
     return feature.centroid();
