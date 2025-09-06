@@ -30,7 +30,7 @@ exports.int_find_flood = function(flood_date, AOI, min_scale, min_value){
   
   print(s1_series_before);
   print(s1_series_after);
-  
+  /*
   var surface_water = ee.Image("JRC/GSW1_4/GlobalSurfaceWater");
   var elevation = ee.Image("WWF/HydroSHEDS/03CONDEM");
   
