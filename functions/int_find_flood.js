@@ -20,13 +20,13 @@ exports.int_find_flood = function(flood_date, AOI, min_scale, min_value){
   var scale_to_use = min_scale || ee.Number(10);
   var threshold = min_value || ee.Number(-16);
   
-  var ten_days_before_start_date = flood_date.advance(-10,"day");
-  var one_day_before_start_date = flood_date.advance(-1,"day");
-  var ten_days_after_end_date = flood_date.advance(10,"day");
-  var one_day_after_end_date = flood_date.advance(1,"day");
+  var ten_days_before_flood_date = flood_date.advance(-10,"day");
+  var one_day_before_flood_date = flood_date.advance(-1,"day");
+  var ten_days_after_flood_date = flood_date.advance(10,"day");
+  var one_day_after_flood_date = flood_date.advance(1,"day");
   
-  var s1_series_before = s1_longest_series.s1_longest_series(ten_days_before_start_date,one_day_before_start_date,AOI);
-  var s1_series_after = s1_longest_series.s1_longest_series(ten_days_after_start_date,one_day_after_start_date,AOI);
+  var s1_series_before = s1_longest_series.s1_longest_series(ten_days_before_flood_date,one_day_before_flood_date,AOI);
+  var s1_series_after = s1_longest_series.s1_longest_series(ten_days_after_flood_date,one_day_after_flood_date,AOI);
   
   print(s1_series_before);
   print(s1_series_after);
