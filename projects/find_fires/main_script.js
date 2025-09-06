@@ -68,7 +68,7 @@ var n_data = masked.size();
 var list = masked.toList(n_data);
 print(list.get(1))
 var number = 10;
-
+/*
 var list_not_masked = clipper.toList(clipper.size());
 Map.addLayer(clipper.select(["Coarse_Resolution_Brightness_Temperature_Band_21"]),{},"coarse",false)
 Map.addLayer(ee.Image(list_not_masked.get(number)).clip(AOI),
@@ -87,7 +87,7 @@ var points = ee.Image(list_not_masked.get(number))
 
 print(points);
 
-Map.addLayer(points,{},"points");
+Map.addLayer(points,{},"points");*/
 
 var int_find_fires = require("users/emanuelespiritowork/SharedRepo:functions/int_find_fires.js");
 
