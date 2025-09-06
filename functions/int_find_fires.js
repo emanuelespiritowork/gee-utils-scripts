@@ -44,25 +44,27 @@ exports.int_find_fires = function(date, AOI, temp_threshold){
     .gt(threshold);
   };
   
+  Map.addLayer(clipper);
+  
   var masked_21 = clipper.map(mask_21)
   .reduce(ee.Reducer.max());
   
-  Map.addLayer(masked_21,{},"masked_21");
+  //Map.addLayer(masked_21,{},"masked_21");
   
   var masked_20 = clipper.map(mask_20)
   .reduce(ee.Reducer.max());
   
-  Map.addLayer(masked_20,{},"masked_20");
+  //Map.addLayer(masked_20,{},"masked_20");
   
   var masked_31 = clipper.map(mask_31)
   .reduce(ee.Reducer.max());
   
-  Map.addLayer(masked_31,{},"masked_31");
+  //Map.addLayer(masked_31,{},"masked_31");
 
   var masked_32 = clipper.map(mask_32)
   .reduce(ee.Reducer.max());
   
-  Map.addLayer(masked_32,{},"masked_32");
+  //Map.addLayer(masked_32,{},"masked_32");
 
   var masked = masked_21.or(masked_31)
   .or(masked_20)
