@@ -91,7 +91,7 @@ Map.addLayer(points,{},"points");
 
 var int_find_fires = require("users/emanuelespiritowork/SharedRepo:functions/int_find_fires.js");
 
-var masked = int_find_fires.int_find_fires("2012-08-14",AOI,334);
+var masked = int_find_fires.int_find_fires("2012-08-14",AOI,337);
 
 Map.addLayer(masked);
 
