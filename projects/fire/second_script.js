@@ -127,3 +127,4 @@ Map.addLayer(ee.Feature(list_of_fire_outlines.get(1)));
 Map.addLayer(ee.Feature(list_of_fire_outlines.get(2)));
 Map.addLayer(ee.Feature(list_of_fire_outlines.get(3)));
 Map.addLayer(ee.Feature(list_of_fire_outlines.get(4)));
+Map.centerObject(ee.Feature(list_of_fire_outlines.get(1)));
