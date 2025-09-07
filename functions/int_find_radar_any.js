@@ -32,7 +32,8 @@ exports.int_find_radar_any = function(img_coll, AOI, min_value, min_scale){
   
   //qui aggiungo di fare la riduzione solo delle bande che non sono l'angolo
   
-  var max_value_pixel = clip.reduce(ee.Reducer.max());
+  var max_value_pixel = clip.select('[^a].*')
+  .reduce(ee.Reducer.max());
   
   var radar_location = max_value_pixel.gt(threshold);
   
