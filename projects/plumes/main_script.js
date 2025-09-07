@@ -68,7 +68,9 @@ var score = int_find_plumes.int_find_plumes(AOI2);
 
 print(score);
 
-var null_var_3 = plot_map.plot_map(score,0.5,10);
+Map.addLayer(score);
+
+//var null_var_3 = plot_map.plot_map(score,0.5,10);
 
 
 
