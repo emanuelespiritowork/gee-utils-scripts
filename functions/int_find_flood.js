@@ -104,6 +104,7 @@ exports.int_find_flood = function(flood_date, AOI, min_scale, min_value){
 
   var flood_area = plain_water.select('[^n].*').lt(0);
   Map.addLayer(plain_water,{},'plain_water');
+  Map.addLayer(flood_area);
   
   return flood_area;
   
