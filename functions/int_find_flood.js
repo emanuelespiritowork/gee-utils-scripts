@@ -51,8 +51,8 @@ exports.int_find_flood = function(flood_date, AOI, min_scale, min_value){
   var flatten_before = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_before,scale_to_use,undefined).first();
   var flatten_after = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_after,scale_to_use,undefined).first();
   
-  Map.addLayer(flatten_before,{},'flatten_before');
-  Map.addLayer(flatten_after,{},'flatten_after');
+  //Map.addLayer(flatten_before,{},'flatten_before');
+  //Map.addLayer(flatten_after,{},'flatten_after');
   
   var speckle_before = s1_speckle.s1_speckle(flatten_before,scale_to_use.multiply(5),"meters","circle").first();
   var speckle_after = s1_speckle.s1_speckle(flatten_after,scale_to_use.multiply(5),"meters","circle").first();
