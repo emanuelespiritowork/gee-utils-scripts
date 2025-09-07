@@ -119,8 +119,8 @@ exports.int_find_plumes_any = function(img_coll, AOI, scale_to_use, threshold, a
   print(std);
   
   var plumes_image = final_score.gt(ee.Number(max_value).subtract(ee.Number(std)))
-  .reduceToVectors()
-  .filter(ee.Filter.gt("label",0));
+  //.reduceToVectors()
+  //.filter(ee.Filter.gt("label",0));
   
   return plumes_image;
 };
