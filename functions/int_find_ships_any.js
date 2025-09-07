@@ -119,6 +119,8 @@ exports.int_find_ships_any = function(img_coll, AOI, scale_to_use, threshold, co
     return count_size.map(set_time_to_feature);
   };
   
+  //qui faccio identificare le navi solo per la banda che non è angolo
+  
   var ship_vectors = select.map(get_vectors).flatten();
   
   return ship_vectors;
