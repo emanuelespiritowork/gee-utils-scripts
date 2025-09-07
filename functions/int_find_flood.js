@@ -65,9 +65,47 @@ exports.int_find_flood = function(flood_date, AOI, min_scale, min_value){
   Map.addLayer(low_reflectance_before,{},'low_reflectance_before');
   Map.addLayer(low_reflectance_after,{},'low_reflectance_after');
   
-  /*
-  print(flatten_before);
-  */
-  //TO CONTINUE
+  /**********************
+   * FILTER THE BEFORE 
+   **********************/
+  var before_filter = ee.Image(0).gt(low_reflectance_before).not().unmask(1);
+  var before_filtered = low_reflectance_after.updateMask(before_filter);
+  //var null_var_1 = plot_map.plot_map(before_filtered,2,10);
+  
+  /**********************
+   * FILTER PERMANENT WATER 
+   **********************/
+  //now I remove permanent water using JRC asset
+  var permanent_water_mask = surface_water.select("seasonality").unmask(0).lt(2);
+  var non_permanent_water = before_filtered.updateMask(permanent_water_mask);
+  //var null_var_2 = plot_map.plot_map(non_permanent_water,2,10);
+  
+  /**********************
+   * FILTER UNCONNECTED PIXELS 
+ **********************/
+  // connectedPixelCount is Zoom dependent, so visual result will vary
+  //as found in https://courses.spatialthoughts.com/gee-water-resources-management.html
+  var connectedPixels = non_permanent_water.toInt().connectedPixelCount({
+    maxSize: 100,
+    eightConnected: true
+  });
+  var unconnected_mask = connectedPixels.gte(25);
+  var connected_water = non_permanent_water.updateMask(unconnected_mask);
+  //var null_var_3 = plot_map.plot_map(connected_water,2,10);
+  
+  /**********************
+  * REMOVE PIXEL WITH HIGH SLOPE
+  **********************/
+  var slope = ee.Terrain.slope(elevation);
+  var max_degree = 2.862; //arctan(5/100);
+  var slope_mask = slope.lt(max_degree);
+  var plain_water = connected_water.updateMask(slope_mask);
+  //var null_var_4 = plot_map.plot_map(plain_water,2,10);
+
+  Map.addLayer(plain_water);
+
+  return plain_water;
+  
+//TO CONTINUE
 
 };
