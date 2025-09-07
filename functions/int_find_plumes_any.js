@@ -118,7 +118,7 @@ exports.int_find_plumes_any = function(img_coll, AOI, scale_to_use, threshold, a
   
   print(std);
   
-  var plumes_image = final_score.gt(ee.Number(max_value).subtract(ee.Number(std)))
+  var plumes_image = final_score.gt(ee.Number(max_value).subtract(ee.Number(std).multiply(2)))
   //.reduceToVectors()
   //.filter(ee.Filter.gt("label",0));
   
