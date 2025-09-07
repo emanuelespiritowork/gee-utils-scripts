@@ -34,7 +34,13 @@ exports.int_find_radar_any = function(img_coll, AOI, min_value, min_scale){
   .reduce(ee.Reducer.max());
   
   var radar_location = max_value_pixel.gt(threshold)
-  .reduceToVectors();
+  .reduceToVectors({
+      scale: scale_to_use,
+      bestEffort: true,
+      reducer: ee.Reducer.max()
+    })
+    .filter(ee.Filter.gt("label",0))
+    .filter(ee.Filter.gt("max",0));
   
   return clip_to.clip_to(radar_location,AOI,scale_to_use);
 };
