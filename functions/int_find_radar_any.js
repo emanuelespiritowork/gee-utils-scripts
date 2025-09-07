@@ -39,8 +39,7 @@ exports.int_find_radar_any = function(img_coll, AOI, min_value, min_scale){
       bestEffort: true,
       reducer: ee.Reducer.max()
     })
-    .filter(ee.Filter.gt("label",0))
-    .filter(ee.Filter.gt("max",0));
+    .filter(ee.Filter.gt("label",0));
   
   return clip_to.clip_to(radar_location,AOI,scale_to_use);
 };
