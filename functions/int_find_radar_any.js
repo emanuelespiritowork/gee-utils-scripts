@@ -31,6 +31,7 @@ exports.int_find_radar_any = function(img_coll, AOI, min_value, min_scale){
   var clip = clip_to.clip_to(img_coll,AOI,scale_to_use);
   
   var max_value_pixel = clip.select('[^a].*')
+  .reduce(ee.Reducer.max());
   
   Map.addLayer(max_value_pixel);
   
