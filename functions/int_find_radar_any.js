@@ -34,6 +34,7 @@ exports.int_find_radar_any = function(img_coll, AOI, min_value, min_scale){
   .reduce(ee.Reducer.max());
   
   var max_value_pixel_clip = clip_to.clip_to(max_value_pixel,AOI,scale_to_use)
+  .first()
   .reduceToVectors();
   
   print(max_value_pixel_clip);
