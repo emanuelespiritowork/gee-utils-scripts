@@ -102,6 +102,8 @@ exports.int_find_plumes_any = function(img_coll, AOI, scale_to_use, threshold, a
     "system:time_end": last_time
   });
   
+  Map.addLayer(final_score);
+  
   var max_value = final_score.reduceRegion({
     reducer: ee.Reducer.max(),
     scale: scale_to_use
@@ -120,5 +122,5 @@ exports.int_find_plumes_any = function(img_coll, AOI, scale_to_use, threshold, a
   .reduceToVectors()
   .filter(ee.Filter.gt("label",0));
   
-  return final_score;
+  return plumes_image;
 };
