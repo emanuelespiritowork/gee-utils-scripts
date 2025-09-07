@@ -11,6 +11,7 @@ var mosaic_date = require("users/emanuelespiritowork/SharedRepo:functions/mosaic
 var get_plot_histogram = require("users/emanuelespiritowork/SharedRepo:functions/get_plot_histogram.js");
 var s1_rad_terr_flatten = require("users/emanuelespiritowork/SharedRepo:functions/s1_rad_terr_flatten.js");
 var s1_longest_series = require("users/emanuelespiritowork/SharedRepo:functions/s1_longest_series.js");
+var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 
 exports.int_find_flood = function(flood_date, AOI, min_scale, min_value){
   //mandatory inputs
