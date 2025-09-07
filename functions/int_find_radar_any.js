@@ -34,14 +34,10 @@ exports.int_find_radar_any = function(img_coll, AOI, min_value, min_scale){
   .reduce(ee.Reducer.max())
   .gt(threshold);
   
-  var max_value_pixel_clip = clip_to.clip_to(max_value_pixel,AOI,scale_to_use)
+  var radar_location = clip_to.clip_to(max_value_pixel,AOI,scale_to_use)
   .first()
   .reduceToVectors()
   .filter(ee.Filter.gt("label",0));
-  
-  print(max_value_pixel_clip);
-  
-  Map.addLayer(max_value_pixel_clip);
   
   /*
   .reduceToVectors({
