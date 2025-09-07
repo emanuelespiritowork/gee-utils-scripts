@@ -104,6 +104,7 @@ exports.int_find_flood = function(flood_date, AOI, min_scale, min_value){
   //var null_var_4 = plot_map.plot_map(plain_water,2,10);
 
   var flood_area = clip_to.clip_to(plain_water,AOI,scale_to_use)
+  .first()
   .select('[^n].*')
   .lt(0)
   .reduceToVectors();
