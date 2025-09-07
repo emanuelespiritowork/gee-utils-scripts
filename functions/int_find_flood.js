@@ -108,8 +108,9 @@ exports.int_find_flood = function(flood_date, AOI, min_scale, min_value){
   .select('[^n].*')
   .lt(0)
   .reduceToVectors();
-  Map.addLayer(plain_water,{},'plain_water');
-  Map.addLayer(flood_area);
+  
+  //Map.addLayer(plain_water,{},'plain_water');
+  //Map.addLayer(flood_area);
   
   return flood_area;
   
