@@ -1,8 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = 
-    /* color: #98ff00 */
-    /* shown: false */
-    ee.FeatureCollection(
+var AOI = /* color: #98ff00 */ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[14.26730253807869, 40.55783366252705],
@@ -40,10 +37,7 @@ var AOI =
             {
               "system:index": "0"
             })]),
-    AOI2 = 
-    /* color: #98ff00 */
-    /* shown: false */
-    ee.FeatureCollection(
+    AOI2 = /* color: #98ff00 */ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[49.857441252728115, 40.368903824977764],
@@ -64,6 +58,7 @@ var AOI =
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s1_coll = ee.ImageCollection("COPERNICUS/S1_GRD");
+Map.centerObject(AOI);
 
 var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_select.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
