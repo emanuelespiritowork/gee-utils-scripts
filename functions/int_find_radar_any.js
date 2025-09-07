@@ -33,7 +33,8 @@ exports.int_find_radar_any = function(img_coll, AOI, min_value, min_scale){
   var max_value_pixel = clip.select('[^a].*')
   .reduce(ee.Reducer.max());
   
-  var radar_location = clip_to.clip_to(max_value_pixel,AOI,scale_to_use)
+  var radar_location = ee.ImageCollection(clip_to.clip_to(max_value_pixel,AOI,scale_to_use))
+  .first()
   .gt(threshold)
   .reduceToVectors({
       scale: scale_to_use,
