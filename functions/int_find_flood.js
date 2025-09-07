@@ -18,7 +18,7 @@ exports.int_find_flood = function(flood_date, AOI, min_scale, min_value){
   AOI = ee.FeatureCollection(AOI);
   //optional inputs
   var scale_to_use = min_scale || ee.Number(10);
-  var threshold = min_value || ee.Number(-16);
+  var threshold = min_value || ee.Number(-22);//see also Otsu 1979
   
   var ten_days_before_flood_date = flood_date.advance(-10,"day");
   var one_day_before_flood_date = flood_date.advance(-1,"day");
@@ -47,14 +47,23 @@ exports.int_find_flood = function(flood_date, AOI, min_scale, min_value){
   var mosaic_before = mosaic_date.mosaic_date(s1_series_before,AOI,ten_days_before_flood_date,one_day_before_flood_date,scale_to_use);
   var mosaic_after = mosaic_date.mosaic_date(s1_series_after,AOI,one_day_after_flood_date,ten_days_after_flood_date,scale_to_use);
 
-  Map.addLayer(mosaic_before,{},"mosaic_before");
-  Map.addLayer(mosaic_after,{},"mosaic_after");
-
   var flatten_before = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_before,scale_to_use,undefined).first();
   var flatten_after = s1_rad_terr_flatten.s1_rad_terr_flatten(mosaic_after,scale_to_use,undefined).first();
   
   Map.addLayer(flatten_before,{},'flatten_before');
   Map.addLayer(flatten_after,{},'flatten_after');
+  
+  var speckle_before = s1_speckle.s1_speckle(flatten_before,scale_to_use.multiply(5),"meters","circle").first();
+  var speckle_after = s1_speckle.s1_speckle(flatten_after,scale_to_use.multiply(5),"meters","circle").first();
+  
+  var threshold_mask_after = speckle_after.lt(threshold);
+  var threshold_mask_before = speckle_before.lt(threshold);
+
+  var low_reflectance_before = speckle_before.updateMask(threshold_mask_before);
+  var low_reflectance_after = speckle_after.updateMask(threshold_mask_after);
+
+  Map.addLayer(low_reflectance_before,{},'low_reflectance_before');
+  Map.addLayer(low_reflectance_after,{},'low_reflectance_after');
   
   /*
   print(flatten_before);
