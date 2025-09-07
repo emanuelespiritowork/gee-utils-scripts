@@ -105,14 +105,14 @@ exports.int_find_plumes_any = function(img_coll, AOI, scale_to_use, threshold, a
   var max_value = final_score.reduceRegion({
     reducer: ee.Reducer.max(),
     scale: scale_to_use
-  });
+  }).getNumber('score_sum');
   
   print(max_value);
   
   var std = final_score.reduceRegion({
     reducer: ee.Reducer.stdDev(),
     scale: scale_to_use
-  });
+  }).getNumber('score_sum');
   
   print(std);
   
