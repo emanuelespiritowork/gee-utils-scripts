@@ -85,11 +85,19 @@ var int_find_ships = require("users/emanuelespiritowork/SharedRepo:functions/int
 
 //Map.addLayer(vector);
 
-var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI2);
+//var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI2);
+
+var an_vec = int_find_ships.int_find_ships("2025-01-29","2025-02-06",AOI2);
+
+var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+.filterBounds(AOI2)
+.filterDate("2025-01-29","2025-02-06");
 
 print(an_vec);
 
 Map.addLayer(an_vec);
+
+Map.addLayer(s2_coll);
 
 /*
 var to_print = clip.first().select("VH");
