@@ -63,5 +63,5 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   var s2_ships = int_find_ships_any.int_find_ships_any(s2_series,AOI,
   scale_to_use, s2_low_threshold, s2_up_threshold, compactness, size);
   
-  return(s1_ships);
+  return(s2_ships);
 };
