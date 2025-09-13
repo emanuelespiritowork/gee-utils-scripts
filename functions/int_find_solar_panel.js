@@ -17,11 +17,11 @@ exports.int_find_solar_panel = function(AOI, start_date, end_date, min_scale){
   
   var scale = s2_scale.s2_scale(clip);
   
-  var max = scale.reduce({
+  var max = scale.select("B1").reduce({
     reducer: ee.Reducer.max()
   });
   
-  var mask = max.select("B1").gt(1);
+  var mask = max.gt(1);
   
   return(mask);
 };
