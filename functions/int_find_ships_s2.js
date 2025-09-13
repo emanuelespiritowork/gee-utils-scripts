@@ -1,10 +1,17 @@
-exports.int_find_ships_s2 = function(img_coll,AOI,radius,n_iterations,min_scale){
+var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
+
+exports.int_find_ships_s2 = function(img_coll,AOI,k_radius,n_iterations,min_scale){
   AOI = ee.FeatureCollection(AOI);
-  radius = ee.Number(radius);
-  var iterations = iterations || ee.Number(1);
+  var radius = k_radius || ee.Number(1);
+  var iterations = n_iterations || ee.Number(1);
   var scale_to_use = min_scale || ee.Number(10);
   
   var clip = clip_to.clip_to(img_coll,AOI,scale_to_use);
+  
+  //CONTINUE
+  
+  
+  
   
 var mask_1 = img_coll.first().normalizedDifference(["B8","B4"]).lt(-0.15);
 var mask_2 = imageCollection.filterBounds(geometry).first().normalizedDifference(["B8","B4"]).gt(-0.4);
