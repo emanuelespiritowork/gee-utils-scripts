@@ -1,4 +1,4 @@
-exports.int_find_flood_any(s1_series_before,s1_series_after,flood_date,flood_date, AOI, min_scale, min_value){
+exports.int_find_flood_any(s1_series_before,s1_series_after,flood_date, AOI, min_scale, min_value){
   
   flood_date = ee.Date(flood_date);//"YYYY-MM-DD"
   AOI = ee.FeatureCollection(AOI);
