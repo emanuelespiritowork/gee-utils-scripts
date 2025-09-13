@@ -19,13 +19,13 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
  * Description: find ships in the AOI using a generic image collection of the past
 *******************************************************/
 
-exports.int_find_ships_any = function(img_coll, AOI, scale_to_use, threshold, compactness, size){
+exports.int_find_ships_any = function(img_coll, AOI, scale_to_use, low_threshold, compactness, size){
 /******************************************************
  * Check variable types
 *******************************************************/
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
-  threshold = ee.Number(threshold);
+  low_threshold = ee.Number(low_threshold);
   scale_to_use = ee.Number(scale_to_use);
   compactness = ee.Number(compactness);
   size = ee.Number(size);
@@ -55,14 +55,14 @@ exports.int_find_ships_any = function(img_coll, AOI, scale_to_use, threshold, co
     var clock = ee.Date(time_start).format('H:m:s'); 
     
     /******************************************************
-     * Get image above threshold
+     * Get image above low_threshold
      *******************************************************/
-    var over_threshold = image.gt(threshold);
+    var over_low_threshold = image.gt(low_threshold);
     
     /******************************************************
      * Create compactness layer
      *******************************************************/
-    var compact = over_threshold
+    var compact = over_low_threshold
     .reduceNeighborhood({
       reducer: ee.Reducer.sum(),
       kernel: kernel_circle,
@@ -73,11 +73,11 @@ exports.int_find_ships_any = function(img_coll, AOI, scale_to_use, threshold, co
     /******************************************************
      * Create maximization layer
      *******************************************************/
-    var max = over_threshold
+    var max = over_low_threshold
     .reduceNeighborhood({
       reducer: ee.Reducer.max(),
       kernel: kernel_circle
-    }).rename("over_threshold");
+    }).rename("over_low_threshold");
     
     /******************************************************
      * Create a two-band image to find ships
