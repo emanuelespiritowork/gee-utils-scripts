@@ -11,6 +11,6 @@ var AOI =
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var int_find_solar_panel = require("users/emanuelespiritowork/SharedRepo:functions/int_find_solar_panel.js");
 
-var image = int_find_solar_panel.int_find_solar_panel(AOI,"2024-08-01","2025-02-04");
+var image = int_find_solar_panel.int_find_solar_panel(AOI,"2023-08-01","2025-02-04");
 
 Map.addLayer(image);
