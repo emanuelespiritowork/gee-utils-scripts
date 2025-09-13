@@ -1,5 +1,6 @@
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
+var s2_mask = require("users/emanuelespiritowork/SharedRepo:functions/s2_mask.js");
 
 
 exports.int_find_solar_panel = function(AOI, start_date, end_date, min_scale){
@@ -15,7 +16,9 @@ exports.int_find_solar_panel = function(AOI, start_date, end_date, min_scale){
   
   var clip = clip_to.clip_to(s2_coll,AOI,scale_to_use);
   
-  var scale = s2_scale.s2_scale(clip);
+  var mask = s2_mask.s2_mask(clip);
+  
+  var scale = s2_scale.s2_scale(mask);
   
   Map.addLayer(scale.first());
   
