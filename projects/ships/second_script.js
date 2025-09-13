@@ -9,8 +9,7 @@ var geometry =
           [13.918360395526081, 40.64707087091379],
           [14.010716533311589, 40.73554218136648],
           [13.90847396976539, 40.83248930186906],
-          [13.901831482451406, 40.847226901367236]]]),
-    imageCollection = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
+          [13.901831482451406, 40.847226901367236]]]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var imageCollection = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 Map.addLayer(imageCollection.filterBounds(geometry).first());
