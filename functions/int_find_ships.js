@@ -13,6 +13,10 @@
 
 var int_find_ships_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships_any.js");
 var s1_longest_series = require("users/emanuelespiritowork/SharedRepo:functions/s1_longest_series.js");
+var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
+var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
+var s2_ndvi = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndvi.js");
+
 
 /******************************************************
  * PURPOSE OF THIS SCRIPT
