@@ -11,6 +11,11 @@ exports.int_find_ships_s2 = function(img_coll,AOI,k_radius,n_iterations,min_scal
   //CONTINUE
   
   
+  var clip = clip_to.clip_to(s2_coll,AOI,scale_to_use);
+  
+  var scale = s2_scale.s2_scale(clip);
+  
+  var s2_series = s2_ndvi.s2_ndvi(scale);
   
   
 var mask_1 = img_coll.first().normalizedDifference(["B8","B4"]).lt(-0.15);
