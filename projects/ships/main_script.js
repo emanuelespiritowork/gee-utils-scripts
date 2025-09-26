@@ -143,7 +143,13 @@ var int_find_ships = require("users/emanuelespiritowork/SharedRepo:functions/int
 
 //var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI2);
 
-var an_vec = int_find_ships.int_find_ships("2025-09-17","2025-09-19",AOI4);
+var an_vec = int_find_ships.int_find_ships({
+  start_date: "2025-09-16",
+  end_date: "2025-09-19",
+  AOI: AOI4,
+  radius: 2,
+  compactness: 5
+});
 
 //var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 //.filterBounds(AOI2)
