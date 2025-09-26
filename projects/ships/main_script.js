@@ -192,7 +192,7 @@ var AOI =
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s1_coll = ee.ImageCollection("COPERNICUS/S1_GRD");
-Map.centerObject(AOI5);
+Map.centerObject(AOI4);
 
 var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_select.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
