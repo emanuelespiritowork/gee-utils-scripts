@@ -148,7 +148,7 @@ var an_vec = int_find_ships.int_find_ships({
   last_date: "2025-09-19",
   AOI: AOI4,
   radius: 2,
-  compactness: 5
+  connectedness: 5
 });
 
 //var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
