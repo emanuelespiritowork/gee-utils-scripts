@@ -85,7 +85,10 @@ var AOI =
             {
               "system:index": "0"
             })]),
-    AOI4 = /* color: #98ff00 */ee.FeatureCollection(
+    AOI4 = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[15.10576412111018, 36.65345685276929],
@@ -215,7 +218,7 @@ var int_find_ships = require("users/emanuelespiritowork/SharedRepo:functions/int
 
 //var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI2);
 
-var an_vec = int_find_ships.int_find_ships("2025-09-17","2025-09-19",AOI4,null,null,null,null,null,1,10);
+var an_vec = int_find_ships.int_find_ships("2025-09-16","2025-09-19",AOI4,null,null,null,null,null,1,10);
 
 
 
