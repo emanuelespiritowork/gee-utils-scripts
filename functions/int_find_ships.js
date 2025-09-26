@@ -12,7 +12,6 @@
 *******************************************************/
 
 var int_find_ships_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships_any.js");
-var int_find_ships_s2 = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships_s2.js");
 var s1_longest_series = require("users/emanuelespiritowork/SharedRepo:functions/s1_longest_series.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var s2_scale = require("users/emanuelespiritowork/SharedRepo:functions/s2_scale.js");
@@ -48,16 +47,17 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   
   var s1_series = s1_longest_series.s1_longest_series(start_date,last_date,AOI);
   
+  Map.addLayer(s1_series);
+  
   var s1_ships = int_find_ships_any.int_find_ships_any(s1_series,AOI,
   scale_to_use, s1_low_threshold, s1_up_threshold, compactness, size);
   
-  /*
   var s2_series = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
   .filterBounds(AOI)
   .filterDate(start_date,last_date);
   
   var s2_ships = int_find_ships_s2.int_find_ships_s2(s2_series,AOI,
   scale_to_use, s2_low_threshold, s2_up_threshold, compactness, 1);
-  */
+  
   return(s1_ships);
 };
