@@ -120,7 +120,7 @@ var AOI =
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s1_coll = ee.ImageCollection("COPERNICUS/S1_GRD");
-Map.centerObject(AOI3);
+Map.centerObject(AOI4);
 
 var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_select.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
@@ -143,7 +143,7 @@ var int_find_ships = require("users/emanuelespiritowork/SharedRepo:functions/int
 
 //var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI2);
 
-var an_vec = int_find_ships.int_find_ships("2025-09-17","2025-09-19",AOI3);
+var an_vec = int_find_ships.int_find_ships("2025-09-17","2025-09-19",AOI4);
 
 //var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 //.filterBounds(AOI2)
