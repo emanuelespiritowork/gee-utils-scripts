@@ -141,6 +141,22 @@ var AOI =
                   [26.20984320657364, 34.913655513593596]]]),
             {
               "system:index": "0"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[25.226287846606823, 34.88490709594386],
+                  [25.176849370044323, 34.85786630965939],
+                  [25.232467656177135, 34.83138025719165]]]),
+            {
+              "system:index": "1"
+            }),
+        ee.Feature(
+            ee.Geometry.Polygon(
+                [[[23.93466770474865, 34.860307983009136],
+                  [23.919561503576777, 34.83438632152574],
+                  [23.960760234045527, 34.837767870839684]]]),
+            {
+              "system:index": "2"
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s1_coll = ee.ImageCollection("COPERNICUS/S1_GRD");
