@@ -51,7 +51,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   Map.addLayer(s1_series.first());
   print(s1_series.first());
   
-  Map.addLayer(s1_series.sort("system:time_start").first());
+  Map.addLayer(s1_series.sort("system:time_start",true).first());
   print(s1_series.sort("system:time_start",true).first());
   
   var s1_ships = int_find_ships_any.int_find_ships_any(s1_series,AOI,
