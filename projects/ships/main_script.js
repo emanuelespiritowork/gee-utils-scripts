@@ -85,10 +85,7 @@ var AOI =
             {
               "system:index": "0"
             })]),
-    AOI4 = 
-    /* color: #98ff00 */
-    /* shown: false */
-    ee.FeatureCollection(
+    AOI4 = /* color: #98ff00 */ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[15.10576412111018, 36.65345685276929],
@@ -130,7 +127,10 @@ var AOI =
             {
               "system:index": "1"
             })]),
-    AOI5 = /* color: #0b4a8b */ee.FeatureCollection(
+    AOI5 = 
+    /* color: #0b4a8b */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[26.165554571319735, 34.93814496717821],
@@ -144,17 +144,17 @@ var AOI =
             }),
         ee.Feature(
             ee.Geometry.Polygon(
-                [[[25.226287846606823, 34.88490709594386],
-                  [25.176849370044323, 34.85786630965939],
-                  [25.232467656177135, 34.83138025719165]]]),
+                [[[24.432541474335203, 34.95248969368658],
+                  [24.383062300880972, 34.92544889691003],
+                  [24.438726340876745, 34.89896285270503]]]),
             {
               "system:index": "1"
             }),
         ee.Feature(
             ee.Geometry.Polygon(
-                [[[23.606450942388825, 35.031435540802356],
-                  [23.59131321738633, 35.00551387046893],
-                  [23.63259794795417, 35.0088954158424]]]),
+                [[[23.442000134823637, 35.00303206030847],
+                  [23.426867660547586, 34.97711039144654],
+                  [23.468138066619318, 34.980491937475165]]]),
             {
               "system:index": "2"
             }),
@@ -215,7 +215,7 @@ var int_find_ships = require("users/emanuelespiritowork/SharedRepo:functions/int
 
 //var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI2);
 
-var an_vec = int_find_ships.int_find_ships("2025-09-22","2025-09-27",AOI5,null,null,null,null,null,1,10);
+var an_vec = int_find_ships.int_find_ships("2025-09-17","2025-09-19",AOI5,null,null,null,null,null,1,10);
 
 
 
