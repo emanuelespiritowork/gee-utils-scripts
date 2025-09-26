@@ -215,7 +215,7 @@ var int_find_ships = require("users/emanuelespiritowork/SharedRepo:functions/int
 
 //var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI2);
 
-var an_vec = int_find_ships.int_find_ships("2025-09-17","2025-09-19",AOI5,null,null,null,null,null,1,10);
+var an_vec = int_find_ships.int_find_ships("2025-09-17","2025-09-19",AOI4,null,null,null,null,null,1,10);
 
 
 
