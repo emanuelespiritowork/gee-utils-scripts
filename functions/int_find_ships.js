@@ -49,6 +49,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   var s1_series = s1_longest_series.s1_longest_series(start_date,last_date,AOI);
   
   Map.addLayer(s1_series);
+  print(s1_series);
   
   var s1_ships = int_find_ships_any.int_find_ships_any(s1_series,AOI,
   scale_to_use, s1_low_threshold, s1_up_threshold, compactness, size);
