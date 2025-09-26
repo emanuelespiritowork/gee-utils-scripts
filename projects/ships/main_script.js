@@ -61,6 +61,25 @@ var AOI =
                   [49.874950713177334, 40.370211683066536]]]),
             {
               "system:index": "0"
+            })]),
+    AOI3 = /* color: #d63000 */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[10.341286455815428, 36.887820223437856],
+                  [10.35948256177246, 36.87024420064511],
+                  [10.343689715092772, 36.85953182836972],
+                  [10.34197310132324, 36.85431243628961],
+                  [10.33201674145996, 36.848817954311514],
+                  [10.329613482182616, 36.84085025400274],
+                  [10.326866900151366, 36.833980880492916],
+                  [10.321308703094116, 36.83007330857078],
+                  [10.31495723214685, 36.82031723990016],
+                  [10.310150713592163, 36.81427060124645],
+                  [10.325256914764038, 36.80190098899496],
+                  [10.415894121795288, 36.81124710279384],
+                  [10.420837669260074, 36.870141567457814]]]),
+            {
+              "system:index": "0"
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s1_coll = ee.ImageCollection("COPERNICUS/S1_GRD");
@@ -87,17 +106,17 @@ var int_find_ships = require("users/emanuelespiritowork/SharedRepo:functions/int
 
 //var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI2);
 
-var an_vec = int_find_ships.int_find_ships("2025-07-23","2025-07-28",AOI2);
+var an_vec = int_find_ships.int_find_ships("2025-09-07","2025-09-10",AOI3);
 
-var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-.filterBounds(AOI2)
-.filterDate("2025-07-23","2025-07-28");
+//var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+//.filterBounds(AOI2)
+//.filterDate("2025-07-23","2025-07-28");
 
 print(an_vec);
 
 Map.addLayer(an_vec);
 
-Map.addLayer(s2_coll);
+//Map.addLayer(s2_coll);
 
 /*
 var to_print = clip.first().select("VH");
