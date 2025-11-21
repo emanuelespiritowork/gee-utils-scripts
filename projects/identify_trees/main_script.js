@@ -10,6 +10,8 @@ var AOI =
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
 
+Map.centerObject(AOI);
+
 var mosaic_recent_without_clouds = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_recent_without_clouds.js");
 var plot_stretch = require("users/emanuelespiritowork/SharedRepo:functions/plot_stretch.js");
 var int_find_objects = require("users/emanuelespiritowork/SharedRepo:functions/int_find_objects.js");
