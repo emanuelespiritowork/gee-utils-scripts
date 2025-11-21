@@ -18,7 +18,7 @@ exports.int_find_flood = function(flood_date, AOI, min_scale, min_value){
   flood_date = ee.Date(flood_date);//"YYYY-MM-DD"
   AOI = ee.FeatureCollection(AOI);
   //optional inputs
-  var scale_to_use = min_scale || ee.Number(10);
+  var scale_to_use = ee.Number(min_scale || 10);
   var threshold = min_value || ee.Number(-22);//see also Otsu 1979
   
   var ten_days_before_flood_date = flood_date.advance(-10,"day");
