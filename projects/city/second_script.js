@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = /* color: #d63000 */ee.FeatureCollection(
+var AOI = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[8.681744047369353, 46.07660913689732],
@@ -19,4 +22,8 @@ var img_coll = ee.ImageCollection("NASA/VIIRS/002/VNP46A2")
 
 var clip = clip_to.clip_to(img_coll,AOI,10);
 
-Map.addLayer(clip);
+Map.addLayer(clip, {
+  bands: "Gap_Filled_DNB_BRDF_Corrected_NTL",
+  min:10,
+  max:80
+});
