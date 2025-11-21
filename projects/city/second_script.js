@@ -1,14 +1,18 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = /* color: #d63000 */ee.FeatureCollection(
+var AOI = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
-                [[[8.681744047369353, 46.07660913689732],
-                  [6.110943266119353, 45.42886151142696],
-                  [6.96548516633769, 43.74683903229547],
-                  [10.64590508821269, 43.7309638344609],
-                  [14.268071005441673, 45.42132371996559],
-                  [13.229406114815431, 46.23986064802451],
-                  [10.494688167826327, 46.47034415792573]]]),
+                [[[8.990886027757705, 46.05491295025943],
+                  [7.294491832012899, 44.43276432257844],
+                  [8.099768202861982, 43.89006831524715],
+                  [7.792135918056913, 42.198443761489735],
+                  [10.853624609662628, 43.53364206362521],
+                  [14.90656494643116, 43.87536601777763],
+                  [14.319398372178568, 46.016240813574875],
+                  [12.679506076175818, 47.31611898311429]]]),
             {
               "system:index": "0"
             })]);
@@ -18,10 +22,19 @@ var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js
 var img_coll = ee.ImageCollection("NASA/VIIRS/002/VNP46A2")
 .filterDate("2025-11-10");
 
-var clip = clip_to.clip_to(img_coll,AOI,10);
+var clip = clip_to.clip_to(img_coll,AOI,10).first();
+
+var vect = ee.Image(clip).select(["Gap_Filled_DNB_BRDF_Corrected_NTL"])
+.gt(ee.Image(40))
+.reduceToVectors({
+  bestEffort: true
+})
+.filter(ee.Filter.eq("label",1));
 
 Map.addLayer(clip, {
   bands: "Gap_Filled_DNB_BRDF_Corrected_NTL",
   min:10,
   max:80
 });
+
+Map.addLayer(vect);
