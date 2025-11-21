@@ -11,8 +11,8 @@ var AOI = /* color: #d63000 */ee.FeatureCollection(
               "system:index": "0"
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-int_find_flood = require("users/emanuelespiritowork/SharedRepo:functions/int_find_flood.js");
+var int_find_flood = require("users/emanuelespiritowork/SharedRepo:functions/int_find_flood.js");
 
-flood_event = int_find_flood.int_find_flood("2016-05-28", AOI, 10, -22);
+var flood_event = int_find_flood.int_find_flood("2016-05-28", AOI, 10, -22);
 
 Map.addLayer(flood_event);
