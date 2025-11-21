@@ -64,7 +64,7 @@ exports.int_find_flood = function(flood_date, AOI, min_scale, min_value){
   var low_reflectance_after = speckle_after.updateMask(threshold_mask_after);
 
   var null_var_1 = plot_map.plot_map(low_reflectance_before,2,10);
-  var null_var_1 = plot_map.plot_map(low_reflectance_after,2,10);
+  var null_var_2 = plot_map.plot_map(low_reflectance_after,2,10);
   
   /**********************
    * FILTER THE BEFORE 
