@@ -20,7 +20,8 @@ exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_
   .select(["Gap_Filled_DNB_BRDF_Corrected_NTL"])
   .gt(ee.Image(threshold))
   .reduceToVectors({
-    bestEffort: true
+    bestEffort: true,
+    scale: scale_to_use
     })
   //.filter(ee.Filter.eq("label",1));
   
