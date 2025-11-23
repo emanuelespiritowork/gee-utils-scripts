@@ -1,4 +1,4 @@
-var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
+var mosaic_date = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_date.js");
 
 exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_to_use, threshold){
   //Check variable types
