@@ -1,7 +1,7 @@
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 
 exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_to_use, threshold){
-  //mandatory inputs
+  //Check variable types
   start_date = ee.Date(start_date);//"YYYY-MM-DD"
   end_date = ee.Date(end_date);//"YYYY-MM-DD"
   AOI = ee.FeatureCollection(AOI);
