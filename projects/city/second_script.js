@@ -38,3 +38,5 @@ Map.addLayer(clip, {
 });
 
 Map.addLayer(vect);
+
+Map.centerObject(AOI);
