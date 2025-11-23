@@ -2,6 +2,8 @@ var int_find_city_any = require("users/emanuelespiritowork/SharedRepo:functions/
 
 exports.int_find_city = function(start_date, end_date, AOI, min_scale, min_value){
   //mandatory inputs
+  print(start_date);
+  print(end_date);
   start_date = ee.Date(start_date);//"YYYY-MM-DD"
   end_date = ee.Date(end_date);//"YYYY-MM-DD"
   AOI = ee.FeatureCollection(AOI);
