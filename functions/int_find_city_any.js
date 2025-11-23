@@ -1,23 +1,21 @@
 var mosaic_date = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_date.js");
 
-exports.int_find_city_any = function(img_coll, date_start, date_end, AOI, scale_to_use, threshold){
+exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_to_use, threshold){
   //Check variable types
-  print(date_start);
-  print(date_end);
+  print(start_date);
+  print(end_date);
   
-  var start_date = ee.Date(date_start);//"YYYY-MM-DD"
-  var end_date = ee.Date(date_end);//"YYYY-MM-DD"
+  start_date = ee.Date(start_date);//"YYYY-MM-DD"
+  end_date = ee.Date(end_date);//"YYYY-MM-DD"
   AOI = ee.FeatureCollection(AOI);
   scale_to_use = ee.Number(scale_to_use);
   threshold = ee.Number(threshold);
   
-  var mosaic = mosaic_date.mosaic_date({
-    img_coll: img_coll,
-    AOI: AOI,
-    start_date: start_date,
-    latest_date: end_date,
-    scale_to_use: scale_to_use
-  });
+  var mosaic = mosaic_date.mosaic_date(img_coll,
+  AOI,
+  start_date,
+  end_date,
+  scale_to_use);
   
   var vect = ee.Image(mosaic)
   .select(["Gap_Filled_DNB_BRDF_Corrected_NTL"])
