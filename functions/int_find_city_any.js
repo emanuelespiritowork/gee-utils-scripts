@@ -17,6 +17,7 @@ exports.int_find_city = function(start_date, end_date, AOI, min_scale, min_value
     AOI: AOI,
     scale_to_use: scale_to_use,
     threshold: threshold 
-  })
+  });
   
+  return(result);
 };
