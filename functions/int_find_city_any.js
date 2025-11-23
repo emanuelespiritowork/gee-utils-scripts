@@ -1,12 +1,12 @@
 var mosaic_date = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_date.js");
 
-exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_to_use, threshold){
+exports.int_find_city_any = function(img_coll, date_start, date_end, AOI, scale_to_use, threshold){
   //Check variable types
-  print(start_date);
-  print(end_date);
+  print(date_start);
+  print(date_end);
   
-  start_date = ee.Date(start_date);//"YYYY-MM-DD"
-  end_date = ee.Date(end_date);//"YYYY-MM-DD"
+  start_date = ee.Date(date_start);//"YYYY-MM-DD"
+  end_date = ee.Date(date_end);//"YYYY-MM-DD"
   AOI = ee.FeatureCollection(AOI);
   scale_to_use = ee.Number(scale_to_use);
   threshold = ee.Number(threshold);
