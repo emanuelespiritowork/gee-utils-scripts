@@ -1,4 +1,3 @@
-var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 var int_find_city_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_city_any.js");
 
 exports.int_find_city = function(start_date, end_date, AOI, min_scale, min_value){
