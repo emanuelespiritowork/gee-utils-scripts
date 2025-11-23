@@ -8,8 +8,6 @@ exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_
   scale_to_use = ee.Number(scale_to_use);
   threshold = ee.Number(threshold);
   
-  print(threshold);
-  
   var mosaic = mosaic_date.mosaic_date(img_coll,
   AOI,
   start_date,
