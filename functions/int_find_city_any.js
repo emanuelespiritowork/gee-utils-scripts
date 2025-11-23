@@ -24,6 +24,8 @@ exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_
     })
   .filter(ee.Filter.eq("label",1));
   
+  print(vect);
+  
   Map.addLayer(mosaic, {
     bands: "Gap_Filled_DNB_BRDF_Corrected_NTL",
     min:40,
