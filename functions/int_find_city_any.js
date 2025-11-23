@@ -5,8 +5,8 @@ exports.int_find_city_any = function(img_coll, date_start, date_end, AOI, scale_
   print(date_start);
   print(date_end);
   
-  start_date = ee.Date(date_start);//"YYYY-MM-DD"
-  end_date = ee.Date(date_end);//"YYYY-MM-DD"
+  var start_date = ee.Date(date_start);//"YYYY-MM-DD"
+  var end_date = ee.Date(date_end);//"YYYY-MM-DD"
   AOI = ee.FeatureCollection(AOI);
   scale_to_use = ee.Number(scale_to_use);
   threshold = ee.Number(threshold);
