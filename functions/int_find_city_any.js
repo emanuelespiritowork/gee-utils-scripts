@@ -23,7 +23,7 @@ exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_
     bestEffort: true,
     scale: scale_to_use
     })
-  //.filter(ee.Filter.eq("label",1));
+  .filter(ee.Filter.eq("label",1));
   
   print(vect);
   
