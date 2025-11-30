@@ -22,7 +22,7 @@ exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_
   */
   
   var vect = ee.Image(max)
-  .select(["Gap_Filled_DNB_BRDF_Corrected_NTL"])
+  .select(["Gap_Filled_DNB_BRDF_Corrected_NTL_max"])
   .gt(ee.Image(threshold))
   .reduceToVectors({
     bestEffort: true,
