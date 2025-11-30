@@ -70,6 +70,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   */
   
   //controllo su series s2_vuota
+  
   var s2_series = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
   .filterBounds(AOI)
   .filterDate(start_date,last_date)
