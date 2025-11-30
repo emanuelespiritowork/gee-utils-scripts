@@ -15,11 +15,14 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,k_radius,n
   var scale = s2_scale.s2_scale(clip);
   
   var find_ships = function(image){
-    var mask_water = 
+    var mask_water = image.select(["B8"]).gt(0.1);
     
-    var mask_1 = image.lt(high_threshold);
-    var mask_2 = image.gt(low_threshold);
-    var mask = mask_2.and(mask_1);
+    var ndvi = image.normalizedDifference(["B8","B4"]);
+    
+    var mask_1 = ndvi.lt(high_threshold);
+    var mask_2 = ndvi.gt(low_threshold);
+    
+    var mask = mask_2.and(mask_1).and(mask_water);
     
     var masked = mask.clip(AOI);
     
