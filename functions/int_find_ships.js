@@ -81,16 +81,12 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   Map.addLayer(s2_ndvi.s2_ndvi(s2_series),{},"ndvi");
   
   print("s2_ships:");
-  var s2_ships = int_find_ships_s2.int_find_ships_s2(s2_series,
-  AOI,
-  s2_up_threshold,
-  s2_low_threshold,
-  s2_water_low_threshold,
-  s2_radius,
-  s2_iterations,
-  scale_to_use);
+  var s2_ships = ee.Algorithms.If({
+    condition: s2_series.size() > 0,
+    trueCase: int_find_ships_s2.int_find_ships_s2(s2_series,AOI,s2_up_threshold,s2_low_threshold,s2_water_low_threshold,s2_radius,s2_iterations,scale_to_use),
+    falseCase: null});
   
-  //var ships = s1_ships.merge(s2_ships);
+  var ships = s1_ships.merge(s2_ships);
   
-  return(s2_ships);
+  return(ships);
 };
