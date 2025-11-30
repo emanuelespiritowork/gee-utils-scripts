@@ -9,13 +9,19 @@ exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_
   threshold = ee.Number(threshold);
   
   //al posto del mosaico metto il massimo nell'img_coll
+  var max = img_coll.reduce({
+    reducer: ee.Reducer.max()
+  });
+  
+  /*
   var mosaic = mosaic_date.mosaic_date(img_coll,
   AOI,
   start_date,
   end_date,
   scale_to_use);
+  */
   
-  var vect = ee.Image(mosaic)
+  var vect = ee.Image(max)
   .select(["Gap_Filled_DNB_BRDF_Corrected_NTL"])
   .gt(ee.Image(threshold))
   .reduceToVectors({
@@ -26,7 +32,7 @@ exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_
   
   print(vect);
   
-  Map.addLayer(mosaic, {
+  Map.addLayer(max, {
     bands: "Gap_Filled_DNB_BRDF_Corrected_NTL",
     min:40,
     max:50
