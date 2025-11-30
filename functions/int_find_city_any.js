@@ -1,4 +1,4 @@
-var mosaic_date = require("users/emanuelespiritowork/SharedRepo:functions/mosaic_date.js");
+var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
 
 exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_to_use, threshold){
   //Check variable types
@@ -9,7 +9,7 @@ exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_
   threshold = ee.Number(threshold);
   
   //al posto del mosaico metto il massimo nell'img_coll
-  var max = img_coll.reduce({
+  var max = clip_to.clip_to(img_coll,AOI,scale_to_use).reduce({
     reducer: ee.Reducer.max()
   });
   
