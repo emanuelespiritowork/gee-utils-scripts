@@ -11,13 +11,13 @@ exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_
   //al posto del mosaico metto il massimo nell'img_coll
   var clip = clip_to.clip_to(img_coll,AOI,scale_to_use);
   
-  Map.addLayer(clip.geometry(),{},"clip.geometry");
+  //Map.addLayer(clip.geometry(),{},"clip.geometry");
   
   var max = clip_to.clip_to(ee.ImageCollection(clip.reduce({
     reducer: ee.Reducer.max()
   })),AOI,scale_to_use).first();
   
-  Map.addLayer(max.geometry(),{},"max.geometry");
+  //Map.addLayer(max.geometry(),{},"max.geometry");
   
   /*
   var mosaic = mosaic_date.mosaic_date(img_coll,
