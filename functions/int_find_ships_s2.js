@@ -14,9 +14,9 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,k_radius,n
   
   var scale = s2_scale.s2_scale(clip);
   
-  var s2_series = s2_ndvi.s2_ndvi(scale);
-  
   var find_ships = function(image){
+    var mask_water = 
+    
     var mask_1 = image.lt(high_threshold);
     var mask_2 = image.gt(low_threshold);
     var mask = mask_2.and(mask_1);
@@ -45,7 +45,7 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,k_radius,n
     return(ships);
   };
   
-  var all_ships = s2_series.map(find_ships).flatten();
+  var all_ships = scale.map(find_ships).flatten();
   
   return(all_ships);
 };
