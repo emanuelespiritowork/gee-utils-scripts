@@ -32,7 +32,7 @@ var s2_ndvi = require("users/emanuelespiritowork/SharedRepo:functions/s2_ndvi.js
  * Description: find ships in the AOI in a period of time
 *******************************************************/
 
-exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_value, s1_max_value, s2_min_value, s2_max_value, connectedness, radius){
+exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_value, s1_max_value, s1_connectedness, s1_radius, s2_min_value, s2_max_value, s2_min_water,s2_k_radius,s2_n_iterations,s2_cloud_coverage){
   //mandatory inputs
   start_date = ee.Date(start_date);//"YYYY-MM-DD"
   last_date = ee.Date(last_date);//"YYYY-MM-DD"
@@ -57,16 +57,21 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   print(s1_series.sort("system:time_start",true).first());
   */
   var s1_ships = int_find_ships_any.int_find_ships_any(s1_series,AOI,
-  scale_to_use, s1_low_threshold, s1_up_threshold, compactness, size);
-  
+  scale_to_use, s1_low_threshold, s1_up_threshold, s1_compactness, s1_size);
   
   var s2_series = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
   .filterBounds(AOI)
   .filterDate(start_date,last_date)
-  .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",10));
+  .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",s2_cloud_coverage));
   
-  var s2_ships = int_find_ships_s2.int_find_ships_s2(s2_series,AOI,
-  scale_to_use, s2_low_threshold, s2_up_threshold, compactness, 1);
+  var s2_ships = int_find_ships_s2.int_find_ships_s2(s2_series,
+  AOI,
+  s2_up_threshold,
+  s2_low_threshold,
+  s2_min_water,
+  s2_k_radius,
+  s2_n_iterations,
+  scale_to_use);
   
   return(s1_ships);
 };
