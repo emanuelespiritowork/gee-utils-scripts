@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var AOI = /* color: #98ff00 */ee.FeatureCollection(
+var AOI = 
+    /* color: #98ff00 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[14.26730253807869, 40.55783366252705],
@@ -192,7 +195,7 @@ var AOI = /* color: #98ff00 */ee.FeatureCollection(
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s1_coll = ee.ImageCollection("COPERNICUS/S1_GRD");
-Map.centerObject(AOI);
+Map.centerObject(AOI4);
 
 var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_select.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
@@ -213,12 +216,12 @@ var int_find_ships = require("users/emanuelespiritowork/SharedRepo:functions/int
 
 //Map.addLayer(vector);
 
-var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI);
+//var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI);
 
 //var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI2);
 
 //var an_vec = int_find_ships.int_find_ships("2025-09-16","2025-09-19",AOI4,null,null,null,null,null,1,10);
-
+var an_vec = int_find_ships.int_find_ships("2025-09-16","2025-09-19",AOI4);
 
 
 //var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
