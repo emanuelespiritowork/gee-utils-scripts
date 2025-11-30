@@ -1,17 +1,31 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = 
-    /* color: #d63000 */
-    /* shown: false */
-    ee.Geometry.Polygon(
-        [[[13.814808499511985, 40.82459389976943],
-          [13.741453302338433, 40.7817992273174],
-          [13.713325615445724, 40.74607543633415],
-          [13.918360395526081, 40.64707087091379],
-          [14.010716533311589, 40.73554218136648],
-          [13.90847396976539, 40.83248930186906],
-          [13.901831482451406, 40.847226901367236]]]);
+var geometry = /* color: #d63000 */ee.FeatureCollection(
+        [ee.Feature(
+            ee.Geometry.Polygon(
+                [[[13.814808499511985, 40.82459389976943],
+                  [13.741453302338433, 40.7817992273174],
+                  [13.713325615445724, 40.74607543633415],
+                  [13.918360395526081, 40.64707087091379],
+                  [14.010716533311589, 40.73554218136648],
+                  [13.90847396976539, 40.83248930186906],
+                  [13.901831482451406, 40.847226901367236]]]),
+            {
+              "system:index": "0"
+            })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-var imageCollection = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED");
+var int_find_ships_s2 = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships_s2.js");
+
+var imageCollection = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+.filterDate("2022-02-01","2022-02-28")
+.filterBounds(geometry);
+
+Map.addLayer(imageCollection.first());
+
+var result = int_find_ships_s2.int_find_ships_s2(imageCollection,geometry);
+
+Map.addLayer(result);
+
+/*
 Map.addLayer(imageCollection.filterBounds(geometry).first());
 Map.addLayer(imageCollection.filterBounds(geometry).first().normalizedDifference(["B8","B4"]));
 Map.addLayer(imageCollection.filterBounds(geometry).first().normalizedDifference(["B8","B4"]));
@@ -40,3 +54,5 @@ print(ships);
 
 Map.addLayer(ships,{},"ships");
 Map.centerObject(ships.first());
+*/
+
