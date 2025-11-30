@@ -16,26 +16,37 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,k_radius,n
   
   var s2_series = s2_ndvi.s2_ndvi(scale);
   
-  var mask_1 = s2_series.lt(high_threshold);
+  var find_ships = function(image){
+    var mask_1 = image.lt(high_threshold);
+    var mask_2 = image.gt(low_threshold);
+    var mask = mask_2.and(mask_1);
+    
+    var masked = mask.clip(AOI);
+    
+    // Define a kernel.
+    var kernel = ee.Kernel.circle({radius: radius});
+    
+    // Perform an erosion followed by a dilation, display.
+    var opened = masked
+    .focalMin({
+      kernel: kernel, 
+      iterations: iterations
+    })
+    .focalMax({
+      kernel: kernel, 
+      iterations: iterations
+    });
+    
+    var ships = opened.reduceToVectors({
+      bestEffort: true
+    })
+    .filter(ee.Filter.eq("label",1));
+    
+    return(ships);
+  };
   
-  var mask_2 = s2_series.gt(low_threshold);
+  all_ships = s2_series.map(find_ships).flatten();
   
-  var mask = mask_2.and(mask_1);
-
-var image = mask.clip(AOI);
-// Define a kernel.
-var kernel = ee.Kernel.circle({radius: radius});
-
-// Perform an erosion followed by a dilation, display.
-var opened = image
-             .focalMin({kernel: kernel, iterations: iterations
-             })
-             .focalMax({kernel: kernel, iterations: iterations});
-             
-var ships = opened.reduceToVectors({
-  bestEffort: true
-}).filter(ee.Filter.eq("label",1));
-
-return(ships);
-}
+  return(all_ships);
+};
 
