@@ -75,7 +75,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   
   Map.addLayer(s2_series);
   
-  Map.addLayer(s2_series.first().normalizedDifference(["B8","B4"]),{},"ndvi");
+  Map.addLayer(s2_ndvi.s2_ndvi(s2_series),{},"ndvi");
   
   print("s2_ships:");
   var s2_ships = int_find_ships_s2.int_find_ships_s2(s2_series,
