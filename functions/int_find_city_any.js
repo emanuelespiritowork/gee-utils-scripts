@@ -15,7 +15,7 @@ exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_
   
   var max = clip_to.clip_to(ee.ImageCollection(clip.reduce({
     reducer: ee.Reducer.max()
-  })),AOI,scale_to_use);
+  })),AOI,scale_to_use).first();
   
   Map.addLayer(max.geometry(),{},"max.geometry");
   
