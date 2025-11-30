@@ -21,6 +21,12 @@ exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_
   scale_to_use);
   */
   
+  Map.addLayer(max, {
+    bands: "Gap_Filled_DNB_BRDF_Corrected_NTL_max",
+    min:40,
+    max:50
+  });
+  
   var vect = ee.Image(max)
   .select(["Gap_Filled_DNB_BRDF_Corrected_NTL_max"])
   .gt(ee.Image(threshold))
@@ -32,11 +38,6 @@ exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_
   
   print(vect);
   
-  Map.addLayer(max, {
-    bands: "Gap_Filled_DNB_BRDF_Corrected_NTL_max",
-    min:40,
-    max:50
-  });
   
   Map.addLayer(vect);
   
