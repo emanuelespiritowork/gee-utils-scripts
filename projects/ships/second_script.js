@@ -1,5 +1,8 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var geometry = /* color: #d63000 */ee.FeatureCollection(
+var geometry = 
+    /* color: #d63000 */
+    /* shown: false */
+    ee.FeatureCollection(
         [ee.Feature(
             ee.Geometry.Polygon(
                 [[[14.20900466282569, 40.786084250481686],
@@ -23,11 +26,11 @@ var imageCollection = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 print(imageCollection);
 
 Map.addLayer(imageCollection.first());
-
+/*
 var result = int_find_ships_s2.int_find_ships_s2(imageCollection,geometry);
 
 Map.addLayer(result);
-
+*/
 /*
 Map.addLayer(imageCollection.filterBounds(geometry).first());
 Map.addLayer(imageCollection.filterBounds(geometry).first().normalizedDifference(["B8","B4"]));
