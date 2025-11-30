@@ -59,13 +59,14 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   var s1_ships = int_find_ships_any.int_find_ships_any(s1_series,AOI,
   scale_to_use, s1_low_threshold, s1_up_threshold, compactness, size);
   
-  /*
+  
   var s2_series = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
   .filterBounds(AOI)
-  .filterDate(start_date,last_date);
+  .filterDate(start_date,last_date)
+  .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",10));
   
   var s2_ships = int_find_ships_s2.int_find_ships_s2(s2_series,AOI,
   scale_to_use, s2_low_threshold, s2_up_threshold, compactness, 1);
-  */
+  
   return(s1_ships);
 };
