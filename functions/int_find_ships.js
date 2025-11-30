@@ -43,8 +43,12 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   var s1_up_threshold = s1_max_value || ee.Number(0);
   var s2_low_threshold = s2_min_value || ee.Number(-0.4);
   var s2_up_threshold = s2_max_value || ee.Number(-0.15);
-  var compactness = connectedness || ee.Number(10);
-  var size = radius || ee.Number(3);
+  var s1_compactness = s1_connectedness || ee.Number(10);
+  var s1_size = s1_radius || ee.Number(3);
+  var s2_water_low_threshold = ee.Number(s2_min_water || 0.1);
+  var s2_radius = ee.Number(s2_k_radius || 1);
+  var s2_iterations = ee.Number(s2_n_iterations || 1);
+  var s2_max_cloud_coverage = ee.Number(s2_cloud_coverage || 10);
   
   var s1_series = s1_longest_series.s1_longest_series(start_date,last_date,AOI);
   
@@ -62,15 +66,15 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   var s2_series = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
   .filterBounds(AOI)
   .filterDate(start_date,last_date)
-  .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",s2_cloud_coverage));
+  .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",s2_max_cloud_coverage));
   
   var s2_ships = int_find_ships_s2.int_find_ships_s2(s2_series,
   AOI,
   s2_up_threshold,
   s2_low_threshold,
-  s2_min_water,
-  s2_k_radius,
-  s2_n_iterations,
+  s2_water_low_threshold,
+  s2_radius,
+  s2_iterations,
   scale_to_use);
   
   return(s1_ships);
