@@ -20,6 +20,8 @@ var imageCollection = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterBounds(geometry)
 .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",10));
 
+print(imageCollection);
+
 Map.addLayer(imageCollection.first());
 
 var result = int_find_ships_s2.int_find_ships_s2(imageCollection,geometry);
