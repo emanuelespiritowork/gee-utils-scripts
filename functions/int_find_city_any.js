@@ -13,6 +13,8 @@ exports.int_find_city_any = function(img_coll, start_date, end_date, AOI, scale_
     reducer: ee.Reducer.max()
   });
   
+  Map.addLayer(max.geometry());
+  
   /*
   var mosaic = mosaic_date.mosaic_date(img_coll,
   AOI,
