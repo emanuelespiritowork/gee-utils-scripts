@@ -77,5 +77,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   s2_iterations,
   scale_to_use);
   
-  return(s1_ships);
+  var ships = s1_ships.merge(s2_ships);
+  
+  return(ships);
 };
