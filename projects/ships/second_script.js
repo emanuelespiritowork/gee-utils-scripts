@@ -16,7 +16,7 @@ var geometry = /* color: #d63000 */ee.FeatureCollection(
 var int_find_ships_s2 = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships_s2.js");
 
 var imageCollection = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-.filterDate("2022-02-01","2022-02-28")
+.filterDate("2022-02-01","2022-03-28")
 .filterBounds(geometry)
 .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",10));
 
