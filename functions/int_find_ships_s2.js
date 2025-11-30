@@ -45,7 +45,7 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,k_radius,n
     return(ships);
   };
   
-  all_ships = s2_series.map(find_ships).flatten();
+  var all_ships = s2_series.map(find_ships).flatten();
   
   return(all_ships);
 };
