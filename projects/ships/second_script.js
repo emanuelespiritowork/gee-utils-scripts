@@ -26,11 +26,11 @@ var imageCollection = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 print(imageCollection);
 
 Map.addLayer(imageCollection.first());
-/*
+
 var result = int_find_ships_s2.int_find_ships_s2(imageCollection,geometry);
 
 Map.addLayer(result);
-*/
+
 /*
 Map.addLayer(imageCollection.filterBounds(geometry).first());
 Map.addLayer(imageCollection.filterBounds(geometry).first().normalizedDifference(["B8","B4"]));
