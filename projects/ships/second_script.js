@@ -5,8 +5,8 @@ var geometry = /* color: #d63000 */ee.FeatureCollection(
                 [[[14.20900466282569, 40.786084250481686],
                   [14.135691916564474, 40.743289647094585],
                   [14.107580415995653, 40.70756589932686],
-                  [14.312496705509533, 40.6085612315161],
-                  [14.404799327639953, 40.697032656851746],
+                  [14.304256959415769, 40.66275271887078],
+                  [14.46865735986652, 40.7168122431099],
                   [14.30261578968376, 40.7939796560988],
                   [14.29597714365505, 40.80871725195902]]]),
             {
@@ -17,7 +17,8 @@ var int_find_ships_s2 = require("users/emanuelespiritowork/SharedRepo:functions/
 
 var imageCollection = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
 .filterDate("2022-02-01","2022-02-28")
-.filterBounds(geometry);
+.filterBounds(geometry)
+.filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",10));
 
 Map.addLayer(imageCollection.first());
 
