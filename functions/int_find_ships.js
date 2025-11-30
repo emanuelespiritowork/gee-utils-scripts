@@ -53,6 +53,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   var s1_series = s1_longest_series.s1_longest_series(start_date,last_date,AOI);
   
   Map.addLayer(s1_series);
+
   /*
   Map.addLayer(s1_series.first());
   print(s1_series.first());
@@ -60,6 +61,8 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   Map.addLayer(s1_series.sort("system:time_start",true).first());
   print(s1_series.sort("system:time_start",true).first());
   */
+  
+  print("s1_ships:");
   
   /*
   var s1_ships = int_find_ships_any.int_find_ships_any(s1_series,AOI,
@@ -70,6 +73,9 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   .filterDate(start_date,last_date)
   .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",s2_max_cloud_coverage));
   
+  Map.addLayer(s2_series);
+  
+  print("s2_ships:");
   var s2_ships = int_find_ships_s2.int_find_ships_s2(s2_series,
   AOI,
   s2_up_threshold,
