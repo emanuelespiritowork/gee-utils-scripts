@@ -92,7 +92,9 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   //print("s2_series_size");
   //print(s2_series_size);
   
-  Map.addLayer(s2_series,{},"s2_series");
+  Map.addLayer(s2_series.sort("system:time_start",false).first(),{},"s2_series_1");
+  
+  Map.addLayer(s2_series.sort("system:time_start",true).first(),{},"s2_series_2");
   
   //Map.addLayer(s2_ndvi.s2_ndvi(s2_series),{},"ndvi");
   
