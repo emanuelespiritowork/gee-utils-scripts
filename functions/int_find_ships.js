@@ -54,8 +54,8 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   
   var s1_series_size = s1_series.size();
   
-  print("s1_series_size");
-  print(s1_series_size);
+  //print("s1_series_size");
+  //print(s1_series_size);
   
   Map.addLayer(s1_series,{},"s1_series");
 
@@ -72,15 +72,15 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   var null_dictionary = ee.Dictionary.fromLists(["label"],[-1]);
   
   var s1_ships = ee.FeatureCollection(ee.Algorithms.If({
-    condition: s1_series_size > 0,
+    condition: ee.Number(s1_series_size).gt(0),
     trueCase: int_find_ships_any.int_find_ships_any(s1_series,AOI,scale_to_use, s1_low_threshold, s1_up_threshold, s1_compactness, s1_size),
     falseCase: ee.FeatureCollection(ee.Feature(ee.Geometry.Point([0,0]), null_dictionary))
   }));
   
-  print(s1_ships);
-  print(s1_ships.filter(ee.Filter.neq("label",-1)));
+  Map.addLayer(s1_ships.filter(ee.Filter.neq("label",-1)),{},"s1_ships");
   
-  //controllo su series s2_vuota
+  //print(s1_ships);
+  //print(s1_ships.filter(ee.Filter.neq("label",-1)));
   
   var s2_series = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
   .filterBounds(AOI)
@@ -89,8 +89,8 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   
   var s2_series_size = s2_series.size();
   
-  print("s2_series_size");
-  print(s2_series_size);
+  //print("s2_series_size");
+  //print(s2_series_size);
   
   Map.addLayer(s2_series,{},"s2_series");
   
@@ -103,12 +103,12 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
     falseCase: ee.Feature(ee.Geometry.Point([0,0]), null_dictionary)
   }));
   
-  Map.addLayer(ee.FeatureCollection(s2_ships),{},"s2_ships");
+  Map.addLayer(s2_ships.filter(ee.Filter.neq("label",-1)),{},"s2_ships");
 
-  print("s2_ships:");
-  print(s2_ships);
+  //print("s2_ships:");
+  //print(s2_ships);
   
-  //var ships = s1_ships.merge(s2_ships).filter(ee.Filter.neq("label",-1));
+  var ships = s1_ships.merge(s2_ships).filter(ee.Filter.neq("label",-1));
   
-  return(int_find_ships_s2.int_find_ships_s2(s2_series,AOI,s2_up_threshold,s2_low_threshold,s2_water_low_threshold,s2_radius,s2_iterations,scale_to_use));
+  return(ships);
 };
