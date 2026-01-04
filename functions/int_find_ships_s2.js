@@ -64,7 +64,7 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
     })
     .filter(ee.Filter.eq("label",1));
     
-    var wakes = wake_opened.reduceToVectors({
+    var wakes = wake_masked.reduceToVectors({
       bestEffort: true
     })
     .filter(ee.Filter.eq("label",1))
