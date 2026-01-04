@@ -108,5 +108,5 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   
   //var ships = s1_ships.merge(s2_ships).filter(ee.Filter.neq("label",-1));
   
-  return(s2_ships);
+  return(int_find_ships_s2.int_find_ships_s2(s2_series,AOI,s2_up_threshold,s2_low_threshold,s2_water_low_threshold,s2_radius,s2_iterations,scale_to_use));
 };
