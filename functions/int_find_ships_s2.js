@@ -33,7 +33,7 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
     
     var masked = mask.clip(AOI);
     
-    var wake_masked = wake_mask.clip(AOI);
+    var wake_masked = wake_mask.clipToBoundsAndScale(AOI);
     
     // Define a kernel.
     var kernel = ee.Kernel.circle({radius: radius});
