@@ -54,11 +54,11 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
     
     var wake_opened = wake_masked
     .focalMin({
-      kernel: wake_kernel,
+      kernel: ee.Kernel.circle({radius: radius.multiply(1.2)}),
       iterations: iterations
     })
     .focalMax({
-      kernel:wake_kernel,
+      kernel:ee.Kernel.circle({radius: radius.multiply(2)}),
       iterations: iterations
     });
     
