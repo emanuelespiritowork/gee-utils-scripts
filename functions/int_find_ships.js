@@ -104,7 +104,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
     falseCase: ee.FeatureCollection(ee.Feature(ee.Geometry.Point([0,0]), null_dictionary))
   });
   
-  makeItWork = function(feature){
+  var makeItWork = function(feature){
     return(ee.Feature(feature));
   };
   
