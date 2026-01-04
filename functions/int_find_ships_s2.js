@@ -7,7 +7,7 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
   var low_threshold = ee.Number(min_value || -0.4);
   var high_threshold = ee.Number(max_value || 0.1);
   var water_threshold = ee.Number(min_water || 0.05);//was 1
-  var wake_threshold = ee.Number(0.03);
+  var wake_threshold = ee.Number(0.02);
   var radius = ee.Number(k_radius || 1);
   var iterations = ee.Number(n_iterations || 1);
   var scale_to_use = ee.Number(min_scale || 10);
@@ -33,7 +33,7 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
     
     var masked = mask.clip(AOI);
     
-    var wake_masked = wake_mask.clipToBoundsAndScale(AOI);
+    var wake_masked = wake_mask.clip(AOI);
     
     // Define a kernel.
     var kernel = ee.Kernel.circle({radius: radius});
@@ -64,11 +64,11 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
     })
     .filter(ee.Filter.eq("label",1));
     
-    var wakes = wake_masked.reduceToVectors({
+    var wakes = wake_opened.reduceToVectors({
       bestEffort: true
     })
     .filter(ee.Filter.eq("label",1))
-    .set("label",2);
+    .set(["label"],[2]);
     
     return(ships.merge(wakes));
   };
