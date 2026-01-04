@@ -32,6 +32,8 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
     
     var masked = mask.clip(AOI);
     
+    var wake_masked = wake_mask.clip(AOI);
+    
     // Define a kernel.
     var kernel = ee.Kernel.circle({radius: radius});
     
@@ -46,12 +48,27 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
       iterations: iterations
     });
     
+    var wake_opened = wake_masked
+    .focalMin({
+      kernel: kernel,
+      iterations: iterations
+    })
+    .focalMax({
+      kernel:kernel,
+      iterations: iterations
+    });
+    
     var ships = opened.reduceToVectors({
       bestEffort: true
     })
     .filter(ee.Filter.eq("label",1));
     
-    return(ships);
+    var wakes = wake_opened.reduceToVectors({
+      bestEffort: true
+    })
+    .filter(ee.Filter.eq("label",2));
+    
+    return(ships.merge(wakes));
   };
   
   var all_ships = scale.map(find_ships).flatten();
