@@ -72,7 +72,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   var s1_ships = ee.Algorithms.If({
     condition: s1_series_size > 0,
     trueCase: int_find_ships_any.int_find_ships_any(s1_series,AOI,scale_to_use, s1_low_threshold, s1_up_threshold, s1_compactness, s1_size),
-    falseCase: null
+    falseCase: ee.FeatureCollection(ee.Geometry.Point([0,0]))
   });
   
   print(s1_ships);
@@ -102,10 +102,10 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   });
   
   var ships = s1_ships.merge(s2_ships);
-  
+  /*
   var ships = ee.Algorithms.If({
-    condition: 
-  })
+    condition: s2_ships.
+  })*/
   
   return(ships);
 };
