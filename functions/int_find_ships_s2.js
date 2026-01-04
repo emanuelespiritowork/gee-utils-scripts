@@ -67,10 +67,13 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
     var wakes = wake_opened.reduceToVectors({
       bestEffort: true
     })
-    .filter(ee.Filter.eq("label",1))
-    .set(["label"],[2]);
+    .filter(ee.Filter.eq("label",1));
     
-    return(ships.merge(wakes));
+    change_label_to_wakes = function(feature){
+      return(feature.set("label",2));
+    };
+    
+    return(ships.merge(wakes.map(change_label_to_wakes)));
   };
   
   var all_ships = scale.map(find_ships).flatten();
