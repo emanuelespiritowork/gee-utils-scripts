@@ -7,7 +7,8 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
   var low_threshold = ee.Number(min_value || -0.4);
   var high_threshold = ee.Number(max_value || 0.1);
   var water_threshold = ee.Number(min_water || 0.05);//was 1
-  var wake_threshold = ee.Number(0.02);
+  var wake_low_threshold = ee.Number(0.03);
+  var wake_up_threshold = ee.Number(0.055);
   var radius = ee.Number(k_radius || 1);
   var iterations = ee.Number(n_iterations || 1);
   var scale_to_use = ee.Number(min_scale || 10);
@@ -19,8 +20,8 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
   var find_ships = function(image){
     var mask_water = image.select(["B8"]).gt(water_threshold);
     
-    var mask_wake = image.select(["B8"]).gt(wake_threshold);
-    var mask_wake_2 = image.select(["B8"]).lt(water_threshold);
+    var mask_wake = image.select(["B8"]).gt(wake_low_threshold);
+    var mask_wake_2 = image.select(["B8"]).lt(wake_up_threshold);
     
     var ndvi = image.normalizedDifference(["B8","B4"]);
     
