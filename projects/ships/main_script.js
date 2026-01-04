@@ -195,7 +195,10 @@ var AOI =
             })]);
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var s1_coll = ee.ImageCollection("COPERNICUS/S1_GRD");
-Map.centerObject(AOI4);
+
+var which_feature_coll = AOI;
+
+Map.centerObject(which_feature_coll);
 
 var s1_select = require("users/emanuelespiritowork/SharedRepo:functions/s1_select.js");
 var clip_to = require("users/emanuelespiritowork/SharedRepo:functions/clip_to.js");
@@ -204,89 +207,8 @@ var s1_speckle = require("users/emanuelespiritowork/SharedRepo:functions/s1_spec
 var int_find_ships_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships_any.js");
 var int_find_ships = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships.js");
 
-//var select = s1_select.s1_select(s1_coll, "IW", "VH", "DESCENDING", "H");
-
-//var date_filtered = select.filterDate("2024-12-20","2025-02-27");
-
-//print(date_filtered.filterBounds(AOI2));
-
-//var vector = int_find_ships_any.int_find_ships_any(date_filtered, AOI2, 10, -16, 10, 3);
-
-//print(vector);
-
-//Map.addLayer(vector);
-
-//var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI);
-
-//var an_vec = int_find_ships.int_find_ships("2024-12-20","2025-02-27",AOI2);
-
-//var an_vec = int_find_ships.int_find_ships("2025-09-16","2025-09-19",AOI4,null,null,null,null,null,1,10);
-var an_vec = int_find_ships.int_find_ships("2025-09-16","2025-09-19",AOI4);
-
-
-//var s2_coll = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-//.filterBounds(AOI2)
-//.filterDate("2025-07-23","2025-07-28");
+var an_vec = int_find_ships.int_find_ships("2025-09-16","2025-09-19",which_feature_coll);
 
 print(an_vec);
 
 Map.addLayer(an_vec);
-
-//Map.addLayer(s2_coll);
-
-/*
-var to_print = clip.first().select("VH");
-
-var scale_to_use = 10;
-
-Map.addLayer(to_print);
-
-var kernel_circle = ee.Kernel.circle({
-  radius: 3,
-  units: "pixels",
-  normalize: false
-});
-
-//the compact filter will be applied to the vectors
-var compact_filter = to_print.gt(-16)
-.reduceNeighborhood({
-  reducer: ee.Reducer.sum(),
-  kernel: kernel_circle,
-})
-.gt(10).rename("compact");
-
-Map.addLayer(compact_filter);
-
-//the max_filter will be applied to the radar image
-var max_filter = to_print.gt(-16)
-.reduceNeighborhood({
-  reducer: ee.Reducer.max(),
-  kernel: kernel_circle
-}).rename("max");
-
-var image_to_reduce = max_filter.addBands(compact_filter);
-
-Map.addLayer(max_filter);
-
-var vector = image_to_reduce.reduceToVectors({
-  scale: scale_to_use,
-  bestEffort: true,
-  reducer: ee.Reducer.max()
-})
-.filter(ee.Filter.gt("label",0))
-.filter(ee.Filter.gt("max",0));
-
-print(vector);
-
-Map.addLayer(vector);
-
-/*
-var high_value = to_print.updateMask(compact_filter);
-
-Map.addLayer(high_value);
-
-var count = compact_filter.reduceToVectors();
-
-Map.addLayer(count);
-*/
-//var null_var_2 = plot_map.plot_map(speckle.first().select("VH"),2,10);
