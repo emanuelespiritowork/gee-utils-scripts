@@ -71,14 +71,14 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   
   var null_dictionary = ee.Dictionary.fromLists(["label"],[-1]);
   
-  var s1_ships = ee.Algorithms.If({
+  var s1_ships = ee.FeatureCollection(ee.Algorithms.If({
     condition: s1_series_size > 0,
     trueCase: int_find_ships_any.int_find_ships_any(s1_series,AOI,scale_to_use, s1_low_threshold, s1_up_threshold, s1_compactness, s1_size),
     falseCase: ee.FeatureCollection(ee.Feature(ee.Geometry.Point([0,0]), null_dictionary))
-  });
+  }));
   
   print(s1_ships);
-  print(ee.FeatureCollection(s1_ships).filter(ee.Filter.neq("label",-1)));
+  print(s1_ships.filter(ee.Filter.neq("label",-1)));
   
   //controllo su series s2_vuota
   
@@ -98,17 +98,13 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   
   print("s2_ships:");
   
-  var s2_ships = ee.Algorithms.If({
+  var s2_ships = ee.FeatureCollection(ee.Algorithms.If({
     condition: s2_series_size > 0,
     trueCase: int_find_ships_s2.int_find_ships_s2(s2_series,AOI,s2_up_threshold,s2_low_threshold,s2_water_low_threshold,s2_radius,s2_iterations,scale_to_use),
-    falseCase: ee.FeatureCollection(ee.Geometry.Point([0,0]))
-  });
+    falseCase: ee.FeatureCollection(ee.Feature(ee.Geometry.Point([0,0]), null_dictionary))
+  }));
   
   var ships = s1_ships.merge(s2_ships);
-  /*
-  var ships = ee.Algorithms.If({
-    condition: s2_ships.
-  })*/
   
   return(ships);
 };
