@@ -79,6 +79,11 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   .filterDate(start_date,last_date)
   .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE",s2_max_cloud_coverage));
   
+  var s2_series_size = s2_series.size();
+  
+  print("s2_series_size");
+  print(s2_series_size);
+  
   Map.addLayer(s2_series);
   
   Map.addLayer(s2_ndvi.s2_ndvi(s2_series),{},"ndvi");
