@@ -108,7 +108,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
     return(ee.Feature(feature));
   };
   
-  Map.addLayer(s2_ships.map(),{},"s2_ships");
+  Map.addLayer(s2_ships.map(makeItWork),{},"s2_ships");
   
   //var ships = s1_ships.merge(s2_ships).filter(ee.Filter.neq("label",-1));
   
