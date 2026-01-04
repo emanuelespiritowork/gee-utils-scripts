@@ -210,5 +210,7 @@ var int_find_ships = require("users/emanuelespiritowork/SharedRepo:functions/int
 var an_vec = int_find_ships.int_find_ships("2025-09-17","2025-09-19",which_feature_coll);
 
 print(an_vec);
+print(an_vec.filter(ee.Filter.eq("label",1)));
+print(an_vec.filter(ee.Filter.eq("label",2)));
 
 Map.addLayer(an_vec);
