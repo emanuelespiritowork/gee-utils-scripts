@@ -7,8 +7,10 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
   var low_threshold = ee.Number(min_value || -0.4);
   var high_threshold = ee.Number(max_value || 0.1);
   var water_threshold = ee.Number(min_water || 0.05);//was 1
-  var wake_low_threshold = ee.Number(0.03);
-  var wake_up_threshold = ee.Number(0.06);
+  var wake_low_threshold = water_threshold.subtract(0.02);
+  var wake_up_threshold = water_threshold.add(0.01);
+  var wake_ndvi_low_threshold = low_threshold.subtract(0.1);
+  var wake_ndvi_high_threshold = high_threshold;
   var radius = ee.Number(k_radius || 1);
   var iterations = ee.Number(n_iterations || 1);
   var scale_to_use = ee.Number(min_scale || 10);
@@ -27,10 +29,12 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
     
     var mask_1 = ndvi.lt(high_threshold);
     var mask_2 = ndvi.gt(low_threshold);
+    var wake_mask_1 = ndvi.lt(wake_ndvi_high_threshold);
+    var wake_mask_2 = ndvi.gt(wake_ndvi_low_threshold);
     
     var mask = mask_2.and(mask_1).and(mask_water);
     
-    var wake_mask = mask_2.and(mask_1).and(mask_wake).and(mask_wake_2);
+    var wake_mask = wake_mask_2.and(wake_mask_1).and(mask_wake).and(mask_wake_2);
     
     var masked = mask.clip(AOI);
     
