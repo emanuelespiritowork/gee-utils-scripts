@@ -78,7 +78,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   });
   
   print(s1_ships);
-  print(s1_ships.filter(["label"]));
+  print(s1_ships.filter(ee.Filter.notNull(["label"])));
   
   //controllo su series s2_vuota
   
