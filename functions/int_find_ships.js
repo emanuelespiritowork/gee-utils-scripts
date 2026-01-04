@@ -104,7 +104,11 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
     falseCase: ee.FeatureCollection(ee.Feature(ee.Geometry.Point([0,0]), null_dictionary))
   });
   
-  Map.addLayer(ee.Geometry(s2_ships),{},"s2_ships");
+  makeItWork = function(feature){
+    return(ee.Feature(feature));
+  };
+  
+  Map.addLayer(s2_ships.map(),{},"s2_ships");
   
   //var ships = s1_ships.merge(s2_ships).filter(ee.Filter.neq("label",-1));
   
