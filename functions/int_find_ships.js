@@ -96,7 +96,6 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   
   //Map.addLayer(s2_ndvi.s2_ndvi(s2_series),{},"ndvi");
   
-  print("s2_ships:");
   
   var s2_ships = ee.Algorithms.If({
     condition: s2_series_size > 0,
@@ -109,6 +108,9 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   };
   
   Map.addLayer(ee.FeatureCollection(s2_ships).map(makeItWork),{},"s2_ships");
+
+  print("s2_ships:");
+  print(s2_ships);
   
   //var ships = s1_ships.merge(s2_ships).filter(ee.Filter.neq("label",-1));
   
