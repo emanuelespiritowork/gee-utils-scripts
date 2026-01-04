@@ -69,7 +69,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   
   print("s1_ships:");
   
-  var null_dictionary = ee.Dictionary.fromLists(["label"],[null]);
+  var null_dictionary = ee.Dictionary.fromLists(["label"],[-1]);
   
   var s1_ships = ee.Algorithms.If({
     condition: s1_series_size > 0,
@@ -78,7 +78,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   });
   
   print(s1_ships);
-  print(s1_ships.filter(ee.Filter.notNull(["label"])));
+  print(s1_ships.filter(ee.Filter.neq("label",-1)));
   
   //controllo su series s2_vuota
   
