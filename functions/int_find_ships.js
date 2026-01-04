@@ -52,6 +52,11 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   
   var s1_series = s1_longest_series.s1_longest_series(start_date,last_date,AOI);
   
+  var s1_series_size = s1_series.size();
+  
+  print("s1_series_size");
+  print(s1_series_size);
+  
   Map.addLayer(s1_series);
 
   /*
@@ -66,8 +71,6 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   
   var s1_ships = int_find_ships_any.int_find_ships_any(s1_series,AOI,
   scale_to_use, s1_low_threshold, s1_up_threshold, s1_compactness, s1_size);
-  
-  print("s1_ship_size: ")
   
   //controllo su series s2_vuota
   
