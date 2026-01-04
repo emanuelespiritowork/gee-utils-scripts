@@ -19,7 +19,7 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
   var find_ships = function(image){
     var mask_water = image.select(["B8"]).gt(water_threshold);
     
-    var mask_wake = image.select(["B8"]).gt(wake_threshold);
+    var mask_wake = image.select(["B8"]).gt(wake_threshold).lt(water_threshold);
     
     var ndvi = image.normalizedDifference(["B8","B4"]);
     
@@ -27,6 +27,8 @@ exports.int_find_ships_s2 = function(img_coll,AOI,max_value,min_value,min_water,
     var mask_2 = ndvi.gt(low_threshold);
     
     var mask = mask_2.and(mask_1).and(mask_water);
+    
+    var wake_mask = mask_2.and(mask_1).and(mask_wake);
     
     var masked = mask.clip(AOI);
     
