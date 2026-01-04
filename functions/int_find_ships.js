@@ -96,7 +96,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   
   Map.addLayer(s2_series.sort("system:time_start",true).first(),{},"s2_series_2");
   
-  //Map.addLayer(s2_ndvi.s2_ndvi(s2_series),{},"ndvi");
+  Map.addLayer(s2_ndvi.s2_ndvi(s2_series),{},"ndvi");
   
   
   var s2_ships = ee.FeatureCollection(ee.Algorithms.If({
