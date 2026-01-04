@@ -57,7 +57,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   //print("s1_series_size");
   //print(s1_series_size);
   
-  Map.addLayer(s1_series,{},"s1_series");
+  //Map.addLayer(s1_series,{},"s1_series");
 
   /*
   Map.addLayer(s1_series.first());
@@ -67,7 +67,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   print(s1_series.sort("system:time_start",true).first());
   */
   
-  print("s1_ships:");
+  //print("s1_ships:");
   
   var null_dictionary = ee.Dictionary.fromLists(["label"],[-1]);
   
@@ -77,7 +77,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
     falseCase: ee.FeatureCollection(ee.Feature(ee.Geometry.Point([0,0]), null_dictionary))
   }));
   
-  Map.addLayer(s1_ships.filter(ee.Filter.neq("label",-1)),{},"s1_ships");
+  //Map.addLayer(s1_ships.filter(ee.Filter.neq("label",-1)),{},"s1_ships");
   
   //print(s1_ships);
   //print(s1_ships.filter(ee.Filter.neq("label",-1)));
@@ -92,7 +92,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
   //print("s2_series_size");
   //print(s2_series_size);
   
-  Map.addLayer(s2_series,{},"s2_series");
+  //Map.addLayer(s2_series,{},"s2_series");
   
   //Map.addLayer(s2_ndvi.s2_ndvi(s2_series),{},"ndvi");
   
@@ -103,7 +103,7 @@ exports.int_find_ships = function(start_date, last_date, AOI, min_scale, s1_min_
     falseCase: ee.Feature(ee.Geometry.Point([0,0]), null_dictionary)
   }));
   
-  Map.addLayer(s2_ships.filter(ee.Filter.neq("label",-1)),{},"s2_ships");
+  //Map.addLayer(s2_ships.filter(ee.Filter.neq("label",-1)),{},"s2_ships");
 
   //print("s2_ships:");
   //print(s2_ships);
