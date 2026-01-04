@@ -207,7 +207,7 @@ var s1_speckle = require("users/emanuelespiritowork/SharedRepo:functions/s1_spec
 var int_find_ships_any = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships_any.js");
 var int_find_ships = require("users/emanuelespiritowork/SharedRepo:functions/int_find_ships.js");
 
-var an_vec = int_find_ships.int_find_ships("2025-09-17","2025-09-19",which_feature_coll);
+var an_vec = int_find_ships.int_find_ships("2025-09-16","2025-09-19",which_feature_coll);
 
 print(an_vec);
 
