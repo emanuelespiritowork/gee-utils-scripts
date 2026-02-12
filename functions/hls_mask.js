@@ -38,8 +38,7 @@ exports.hls_mask = function(img_coll){
 *******************************************************/
   //or mask (1 will be cloud pixel, 0 will be not cloud pixel)
   var opposite_mask = qa_cloud
-      .or(qa_cirrus)    //snow
-      //.or(image.select("B2").gt(5000)); //my_cloud_filter
+      .or(qa_nearcloud)   
       
   //creating the xor (1 will be not cloud pixel, 0 will be cloud pixel)
   var mask = opposite_mask.eq(0);
