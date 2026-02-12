@@ -31,7 +31,7 @@ exports.hls_mask = function(img_coll){
   var nearCloudBitMask = 1 << 2;
   var qa = image.select('QA60');
   var qa_cloud = qa.bitwiseAnd(cloudBitMask).neq(0);
-  var qa_cirrus = qa.bitwiseAnd(nearCloudBitMask).neq(0);
+  var qa_nearcloud = qa.bitwiseAnd(nearCloudBitMask).neq(0);
 
 /******************************************************
  * Create complete masks
