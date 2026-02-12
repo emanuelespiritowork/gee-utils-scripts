@@ -27,8 +27,6 @@ exports.hls_mask = function(img_coll){
 /******************************************************
  * s2 masks
 *******************************************************/
-  var SCL_classification = image.select('SCL').unmask(0);
-
   var cloudBitMask = 1 << 10;
   var cirrusBitMask = 1 << 11;
   var qa = image.select('QA60');
