@@ -27,12 +27,7 @@ exports.hls_mask = function(img_coll){
 /******************************************************
  * s2 masks
 *******************************************************/
-  var opaque = image.select('MSK_CLASSI_OPAQUE').unmask(0);
-  var cirrus = image.select('MSK_CLASSI_CIRRUS').unmask(0);
-  var snow = image.select('MSK_CLASSI_SNOW_ICE').unmask(0);
-  var snow_probability = image.select('MSK_SNWPRB').unmask(0);
-  var cloud_probability = image.select('MSK_CLDPRB').unmask(0);
-  var SCL_classification = image.select('SCL').unmask(0);
+  var SCL_classification = image.select('Fmask').unmask(0);
 
   var cloudBitMask = 1 << 10;
   var cirrusBitMask = 1 << 11;
