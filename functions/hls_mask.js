@@ -19,13 +19,13 @@ exports.hls_mask = function(img_coll){
   img_coll = ee.ImageCollection(img_coll);
 
 /******************************************************
- * Apply s2 mask
+ * Apply hls mask
 *******************************************************/
-  var s2_mask_img = function(image){
+  var hls_mask_img = function(image){
   //cloud-masking 
   
 /******************************************************
- * s2 masks
+ * hls masks
 *******************************************************/
   var cloudBitMask = 1 << 10;
   var cirrusBitMask = 1 << 11;
@@ -71,5 +71,5 @@ exports.hls_mask = function(img_coll){
   });
 };
   
-  return img_coll.map(s2_mask_img);
+  return img_coll.map(hls_mask_img);
 };
