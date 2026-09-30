@@ -50,7 +50,7 @@ exports.clip_to = function(img_coll, AOI, scale_to_use){
  * Get area of the AOI
  *******************************************************/
  
-  var area = geometry.area();
+  var area = geometry.area(maxError = 1);
   //print("area",area);
   //print("area.sqrt().divide(ee.Number(10))",area.sqrt().divide(ee.Number(10)));
 
