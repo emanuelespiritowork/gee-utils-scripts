@@ -50,7 +50,10 @@ exports.clip_to = function(img_coll, AOI, scale_to_use){
  * Get area of the AOI
  *******************************************************/
  
-  var area = geometry.area(1);
+  var area = geometry.area(0.001); 
+  //from the latest update of GEE the Error Margin has to be 
+  //indicated so we chose the lowest number that is 0.001. No lossless 
+  //computation can be performed
   //print("area",area);
   //print("area.sqrt().divide(ee.Number(10))",area.sqrt().divide(ee.Number(10)));
 
