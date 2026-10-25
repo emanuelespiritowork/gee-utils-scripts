@@ -82,7 +82,9 @@ exports.clip_to = function(img_coll, AOI, scale_to_use){
       scale: scale_to_use
     }).clip(AOI);
     var previous_geometry = image.geometry();
-    var intersection = geometry.intersection(previous_geometry, 1);
+    var intersection = geometry.intersection(previous_geometry, 0.001);
+    //same for Geometry.Area: there is the need from the latest update to indicate
+    //a value for Error Margin in the intersection function. We used the lowest value
     var footprint = ee.Algorithms.GeometryConstructors.MultiGeometry({
       geometries: intersection.geometries()
     });
