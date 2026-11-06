@@ -39,7 +39,7 @@ exports.time_series_export = function(time_series, export_folder, property_list)
   .join(", ");*/
   
   var selectors_name = ee.List(property_names).cat(["id"])
-  .cat(["date"]).cat(["clock"]).join(", ");
+  .cat(["date"]).cat(["clock"]).cat(["unmasked_pixel_ratio"]).join(", ");
   
   print(selectors_name);
 
