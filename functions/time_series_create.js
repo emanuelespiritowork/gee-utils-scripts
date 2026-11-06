@@ -88,7 +88,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
       keys_list = ee.List(keys_list).cat(layer_names);
         
         
-      var values_list = [ee.String(index),date,ee.Date(date).format('Y/M/d'),ee.Date(date).format('H:m:s'), ee.String(feature_of_cycle.get(id_name)), ee.Number(not_masked_pixels)/ee.Number(all_pixels)];
+      var values_list = [ee.String(index),date,ee.Date(date).format('Y/M/d'),ee.Date(date).format('H:m:s'), ee.String(feature_of_cycle.get(id_name)), ee.Number(not_masked_pixels).divide(ee.Number(all_pixels))];
       values_list = ee.List(values_list).cat(values);
         
         
