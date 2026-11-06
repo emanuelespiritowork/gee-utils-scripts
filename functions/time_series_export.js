@@ -38,8 +38,13 @@ exports.time_series_export = function(time_series, export_folder, property_list)
   /*var selectors_name = property_list.cat(["id"]).cat(["date"]).cat(["clock"])
   .join(", ");*/
   
-  var selectors_name = ee.List(property_names).cat(["id"])
-  .cat(["date"]).cat(["clock"]).cat(["unmasked_pixel_ratio"]).join(", ");
+  var selectors_name = ee.List(property_names)
+  .cat(['image:index'])
+  .cat(['image:time_start'])
+  .cat(["id"])
+  .cat(["date"]).cat(["clock"])
+  .cat(["unmasked_pixel_ratio"])
+  .join(", ");
   
   print(selectors_name);
 
