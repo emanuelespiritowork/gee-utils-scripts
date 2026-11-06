@@ -49,8 +49,10 @@ exports.landsat_mask = function(img_coll){
     var snow_mask = qa_pixel_layer
     .bitwiseAnd(snow).neq(0);
     
-    var cloud_confidence_high = ee.Image(3 << 10);
-    var cloud_confidence_medium = ee.Image(2 << 10);
+    var cloud_confidence_high = ee.Image(3 << 8);
+    var cloud_confidence_medium = ee.Image(2 << 8);
+    var cloud_shadow_confidence_high = ee.Image(3 << 10);
+    var cloud_shadow_confidence_medium = ee.Image(2 << 10);
     var snow_confidence_high = ee.Image(3 << 12);
     var snow_confidence_medium = ee.Image(2 << 12);
     var cirrus_confidence_high = ee.Image(3 << 14);
@@ -63,6 +65,14 @@ exports.landsat_mask = function(img_coll){
     
     var cloud_confidence_medium_mask = select_cloud_bit
     .eq(cloud_confidence_medium);
+    
+    var select_cloud_shadow_bit = qa_pixel_layer.bitwiseAnd(cloud_shadow_confidence_high);
+    
+    var cloud_shadow_confidence_high_mask = select_cloud_shadow_bit
+    .eq(cloud_shadow_confidence_high);
+    
+    var cloud_shadow_confidence_medium_mask = select_cloud_shadow_bit
+    .eq(cloud_shadow_confidence_medium);
     
     var select_snow_bit = qa_pixel_layer.bitwiseAnd(snow_confidence_high);
     
