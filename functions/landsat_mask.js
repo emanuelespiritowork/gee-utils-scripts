@@ -103,6 +103,8 @@ exports.landsat_mask = function(img_coll){
     .or(snow_mask)
     .or(cloud_confidence_high_mask)
     .or(cloud_confidence_medium_mask)
+    .or(cloud_shadow_confidence_high_mask)
+    .or(cloud_shadow_confidence_medium_mask)
     .or(snow_confidence_high_mask)
     .or(snow_confidence_medium_mask)
     .or(cirrus_confidence_high_mask)
