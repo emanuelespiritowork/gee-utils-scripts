@@ -60,8 +60,10 @@ exports.time_series_create = function(img_coll, AOI, scale_to_use){
     return setting_feature_descriptors;
 };
   
-  var reduced_time_series = img_coll.map(reducing_image);
+  var reduced_time_series = img_coll.map(reducing_image).flatten();
   
-  return reduced_time_series.flatten();
+  print(reduced_time_series.propertyNames());
+  
+  return reduced_time_series;
 };
 
