@@ -19,6 +19,7 @@
  * The rows are all the image collection values averaged in each field in 
  * each date. 
 *******************************************************/
+var time_series_get_property_names = require("users/emanuelespiritowork/SharedRepo:functions/time_series_get_property_names.js");
 
 exports.time_series_create = function(img_coll, AOI, scale_to_use){
 /******************************************************
@@ -62,7 +63,7 @@ exports.time_series_create = function(img_coll, AOI, scale_to_use){
   
   var reduced_time_series = img_coll.map(reducing_image).flatten();
   
-  print(reduced_time_series.propertyNames());
+  print(time_series_get_property_names.time_series_get_property_names(reduced_time_series));
   
   return reduced_time_series;
 };
