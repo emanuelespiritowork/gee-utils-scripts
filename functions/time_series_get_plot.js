@@ -19,7 +19,7 @@ var time_series_get_property_names = require("users/emanuelespiritowork/SharedRe
  * of a time series created by time_series_create using as y variable 
  * the input string.  
 *******************************************************/
-exports.time_series_get_plot = function(time_series,which_property){
+exports.time_series_get_plot = function(time_series,which_property,which_id){
 /******************************************************
  * Check variable types
 *******************************************************/
@@ -48,7 +48,7 @@ exports.time_series_get_plot = function(time_series,which_property){
     features: time_series, 
     xProperty: "date",
     yProperty: ee.String(yProperties).getInfo(),
-    seriesProperty: 'id',
+    seriesProperty: ee.String(which_id).getInfo(),
   }).setChartType("LineChart")
   .setOptions({
     title: p_title.getInfo(),
