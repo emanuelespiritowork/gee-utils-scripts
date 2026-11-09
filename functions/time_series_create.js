@@ -38,14 +38,18 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
 /******************************************************
  * Create time series for each feature
 *******************************************************/
-  var reduced_time_series = img_coll.reduceRegions({
+  var reducing_image = function(image){
+    return image.reduceRegions({
     collection: AOI,
     reducer: ee.Reducer.median().combine({
       reducer2: ee.Reducer.count(),
       sharedInputs: true
     }),
     scale: scale_to_use
-  });
+    });
+  };
+
+  var reduced_time_series = img_coll.map(reducing_image);
   
   return reduced_time_series;
 };
