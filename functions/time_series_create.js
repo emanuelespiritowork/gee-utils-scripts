@@ -38,74 +38,15 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
 /******************************************************
  * Create time series for each feature
 *******************************************************/
-  var space_series_img = function(img){
-    var date = img.get('system:time_start');
-    var index = img.get('system:index');
-    
-    /******************************************************
-    * Cast to number the values of the time series
-    *******************************************************/
-    var make_number = function(element){
-      return ee.Number(element);
-    };
-    
-    /******************************************************
-    * Create value for a feature for a image
-    *******************************************************/
-    var create_single_field_value = function(feature_of_cycle){
-      /******************************************************
-      * Compute pixels that are not masked
-      *******************************************************/
-      var not_masked_pixels = img.reduceRegion({
-        reducer: ee.Reducer.count(),
-        geometry: feature_of_cycle.geometry(),
-        scale: scale_to_use,
-        bestEffort: true
-      }).getNumber(ee.String(img.bandNames().get(0)));
-      
-      /******************************************************
-      * Compute all pixels
-      *******************************************************/
-      var all_pixels = img.unmask(ee.Number(0)).reduceRegion({
-        reducer: ee.Reducer.count(),
-        geometry: feature_of_cycle.geometry(),
-        scale: scale_to_use,
-        bestEffort: true
-      }).getNumber(ee.String(img.bandNames().get(0)));
-      
-      /******************************************************
-      * Compute median values
-      *******************************************************/
-      var values = ee.List(img.reduceRegion({
-        geometry: feature_of_cycle.geometry(),
-        reducer: ee.Reducer.median(),
-        scale: scale_to_use,
-        bestEffort: true}).values());
-        
-      values = values.map(make_number);
-        
-      var keys_list = ['image:index','image:time_start','date','clock','id','unmasked_pixel_ratio'];
-      keys_list = ee.List(keys_list).cat(layer_names);
-        
-        
-      var values_list = [ee.String(index),date,ee.Date(date).format('Y/M/d'),ee.Date(date).format('H:m:s'), ee.String(feature_of_cycle.get(id_name)), ee.Number(not_masked_pixels).divide(ee.Number(all_pixels))];
-      values_list = ee.List(values_list).cat(values);
-        
-        
-      var feature_of_single_field = ee.Feature(feature_of_cycle.geometry(),
-      ee.Dictionary.fromLists({
-        keys: keys_list,
-        values: values_list
-      }));
-        
-      return feature_of_single_field;
-    };
-    
-    var all_field_features = AOI.map(create_single_field_value);
-    
-    return all_field_features;
-  };
+  var reduced_time_series = img_coll.reduceRegions({
+    collection: AOI,
+    reducer: ee.Reducer.median().combine({
+      reducer2: ee.Reducer.count(),
+      sharedInputs: true
+    }),
+    scale: scale_to_use
+  });
   
-  return img_coll.map(space_series_img).flatten();
+  return reduced_time_series;
 };
 
