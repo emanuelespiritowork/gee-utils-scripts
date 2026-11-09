@@ -50,7 +50,7 @@ exports.time_series_create = function(img_coll, AOI, scale_to_use){
     );
     };
     
-    var setting_feature_descriptors = feature_with_values.map(set_values);
+    var setting_feature_descriptors = feature_with_values.flatten().map(set_values);
     
     return setting_feature_descriptors;
 };
