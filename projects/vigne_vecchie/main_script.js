@@ -75,9 +75,9 @@ var ndvi = landsat_ndvi.landsat_ndvi(l8_scaled);
 
 print(AOI);
 
-var time_series = time_series_create.time_series_create(ndvi, AOI, "area", scale_to_use);
+var time_series = time_series_create.time_series_create(ndvi, AOI, scale_to_use);
 
-var plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi");
+var plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi","area");
 
 print(time_series);
 //print(time_series.sort("ndvi2",false).first().get("ndvi2"));
@@ -217,9 +217,9 @@ ndvi = s2_ndvi.s2_ndvi(s2_scaled);
 
 //print(AOI);
 
-time_series = time_series_create.time_series_create(ndvi, AOI, "area", scale_to_use);
+time_series = time_series_create.time_series_create(ndvi, AOI, scale_to_use);
 
-plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi");
+plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi", "area");
 
 //print(time_series);
 //print(time_series.sort("ndvi2",false).first().get("ndvi2"));
