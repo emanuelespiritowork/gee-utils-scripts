@@ -48,12 +48,16 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
     scale: scale_to_use
     });
     
-    var setting_feature_descriptors = feature_with_values.set(
+    var set_values = function(feature){
+      return feature.set(
       'image:index', image.get("system:index"),
       'image:time_start', image.get("system:time_start"),
       'date', ee.Date(image.get("system:time_start")).format('Y/M/d'),
       'clock',ee.Date(image.get("system:time_start")).format('H:m:s')
     );
+    };
+    
+    var setting_feature_descriptors = feature_with_values.map(set_values);
     
     return setting_feature_descriptors;
 };
