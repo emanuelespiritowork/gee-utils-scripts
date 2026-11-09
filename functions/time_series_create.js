@@ -39,7 +39,7 @@ exports.time_series_create = function(img_coll, AOI, scale_to_use){
       sharedInputs: true
     }),
     scale: scale_to_use,
-    tileScale: ee.Number(200)
+    tileScale: ee.Number(2000)
     });
     
     var image_index = image.get("system:index");
