@@ -44,7 +44,7 @@ exports.time_series_create = function(img_coll, AOI, scale_to_use){
     var image_index = image.get("system:index");
     var image_time_start = image.get("system:time_start");
     var date = ee.Date(image.get("system:time_start")).format('Y/M/d');
-    var clock = ee.Date(image.get("system:time_start")).format('H:m:s')
+    var clock = ee.Date(image.get("system:time_start")).format('H:m:s');
     
     var set_values = function(feature){
       return feature.set(
