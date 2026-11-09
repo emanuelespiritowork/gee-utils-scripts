@@ -77,7 +77,7 @@ print(AOI);
 
 var time_series = time_series_create.time_series_create(ndvi, AOI, scale_to_use);
 
-var plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi","area");
+var plot = time_series_get_plot.time_series_get_plot(time_series,"median","area");
 
 print(time_series);
 //print(time_series.sort("ndvi2",false).first().get("ndvi2"));
@@ -219,7 +219,7 @@ ndvi = s2_ndvi.s2_ndvi(s2_scaled);
 
 time_series = time_series_create.time_series_create(ndvi, AOI, scale_to_use);
 
-plot = time_series_get_plot.time_series_get_plot(time_series,"ndvi", "area");
+plot = time_series_get_plot.time_series_get_plot(time_series,"median", "area");
 
 //print(time_series);
 //print(time_series.sort("ndvi2",false).first().get("ndvi2"));
