@@ -40,7 +40,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
 *******************************************************/
   var reducing_image = function(image){
     return image.reduceRegions({
-    collection: AOI.select(id_name),
+    collection: AOI,
     reducer: ee.Reducer.median().combine({
       reducer2: ee.Reducer.count(),
       sharedInputs: true
