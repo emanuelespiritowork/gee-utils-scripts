@@ -30,16 +30,11 @@ exports.time_series_create = function(img_coll, AOI, scale_to_use){
   scale_to_use = ee.Number(scale_to_use);
 
 /******************************************************
- * Get layer name
-*******************************************************/
-  var filtered_AOI = AOI.select(id_name.getInfo());
-
-/******************************************************
  * Create time series for each feature
 *******************************************************/
   var reducing_image = function(image){
     var feature_with_values = image.reduceRegions({
-    collection: filtered_AOI,
+    collection: AOI,
     reducer: ee.Reducer.median().combine({
       reducer2: ee.Reducer.count(),
       sharedInputs: true
