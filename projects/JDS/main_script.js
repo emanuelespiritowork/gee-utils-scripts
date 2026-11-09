@@ -100,7 +100,7 @@ evi = evi.sort("evi",true);
 
 var time_series_create = require('users/emanuelespiritowork/SharedRepo:functions/time_series_create.js');
 
-var time_series = time_series_create.time_series_create(evi,AOI,"id_geom",scale_to_use);
+var time_series = time_series_create.time_series_create(evi,AOI,scale_to_use);
 
 print(time_series.sort("evi",true).limit(4999));
 
