@@ -117,7 +117,7 @@ print(time_series_name);
 
 var time_series_get_plot = require('users/emanuelespiritowork/SharedRepo:functions/time_series_get_plot.js');
 
-var plot = time_series_get_plot.time_series_get_plot(time_series,"evi");
+var plot = time_series_get_plot.time_series_get_plot(time_series,"evi","id_geom");
 
 //print(time_series);
 print(plot);
