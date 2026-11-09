@@ -67,6 +67,8 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
     ];
   };
   
-  return reduced_time_series;
+  var data = img_coll.map(get_metadata);
+  
+  return [reduced_time_series,data];
 };
 
