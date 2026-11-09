@@ -20,7 +20,7 @@
  * each date. 
 *******************************************************/
 
-exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
+exports.time_series_create = function(img_coll, AOI, scale_to_use){
 /******************************************************
  * Check variable types
 *******************************************************/
@@ -32,15 +32,14 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
 /******************************************************
  * Get layer name
 *******************************************************/
-  var layer_names = img_coll.first().bandNames().sort();
-  print(layer_names);
+  var filtered_AOI = AOI.select(id_name.getInfo());
 
 /******************************************************
  * Create time series for each feature
 *******************************************************/
   var reducing_image = function(image){
     var feature_with_values = image.reduceRegions({
-    collection: AOI,
+    collection: filtered_AOI,
     reducer: ee.Reducer.median().combine({
       reducer2: ee.Reducer.count(),
       sharedInputs: true
