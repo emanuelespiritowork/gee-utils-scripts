@@ -57,6 +57,6 @@ exports.time_series_create = function(img_coll, AOI, scale_to_use){
   
   var reduced_time_series = img_coll.map(reducing_image);
   
-  return reduced_time_series;
+  return reduced_time_series.flatten();
 };
 
