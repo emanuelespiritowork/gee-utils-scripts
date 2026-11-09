@@ -39,7 +39,7 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
  * Create time series for each feature
 *******************************************************/
   var reducing_image = function(image){
-    return image.reduceRegions({
+    var feature_with_values = image.reduceRegions({
     collection: AOI,
     reducer: ee.Reducer.median().combine({
       reducer2: ee.Reducer.count(),
@@ -47,8 +47,17 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
     }),
     scale: scale_to_use
     });
-  };
-
+    
+    var setting_feature_descriptors = feature_with_values.set(
+      'image:index', image.get("system:index"),
+      'image:time_start', image.get("system:time_start"),
+      'date', ee.Date(image.get("system:time_start")).format('Y/M/d'),
+      'clock',ee.Date(image.get("system:time_start")).format('H:m:s')
+    );
+    
+    return setting_feature_descriptors;
+};
+  
   var reduced_time_series = img_coll.map(reducing_image);
   
   return reduced_time_series;
