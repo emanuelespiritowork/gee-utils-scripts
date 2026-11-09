@@ -26,7 +26,6 @@ exports.time_series_create = function(img_coll, AOI, scale_to_use){
 *******************************************************/
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
-  id_name = ee.String(id_name);
   scale_to_use = ee.Number(scale_to_use);
 
 /******************************************************
