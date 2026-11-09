@@ -51,24 +51,6 @@ exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
 
   var reduced_time_series = img_coll.map(reducing_image);
   
-  var get_metadata = function(image){
-    var list_of_metadata = [
-      image.get("system:index"),
-      image.get("system:time_start"),
-      ee.Date(image.get("system:time_start")).format('Y/M/d'),
-      ee.Date(image.get("system:time_start")).format('H:m:s')
-    ];
-    
-    var list_of_names = [
-      'image:index',
-      'image:time_start',
-      'date',
-      'clock'
-    ];
-  };
-  
-  var data = img_coll.map(get_metadata);
-  
-  return [reduced_time_series,data];
+  return reduced_time_series;
 };
 
