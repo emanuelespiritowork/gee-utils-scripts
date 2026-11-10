@@ -20,7 +20,7 @@
  * each date. 
 *******************************************************/
 
-exports.time_series_create = function(img_coll, AOI, id_name, scale_to_use){
+exports.time_series_create_vold = function(img_coll, AOI, id_name, scale_to_use){
 /******************************************************
  * Check variable types
 *******************************************************/
