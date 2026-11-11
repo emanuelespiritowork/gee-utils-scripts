@@ -65,8 +65,8 @@ exports.time_series_create = function(img_coll, AOI, scale_to_use, tile_scale){
   
   var reduced_time_series = img_coll.map(reducing_image).flatten();
   
-  print("Time series of the following properties");
-  print(time_series_get_property_names.time_series_get_property_names(reduced_time_series));
+  //print("Time series of the following properties");
+  //print(time_series_get_property_names.time_series_get_property_names(reduced_time_series));
   
   return reduced_time_series;
 };
