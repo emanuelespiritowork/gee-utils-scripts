@@ -21,7 +21,7 @@
 *******************************************************/
 var time_series_get_property_names = require("users/emanuelespiritowork/SharedRepo:functions/time_series_get_property_names.js");
 
-exports.time_series_for_points_create = function(img_coll, AOI, scale_to_use, Tile_scale){
+exports.time_series_for_points_create = function(img_coll, pointCollection, scale_to_use){
 /******************************************************
  * Check variable types
 *******************************************************/
