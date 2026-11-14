@@ -19,13 +19,12 @@
  * The rows are all the image collection values averaged in each field in 
  * each date. 
 *******************************************************/
-exports.time_series_for_points_create = function(img_coll, pointCollection, scale_to_use){
+exports.time_series_for_points_create = function(img_coll, pointCollection){
 /******************************************************
  * Check variable types
 *******************************************************/
   img_coll = ee.ImageCollection(img_coll);
   pointCollection = ee.FeatureCollection(pointCollection);
-  scale_to_use = ee.Number(scale_to_use);
   
 /******************************************************
  * Create time series for each feature
