@@ -25,6 +25,11 @@ exports.time_series_for_points_create = function(img_coll, pointCollection){
 *******************************************************/
   img_coll = ee.ImageCollection(img_coll);
   pointCollection = ee.FeatureCollection(pointCollection);
+  var put_coordinates = function(feature){
+    return(feature.set("coordinates", feature.geometry().coordinates()));
+  };
+
+  var AOI = pointCollection.map(put_coordinates);
   
 /******************************************************
  * Create time series for each feature
@@ -44,7 +49,7 @@ exports.time_series_for_points_create = function(img_coll, pointCollection){
     );
     };
     
-    var setting_feature_descriptors = image.sampleRegions(pointCollection).map(set_values);
+    var setting_feature_descriptors = image.sampleRegions(AOI).map(set_values);
     
     return setting_feature_descriptors;
 };
