@@ -29,7 +29,7 @@ exports.time_series_for_points_create = function(img_coll, pointCollection){
     return(feature.set(
       "x", feature.geometry().coordinates().getNumber(0),
       "y", feature.geometry().coordinates().getNumber(1),
-      "crs", feature.geometry().projection().crs())
+      "epsg", ee.Number.parse(feature.geometry().projection().crs().replace("EPSG:","")))
       );
   };
 
