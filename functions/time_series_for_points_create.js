@@ -27,7 +27,8 @@ exports.time_series_for_points_create = function(img_coll, pointCollection){
   pointCollection = ee.FeatureCollection(pointCollection);
   var put_coordinates = function(feature){
     return(feature.set(
-      "coordinates", feature.geometry().coordinates(),
+      "x", feature.geometry().coordinates().getNumber(0),
+      "y", feature.geometry().coordinates().getNumber(1),
       "crs", feature.geometry().projection().crs())
       );
   };
