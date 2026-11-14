@@ -17,7 +17,9 @@ exports.time_series_for_pixels_create = function(img_coll, AOI){
     );
     };
     
-    var setting_feature_descriptors = image.addBands(ee.Image.pixelCoordinates(image.projection().crs())).sampleRegions(AOI).map(set_values);
+    var setting_feature_descriptors = image.addBands(ee.Image.pixelCoordinates(image.projection().crs()))
+    .addBands(ee.Image.constant(image.projection().crs()))
+    .sampleRegions(AOI).map(set_values);
     
     return setting_feature_descriptors;
 };
