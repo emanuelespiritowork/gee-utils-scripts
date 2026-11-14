@@ -21,14 +21,14 @@
 *******************************************************/
 var time_series_get_property_names = require("users/emanuelespiritowork/SharedRepo:functions/time_series_get_property_names.js");
 
-exports.time_series_create = function(img_coll, AOI, scale_to_use, tile_scale){
+exports.time_series_create = function(img_coll, AOI, scale_to_use, Tile_scale){
 /******************************************************
  * Check variable types
 *******************************************************/
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
   scale_to_use = ee.Number(scale_to_use);
-  tile_scale = ee.Number(tile_scale);
+  tile_scale = ee.Number(Tile_scale || 1);
 
 /******************************************************
  * Create time series for each feature
