@@ -26,7 +26,10 @@ exports.time_series_for_points_create = function(img_coll, pointCollection){
   img_coll = ee.ImageCollection(img_coll);
   pointCollection = ee.FeatureCollection(pointCollection);
   var put_coordinates = function(feature){
-    return(feature.set("coordinates", feature.geometry().coordinates()));
+    return(feature.set(
+      "coordinates", feature.geometry().coordinates(),
+      "crs", feature.geometry().projection().crs())
+      );
   };
 
   var AOI = pointCollection.map(put_coordinates);
