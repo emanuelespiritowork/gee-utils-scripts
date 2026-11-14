@@ -31,16 +31,6 @@ exports.time_series_for_points_create = function(img_coll, pointCollection, scal
  * Create time series for each feature
 *******************************************************/
   var reducing_image = function(image){
-    var feature_with_values = image.reduceRegions({
-    collection: AOI,
-    reducer: ee.Reducer.median().combine({
-      reducer2: ee.Reducer.count(),
-      sharedInputs: true
-    }),
-    scale: scale_to_use,
-    tileScale: tile_scale
-    });
-    
     var image_index = image.get("system:index");
     var image_time_start = image.get("system:time_start");
     var date = ee.Date(image.get("system:time_start")).format('Y/M/d');
@@ -55,7 +45,7 @@ exports.time_series_for_points_create = function(img_coll, pointCollection, scal
     );
     };
     
-    var setting_feature_descriptors = feature_with_values.map(set_values);
+    var setting_feature_descriptors = image.sampleRegions(pointCollection).map(set_values);
     
     return setting_feature_descriptors;
 };
