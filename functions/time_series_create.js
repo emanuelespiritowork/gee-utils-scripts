@@ -28,7 +28,7 @@ exports.time_series_create = function(img_coll, AOI, scale_to_use, Tile_scale){
   img_coll = ee.ImageCollection(img_coll);
   AOI = ee.FeatureCollection(AOI);
   scale_to_use = ee.Number(scale_to_use);
-  tile_scale = ee.Number(Tile_scale || 1);
+  var tile_scale = ee.Number(Tile_scale || 1);
 
 /******************************************************
  * Create time series for each feature
