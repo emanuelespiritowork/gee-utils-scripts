@@ -19,17 +19,14 @@
  * The rows are all the image collection values averaged in each field in 
  * each date. 
 *******************************************************/
-var time_series_get_property_names = require("users/emanuelespiritowork/SharedRepo:functions/time_series_get_property_names.js");
-
 exports.time_series_for_points_create = function(img_coll, pointCollection, scale_to_use){
 /******************************************************
  * Check variable types
 *******************************************************/
   img_coll = ee.ImageCollection(img_coll);
-  AOI = ee.FeatureCollection(AOI);
+  pointCollection = ee.FeatureCollection(pointCollection);
   scale_to_use = ee.Number(scale_to_use);
-  var tile_scale = ee.Number(Tile_scale || 1);
-
+  
 /******************************************************
  * Create time series for each feature
 *******************************************************/
@@ -64,9 +61,6 @@ exports.time_series_for_points_create = function(img_coll, pointCollection, scal
 };
   
   var reduced_time_series = img_coll.map(reducing_image).flatten();
-  
-  //print("Time series of the following properties");
-  //print(time_series_get_property_names.time_series_get_property_names(reduced_time_series));
   
   return reduced_time_series;
 };
